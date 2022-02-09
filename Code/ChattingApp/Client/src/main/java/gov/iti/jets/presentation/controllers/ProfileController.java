@@ -11,6 +11,7 @@ public class ProfileController {
     HomePageController home = new HomePageController();
     @FXML
     void backToMainPageOnMouseClick(MouseEvent event) {
+        stageCoordinator.switchToGHomePageFromProfileScreen();
         // System.out.println("samy");
         // Platform.runLater(new Runnable() {
 

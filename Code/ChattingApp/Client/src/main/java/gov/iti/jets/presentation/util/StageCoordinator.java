@@ -3,7 +3,7 @@ package gov.iti.jets.presentation.util;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
+import gov.iti.jets.presentation.controllers.HomePageController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 public class StageCoordinator {
     private static final StageCoordinator stageCoordinator = new StageCoordinator();
-
+    HomePageController homePageController = new HomePageController();
     private Stage primaryStage;
 
     private final Map<String, Scene> sceneMap = new HashMap<>();
@@ -62,6 +62,23 @@ public class StageCoordinator {
             }
         }
         primaryStage.setScene(homePageScene);
+    }
+
+    public void switchToGHomePageFromProfileScreen() {
+        Scene homePageFromProifleScene;
+        try {
+            // change Path
+            GridPane root = FXMLLoader.load(getClass().getResource("/views/homePage/homePage.fxml"));
+            homePageFromProifleScene = new Scene(root);
+            primaryStage.setScene(homePageFromProifleScene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // GridPane gridPane= homePageController.getGridPane();
+        // VBox sideBar= homePageController.getSideBar();
+        // gridPane.getChildren().remove(loadProfile());
+        // gridPane.add(sideBar, 0, 0);
     }
 
     public void switchToRegistrationScreen() {
@@ -119,8 +136,6 @@ public class StageCoordinator {
         addNewContact.setTitle("Add New Contact");
         addNewContact.show();
     }
-
-    
 
     public Node loadSettings() {
         Node settings = nodeMap.get("settings");

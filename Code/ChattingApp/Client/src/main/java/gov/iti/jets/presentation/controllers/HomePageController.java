@@ -19,141 +19,131 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
-public class HomePageController implements Initializable{
-    StageCoordinator stageCoordinator = StageCoordinator.getInstance();
-    @FXML
-    private Tab Contacts;
+public class HomePageController implements Initializable {
+  StageCoordinator stageCoordinator = StageCoordinator.getInstance();
+  @FXML
+  private Tab Contacts;
 
-    @FXML
-    private GridPane gridPane;
+  @FXML
+  private GridPane gridPane;
 
-    @FXML
-    private Tab Setting;
+  @FXML
+  private Tab Setting;
 
-    @FXML
-    private VBox SettingAreaVbox;
+  @FXML
+  private VBox SettingAreaVbox;
 
-    @FXML
-    private Tab addContact;
+  @FXML
+  private Tab addContact;
 
-    @FXML
-    private VBox addContactsAreaVbox;
+  @FXML
+  private VBox addContactsAreaVbox;
 
-    @FXML
-    private ScrollPane chatArea;
+  @FXML
+  private ScrollPane chatArea;
 
-    @FXML
-    private Tab chattingGroup;
+  @FXML
+  private Tab chattingGroup;
 
-    @FXML
-    private VBox chattingGroupAreaVbox;
+  @FXML
+  private VBox chattingGroupAreaVbox;
 
-    @FXML
-    private VBox chattingSectionVbox;
+  @FXML
+  private VBox chattingSectionVbox;
 
-    @FXML
-    private TextField searchBar;
+  @FXML
+  private TextField searchBar;
 
-    @FXML
-    private VBox sideBar;
+  @FXML
+  private VBox sideBar;
+  @FXML
+  private TabPane tabPane;
 
-    @FXML
-    private TabPane tabPane;
+  @FXML
+  private TextField typingTextField;
 
-    @FXML
-    private TextField typingTextField;
+  public VBox getSideBar() {
+    return sideBar;
+  }
 
-    public VBox getSideBar() {
-      return sideBar;
-    }
+  public GridPane getGridPane() {
+    return gridPane;
+  }
 
-    public GridPane getGridPane() {
-      return gridPane;
-    }
+  @FXML
+  void openProfileOnMouseClick(MouseEvent event) {
+    gridPane.getChildren().remove(sideBar);
+    gridPane.add( stageCoordinator.loadProfile(), 0, 0);
+    // sideBar.getChildren().add(stageCoordinator.loadProfile());
+  }
 
+  @FXML
+  public void SettingOnMouseClicked(ActionEvent event) {
+    System.out.println(" 222");
+    // SettingAreaVbox.getChildren().add(stageCoordinator.loadSettings());
+  }
 
-    @FXML
-    void openProfileOnMouseClick(MouseEvent event) {
-       
-      gridPane.getChildren().remove(sideBar);
-      gridPane.add(stageCoordinator.loadProfile(), 0, 0);;
-        // sideBar.getChildren().add(stageCoordinator.loadProfile());
-    }
+  @FXML
+  void addContactOnMouseClicked(ActionEvent event) {
+    // addContactsAreaVbox.getChildren().add(stageCoordinator.loadContacts());
+  }
 
-    @FXML
-    public void SettingOnMouseClicked(ActionEvent event) {
-        System.out.println(" 222");
-  //      SettingAreaVbox.getChildren().add(stageCoordinator.loadSettings());
-    }
+  @FXML
+  void chattingGroupOnMouseClicked(ActionEvent event) {
+    // chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
+  }
 
-    @FXML
-    void addContactOnMouseClicked(ActionEvent event) {
- //       addContactsAreaVbox.getChildren().add(stageCoordinator.loadContacts());
-    }
+  @FXML
+  void contactsOnMouseClicked(ActionEvent event) {
 
-    @FXML
-    void chattingGroupOnMouseClicked(ActionEvent event) {
-  //      chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
-    }
+  }
 
-    @FXML
-    void contactsOnMouseClicked(ActionEvent event) {
+  @FXML
+  void fontStyleChangeOnMouseClicked(MouseEvent event) {
 
-    }
+  }
 
-    @FXML
-    void fontStyleChangeOnMouseClicked(MouseEvent event) {
+  @FXML
+  void onMouseClicked(MouseEvent event) {
 
-    }
+  }
 
-    @FXML
-    void onMouseClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void onTypingEnter(KeyEvent event) {
-        if (event.getCode().equals(KeyCode.ENTER)) {
-       //     addContactsAreaVbox.getChildren().add(stageCoordinator.loadContacts());
-
-        }
-    }
-
-    @FXML
-    void searchOnKeyTyped(KeyEvent event) {
+  @FXML
+  void onTypingEnter(KeyEvent event) {
+    if (event.getCode().equals(KeyCode.ENTER)) {
+      // addContactsAreaVbox.getChildren().add(stageCoordinator.loadContacts());
 
     }
+  }
 
-    @FXML
-    void sendButtonClicked(MouseEvent event) {
+  @FXML
+  void searchOnKeyTyped(KeyEvent event) {
 
-    }
+  }
 
-    @FXML
-    void uploadFileOnMouseClicked(MouseEvent event) {
+  @FXML
+  void sendButtonClicked(MouseEvent event) {
 
-    }
+  }
 
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-      
-        addContactsAreaVbox.getChildren().add(stageCoordinator.loadContacts());
-        SettingAreaVbox.getChildren().add(stageCoordinator.loadSettings());
-        
-        chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
-        chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
-        chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
+  @FXML
+  void uploadFileOnMouseClicked(MouseEvent event) {
 
-        chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
-        chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
-        chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
-        chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
-    }
+  }
 
+  @Override
+  public void initialize(URL arg0, ResourceBundle arg1) {
+    addContactsAreaVbox.getChildren().add(stageCoordinator.loadContacts());
+    SettingAreaVbox.getChildren().add(stageCoordinator.loadSettings());
 
+    chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
+    chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
+    chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
 
-   
-
-    
+    chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
+    chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
+    chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
+    chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
+  }
 
 }
