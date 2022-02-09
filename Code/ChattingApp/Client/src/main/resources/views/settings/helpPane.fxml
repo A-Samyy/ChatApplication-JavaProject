@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.TextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane depthTest="ENABLE" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" pickOnBounds="false" prefHeight="299.0" prefWidth="294.0" style="-fx-background-color: #4D0099; -fx-border-image-insets: 6;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" layoutX="80.0" layoutY="14.0" prefHeight="53.0" prefWidth="136.0" text="Developed by Group 5" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Label>
+      <TextField cache="true" layoutX="11.0" layoutY="240.0" prefHeight="25.0" prefWidth="274.0" promptText="Send message to us" />
+      <ImageView fitHeight="146.0" fitWidth="166.0" layoutX="77.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/profileimage.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

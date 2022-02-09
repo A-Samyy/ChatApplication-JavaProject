@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.TextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox prefHeight="400.0" prefWidth="601.0" style="-fx-background-color: #4D0099;" BorderPane.alignment="CENTER">
+         <children>
+            <TextField promptText="Search Contact">
+               <VBox.margin>
+                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+               </VBox.margin>
+            </TextField>
+            <Pane layoutX="10.0" layoutY="206.0" prefHeight="61.0" prefWidth="236.0">
+               <children>
+                  <Circle fill="DODGERBLUE" layoutX="31.0" layoutY="37.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label alignment="CENTER" layoutX="50.0" layoutY="21.0" prefHeight="18.0" prefWidth="95.0" text="User Name" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="48.0" layoutY="39.0" prefHeight="18.0" prefWidth="140.0" text="Hi I'm use Chatting App" textAlignment="CENTER" textFill="#fcfcfc">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Circle fill="RED" layoutX="48.0" layoutY="47.0" radius="6.0" stroke="#202c10" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+               </VBox.margin>
+            </Pane>
+            <Pane layoutX="17.0" layoutY="57.0" prefHeight="61.0" prefWidth="236.0">
+               <children>
+                  <Circle fill="DODGERBLUE" layoutX="31.0" layoutY="37.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label alignment="CENTER" layoutX="50.0" layoutY="21.0" prefHeight="18.0" prefWidth="95.0" text="User Name" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="48.0" layoutY="39.0" prefHeight="18.0" prefWidth="140.0" text="Hi I'm use Chatting App" textAlignment="CENTER" textFill="#fcfcfc">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Circle fill="#00ff11" layoutX="48.0" layoutY="47.0" radius="6.0" stroke="#202c10" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+               </VBox.margin>
+            </Pane>
+            <Pane layoutX="10.0" layoutY="201.0" prefHeight="61.0" prefWidth="236.0">
+               <children>
+                  <Circle fill="DODGERBLUE" layoutX="31.0" layoutY="37.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label alignment="CENTER" layoutX="50.0" layoutY="21.0" prefHeight="18.0" prefWidth="95.0" text="User Name" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="48.0" layoutY="39.0" prefHeight="18.0" prefWidth="140.0" text="Hi I'm use Chatting App" textAlignment="CENTER" textFill="#fcfcfc">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Circle fill="#ffc700" layoutX="48.0" layoutY="47.0" radius="6.0" stroke="#202c10" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+               </VBox.margin>
+            </Pane>
+            <Pane layoutX="10.0" layoutY="262.0" prefHeight="61.0" prefWidth="236.0">
+               <children>
+                  <Circle fill="DODGERBLUE" layoutX="31.0" layoutY="37.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label alignment="CENTER" layoutX="50.0" layoutY="21.0" prefHeight="18.0" prefWidth="95.0" text="User Name" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="48.0" layoutY="39.0" prefHeight="18.0" prefWidth="140.0" text="Hi I'm use Chatting App" textAlignment="CENTER" textFill="#fcfcfc">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Circle fill="#00ff11" layoutX="48.0" layoutY="47.0" radius="6.0" stroke="#202c10" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+               </VBox.margin>
+            </Pane>
+            <Pane layoutX="10.0" layoutY="323.0" prefHeight="61.0" prefWidth="236.0">
+               <children>
+                  <Circle fill="DODGERBLUE" layoutX="31.0" layoutY="37.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label alignment="CENTER" layoutX="50.0" layoutY="21.0" prefHeight="18.0" prefWidth="95.0" text="User Name" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="48.0" layoutY="39.0" prefHeight="18.0" prefWidth="140.0" text="Hi I'm use Chatting App" textAlignment="CENTER" textFill="#fcfcfc">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Circle fill="RED" layoutX="48.0" layoutY="47.0" radius="6.0" stroke="#202c10" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+               </VBox.margin>
+            </Pane>
+            <Pane prefHeight="46.0" prefWidth="220.0">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </VBox.margin>
+               <children>
+                  <ImageView fitHeight="26.0" fitWidth="34.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/add.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="54.0" layoutY="14.0" prefHeight="18.0" prefWidth="112.0" text="Add New Contacts" textFill="#fff6f6">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

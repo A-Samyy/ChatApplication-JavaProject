@@ -1,0 +1,13 @@
+.regbutton {
+
+  -fx-background-radius:100px;
+}
+
+.textfield{
+    -fx-background-radius:5px;
+    -fx-fill:#400080 ;
+}
+.emailfield{
+    -fx-background-radius:5px;
+    -fx-fill:#400080 ;
+}

@@ -1,0 +1,76 @@
+#sideBar{
+
+	-fx-background-color: #400080;
+}
+
+#searchBar{
+
+       -fx-background-color: rgba(39, 40, 119, 0.103);  
+	-fx-background-radius: 50px;
+}
+
+.chatBar{
+
+	-fx-background-color:white
+	
+}
+
+#chatArea{
+
+	-fx-background-color:#E0DBE4
+
+}
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+   -fx-background-color: #320064;
+}
+
+.text-field {
+    -fx-background-radius: 50px;
+}
+
+#tabPane{
+   -fx-tab-min-height:5em;
+   -fx-tab-max-height:5em;
+   -fx-tab-min-width:6.9em;
+   -fx-tab-max-width:15em;
+}
+
+.tab .tab-label{
+   -fx-background-color: transparent;
+   -fx-alignment:center;
+
+}
+
+.tab {
+   -fx-background-color: #3f0975;
+   
+   fx-background-insets:0px;
+   
+}
+
+.tab:selected{
+   -fx-background-color: #320064;
+   fx-background-insets:0px;
+   fx-background-radius:0px;
+   fx-border-width:5 0 0 0;
+   fx-border-Color:#320064;
+
+}
+
+
+
+.tab:focused {
+   -fx-background-color: transparent;
+   
+}
+
+.tab-pane .tab-header-background{
+   -fx-background-color: transparent;
+}
+
+

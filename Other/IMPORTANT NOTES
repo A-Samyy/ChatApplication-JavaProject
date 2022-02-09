@@ -1,0 +1,25 @@
+THIS IS HOW TO ADD DATE IN USER DATE
+
+// try {
+//     date = new SimpleDateFormat("yyyy-MM-dd").parse("2022-01-01");
+//     userDto.setDateOfBirth(date);
+// } catch (ParseException e) {
+// }
+
+
+------------------------------------------------------
+modify Database
+1)Friend Request
+2)Group chat
+3)Pk User
+
+
+
+--------------------------------------------
+inputStream
+
+ byte[] buffer = new byte[1024];
+            while(binaryStream.read(buffer)){
+                File file = new File(buffer);
+            }
+--------------------------------------------

@@ -1,0 +1,17 @@
+1- conf intilj --Done
+2- ERD --
+3- Tasks
+4- dataBase --Marwa with samy
+
+-----------------------------------------
+NEW TASKYA:
+
+1- alaa => login and signup
+
+2 hanoda => homepage and fixed things
+
+3 marwa => style / profile / message
+
+4 samy => chat section
+
+5 abdelaziz => contact/ add / setting / help / theme

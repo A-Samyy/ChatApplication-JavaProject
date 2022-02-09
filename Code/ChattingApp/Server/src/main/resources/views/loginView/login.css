@@ -1,0 +1,29 @@
+.numfield{
+   
+    -fx-background-radius:100px;
+    -fx-text-fill:#400080 ;
+    -fx-text-prompt-fill:#400080 ;
+}
+.passfield{
+   
+    -fx-background-radius:100px;
+    -fx-fill:#400080 ;
+    
+}
+.logbutton{
+   
+    -fx-background-radius:100px;
+  
+
+
+}
+.pane{
+   
+    -fx-background-radius:35px;
+}
+.forgetbutton{
+    -fx-background-color:transparent;
+}
+.createbutton{
+    -fx-background-color:transparent;
+}

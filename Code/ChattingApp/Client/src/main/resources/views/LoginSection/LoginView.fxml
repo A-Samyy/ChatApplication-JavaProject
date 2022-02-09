@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="706.0" style="-fx-background-color: #400080;" stylesheets="@login.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.LoginController">
+   <children>
+      <Pane layoutX="188.0" layoutY="65.0" prefHeight="353.0" prefWidth="330.0" style="-fx-background-color: white;" styleClass="pane" stylesheets="@../LoginSection/login.css">
+         <children>
+            <Label layoutX="53.0" layoutY="34.0" text="WELCOME !!!!!!" textFill="#400080">
+               <font>
+                  <Font name="Arial Bold" size="30.0" />
+               </font>
+            </Label>
+            <TextField layoutX="42.0" layoutY="95.0" prefHeight="43.0" prefWidth="247.0" promptText="Enter Your Phone_ Number" styleClass="numfield">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="42.0" layoutY="161.0" prefHeight="43.0" prefWidth="247.0" promptText="Your Password" styleClass="passfield" stylesheets="@../register/style2.css">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </TextField>
+            <Button fx:id="loginButton" layoutX="58.0" layoutY="257.0" mnemonicParsing="false" onAction="#OnLoginAction" prefHeight="42.0" prefWidth="214.0" style="-fx-background-color: #400080;" styleClass="logbutton" stylesheets="@../register/style2.css" text="LOGIN" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Button>
+            <Button layoutX="190.0" layoutY="212.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" styleClass="forgetbutton" stylesheets="@../register/style2.css" text="Forget Password?" textFill="#400080" />
+            <Button fx:id="registrationButton" layoutX="117.0" layoutY="308.0" mnemonicParsing="false" onAction="#OnRegestrationAction" styleClass="createbutton" stylesheets="@../register/style2.css" text="Create Account" textFill="#400080" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
