@@ -4,7 +4,7 @@ module Client {
     requires  org.controlsfx.controls;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.fontawesome5;
-     exports gov.iti.jets;
-     opens gov.iti.jets.presentation.controllers to javafx.fxml;
-   
+
+    opens gov.iti.jets.presentation.controllers to javafx.fxml;
+    exports gov.iti.jets;
 }
