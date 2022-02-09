@@ -27,13 +27,12 @@ public class LoginController implements  Initializable{
     @FXML
     void OnLoginAction(ActionEvent event) {
 
-    //    stageCoordinator.switchToGHomePageScreen();
+       stageCoordinator.switchToGHomePageScreen();
     }
 
     @FXML
     void OnRegestrationAction(ActionEvent event) {
        // stageCoordinator.switchToRegistrationScreen();
-       stageCoordinator.switchToTestScreen();
     }
 
     

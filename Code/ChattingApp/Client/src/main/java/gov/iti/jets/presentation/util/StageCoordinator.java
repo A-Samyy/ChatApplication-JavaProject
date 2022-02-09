@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -20,6 +21,7 @@ public class StageCoordinator {
     private Stage primaryStage;
 
     private final Map<String, Scene> sceneMap = new HashMap<>();
+    private final Map<String, Node> nodeMap = new HashMap<>();
 
     private StageCoordinator() {
     }
@@ -47,21 +49,21 @@ public class StageCoordinator {
         primaryStage.setScene(loginScene);
     }
 
-    // public void switchToGHomePageScreen(){
-    // Scene homePageScene = sceneMap.get("homePageScene");
-    // if(homePageScene == null){
-    // try {
-    // //change Path
-    // GridPane root =
-    // FXMLLoader.load(getClass().getResource("/views/homePage/homePage.fxml"));
-    // homePageScene = new Scene(root);
-    // sceneMap.put("homePageScene", homePageScene);
-    // } catch (IOException e) {
-    // e.printStackTrace();
-    // }
-    // }
-    // primaryStage.setScene(homePageScene);
-    // }
+    public void switchToGHomePageScreen() {
+        Scene homePageScene = sceneMap.get("homePageScene");
+        if (homePageScene == null) {
+            try {
+                // change Path
+                GridPane root = FXMLLoader.load(getClass().getResource("/views/homePage/homePage.fxml"));
+                homePageScene = new Scene(root);
+                sceneMap.put("homePageScene", homePageScene);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        primaryStage.setScene(homePageScene);
+    }
+
     public void switchToRegistrationScreen() {
         Scene registrationScene = sceneMap.get("registrationScene");
         if (registrationScene == null) {
@@ -77,44 +79,100 @@ public class StageCoordinator {
         primaryStage.setScene(registrationScene);
     }
 
-    public Parent loadContacts() {
-        try {
-            System.out.println("before load");
-            Parent contactList = FXMLLoader.load(getClass().getResource("/views/contactSection/contactList.fxml"));
-            System.out.println("After load");
-            return contactList;
-        } catch (Exception e) {
-            System.out.println("File Not Found Exception");
-        }
-        System.out.println(" it return nulls");
-        return null;
-    }
-
-    public void switchToTestScreen() {
-        Scene testScene = sceneMap.get("TestScene");
-        if (testScene == null) {
+    public Node loadContacts() {
+        Node contactList = nodeMap.get("contactList");
+        if (contactList == null) {
             try {
-                // change Path
-                Parent root = FXMLLoader.load(getClass().getResource("/views/test.fxml"));
-                testScene = new Scene(root);
-                sceneMap.put("testScene", testScene);
-            } catch (IOException e) {
+                contactList = FXMLLoader.load(getClass().getResource("/views/contactSection/contactList.fxml"));
+                nodeMap.put("contactList", contactList);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        primaryStage.setScene(testScene);
-    }
-    // public Pane loadAddContact(){
-    // try {
-    // Pane addContact =
-    // FXMLLoader.load(getClass().getResource("/views/contactSection/addContact.fxml"));
-    // return addContact;
-    // }catch(Exception e){
-    // System.out.println("File Not Found Exception");
-    // }
 
-    // return null ;
-    // }
+        return contactList;
+    }
+
+    public Node loadProfile() {
+        Node profile = nodeMap.get("profile");
+        if (profile == null) {
+            try {
+                profile = FXMLLoader.load(getClass().getResource("/views/profile/profileView.fxml"));
+                nodeMap.put("profile", profile);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return profile;
+    }
+
+    public void loadAddContact() {
+        Stage addNewContact = new Stage();
+        Pane addContact = null;
+        try {
+            addContact = FXMLLoader.load(getClass().getResource("/views/contactSection/addContact.fxml"));
+        } catch (Exception e) {
+            System.out.println("File Not Found Exception");
+        }
+        Scene scene = new Scene(addContact);
+        addNewContact.setScene(scene);
+        addNewContact.setTitle("Add New Contact");
+        addNewContact.show();
+    }
+
+    
+
+    public Node loadSettings() {
+        Node settings = nodeMap.get("settings");
+        if (settings == null) {
+            try {
+                settings = FXMLLoader.load(getClass().getResource("/views/settings/settingScreen.fxml"));
+                nodeMap.put("settings", settings);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return settings;
+    }
+
+    public void loadhelp() {
+        Stage helpStage = new Stage();
+        Pane help = null;
+        try {
+            help = FXMLLoader.load(getClass().getResource("/views/settings/helpPane.fxml"));
+        } catch (Exception e) {
+            System.out.println("File Not Found Exception");
+        }
+        Scene scene = new Scene(help);
+        helpStage.setScene(scene);
+        helpStage.setTitle("Help Me");
+        helpStage.show();
+    }
+
+    public void loadTheme() {
+        Stage themeStage = new Stage();
+        Pane theme = null;
+        try {
+            theme = FXMLLoader.load(getClass().getResource("/views/settings/editTheme.fxml"));
+        } catch (Exception e) {
+            System.out.println("File Not Found Exception");
+        }
+        Scene scene = new Scene(theme);
+        themeStage.setScene(scene);
+        themeStage.setTitle("Choose Theme");
+        themeStage.show();
+
+    }
+
+    public AnchorPane loadMyChat() {
+        AnchorPane chatSectiodn = null;
+        try {
+            chatSectiodn = FXMLLoader.load(getClass().getResource("/views/chattingSection/chatSection.fxml"));
+        } catch (Exception e) {
+            System.out.println("File Not Found Exception");
+        }
+        return chatSectiodn;
+    }
 
     // public Pane loadUserPane(){
     // try {
@@ -125,47 +183,6 @@ public class StageCoordinator {
     // System.out.println("File Not Found Exception");
     // }
 
-    // return null ;
-    // }
-
-    // public BorderPane loadSettings(){
-    // try {
-    // BorderPane contactList =
-    // FXMLLoader.load(getClass().getResource("/views/settings/settingScreen.fxml"));
-    // return contactList;
-    // }catch(Exception e){
-    // System.out.println("File Not Found Exception");
-    // }
-    // return null ;
-    // }
-    // public Pane loadhelp(){
-    // try {
-    // Pane contactList =
-    // FXMLLoader.load(getClass().getResource("/views/settings/helpPane.fxml"));
-    // return contactList;
-    // }catch(Exception e){
-    // System.out.println("File Not Found Exception");
-    // }
-    // return null ;
-    // }
-    // public Pane loadTheme(){
-    // try {
-    // Pane theme =
-    // FXMLLoader.load(getClass().getResource("/views/settings/editTheme.fxml"));
-    // return theme;
-    // }catch(Exception e){
-    // System.out.println("File Not Found Exception");
-    // }
-    // return null ;
-    // }
-    // public AnchorPane loadMyChat(){
-    // try {
-    // AnchorPane chatSectiodn =
-    // FXMLLoader.load(getClass().getResource("/views/chattingSection/chatSection.fxml"));
-    // return chatSectiodn;
-    // }catch(Exception e){
-    // System.out.println("File Not Found Exception");
-    // }
     // return null ;
     // }
 

@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.Avatar?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#61D8DE, #E839F6);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ChattingSectionController">
+<AnchorPane prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#61D8DE, #E839F6);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefHeight="62.0" prefWidth="200.0" style="-fx-background-color:: linear-gradient(#61D8DE, #E839F6);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <AnchorPane prefHeight="45.0" prefWidth="34.0">
                <children>
                   <Circle accessibleRole="IMAGE_VIEW" fill="WHITE" layoutX="22.0" layoutY="34.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="16.0" />
-                  <Circle fx:id="Status" fill="#71ff1a" layoutX="34.0" layoutY="47.999999046325684" radius="4.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="43.999999046325684" />
+                  <Circle fill="#71ff1a" layoutX="34.0" layoutY="47.999999046325684" radius="4.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="43.999999046325684" />
                </children>
             </AnchorPane>
             <VBox prefHeight="54.0" prefWidth="166.0" HBox.hgrow="ALWAYS">
@@ -27,15 +25,15 @@
                            <children>
                               <AnchorPane maxWidth="200.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="11.0">
                                  <children>
-                                    <Label fx:id="UsernameLabel" prefHeight="18.0" prefWidth="104.0" text="Ahmed Mohamed" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                    <Label prefHeight="18.0" prefWidth="104.0" text="Ahmed Mohamed" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                                  </children>
                               </AnchorPane>
-                              <Label fx:id="TimeLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutY="18.399999618530273" prefHeight="18.0" prefWidth="66.0" text="??:??AM" textAlignment="RIGHT" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="11.0">
+                              <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutY="18.399999618530273" prefHeight="18.0" prefWidth="66.0" text="??:??AM" textAlignment="RIGHT" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="11.0">
                                  <padding>
                                     <Insets right="7.0" />
                                  </padding>
                               </Label>
-                              <Label fx:id="MessageLabel" layoutY="21.0" prefHeight="21.0" prefWidth="166.0" text="sjdakjhsdkjashdjkahsdkjashdskajhdka" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.8000000000000114" AnchorPane.rightAnchor="0.799999999999983">
+                              <Label layoutY="21.0" prefHeight="21.0" prefWidth="166.0" text="sjdakjhsdkjashdjkahsdkjashdskajhdka" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.8000000000000114" AnchorPane.rightAnchor="0.799999999999983">
                                  <padding>
                                     <Insets bottom="4.0" left="5.0" top="2.0" />
                                  </padding>
@@ -48,10 +46,5 @@
             </VBox>
          </children>
       </HBox>
-      <Avatar fx:id="ImageView" layoutX="-134.0" layoutY="48.0" AnchorPane.leftAnchor="-134.0" AnchorPane.topAnchor="48.0">
-         <image>
-            <Image url="@icons8-rick-sanchez-100.png" />
-         </image>
-      </Avatar>
    </children>
 </AnchorPane>

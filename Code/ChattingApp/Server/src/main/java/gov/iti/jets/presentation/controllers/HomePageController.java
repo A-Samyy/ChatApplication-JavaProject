@@ -26,8 +26,8 @@ public class HomePageController implements Initializable{
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
       
-        ( (AnchorPane)userAdd.getContent()).getChildren().add(stageCoordinator.loadAddUser());
-        
+        // ( (AnchorPane)userAdd.getContent()).getChildren().add(stageCoordinator.loadAddUser());
+        content.getChildren().add(stageCoordinator.loadAddUser());
            
     }
 
