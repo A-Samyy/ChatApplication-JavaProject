@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#61D8DE, #E839F6);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="chatBox" prefHeight="46.0" prefWidth="200.0" stylesheets="@chatSectionStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefHeight="62.0" prefWidth="200.0" style="-fx-background-color:: linear-gradient(#61D8DE, #E839F6);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -28,7 +28,7 @@
                                     <Label prefHeight="18.0" prefWidth="104.0" text="Ahmed Mohamed" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                                  </children>
                               </AnchorPane>
-                              <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutY="18.399999618530273" prefHeight="18.0" prefWidth="66.0" text="??:??AM" textAlignment="RIGHT" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="11.0">
+                              <Label fx:id="timeLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutY="18.399999618530273" prefHeight="18.0" prefWidth="66.0" text="??:??AM" textAlignment="RIGHT" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="11.0">
                                  <padding>
                                     <Insets right="7.0" />
                                  </padding>
