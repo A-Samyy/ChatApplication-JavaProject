@@ -1,0 +1,17 @@
+.root{
+    -fx-font-family:'Arial';
+    -fx-background-color: #4D0099;
+    -fx-font-size: 14px;
+    
+  }
+.label{
+
+-fx-font-size: 14px;
+    -fx-font-weight:bold;
+}
+
+.content{
+
+-fx-font-size: 12px;
+
+}

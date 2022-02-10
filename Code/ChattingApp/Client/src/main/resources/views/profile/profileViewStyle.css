@@ -1,0 +1,24 @@
+.label{
+    -fx-font-family:'Arial';
+    -fx-font-size: 14px;
+    -fx-text-fill:#400080;
+}
+
+.blueBar{
+    -fx-font-family:'Arial';
+    -fx-background-color: #400080;
+    -fx-font-size: 14px;
+  }
+
+  .text-field{
+    -fx-border-radius:5px;
+    /* -fx-background-radius:10px; */
+    -fx-border-width:0.5px;
+    -fx-text-fill:#400080 ;
+    -fx-font-weight	:normal;
+    -fx-border-color: #400080;
+  }
+
+  .radio-button{
+    -fx-text-fill:#400080 ;
+  }

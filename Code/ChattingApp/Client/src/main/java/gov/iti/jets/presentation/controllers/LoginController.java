@@ -32,7 +32,7 @@ public class LoginController implements  Initializable{
 
     @FXML
     void OnRegestrationAction(ActionEvent event) {
-       stageCoordinator.switchToRegistrationScreen();
+//        stageCoordinator.switchToRegistrationScreen();
     }
 
     

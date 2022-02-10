@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-
-<VBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="297.0" style="-fx-background-radius: 20 20 20 20;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="297.0" style="-fx-background-radius: 20 20 20 20;" stylesheets="@message.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="68.0" text="Label">
          <VBox.margin>
@@ -27,8 +26,8 @@
             </Label>
             <Pane prefHeight="50.0" prefWidth="73.0">
                <children>
-                  <Circle fill="#1f93ff00" layoutX="39.0" layoutY="25.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#1fff3b" layoutX="62.0" layoutY="40.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#1f93ff00" layoutX="39.0" layoutY="25.0" radius="25.0" stroke="WHITE" strokeType="INSIDE" />
+                  <Circle fill="#1fff3b" layoutX="62.0" layoutY="40.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" />
                </children>
             </Pane>
          </children>

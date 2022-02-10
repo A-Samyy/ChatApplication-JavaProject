@@ -1,3 +1,10 @@
+
+.root{
+   -fx-font-family:'Arial';
+   
+   -fx-font-size: 14px;
+ }
+
 #sideBar{
 
 	-fx-background-color: #400080;
@@ -15,11 +22,14 @@
 	
 }
 
+
+
 #chatArea{
 
 	-fx-background-color:#E0DBE4
 
 }
+
 
 .scroll-pane > .viewport {
    -fx-background-color: transparent;
@@ -36,7 +46,7 @@
 #tabPane{
    -fx-tab-min-height:5em;
    -fx-tab-max-height:5em;
-   -fx-tab-min-width:6.9em;
+   -fx-tab-min-width:6em;
    -fx-tab-max-width:15em;
 }
 

@@ -1,0 +1,21 @@
+#chatBox{
+    -fx-font-family:'Arial';
+    
+    -fx-font-size: 14px;
+    
+    -fx-background-color:  #400080;
+   
+  }
+
+  .label{
+      -fx-text-fill:#ffffff ;
+  }
+
+  #chatBox:hover{
+    -fx-background-color:#290152;
+}
+
+#timeLabel{
+    -fx-font-size: 11px;
+    -fx-text-fill:#ffffff71 ;
+}
