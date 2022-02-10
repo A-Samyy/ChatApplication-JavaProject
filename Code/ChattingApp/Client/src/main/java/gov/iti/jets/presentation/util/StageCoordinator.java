@@ -74,7 +74,6 @@ public class StageCoordinator {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         // GridPane gridPane= homePageController.getGridPane();
         // VBox sideBar= homePageController.getSideBar();
         // gridPane.getChildren().remove(loadProfile());
