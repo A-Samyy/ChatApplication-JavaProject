@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
@@ -9,6 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
@@ -16,18 +19,35 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="500.0" minWidth="900.0" prefHeight="768.0" prefWidth="1024.0" stylesheets="@homePageStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.HomePageController">
+<GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" stylesheets="@homePageStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.HomePageController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="767.9999267578125" minWidth="0.0" prefWidth="417.066650390625" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1024.0" minWidth="10.0" prefWidth="607.733349609375" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="0.0" prefWidth="350.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="607.733349609375" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <VBox fx:id="sideBar" prefHeight="762.0" prefWidth="385.0" stylesheets="@homePageStyle.css">
+      <GridPane fx:id="sideBar" prefHeight="642.0" prefWidth="350.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="125.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <Pane prefHeight="158.0" prefWidth="448.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="262.0" prefWidth="350.0" GridPane.rowIndex="2">
+               <children>
+                  <Button mnemonicParsing="false" onMouseClicked="#logoutOnMouseClick" text="LOGOUT">
+                     <HBox.margin>
+                        <Insets right="30.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <Pane prefHeight="122.0" prefWidth="300.0">
                <children>
                   <Circle fill="WHITE" layoutX="70.0" layoutY="56.0" onMouseClicked="#openProfileOnMouseClick" radius="42.0" stroke="BLACK" strokeType="INSIDE" />
                   <Circle fill="#1fff69" layoutX="98.0" layoutY="84.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
@@ -44,7 +64,7 @@
                   <Accordion layoutX="176.0" layoutY="141.0" />
                </children>
             </Pane>
-            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="533.0" prefWidth="417.0" vbarPolicy="NEVER">
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="601.0" prefWidth="300.0" vbarPolicy="NEVER" GridPane.rowIndex="1">
                <content>
                   <TabPane fx:id="tabPane" prefHeight="534.0" prefWidth="415.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
@@ -87,9 +107,9 @@
                       </Tab>
                         <Tab fx:id="addContact">
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <AnchorPane fx:id="anchorPaneOfContacts" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <VBox fx:id="addContactsAreaVbox" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <VBox fx:id="addContactsAreaVbox" prefHeight="530.0" prefWidth="349.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                            </content>
@@ -114,10 +134,18 @@
                </content>
             </ScrollPane>
          </children>
-      </VBox>
-      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+      </GridPane>
+      <GridPane GridPane.columnIndex="1">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="125.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="75.0" valignment="CENTER" />
+         </rowConstraints>
          <children>
-            <Pane prefHeight="115.0" prefWidth="607.0" styleClass="chatBar">
+            <Pane prefHeight="119.0" prefWidth="724.0" styleClass="chatBar">
                <children>
                   <Circle fill="WHITE" layoutX="67.0" layoutY="49.0" radius="23.0" stroke="BLACK" strokeType="INSIDE" />
                   <Circle fill="#1fff69" layoutX="85.0" layoutY="64.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
@@ -127,22 +155,29 @@
                      </font>
                   </Label>
                   <Label layoutX="119.0" layoutY="55.0" text="Bio....." textFill="#040abc" />
-                  <FontIcon iconColor="#400080" iconLiteral="fas-th-list" iconSize="25" layoutX="538.0" layoutY="59.0" onMouseClicked="#fontStyleChangeOnMouseClicked" text="" />
                </children>
             </Pane>
-            <ScrollPane fx:id="chatArea" prefHeight="612.0" prefWidth="607.0" />
-            <Pane layoutX="10.0" layoutY="10.0" prefHeight="95.0" prefWidth="588.0" styleClass="chatBar">
+            <ScrollPane fx:id="chatArea" prefHeight="612.0" prefWidth="607.0" GridPane.rowIndex="1" />
+            <HBox alignment="CENTER_LEFT" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <children>
-                  <TextField fx:id="typingTextField" layoutX="58.0" layoutY="30.0" onKeyPressed="#onTypingEnter" prefHeight="35.0" prefWidth="468.0" promptText="Write a message">
+                  <FontIcon iconColor="#400080" iconLiteral="fas-upload" iconSize="25" onMouseClicked="#uploadFileOnMouseClicked" text="">
+                     <HBox.margin>
+                        <Insets left="15.0" right="15.0" />
+                     </HBox.margin>
+                  </FontIcon>
+                  <TextField fx:id="typingTextField" onKeyPressed="#onTypingEnter" prefHeight="35.0" prefWidth="468.0" promptText="Write a message" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </TextField>
-                  <FontIcon iconColor="#400080" iconLiteral="fas-upload" iconSize="25" layoutX="21.0" layoutY="54.0" onMouseClicked="#uploadFileOnMouseClicked" text="" />
-                  <FontIcon iconColor="#400080" iconLiteral="fab-telegram-plane" iconSize="25" layoutX="535.0" layoutY="53.0" onMouseClicked="#sendButtonClicked" />
+                  <FontIcon iconColor="#400080" iconLiteral="fab-telegram-plane" iconSize="25" onMouseClicked="#sendButtonClicked">
+                     <HBox.margin>
+                        <Insets left="15.0" right="15.0" />
+                     </HBox.margin>
+                  </FontIcon>
                </children>
-            </Pane>
+            </HBox>
          </children>
-      </VBox>
+      </GridPane>
    </children>
 </GridPane>

@@ -44,10 +44,10 @@
 }
 
 #tabPane{
-   -fx-tab-min-height:5em;
-   -fx-tab-max-height:5em;
-   -fx-tab-min-width:6em;
-   -fx-tab-max-width:15em;
+   -fx-tab-min-height:3em;
+   -fx-tab-max-height:3em;
+   -fx-tab-min-width:3em;
+   -fx-tab-max-width:3em;
 }
 
 .tab .tab-label{

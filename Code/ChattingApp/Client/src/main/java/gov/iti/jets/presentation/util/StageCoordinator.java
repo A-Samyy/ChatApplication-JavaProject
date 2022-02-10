@@ -99,7 +99,7 @@ public class StageCoordinator {
         Node contactList = nodeMap.get("contactList");
         if (contactList == null) {
             try {
-                contactList = FXMLLoader.load(getClass().getResource("/views/contactSection/contactList.fxml"));
+                contactList = FXMLLoader.load(getClass().getResource("/views/contactSection/contactList1.fxml"));
                 nodeMap.put("contactList", contactList);
             } catch (Exception e) {
                 e.printStackTrace();

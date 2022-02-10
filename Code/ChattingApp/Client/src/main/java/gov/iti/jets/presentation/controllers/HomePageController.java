@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
@@ -40,6 +41,9 @@ public class HomePageController implements Initializable {
   private VBox addContactsAreaVbox;
 
   @FXML
+  private AnchorPane anchorPaneOfContacts;
+
+  @FXML
   private ScrollPane chatArea;
 
   @FXML
@@ -55,19 +59,24 @@ public class HomePageController implements Initializable {
   private TextField searchBar;
 
   @FXML
-  private VBox sideBar;
+  private GridPane sideBar;
   @FXML
   private TabPane tabPane;
 
   @FXML
   private TextField typingTextField;
 
-  public VBox getSideBar() {
+  public GridPane getSideBar() {
     return sideBar;
   }
 
   public GridPane getGridPane() {
     return gridPane;
+  }
+
+  @FXML
+  void logoutOnMouseClick(MouseEvent event) {
+    stageCoordinator.switchToLoginScreen();
   }
 
   @FXML
@@ -133,7 +142,7 @@ public class HomePageController implements Initializable {
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    addContactsAreaVbox.getChildren().add(stageCoordinator.loadContacts());
+    anchorPaneOfContacts.getChildren().add(stageCoordinator.loadContacts());
     SettingAreaVbox.getChildren().add(stageCoordinator.loadSettings());
 
     chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
