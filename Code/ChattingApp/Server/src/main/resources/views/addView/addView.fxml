@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" stylesheets="@addViewStyle.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -65,7 +64,7 @@
                   </TextField>
                </children>
             </VBox>
-            <Button mnemonicParsing="false" text="Add" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <Button mnemonicParsing="false" styleClass="addbutton" stylesheets="@addViewStyle.css" text="Add" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
          </children>
       </GridPane>
    </children>

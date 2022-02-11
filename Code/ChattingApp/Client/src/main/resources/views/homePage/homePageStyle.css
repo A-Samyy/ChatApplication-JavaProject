@@ -1,8 +1,7 @@
-
 .root{
    -fx-font-family:'Arial';
-   
    -fx-font-size: 14px;
+   -fx-text-fill
  }
 
 #sideBar{
@@ -13,20 +12,20 @@
 #searchBar{
 
        -fx-background-color: rgba(39, 40, 119, 0.103);  
-	-fx-background-radius: 50px;
+       -fx-background-radius: 50px;
+	-fx-text-fill:white ;
 }
 
 .chatBar{
 
 	-fx-background-color:white
-	
 }
 
 
 
 #chatArea{
 
-	-fx-background-color:#E0DBE4
+	-fx-background-color:white;
 
 }
 
