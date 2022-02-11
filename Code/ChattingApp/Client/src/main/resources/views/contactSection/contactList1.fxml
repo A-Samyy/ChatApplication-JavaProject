@@ -16,7 +16,6 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.ContactListController">
    <children>
       <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="0.5" layoutY="0.5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -29,7 +28,7 @@
           <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <HBox alignment="CENTER_LEFT" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#addNewContactOnMouseClick" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <children>
                   <ImageView fitHeight="26.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>

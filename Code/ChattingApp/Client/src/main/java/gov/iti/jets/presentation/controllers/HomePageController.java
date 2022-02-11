@@ -94,7 +94,7 @@ public class HomePageController implements Initializable {
 
   @FXML
   void addContactOnMouseClicked(ActionEvent event) {
-    // addContactsAreaVbox.getChildren().add(stageCoordinator.loadContacts());
+     //addContactsAreaVbox.getChildren().add(stageCoordinator.loadContacts());
   }
 
   @FXML
