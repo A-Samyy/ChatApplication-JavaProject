@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -9,7 +10,7 @@
 
 <AnchorPane fx:id="chatBox" prefHeight="46.0" prefWidth="200.0" stylesheets="@chatSectionStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox prefHeight="62.0" prefWidth="200.0"  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox prefHeight="62.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <AnchorPane prefHeight="45.0" prefWidth="34.0">
                <children>
@@ -47,4 +48,7 @@
          </children>
       </HBox>
    </children>
+   <cursor>
+      <Cursor fx:constant="HAND" />
+   </cursor>
 </AnchorPane>

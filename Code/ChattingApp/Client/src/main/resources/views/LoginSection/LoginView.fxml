@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -41,9 +42,18 @@
                      <font>
                         <Font name="System Bold" size="19.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
-                  <Button fx:id="forgetbutton" layoutX="190.0" layoutY="212.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="Forget Password?" textFill="#400080" />
-                  <Button fx:id="createbutton" layoutX="117.0" layoutY="308.0" mnemonicParsing="false" onAction="#OnRegestrationAction" text="Create Account" textFill="#400080" />
+                  <Button fx:id="forgetbutton" layoutX="190.0" layoutY="212.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="Forget Password?" textFill="#400080">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="createbutton" layoutX="117.0" layoutY="308.0" mnemonicParsing="false" onAction="#OnRegestrationAction" text="Create Account" textFill="#400080">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                </children>
             </Pane>
          </children>

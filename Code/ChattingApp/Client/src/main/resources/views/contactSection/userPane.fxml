@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
@@ -20,4 +21,7 @@
       </Label>
       <Circle fill="#00ff11" layoutX="48.0" layoutY="48.0" radius="5.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" />
    </children>
+   <cursor>
+      <Cursor fx:constant="HAND" />
+   </cursor>
 </Pane>

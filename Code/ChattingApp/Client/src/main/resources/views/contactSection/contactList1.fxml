@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -16,7 +17,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.ContactListController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@contacts.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.ContactListController">
    <children>
       <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="0.5" layoutY="0.5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -34,6 +35,9 @@
                      <image>
                         <Image url="@../../images/add.png" />
                      </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
                   </ImageView>
                   <Label prefHeight="18.0" prefWidth="112.0" text="Add New Contacts" textFill="#fff6f6">
                      <font>
@@ -41,6 +45,9 @@
                      </font>
                   </Label>
                </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </HBox>
             <TextField>
                <GridPane.margin>
@@ -51,7 +58,7 @@
                <content>
                   <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="601.0" style="-fx-background-color: #4D0099;">
                      <children>
-                        <Pane layoutX="10.0" layoutY="206.0" prefHeight="61.0" prefWidth="236.0">
+                        <Pane layoutX="10.0" layoutY="206.0" prefHeight="61.0" prefWidth="236.0" styleClass="pane">
                            <children>
                               <Circle fill="DODGERBLUE" layoutX="31.0" layoutY="37.0" radius="21.0" stroke="WHITE" strokeType="INSIDE" />
                               <Label alignment="CENTER" layoutX="50.0" layoutY="21.0" prefHeight="18.0" prefWidth="95.0" text="User Name" textFill="WHITE">
@@ -59,7 +66,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="48.0" layoutY="39.0" prefHeight="18.0" prefWidth="140.0" text="Hi I'm use Chatting App" textAlignment="CENTER" textFill="#fcfcfc">
+                              <Label alignment="CENTER" layoutX="62.0" layoutY="39.0" prefHeight="18.0" prefWidth="140.0" styleClass="content" text="Hi I'm use Chatting App" textAlignment="CENTER" textFill="#fcfcfc">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
@@ -69,16 +76,19 @@
                            <VBox.margin>
                               <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                            </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Pane>
-                        <Pane layoutX="17.0" layoutY="57.0" prefHeight="61.0" prefWidth="236.0">
+                        <Pane layoutX="17.0" layoutY="57.0" prefHeight="61.0" prefWidth="236.0" styleClass="pane">
                            <children>
-                              <Circle fill="WHITE" layoutX="31.0" layoutY="37.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="WHITE" layoutX="31.0" layoutY="37.0" radius="21.0" stroke="WHITE" strokeType="INSIDE" />
                               <Label alignment="CENTER" layoutX="50.0" layoutY="21.0" prefHeight="18.0" prefWidth="95.0" text="User Name" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="48.0" layoutY="39.0" prefHeight="18.0" prefWidth="140.0" text="Hi I'm use Chatting App" textAlignment="CENTER" textFill="#fcfcfc">
+                              <Label alignment="CENTER" layoutX="61.0" layoutY="39.0" prefHeight="18.0" prefWidth="140.0" styleClass="content" text="Hi I'm use Chatting App" textAlignment="CENTER" textFill="#fcfcfc">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
@@ -88,8 +98,11 @@
                            <VBox.margin>
                               <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                            </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Pane>
-                        <Pane layoutX="10.0" layoutY="201.0" prefHeight="61.0" prefWidth="236.0">
+                        <Pane layoutX="10.0" layoutY="201.0" prefHeight="61.0" prefWidth="236.0" styleClass="pane">
                            <children>
                               <Circle fill="DODGERBLUE" layoutX="31.0" layoutY="37.0" radius="21.0" stroke="WHITE" strokeType="INSIDE" />
                               <Label alignment="CENTER" layoutX="50.0" layoutY="21.0" prefHeight="18.0" prefWidth="95.0" text="User Name" textFill="WHITE">
@@ -97,7 +110,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="48.0" layoutY="39.0" prefHeight="18.0" prefWidth="140.0" text="Hi I'm use Chatting App" textAlignment="CENTER" textFill="#fcfcfc">
+                              <Label alignment="CENTER" layoutX="62.0" layoutY="39.0" prefHeight="18.0" prefWidth="140.0" styleClass="content" text="Hi I'm use Chatting App" textAlignment="CENTER" textFill="#fcfcfc">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
@@ -107,8 +120,11 @@
                            <VBox.margin>
                               <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                            </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Pane>
-                        <Pane layoutX="10.0" layoutY="262.0" prefHeight="61.0" prefWidth="236.0">
+                        <Pane layoutX="10.0" layoutY="262.0" prefHeight="61.0" prefWidth="236.0" styleClass="pane">
                            <children>
                               <Circle fill="DODGERBLUE" layoutX="31.0" layoutY="37.0" radius="21.0" stroke="WHITE" strokeType="INSIDE" />
                               <Label alignment="CENTER" layoutX="50.0" layoutY="21.0" prefHeight="18.0" prefWidth="95.0" text="User Name" textFill="WHITE">
@@ -116,7 +132,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="48.0" layoutY="39.0" prefHeight="18.0" prefWidth="140.0" text="Hi I'm use Chatting App" textAlignment="CENTER" textFill="#fcfcfc">
+                              <Label alignment="CENTER" layoutX="62.0" layoutY="39.0" prefHeight="18.0" prefWidth="140.0" styleClass="content" text="Hi I'm use Chatting App" textAlignment="CENTER" textFill="#fcfcfc">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
@@ -126,8 +142,11 @@
                            <VBox.margin>
                               <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                            </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Pane>
-                        <Pane layoutX="10.0" layoutY="323.0" prefHeight="61.0" prefWidth="236.0">
+                        <Pane layoutX="10.0" layoutY="323.0" prefHeight="61.0" prefWidth="236.0" styleClass="pane">
                            <children>
                               <Circle fill="DODGERBLUE" layoutX="31.0" layoutY="37.0" radius="21.0" stroke="WHITE" strokeType="INSIDE" />
                               <Label alignment="CENTER" layoutX="50.0" layoutY="21.0" prefHeight="18.0" prefWidth="95.0" text="User Name" textFill="WHITE">
@@ -135,7 +154,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="48.0" layoutY="39.0" prefHeight="18.0" prefWidth="140.0" text="Hi I'm use Chatting App" textAlignment="CENTER" textFill="#fcfcfc">
+                              <Label alignment="CENTER" layoutX="60.0" layoutY="39.0" prefHeight="18.0" prefWidth="140.0" styleClass="content" text="Hi I'm use Chatting App" textAlignment="CENTER" textFill="#fcfcfc">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
@@ -145,6 +164,9 @@
                            <VBox.margin>
                               <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                            </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Pane>
                      </children>
                   </VBox>

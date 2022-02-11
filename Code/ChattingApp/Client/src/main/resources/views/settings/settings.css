@@ -5,3 +5,7 @@
   -fx-background-color: #400080;
 
  }
+.pane:hover{
+    -fx-background-color:#290152;
+ -fx-background-radius: 10px;
+}

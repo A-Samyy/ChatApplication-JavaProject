@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
@@ -44,6 +45,9 @@
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </FontIcon>
                </children>
             </GridPane>
@@ -60,12 +64,18 @@
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Label>
                   <Circle accessibleRole="IMAGE_VIEW" fill="#1f93ff00" radius="68.0" stroke="#000989" strokeType="INSIDE" GridPane.halignment="CENTER" />
                   <FontIcon iconColor="#400080" iconLiteral="fas-camera" iconSize="25" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets bottom="5.0" right="100.0" />
                      </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </FontIcon>
                   <FontIcon iconColor="#400080" iconLiteral="fas-user-circle" iconSize="145" GridPane.halignment="CENTER" />
                </children>
@@ -181,6 +191,9 @@
                      <GridPane.margin>
                         <Insets right="10.0" />
                      </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </FontIcon>
                </children>
             </GridPane>

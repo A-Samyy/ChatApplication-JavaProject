@@ -4,6 +4,11 @@
     -fx-font-size: 14px;
     
   }
+
+.pane:hover{
+    -fx-background-color:#290152;
+   -fx-background-radius:10px;
+}
 .label{
 
 -fx-font-size: 14px;
