@@ -34,7 +34,7 @@ public class StageCoordinator {
            try {
                //change Path
                Parent root  = FXMLLoader.load(getClass().getResource("/views/loginView/loginView.fxml"));
-               root.getStylesheets().add(getClass().getResource("/views/loginView/loginViewStyle.css").toString());
+               root.getStylesheets().add(getClass().getResource("/views/loginView/loginStyle.css").toString());
                loginScene = new Scene(root);
                sceneMap.put("loginScene", loginScene);
            } catch (IOException e) {
