@@ -49,7 +49,7 @@ public class StageCoordinator {
            try {
                //change Path
                Parent root  = FXMLLoader.load(getClass().getResource("/views/homeView/homePage.fxml"));
-               //root.getStylesheets().add(getClass().getResource("/views/homeView/homePageStyle.css").toString());
+               root.getStylesheets().add(getClass().getResource("/views/homeView/homePageStyle.css").toString());
                homePageScene = new Scene(root);
                sceneMap.put("homePageScene", homePageScene);
            } catch (IOException e) {
