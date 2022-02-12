@@ -7,26 +7,26 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="706.0" stylesheets="@loginViewStyle.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="706.0" stylesheets="@loginStyle.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.LoginController">
    <children>
-      <Pane layoutX="188.0" layoutY="65.0" prefHeight="353.0" prefWidth="330.0" styleClass="pane" stylesheets="@loginViewStyle.css">
+      <Pane layoutX="188.0" layoutY="65.0" prefHeight="353.0" prefWidth="330.0" styleClass="pane" stylesheets="@loginStyle.css">
          <children>
             <Label layoutX="49.0" layoutY="40.0" text="Welcome Admin" textFill="#400080">
                <font>
                   <Font name="Arial Bold" size="30.0" />
                </font>
             </Label>
-            <TextField layoutX="42.0" layoutY="95.0" prefHeight="43.0" prefWidth="247.0" promptText="Enter Your Phone_ Number" styleClass="text-field" stylesheets="@loginViewStyle.css">
+            <TextField layoutX="42.0" layoutY="95.0" prefHeight="43.0" prefWidth="247.0" promptText="Enter Your Phone_ Number" styleClass="text-field" stylesheets="@loginStyle.css">
                <font>
                   <Font size="13.0" />
                </font>
             </TextField>
-            <TextField layoutX="42.0" layoutY="161.0" prefHeight="43.0" prefWidth="247.0" promptText="Your Password" styleClass="text-field" stylesheets="@loginViewStyle.css">
+            <TextField layoutX="42.0" layoutY="161.0" prefHeight="43.0" prefWidth="247.0" promptText="Your Password" styleClass="text-field" stylesheets="@loginStyle.css">
                <font>
                   <Font size="13.0" />
                </font>
             </TextField>
-            <Button fx:id="loginButton" layoutX="58.0" layoutY="257.0" mnemonicParsing="false" onAction="#OnLoginAction" prefHeight="42.0" prefWidth="214.0" styleClass="logbutton" stylesheets="@loginViewStyle.css" text="LOGIN" textFill="WHITE">
+            <Button fx:id="loginButton" layoutX="58.0" layoutY="257.0" mnemonicParsing="false" onAction="#OnLoginAction" prefHeight="42.0" prefWidth="214.0" styleClass="logbutton" stylesheets="@loginStyle.css" text="LOGIN" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
