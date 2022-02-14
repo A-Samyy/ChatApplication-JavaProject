@@ -1,18 +1,14 @@
 package gov.iti.jets.presistance.Daos;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import gov.iti.jets.presistance.Dtos.Status;
+import gov.iti.jets.presistance.Dtos.UserDto;
+
+import javax.sql.DataSource;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.sql.DataSource;
-
-import gov.iti.jets.presistance.Dtos.Status;
-import gov.iti.jets.presistance.Dtos.UserDto;
 
 public class UserDao {
 
@@ -32,38 +28,22 @@ public class UserDao {
         }
     }
 
-    public boolean addUserDto(UserDto userDto) {
-        try {
-            String sql = "insert into chatting_app.user(PHONE_NUMBER, USER_NAME, PASSWORD, GENDER, EMAIL, Picture, COUNTRY, Bio, STATUS, DateOfBirth)  values(?, ?, ?, ?, ? ,?, ? ,? ,?, ? ,?)";
-            preparedStatement = conn.prepareStatement(sql);
-            injectUser(userDto);
-            int affectedRows = preparedStatement.executeUpdate();
-            if (affectedRows > 0) {
-                return true;
-            } else
-                return false;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+    public boolean addUserDto(UserDto userDto) { // Email was not checked
+        boolean check= checkUserByPhoneNumber(userDto.getPhoneNumber());
+        if(!check) {
+            System.out.println(userDto);
+            String sql = "insert into chatting_app.user(PHONE_NUMBER, USER_NAME, PASSWORD, GENDER, EMAIL, Picture, COUNTRY, Bio, STATUS, DateOfBirth)  values(?, ?, ?, ? ,?, ? ,? ,?, ? ,?)";
+            return injectUser(userDto, sql);
         }
+        else
+            return false;
     }
 
-    public boolean updateUserDto(UserDto userDto, int id) {
-        try {
-            String sql = "UPDATE chatting_app.user SET PHONE_NUMBER= ?,USER_NAME = ?,PASSWORD = ? ,GENDER = ? ,EMAIL = ? ,Picture = ? ,COUNTRY = ?,Bio = ? ,STATUS=? ,DateOfBirth=? WHERE User_ID="
-                    + id;
-            preparedStatement = conn.prepareStatement(sql);
-            injectUser(userDto);
-            int affectedRows = preparedStatement.executeUpdate();
-            if (affectedRows > 0) {
-                return true;
-            } else
-                return false;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-
+    public boolean updateUserDto(UserDto userDto) {
+        int id = getUserIdByPhoneNumber(userDto.getPhoneNumber());
+        String sql = "UPDATE chatting_app.user SET PHONE_NUMBER= ?,USER_NAME = ?,PASSWORD = ? ,GENDER = ? ,EMAIL = ? ,Picture = ? ,COUNTRY = ?,Bio = ? ,STATUS=? ,DateOfBirth=? WHERE User_ID="
+                + id;
+        return  injectUser(userDto,sql);
     }
 
     public boolean deleteUserDtoById(int id) {
@@ -79,7 +59,6 @@ public class UserDao {
             e.printStackTrace();
             return false;
         }
-
     }
 
     public UserDto getUserDtoById(int id) {
@@ -102,13 +81,13 @@ public class UserDao {
             String sql = "select USER_ID from chatting_app.user where PHONE_NUMBER=" + phone_number;
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet.next()) {
-               int number= resultSet.getInt(1);
+                int number= resultSet.getInt(1);
                 return number;
             } else
-                return 0;
+                return -1;
         } catch (SQLException e) {
             e.printStackTrace();
-            return 0;
+            return -1;
         }
     }
     public String getUserPasswordById(int id) {
@@ -116,7 +95,7 @@ public class UserDao {
             String sql = "select PASSWORD from chatting_app.user where User_ID=" + id;
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet.next()) {
-                String password = new String(resultSet.getString(3));
+                String password = new String(resultSet.getString(1));
                 return password;
             } else
                 return null;
@@ -154,8 +133,9 @@ public class UserDao {
         }
     }
 
-    private void injectUser(UserDto userDto) {
+    private boolean injectUser(UserDto userDto,String sql) {
         try {
+            preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, userDto.getPhoneNumber());
             preparedStatement.setString(2, userDto.getName());
             preparedStatement.setString(3, userDto.getPassword());
@@ -166,10 +146,15 @@ public class UserDao {
             preparedStatement.setString(8, userDto.getBio());
             preparedStatement.setInt(9, userDto.getStatusNumber());
             preparedStatement.setDate(10, convertUtilToSql(userDto.getDateOfBirth()));
-
-        } catch (SQLException e) {
+            int affectedRows = preparedStatement.executeUpdate();
+            if (affectedRows > 0) {
+                return true;
+            } else
+                return false;
+        }catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     private UserDto extractUser(ResultSet resultSet) {
@@ -195,37 +180,6 @@ public class UserDao {
     private java.sql.Date convertUtilToSql(java.util.Date uDate) {
         java.sql.Date sDate = new java.sql.Date(uDate.getTime());
         return sDate;
-    }
-
-    public void testDataSource() {
-        DataSource ds = null;
-        ds = connector.getMYSQLDataSource();
-        Connection con = null;
-        Statement stmt = null;
-        ResultSet rs = null;
-        try {
-            con = ds.getConnection();
-            stmt = con.createStatement();
-            rs = stmt.executeQuery("select phone_number from chatting_app.user");
-            while (rs.next()) {
-
-                System.out.println("ID:" + rs.getString(1)); 
-           //     + " Name: " + rs.getString(2));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null)
-                    rs.close();
-                if (stmt != null)
-                    stmt.close();
-                if (con != null)
-                    con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
 }
