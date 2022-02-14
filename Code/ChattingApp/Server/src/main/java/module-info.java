@@ -9,7 +9,7 @@ module Server {
     requires org.kordamp.ikonli.fontawesome5;
     requires transitive java.sql.rowset;
     requires transitive javafx.graphics;
-
+    requires java.rmi;
     opens gov.iti.jets.presentation.controllers to javafx.fxml;
 
     exports gov.iti.jets;
