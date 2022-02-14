@@ -2,7 +2,7 @@
 --
 -- Host: 127.0.0.1    Database: chatting_app
 -- ------------------------------------------------------
--- Server version	8.0.27
+-- Server version	8.0.28
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,18 +23,20 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
-  `PHONE_NUMBER` varchar(11) NOT NULL,
+  `User_ID` int NOT NULL AUTO_INCREMENT,
+  `PHONE_NUMBER` varchar(45) NOT NULL,
   `USER_NAME` varchar(45) NOT NULL,
   `PASSWORD` varchar(45) NOT NULL,
   `GENDER` varchar(45) NOT NULL,
   `EMAIL` varchar(60) NOT NULL,
-  `PICTURE` tinyblob,
+  `PICTURE` varchar(1000) DEFAULT NULL,
   `COUNTRY` varchar(45) DEFAULT NULL,
   `BIO` varchar(250) DEFAULT NULL,
-  `STATUS` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`PHONE_NUMBER`),
+  `STATUS` int DEFAULT NULL,
+  `DateOfBirth` date DEFAULT NULL,
+  PRIMARY KEY (`User_ID`),
   UNIQUE KEY `PHONE_NUMBER_UNIQUE` (`PHONE_NUMBER`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,6 +45,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'333333355','Samyy','951357','male','Samy@hotmail.com','url','Cairo','HI lets talk',2,'1997-03-31'),(2,'22222','Hend','951357','male','Hend@hotmail.com','url','Cairo',NULL,1,'1997-03-31'),(3,'333333','Marwa','02221222','male','Marwaa@hotmail.com',NULL,NULL,NULL,1,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-04 13:09:38
+-- Dump completed on 2022-02-14 20:27:59

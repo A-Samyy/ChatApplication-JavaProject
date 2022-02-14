@@ -28,6 +28,7 @@ public class UserDao {
         }
     }
 
+
     public boolean addUserDto(UserDto userDto) { // Email was not checked
         boolean check= checkUserByPhoneNumber(userDto.getPhoneNumber());
         if(!check) {
@@ -51,10 +52,7 @@ public class UserDao {
         try {
             String sql = "DELETE FROM chatting_app.user WHERE User_ID=" + id;
             int affectedRows = preparedStatement.executeUpdate(sql);
-            if (affectedRows > 0) {
-                return true;
-            } else
-                return false;
+            return affectedRows > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -66,7 +64,7 @@ public class UserDao {
             String sql = "select * from chatting_app.user where User_ID=" + id;
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet.next()) {
-                UserDto userDto = new UserDto();
+                UserDto userDto;
                 userDto = extractUser(resultSet);
                 return userDto;
             } else
@@ -95,7 +93,7 @@ public class UserDao {
             String sql = "select PASSWORD from chatting_app.user where User_ID=" + id;
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet.next()) {
-                String password = new String(resultSet.getString(1));
+                String password = resultSet.getString(1);
                 return password;
             } else
                 return null;
@@ -124,10 +122,7 @@ public class UserDao {
         try {
             String sql = "Select * from chatting_app.user where phone_number=" + id;
             ResultSet resultSet = statement.executeQuery(sql);
-            if (resultSet.next()) {
-                return true;
-            } else
-                return false;
+            return resultSet.next();
         } catch (SQLException e) {
             return false;
         }
@@ -147,10 +142,7 @@ public class UserDao {
             preparedStatement.setInt(9, userDto.getStatusNumber());
             preparedStatement.setDate(10, convertUtilToSql(userDto.getDateOfBirth()));
             int affectedRows = preparedStatement.executeUpdate();
-            if (affectedRows > 0) {
-                return true;
-            } else
-                return false;
+            return affectedRows > 0;
         }catch (SQLException e) {
             e.printStackTrace();
         }
