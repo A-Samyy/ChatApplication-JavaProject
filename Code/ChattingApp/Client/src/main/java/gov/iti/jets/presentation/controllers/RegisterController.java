@@ -63,6 +63,7 @@ public class RegisterController implements Initializable {
     @FXML
     private Button regbutton;
 
+
     public RegisterController() throws RemoteException {
     }
 
@@ -80,7 +81,7 @@ public class RegisterController implements Initializable {
         registerDto.setPassword(userModel.getPassword());
         registerDto.setCountry(userModel.getCountry());
 
-       // registerDto.setDateOfBirth(userModel.getDate());
+        registerDto.setDateOfBirth(null);
         registerDto.setBio(userModel.getBio());
         registerDto.setPicture(userModel.getImagePath());
         registerDto.setGender(userModel.getGender());
@@ -99,13 +100,13 @@ public class RegisterController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        phoneNumberTextField.textProperty().bindBidirectional(userModel.phoneNumberProperty());
-        fullNameTextField.textProperty().bindBidirectional(userModel.userNameProperty());
-        emailTextField.textProperty().bindBidirectional(userModel.emailProperty());
-        passwordTextField.textProperty().bindBidirectional(userModel.passwordProperty());
-        bioTextArea.textProperty().bindBidirectional(userModel.bioProperty());
-//        dateOfBirthTextField.ObjectProperty().bindBidirectional(userModel.dateProperty());
-        countryTextField.textProperty().bindBidirectional(userModel.countryProperty());
+//        phoneNumberTextField.textProperty().bindBidirectional(userModel.phoneNumberProperty());
+//        fullNameTextField.textProperty().bindBidirectional(userModel.userNameProperty());
+//        emailTextField.textProperty().bindBidirectional(userModel.emailProperty());
+//        passwordTextField.textProperty().bindBidirectional(userModel.passwordProperty());
+//        bioTextArea.textProperty().bindBidirectional(userModel.bioProperty());
+////        dateOfBirthTextField.ObjectProperty().bindBidirectional(userModel.dateProperty());
+//        countryTextField.textProperty().bindBidirectional(userModel.countryProperty());
 
 //        MARWAAAAAAAA IMAGE PICTUREEEEEE!!!!
 //        maleRadioButton.textProperty().bindBidirectional(userModel.genderProperty());

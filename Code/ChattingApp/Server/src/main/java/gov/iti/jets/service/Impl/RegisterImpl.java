@@ -6,9 +6,15 @@ import gov.iti.jets.service.RegisterInt;
 import gov.iti.jets.service.dtos.RegisterDto;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
-public class RegisterImpl implements RegisterInt {
+public class RegisterImpl extends UnicastRemoteObject implements RegisterInt{
     UserDao userDao = new UserDao();
+
+    public RegisterImpl() throws RemoteException {
+
+    }
+
     @Override
     public Boolean addUser(RegisterDto registerDTO) throws RemoteException {
         UserDto userDto= mapper(registerDTO);

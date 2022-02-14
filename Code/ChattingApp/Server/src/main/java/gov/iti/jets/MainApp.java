@@ -15,13 +15,8 @@ public class MainApp extends Application {
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     public static void main(String[] arg) throws RemoteException {
         RegisterInt register = new RegisterImpl();
-        Registry registry = null;
-        try {
-            registry = LocateRegistry.createRegistry(1099);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        registry.rebind("RegisterService", register);
+        Registry registry = LocateRegistry.createRegistry(1099);
+        registry.rebind("RegisterService",register);
 
         Application.launch(arg);
     }
