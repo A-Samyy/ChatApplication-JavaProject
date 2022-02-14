@@ -32,8 +32,8 @@ public class LoginService {
         return this.userId;
     }
 
-    public String getPassword(int userId) throws RemoteException {
-        return this.loginInt.isPasswordValid(this.loginDto);
+    public String getPassword() throws RemoteException {
+        return this.loginInt.isPasswordValid();
     }
 
 

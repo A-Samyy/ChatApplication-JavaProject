@@ -22,7 +22,7 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
     }
 
     @Override
-    public String isPasswordValid(LoginDto loginDto) throws RemoteException {
+    public String isPasswordValid() throws RemoteException {
         return userDao.getUserPasswordById(this.userID);
     }
 }

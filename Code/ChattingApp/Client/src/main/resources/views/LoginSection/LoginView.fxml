@@ -28,12 +28,12 @@
                         <Font name="Arial Bold" size="30.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="42.0" layoutY="95.0" prefHeight="43.0" prefWidth="247.0" promptText="Enter Your Phone_ Number" styleClass="numfield">
+                  <TextField fx:id="phoneNumberTextField" layoutX="42.0" layoutY="95.0" prefHeight="43.0" prefWidth="247.0" promptText="Enter Your Phone_ Number" styleClass="numfield">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </TextField>
-                  <TextField layoutX="42.0" layoutY="161.0" prefHeight="43.0" prefWidth="247.0" promptText="Your Password" styleClass="passfield">
+                  <TextField fx:id="passwordTextField" layoutX="42.0" layoutY="161.0" prefHeight="43.0" prefWidth="247.0" promptText="Your Password" styleClass="passfield">
                      <font>
                         <Font size="13.0" />
                      </font>

@@ -33,23 +33,28 @@ public class LoginController implements  Initializable{
     @FXML
     Button registrationButton;
     @FXML
-    private TextField phone_number_text_field;
+    private TextField passwordTextField;
+
+    @FXML
+    private TextField phoneNumberTextField;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        phone_number_text_field.textProperty().bindBidirectional(userModel.phoneNumberProperty());
+        phoneNumberTextField.textProperty().bindBidirectional(userModel.phoneNumberProperty());
+        passwordTextField.textProperty().bindBidirectional(userModel.passwordProperty());
 
     }
     public LoginController(){}
 
     @FXML
     void OnLoginAction(ActionEvent event) throws RemoteException {
+        System.out.println(userModel.getPhoneNumber());
 
+        int userId = loginService.getUserId("333333355");
+        String userPass = loginService.getPassword();
 
-        loginService.getUserId("333284");
-        loginService.getPassword();
         System.out.println(userPass);
-        String pass = "3434";
+        String pass = "951357";
 
         if ((userId > -1) && (userPass.equals(pass))){
             stageCoordinator.switchToGHomePageScreen();
