@@ -22,7 +22,7 @@ public class RegisterService   {
         }
     }
     public Boolean registUser(RegisterDto registerDto) throws RemoteException {
-
+        System.out.println(registerDto+"registerService Client");
         return registerInt.addUser(registerDto);
 
 

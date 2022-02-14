@@ -1,9 +1,11 @@
 package gov.iti.jets.presistance.Dtos;
 
+import java.io.Serializable;
 import java.util.Date;
 
 
-public class UserDto {
+public class UserDto implements Serializable {
+    private static final long serialVersionUID = 1420672609912364060L;
     private int userID;
     private String phoneNumber;
     private String password;
@@ -15,8 +17,6 @@ public class UserDto {
     private String country;
     private String bio;
     private Status status;
-    
-
     
     public UserDto() {
     }
@@ -82,6 +82,7 @@ public class UserDto {
     public void setCountry(String country) {
         this.country = country;
     }
+
     public Status getStatus() {
         return status;
     }

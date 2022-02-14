@@ -74,7 +74,7 @@ public class RegisterController implements Initializable {
     @FXML
     void registerOnMouseClick(MouseEvent event) {
         RegisterDto registerDto=new RegisterDto();
-
+        registerDto.setPhoneNumber(userModel.getPhoneNumber());
         registerDto.setName(userModel.getUserName());
         registerDto.setEmail(userModel.getEmail());
         registerDto.setPassword(userModel.getPassword());
@@ -84,7 +84,7 @@ public class RegisterController implements Initializable {
         registerDto.setBio(userModel.getBio());
         registerDto.setPicture(userModel.getImagePath());
         registerDto.setGender(userModel.getGender());
-
+        System.out.println(registerDto);
         try {
             isRegistered=registerService.registUser(registerDto);
         } catch (RemoteException e) {

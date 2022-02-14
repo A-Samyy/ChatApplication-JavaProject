@@ -169,8 +169,13 @@ public class UserDao {
     }
 
     private java.sql.Date convertUtilToSql(java.util.Date uDate) {
-        java.sql.Date sDate = new java.sql.Date(uDate.getTime());
-        return sDate;
-    }
+            if (uDate !=null) {
+                java.sql.Date sDate = new java.sql.Date(uDate.getTime());
+                return sDate;
+            }
+            else
+                return null;
+        }
 
-}
+
+    }
