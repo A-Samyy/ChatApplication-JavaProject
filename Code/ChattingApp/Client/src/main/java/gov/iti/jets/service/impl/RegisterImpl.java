@@ -1,4 +1,6 @@
 package gov.iti.jets.service.impl;
 
-public class RegisterImpl {
+import gov.iti.jets.service.RegisterInt;
+
+public class RegisterImpl implements RegisterInt {
 }
