@@ -31,7 +31,7 @@ public class Connector {
             output = new FileOutputStream("db.properties");
             prop.setProperty("MYSQL_DB_URL", "jdbc:mysql://localhost:3306/iti");
             prop.setProperty("MYSQL_DB_USERNAME", "root");
-            prop.setProperty("MYSQL_DB_PASSWORD", "rootpassword");
+            prop.setProperty("MYSQL_DB_PASSWORD", "abdelaziz123@!$");
             prop.store(output, null);
         } catch (IOException e) {
             e.printStackTrace();

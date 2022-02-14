@@ -1,5 +1,6 @@
 package gov.iti.jets.service.Impl;
 
+import gov.iti.jets.presistance.Daos.UserDao;
 import gov.iti.jets.service.LoginInt;
 import gov.iti.jets.service.dtos.LoginDto;
 
@@ -7,16 +8,21 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 public class LoginImpl extends UnicastRemoteObject implements LoginInt {
-    protected LoginImpl() throws RemoteException {
+
+    UserDao userDao = new UserDao();
+    private int userID;
+
+    public LoginImpl() throws RemoteException {
     }
 
     @Override
-    public Boolean isPhoneNumberExist(LoginDto loginDto) throws RemoteException {
-        return null;
+    public int isPhoneNumberExist(LoginDto loginDto) throws RemoteException {
+        this.userID=userDao.getUserIdByPhoneNumber(loginDto.getPhoneNumber());
+        return this.userID;
     }
 
     @Override
-    public Boolean isPasswordValid(LoginDto loginDto) throws RemoteException {
-        return null;
+    public String isPasswordValid(LoginDto loginDto) throws RemoteException {
+        return userDao.getUserPasswordById(this.userID);
     }
 }
