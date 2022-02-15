@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class LoginDto implements Serializable {
 
-    private String phoneNumber ;
+    private String phoneNumber;
     private String password;
 
     public LoginDto(String phoneNumber){
