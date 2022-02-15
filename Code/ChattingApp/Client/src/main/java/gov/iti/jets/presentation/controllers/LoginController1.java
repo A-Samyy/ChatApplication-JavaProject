@@ -1,18 +1,13 @@
 package gov.iti.jets.presentation.controllers;
 
 import java.net.URL;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.util.ResourceBundle;
 
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
-import gov.iti.jets.service.LoginInt;
-import gov.iti.jets.service.dtos.LoginDto;
-import gov.iti.jets.service.impl.LoginService;
+import gov.iti.jets.service.services.LoginService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

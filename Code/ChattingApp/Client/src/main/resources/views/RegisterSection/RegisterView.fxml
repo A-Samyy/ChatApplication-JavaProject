@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -25,7 +26,7 @@
    <children>
       <GridPane prefHeight="292.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="300.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
@@ -113,10 +114,10 @@
                         <VBox alignment="CENTER" spacing="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <children>
                               <Label text="Country" textFill="#400080" />
-                              <TextField fx:id="countryTextField" prefHeight="25.0" prefWidth="176.0" promptText="Enter your country">
+                              <ChoiceBox fx:id="countryChoiceBox" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets left="15.0" right="15.0" />
-                                 </VBox.margin></TextField>
+                                 </VBox.margin></ChoiceBox>
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="59.0" prefWidth="176.0" spacing="5.0">
@@ -182,12 +183,16 @@
                               <VBox alignment="TOP_CENTER" spacing="5.0">
                                  <children>
                                     <Label text="Date Of Birth" textFill="#400080" />
+                                    <DatePicker fx:id="dateOfBirthTextField" maxWidth="1.7976931348623157E308" onAction="#changeOnAction" promptText="Enter your date of birth">
+                                       <VBox.margin>
+                                          <Insets left="15.0" right="15.0" />
+                                       </VBox.margin>
+                                    </DatePicker>
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="15.0" />
                                  </VBox.margin>
                               </VBox>
-                              <DatePicker fx:id="dateOfBirthTextField" promptText="Enter your date of birth" />
                               <GridPane alignment="CENTER" prefHeight="50.0" prefWidth="224.0">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -201,20 +206,12 @@
                                     <Label text="Gender" textFill="#400080" />
                                     <HBox GridPane.rowIndex="1">
                                        <children>
-                                          <RadioButton fx:id="maleRadioButton" mnemonicParsing="false" />
-                                          <Label fx:id="male" text="Male" textFill="#400080">
-                                             <HBox.margin>
-                                                <Insets left="5.0" top="5.0" />
-                                             </HBox.margin></Label>
+                                          <RadioButton fx:id="maleRadioButton" mnemonicParsing="false" onAction="#Clicked" text="Male" textFill="#400080" />
                                        </children>
                                     </HBox>
                                     <HBox GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
-                                          <RadioButton fx:id="femaleRadioButton" mnemonicParsing="false" />
-                                          <Label fx:id="female" text="Female" textFill="#400080">
-                                             <HBox.margin>
-                                                <Insets left="5.0" top="5.0" />
-                                             </HBox.margin></Label>
+                                          <RadioButton fx:id="femaleRadioButton" mnemonicParsing="false" onAction="#Clicked" text="Female" textFill="#400080" />
                                        </children>
                                     </HBox>
                                  </children>

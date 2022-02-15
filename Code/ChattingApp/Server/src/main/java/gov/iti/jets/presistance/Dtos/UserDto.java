@@ -92,8 +92,21 @@ public class UserDto implements Serializable {
     public void setStatus(Status status) {
         this.status = status;
     }
-    
-    
 
-    
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "userID=" + userID +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", email='" + email + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", picture='" + picture + '\'' +
+                ", country='" + country + '\'' +
+                ", bio='" + bio + '\'' +
+                ", status=" + status +
+                '}';
+    }
 }
