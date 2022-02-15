@@ -24,6 +24,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
 import java.rmi.RemoteException;
@@ -40,6 +41,29 @@ public class RegisterController implements Initializable {
     UserModel userModel = modelFactory.getUserModel();
     RegisterService registerService = new RegisterService();
     Boolean isRegistered;
+
+
+    @FXML
+    private FontIcon backArrow;
+
+    @FXML
+    private Label backButton;
+
+    @FXML
+    private Label countryError;
+
+    @FXML
+    private Label invalidEmail;
+
+    @FXML
+    private Label invalidName;
+
+    @FXML
+    private Label invalidPassword;
+
+    @FXML
+    private Label invalidPhone;
+
     @FXML
     private TextArea bioTextArea;
 
@@ -86,6 +110,22 @@ public class RegisterController implements Initializable {
 
     public RegisterController() throws RemoteException {
     }
+
+
+
+
+//    @FXML
+//    void OnBackAction(MouseEvent event) {
+//       // stageCoordinator.switchToLoginScreen();
+//    }
+
+    @FXML
+    void onBackButtonAction(MouseEvent event) {
+        stageCoordinator.switchToLoginScreen();
+    }
+
+
+
 
     @FXML
     void addYourProfilePicture(MouseEvent event) {

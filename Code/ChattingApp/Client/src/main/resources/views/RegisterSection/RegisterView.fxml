@@ -10,7 +10,6 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -73,6 +72,11 @@
                                  <VBox.margin>
                                     <Insets left="15.0" right="15.0" />
                                  </VBox.margin></TextField>
+                              <Label fx:id="invalidPhone" prefHeight="17.0" prefWidth="178.0" textAlignment="CENTER" textFill="#ea0000">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="59.0" prefWidth="176.0" spacing="5.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -82,6 +86,11 @@
                                  <VBox.margin>
                                     <Insets left="15.0" right="15.0" />
                                  </VBox.margin></TextField>
+                              <Label fx:id="invalidName" prefHeight="17.0" prefWidth="178.0" textAlignment="CENTER" textFill="#ea0000">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                      </children>
@@ -117,7 +126,15 @@
                               <ChoiceBox fx:id="countryChoiceBox" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets left="15.0" right="15.0" />
-                                 </VBox.margin></ChoiceBox>
+                                 </VBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></ChoiceBox>
+                              <Label fx:id="countryError" prefHeight="17.0" prefWidth="178.0" textAlignment="CENTER" textFill="#ea0000">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="59.0" prefWidth="176.0" spacing="5.0">
@@ -127,6 +144,11 @@
                                  <VBox.margin>
                                     <Insets left="15.0" right="15.0" />
                                  </VBox.margin></TextField>
+                              <Label fx:id="invalidEmail" prefHeight="17.0" prefWidth="178.0" textAlignment="CENTER" textFill="#ea0000">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                      </children>
@@ -147,6 +169,11 @@
                                  <VBox.margin>
                                     <Insets left="15.0" right="15.0" />
                                  </VBox.margin></PasswordField>
+                              <Label fx:id="invalidPassword" prefHeight="17.0" prefWidth="178.0" textAlignment="CENTER" textFill="#ea0000">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" spacing="5.0" GridPane.columnIndex="1">
@@ -155,7 +182,13 @@
                               <PasswordField fx:id="confirmPasswordTextField" prefHeight="25.0" prefWidth="176.0" promptText="Enter your password again">
                                  <VBox.margin>
                                     <Insets left="15.0" right="15.0" />
-                                 </VBox.margin></PasswordField>
+                                 </VBox.margin>
+                              </PasswordField>
+                              <Label prefHeight="17.0" prefWidth="178.0" textAlignment="CENTER" textFill="#ea0000">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                      </children>
@@ -187,6 +220,9 @@
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" />
                                        </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </DatePicker>
                                  </children>
                                  <VBox.margin>
@@ -199,8 +235,8 @@
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                                  </columnConstraints>
                                  <rowConstraints>
-                                    <RowConstraints maxHeight="28.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="15.200000000000003" minHeight="7.200000000000003" prefHeight="15.200000000000003" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="15.200000000000003" minHeight="3.200000000000003" prefHeight="3.200000000000003" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
                                     <Label text="Gender" textFill="#400080" />
@@ -227,7 +263,19 @@
             </GridPane>
             <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #400080;">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <FontIcon fx:id="backArrow" iconColor="WHITE" iconLiteral="fas-arrow-left" iconSize="25" layoutX="19.0" layoutY="43.125" text="">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </FontIcon>
+                  <Label fx:id="backButton" alignment="TOP_RIGHT" layoutX="13.0" layoutY="21.0" onMouseClicked="#onBackButtonAction" prefHeight="27.0" prefWidth="80.0" text="Back" textFill="WHITE">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
                </children>
             </Pane>
          </children>

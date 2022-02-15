@@ -3,6 +3,7 @@ package gov.iti.jets.presentation.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.scene.layout.*;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import gov.iti.jets.presentation.util.StageCoordinator;
@@ -16,12 +17,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 
 public class HomePageController implements Initializable {
   StageCoordinator stageCoordinator = StageCoordinator.getInstance();
+
+
+
+  @FXML
+  private HBox bottomBar;
+
+  @FXML
+  private Pane topBar;
+
   @FXML
   private Tab Contacts;
 

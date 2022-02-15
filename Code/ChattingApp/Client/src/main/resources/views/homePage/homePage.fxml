@@ -172,22 +172,22 @@
             <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="75.0" valignment="CENTER" />
          </rowConstraints>
          <children>
-            <Pane prefHeight="119.0" prefWidth="724.0" styleClass="chatBar">
+            <Pane fx:id="topBar" prefHeight="119.0" prefWidth="724.0" styleClass="chatBar">
                <children>
                   <Circle fill="WHITE" layoutX="67.0" layoutY="49.0" radius="23.0" stroke="#400080" strokeType="INSIDE" />
                   <Circle fill="#1fff69" layoutX="85.0" layoutY="64.0" radius="6.0" stroke="#400080" strokeType="INSIDE" />
-                  <Label layoutX="115.0" layoutY="26.0" prefHeight="35.0" prefWidth="86.0" text="Hend" textFill="#400080">
+                  <Label layoutX="115.0" layoutY="26.0" prefHeight="35.0" prefWidth="86.0" text="Hend" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="119.0" layoutY="55.0" text="Bio....." textFill="#400080" />
+                  <Label layoutX="119.0" layoutY="55.0" text="Bio....." textFill="WHITE" />
                </children>
             </Pane>
             <ScrollPane fx:id="chatArea" prefHeight="612.0" prefWidth="607.0" GridPane.rowIndex="1" />
-            <HBox alignment="CENTER_LEFT" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <HBox fx:id="bottomBar" alignment="CENTER_LEFT" styleClass="chatBar" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <children>
-                  <FontIcon iconColor="#400080" iconLiteral="fas-paperclip" iconSize="25">
+                  <FontIcon iconColor="WHITE" iconLiteral="fas-paperclip" iconSize="25">
                      <HBox.margin>
                         <Insets left="10.0" right="15.0" />
                      </HBox.margin>
@@ -200,7 +200,7 @@
                         <Font size="16.0" />
                      </font>
                   </TextField>
-                  <FontIcon iconColor="#400080" iconLiteral="fab-telegram-plane" iconSize="25" onMouseClicked="#sendButtonClicked">
+                  <FontIcon iconColor="WHITE" iconLiteral="fab-telegram-plane" iconSize="25" onMouseClicked="#sendButtonClicked">
                      <HBox.margin>
                         <Insets left="15.0" right="15.0" />
                      </HBox.margin>

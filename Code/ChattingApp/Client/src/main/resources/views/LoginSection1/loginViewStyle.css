@@ -12,6 +12,11 @@
     -fx-background-color:#400080;
 }
 
+#loginButton:hover{
+    -fx-background-color: #441e69;
+
+}
+
 .pane{
    
     -fx-background-radius:35px;
