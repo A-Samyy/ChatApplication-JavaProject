@@ -17,6 +17,8 @@ import java.rmi.registry.Registry;
 public class MainApp extends Application {
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     public static void main(String[] arg) throws RemoteException {
+
+        //Marwa merging
         RMICreateRegister rmiCreateRegister= RMICreateRegister.getInstance();
         Application.launch(arg);
     }
