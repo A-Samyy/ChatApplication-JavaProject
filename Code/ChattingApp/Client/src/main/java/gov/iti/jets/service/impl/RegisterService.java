@@ -14,7 +14,7 @@ public class RegisterService   {
     RegisterInt registerInt;
     public RegisterService() throws RemoteException {
 
-        Registry registry = LocateRegistry.getRegistry("localhost", 2022);
+        Registry registry = LocateRegistry.getRegistry("localhost", 4004);
         try {
             registerInt = (RegisterInt) registry.lookup("RegisterService");
         } catch (NotBoundException e) {
@@ -24,7 +24,5 @@ public class RegisterService   {
     public Boolean registUser(RegisterDto registerDto) throws RemoteException {
         System.out.println(registerDto+"registerService Client");
         return registerInt.addUser(registerDto);
-
-
     }
 }

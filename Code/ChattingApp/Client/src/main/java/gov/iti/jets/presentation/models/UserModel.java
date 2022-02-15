@@ -17,7 +17,7 @@ public class UserModel{
     private final StringProperty bio = new SimpleStringProperty();
     private final StringProperty imagePath = new SimpleStringProperty();
     private final StringProperty status = new SimpleStringProperty();
-//    private final ObjectProperty<Date> date = new SimpleObjectProperty<>();
+    private final StringProperty date = new SimpleStringProperty();
 
     public String getUserName() {
         return userName.get();
@@ -127,15 +127,15 @@ public class UserModel{
         this.status.set(status);
     }
 
-//    public Date getDate() {
-//        return date.get();
-//    }
-//
-//    public ObjectProperty<Date> dateProperty() {
-//        return date;
-//    }
-//
-//    public void setDate(Date date) {
-//        this.date.set(date);
-//    }
+    public String getDate() {
+        return date.get();
+    }
+
+    public StringProperty dateProperty() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date.set(date);
+    }
 }

@@ -1,5 +1,6 @@
 package gov.iti.jets.presentation.util;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class StageCoordinator {
@@ -32,6 +34,18 @@ public class StageCoordinator {
 
     public void initStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
+    }
+    public String openFile() {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Pic Chooser");
+        File file = fileChooser.showOpenDialog(primaryStage);
+        if (file != null) {
+            String picPath = file.getPath();
+            return picPath;
+        } else {
+            return null;
+        }
     }
 
     public void switchToLoginScreen() {

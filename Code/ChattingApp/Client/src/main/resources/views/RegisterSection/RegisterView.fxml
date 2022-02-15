@@ -187,7 +187,7 @@
                                     <Insets bottom="15.0" />
                                  </VBox.margin>
                               </VBox>
-                              <DatePicker fx:id="dateOfBirthTextField" promptText="Enter your date of birth" />
+                              <DatePicker fx:id="dateOfBirthTextField" onAction="#changeOnAction" promptText="Enter your date of birth" />
                               <GridPane alignment="CENTER" prefHeight="50.0" prefWidth="224.0">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -201,20 +201,12 @@
                                     <Label text="Gender" textFill="#400080" />
                                     <HBox GridPane.rowIndex="1">
                                        <children>
-                                          <RadioButton fx:id="maleRadioButton" mnemonicParsing="false" />
-                                          <Label fx:id="male" text="Male" textFill="#400080">
-                                             <HBox.margin>
-                                                <Insets left="5.0" top="5.0" />
-                                             </HBox.margin></Label>
+                                          <RadioButton fx:id="maleRadioButton" mnemonicParsing="false" onAction="#Clicked" text="Male" textFill="#400080" />
                                        </children>
                                     </HBox>
                                     <HBox GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
-                                          <RadioButton fx:id="femaleRadioButton" mnemonicParsing="false" />
-                                          <Label fx:id="female" text="Female" textFill="#400080">
-                                             <HBox.margin>
-                                                <Insets left="5.0" top="5.0" />
-                                             </HBox.margin></Label>
+                                          <RadioButton fx:id="femaleRadioButton" mnemonicParsing="false" onAction="#Clicked" text="Female" textFill="#400080" />
                                        </children>
                                     </HBox>
                                  </children>
