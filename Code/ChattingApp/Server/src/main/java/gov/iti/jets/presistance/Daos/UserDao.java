@@ -28,6 +28,7 @@ public class UserDao {
         }
     }
 
+
     public boolean addUserDto(UserDto userDto) { // Email was not checked
         boolean check= checkUserByPhoneNumber(userDto.getPhoneNumber());
         if(!check) {

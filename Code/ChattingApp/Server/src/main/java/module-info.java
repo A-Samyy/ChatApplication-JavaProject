@@ -11,6 +11,8 @@ module Server {
     requires transitive javafx.graphics;
     requires java.rmi;
     opens gov.iti.jets.presentation.controllers to javafx.fxml;
+
+    exports gov.iti.jets.presentation.controllers;
     exports gov.iti.jets.service;
     exports gov.iti.jets;
 }

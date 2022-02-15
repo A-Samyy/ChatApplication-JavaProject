@@ -19,52 +19,46 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class LoginController implements  Initializable{
-
+public class LoginController1 implements Initializable {
     private final StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
     LoginService loginService = new LoginService();
 
     @FXML
-    Button loginButton;
+    private Button createbutton;
+
     @FXML
-    Button registrationButton;
-    @FXML
-    private TextField passwordTextField;
+    private Button loginButton;
 
     @FXML
     private TextField phoneNumberTextField;
 
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        phoneNumberTextField.textProperty().bindBidirectional(userModel.phoneNumberProperty());
-        passwordTextField.textProperty().bindBidirectional(userModel.passwordProperty());
-
-    }
-    public LoginController(){}
-
     @FXML
-    void OnLoginAction(ActionEvent event) throws RemoteException {
-        System.out.println(userModel.getPhoneNumber());
+    void OnLoginAction(ActionEvent event) throws RemoteException{
 
-        int userId = loginService.getUserId("333333355");
-        String userPass = loginService.getPassword();
+        int userId = loginService.getUserId(userModel.getPhoneNumber());
+//        String userPass = loginService.getPassword();
+//
+//        System.out.println(userPass);
+//        String pass = "951357";
 
-        System.out.println(userPass);
-        String pass = "951357";
-
-        if ((userId > -1) && (userPass.equals(pass))){
-            stageCoordinator.switchToGHomePageScreen();
+        if ((userId > -1)){
+            stageCoordinator.switchToPasswordScreen();
         }else {
             System.out.println("Please register Or youPass is invalid");
         }
+
     }
 
     @FXML
     void OnRegestrationAction(ActionEvent event) {
-       stageCoordinator.switchToRegistrationScreen();
+        stageCoordinator.switchToRegistrationScreen();
     }
 
-    
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        phoneNumberTextField.textProperty().bindBidirectional(userModel.phoneNumberProperty());
+
+    }
 }

@@ -2,8 +2,10 @@ package gov.iti.jets;
 
 
 import gov.iti.jets.presentation.util.StageCoordinator;
+import gov.iti.jets.service.Impl.LoginImpl;
 import gov.iti.jets.service.Impl.RegisterImpl;
 import gov.iti.jets.service.RegisterInt;
+import gov.iti.jets.service.LoginInt;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -15,9 +17,10 @@ public class MainApp extends Application {
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     public static void main(String[] arg) throws RemoteException {
         RegisterInt register = new RegisterImpl();
+        LoginInt loginService = new LoginImpl();
         Registry registry = LocateRegistry.createRegistry(1099);
         registry.rebind("RegisterService",register);
-
+        register.rebind("login",loginService);
         Application.launch(arg);
     }
 

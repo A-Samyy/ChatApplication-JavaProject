@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="706.0" style="-fx-background-color: #400080;" stylesheets="@loginViewStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="706.0" style="-fx-background-color: #400080;" stylesheets="@loginViewStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.LoginController1">
    <children>
       <GridPane alignment="CENTER" layoutX="188.0" layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
@@ -28,12 +28,7 @@
                         <Font name="Arial Bold" size="30.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="phoneNumberTextField" layoutX="42.0" layoutY="95.0" prefHeight="43.0" prefWidth="247.0" promptText="Enter Your Phone_ Number" styleClass="numfield">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="passwordTextField" layoutX="42.0" layoutY="161.0" prefHeight="43.0" prefWidth="247.0" promptText="Your Password" styleClass="passfield">
+                  <TextField fx:id="phoneNumberTextField" layoutX="43.0" layoutY="169.0" prefHeight="43.0" prefWidth="264.0" promptText="Phone Number" styleClass="numfield">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -46,14 +41,15 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="forgetbutton" layoutX="190.0" layoutY="212.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="Forget Password?" textFill="#400080">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Button>
                   <Button fx:id="createbutton" layoutX="117.0" layoutY="308.0" mnemonicParsing="false" onAction="#OnRegestrationAction" text="Create Account" textFill="#400080">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
+                  <Label layoutX="53.0" layoutY="141.0" text="ENTER YOUR PHONE NUMBER" textFill="#400080">
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>
