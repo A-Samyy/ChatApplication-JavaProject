@@ -3,6 +3,7 @@ package gov.iti.jets.presentation.controllers;
 
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
+import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.dtos.RegisterDto;
 import gov.iti.jets.service.impl.RegisterService;
 import javafx.fxml.FXML;
@@ -16,7 +17,7 @@ import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
-
+    StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     ModelFactory modelFactory=ModelFactory.getInstance();
     UserModel userModel=modelFactory.getUserModel();
     RegisterService registerService=new RegisterService();
@@ -88,6 +89,7 @@ public class RegisterController implements Initializable {
         System.out.println(registerDto);
         try {
             isRegistered=registerService.registUser(registerDto);
+            stageCoordinator.switchToLoginScreen();
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -100,13 +102,13 @@ public class RegisterController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-//        phoneNumberTextField.textProperty().bindBidirectional(userModel.phoneNumberProperty());
-//        fullNameTextField.textProperty().bindBidirectional(userModel.userNameProperty());
-//        emailTextField.textProperty().bindBidirectional(userModel.emailProperty());
-//        passwordTextField.textProperty().bindBidirectional(userModel.passwordProperty());
-//        bioTextArea.textProperty().bindBidirectional(userModel.bioProperty());
-////        dateOfBirthTextField.ObjectProperty().bindBidirectional(userModel.dateProperty());
-//        countryTextField.textProperty().bindBidirectional(userModel.countryProperty());
+        phoneNumberTextField.textProperty().bindBidirectional(userModel.phoneNumberProperty());
+        fullNameTextField.textProperty().bindBidirectional(userModel.userNameProperty());
+        emailTextField.textProperty().bindBidirectional(userModel.emailProperty());
+        passwordTextField.textProperty().bindBidirectional(userModel.passwordProperty());
+        bioTextArea.textProperty().bindBidirectional(userModel.bioProperty());
+//        dateOfBirthTextField.ObjectProperty().bindBidirectional(userModel.dateProperty());
+        countryTextField.textProperty().bindBidirectional(userModel.countryProperty());
 
 //        MARWAAAAAAAA IMAGE PICTUREEEEEE!!!!
 //        maleRadioButton.textProperty().bindBidirectional(userModel.genderProperty());

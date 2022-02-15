@@ -17,7 +17,7 @@ public class LoginService {
     public LoginService(){
         Registry reg;
         try {
-            reg = LocateRegistry.getRegistry("localhost" , 3000);
+            reg = LocateRegistry.getRegistry("localhost" , 2022);
             loginInt= (LoginInt) reg.lookup("login");
         } catch (RemoteException e) {
             e.printStackTrace();

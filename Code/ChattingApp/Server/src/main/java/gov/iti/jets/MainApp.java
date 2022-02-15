@@ -18,9 +18,9 @@ public class MainApp extends Application {
     public static void main(String[] arg) throws RemoteException {
         RegisterInt register = new RegisterImpl();
         LoginInt loginService = new LoginImpl();
-        Registry registry = LocateRegistry.createRegistry(1099);
+        Registry registry = LocateRegistry.createRegistry(2022);
         registry.rebind("RegisterService",register);
-        register.rebind("login",loginService);
+        registry.rebind("login",loginService);
         Application.launch(arg);
     }
 

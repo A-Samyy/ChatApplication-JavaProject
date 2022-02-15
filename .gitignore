@@ -1,5 +1,5 @@
 ## A complete .gitignore file for Java.
-
+db.properties
 ##############################
 ## Java
 ##############################
