@@ -39,7 +39,7 @@ public class StageCoordinator {
         if (loginScene == null) {
             try {
                 // change Path
-                Parent root = FXMLLoader.load(getClass().getResource("/views/LoginSection/LoginView.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/views/LoginSection1/LoginView.fxml"));
                 loginScene = new Scene(root);
                 sceneMap.put("loginScene", loginScene);
             } catch (IOException e) {
@@ -47,6 +47,20 @@ public class StageCoordinator {
             }
         }
         primaryStage.setScene(loginScene);
+    }
+    public void switchToPasswordScreen() {
+        Scene passwordScene = sceneMap.get("passwordScene");
+        if (passwordScene == null) {
+            try {
+                // change Path
+                Parent root = FXMLLoader.load(getClass().getResource("/views/passwordsection/LoginView.fxml"));
+                passwordScene = new Scene(root);
+                sceneMap.put("passwordScene", passwordScene);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        primaryStage.setScene(passwordScene);
     }
 
     public void switchToGHomePageScreen() {
