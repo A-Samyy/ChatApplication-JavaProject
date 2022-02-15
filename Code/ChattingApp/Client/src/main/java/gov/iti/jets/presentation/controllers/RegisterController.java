@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ChoiceBox;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
@@ -28,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Base64;
 import java.util.Date;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
@@ -43,7 +47,7 @@ public class RegisterController implements Initializable {
     private PasswordField confirmPasswordTextField;
 
     @FXML
-    private ChoiceBox<?> countryChoiceBox;
+    private ChoiceBox<String> countryChoiceBox;
 
     @FXML
     private DatePicker dateOfBirthTextField;
@@ -154,14 +158,28 @@ public class RegisterController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        addCountryChoiceBox();
         phoneNumberTextField.textProperty().bindBidirectional(userModel.phoneNumberProperty());
         fullNameTextField.textProperty().bindBidirectional(userModel.userNameProperty());
         emailTextField.textProperty().bindBidirectional(userModel.emailProperty());
         passwordTextField.textProperty().bindBidirectional(userModel.passwordProperty());
         bioTextArea.textProperty().bindBidirectional(userModel.bioProperty());
 //        dateOfBirthTextField.accessibleTextProperty().bindBidirectional(userModel.dateProperty());
-    //Marwaaaaaaaaa attention here ..........
-        //    countryChoiceBox.textProperty().bindBidirectional(userModel.countryProperty());
+        //Marwaaaaaaaaa attention here ..........
+      //  countryChoiceBox.selectionModelProperty().bindBidirectional(userModel.countryProperty());
+
+    }
+
+    private void addCountryChoiceBox(){
+        ObservableList<String> cities = FXCollections.observableArrayList();
+        String[] locales1 = Locale.getISOCountries();
+        for (String countrylist : locales1) {
+            Locale obj = new Locale("", countrylist);
+            String[] city = { obj.getDisplayCountry() };
+            for (int x = 0; x < city.length; x++) {
+                cities.add(obj.getDisplayCountry());
+            }
+        }
+        countryChoiceBox.setItems(cities);
     }
 }
