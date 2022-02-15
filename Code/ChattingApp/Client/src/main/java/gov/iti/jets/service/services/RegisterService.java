@@ -1,4 +1,4 @@
-package gov.iti.jets.service.impl;
+package gov.iti.jets.service.services;
 
 
 import gov.iti.jets.service.RegisterInt;
@@ -9,9 +9,10 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-public class RegisterService   {
+public class RegisterService {
 
     RegisterInt registerInt;
+
     public RegisterService() throws RemoteException {
 
         Registry registry = LocateRegistry.getRegistry("localhost", 2022);
@@ -19,10 +20,12 @@ public class RegisterService   {
             registerInt = (RegisterInt) registry.lookup("RegisterService");
         } catch (NotBoundException e) {
             e.printStackTrace();
+
         }
     }
+
     public Boolean registUser(RegisterDto registerDto) throws RemoteException {
-        System.out.println(registerDto+"registerService Client");
+        System.out.println(registerDto + "registerService Client");
         return registerInt.addUser(registerDto);
 
 

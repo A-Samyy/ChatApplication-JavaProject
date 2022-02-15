@@ -3,7 +3,7 @@ package gov.iti.jets.presentation.controllers;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
-import gov.iti.jets.service.impl.LoginService;
+import gov.iti.jets.service.services.LoginService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

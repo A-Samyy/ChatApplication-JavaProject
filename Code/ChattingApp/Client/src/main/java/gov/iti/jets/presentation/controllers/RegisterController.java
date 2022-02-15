@@ -5,7 +5,7 @@ import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.dtos.RegisterDto;
-import gov.iti.jets.service.impl.RegisterService;
+import gov.iti.jets.service.services.RegisterService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
