@@ -10,7 +10,7 @@ import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.dtos.RegisterDto;
-import gov.iti.jets.service.impl.RegisterService;
+import gov.iti.jets.service.services.RegisterService;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -43,7 +43,7 @@ public class RegisterController implements Initializable {
     private PasswordField confirmPasswordTextField;
 
     @FXML
-    private TextField countryTextField;
+    private ChoiceBox<?> countryChoiceBox;
 
     @FXML
     private DatePicker dateOfBirthTextField;
@@ -161,6 +161,7 @@ public class RegisterController implements Initializable {
         passwordTextField.textProperty().bindBidirectional(userModel.passwordProperty());
         bioTextArea.textProperty().bindBidirectional(userModel.bioProperty());
 //        dateOfBirthTextField.accessibleTextProperty().bindBidirectional(userModel.dateProperty());
-        countryTextField.textProperty().bindBidirectional(userModel.countryProperty());
+    //Marwaaaaaaaaa attention here ..........
+        //    countryChoiceBox.textProperty().bindBidirectional(userModel.countryProperty());
     }
 }

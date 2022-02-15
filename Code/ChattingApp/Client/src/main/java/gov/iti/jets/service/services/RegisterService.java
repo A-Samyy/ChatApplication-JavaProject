@@ -1,27 +1,17 @@
 package gov.iti.jets.service.services;
 
 
+import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.service.RegisterInt;
 import gov.iti.jets.service.dtos.RegisterDto;
-
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 
 public class RegisterService {
+    RMIRegister rmiRegister = RMIRegister.getInstance();
+    RegisterInt registerInt= rmiRegister.registerService();
 
-    RegisterInt registerInt;
 
     public RegisterService() throws RemoteException {
-
-        Registry registry = LocateRegistry.getRegistry("localhost", 4004);
-        try {
-            registerInt = (RegisterInt) registry.lookup("RegisterService");
-        } catch (NotBoundException e) {
-            e.printStackTrace();
-
-        }
     }
 
     public Boolean registUser(RegisterDto registerDto) throws RemoteException {

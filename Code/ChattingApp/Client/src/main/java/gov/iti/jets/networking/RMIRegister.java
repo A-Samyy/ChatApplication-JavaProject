@@ -2,7 +2,6 @@ package gov.iti.jets.networking;
 
 import gov.iti.jets.service.LoginInt;
 import gov.iti.jets.service.RegisterInt;
-
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -16,7 +15,7 @@ public class RMIRegister {
 
     private RMIRegister() {
         try {
-            registry = LocateRegistry.getRegistry("localhost", 2022);
+            registry = LocateRegistry.getRegistry("localhost", 4002);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -42,8 +41,7 @@ public class RMIRegister {
     public LoginInt loginService(){
         LoginInt loginInt = null;
         try {
-
-            loginInt = (LoginInt) registry.lookup("Login");
+            loginInt = (LoginInt) registry.lookup("loginService");
         } catch (NotBoundException |AccessException e) {
             e.printStackTrace();
         } catch (RemoteException e) {

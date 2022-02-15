@@ -1,6 +1,7 @@
 package gov.iti.jets;
 
 
+import gov.iti.jets.networking.RMICreateRegister;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.Impl.LoginImpl;
 import gov.iti.jets.service.Impl.RegisterImpl;
@@ -16,11 +17,7 @@ import java.rmi.registry.Registry;
 public class MainApp extends Application {
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     public static void main(String[] arg) throws RemoteException {
-        RegisterInt register = new RegisterImpl();
-        LoginInt loginService = new LoginImpl();
-        Registry registry = LocateRegistry.createRegistry(4004);
-        registry.rebind("RegisterService",register);
-        registry.rebind("login",loginService);
+        RMICreateRegister rmiCreateRegister= RMICreateRegister.getInstance();
         Application.launch(arg);
     }
 
