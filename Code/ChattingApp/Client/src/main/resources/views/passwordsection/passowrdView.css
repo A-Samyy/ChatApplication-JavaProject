@@ -18,8 +18,15 @@
     -fx-background-color:white;
 }
 
-#forgetbutton{
-    -fx-background-color:transparent;
+#loginButton{
+    -fx-background-radius:100px;
+    -fx-background-color:#400080;
+
+}
+
+#loginButton:hover{
+    -fx-background-color: #441e69;
+
 }
 
 

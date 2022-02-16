@@ -17,14 +17,18 @@
 
 .chatBar{
 
-	-fx-background-color:white
+	-fx-background-color:#400080;
 }
 
 
 
 #chatArea{
 
-	-fx-background-color:white;
+	
+  
+   -fx-background-color: white;
+   
+   -fx-background-size: 10px 10px;
 
 }
 
@@ -80,5 +84,6 @@
 .tab-pane .tab-header-background{
    -fx-background-color: transparent;
 }
+
 
 

@@ -8,7 +8,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
 import java.rmi.RemoteException;
@@ -21,16 +26,22 @@ public class PasswordController implements Initializable {
     LoginService loginService = new LoginService();
 
     @FXML
-    private Button backButton;
+    private FontIcon backArrow;
 
     @FXML
-    private Button forgetbutton;
+    private AnchorPane forgetbutton;
 
     @FXML
-    private PasswordField passwordTextField;
+    private Button loginButton;
 
     @FXML
-    void OnBackAction(ActionEvent event) {
+    private Label passwordError;
+
+    @FXML
+    private TextField passwordTextField;
+
+    @FXML
+    void OnBackAction(MouseEvent event) {
         stageCoordinator.switchToLoginScreen();
     }
 
