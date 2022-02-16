@@ -21,6 +21,7 @@ public class StageCoordinator {
     private static final StageCoordinator stageCoordinator = new StageCoordinator();
     HomePageController homePageController = new HomePageController();
     private Stage primaryStage;
+    private GridPane homepage;
 
     private final Map<String, Scene> sceneMap = new HashMap<>();
     private final Map<String, Node> nodeMap = new HashMap<>();
@@ -35,6 +36,14 @@ public class StageCoordinator {
     public void initStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
+
+    public  void setHomepage(GridPane gridPane){
+        homepage = gridPane;
+    }
+    public  GridPane getHomepage(){
+        return homepage;
+    }
+
     public String openFile() {
 
         FileChooser fileChooser = new FileChooser();
@@ -62,6 +71,7 @@ public class StageCoordinator {
         }
         primaryStage.setScene(loginScene);
     }
+
     public void switchToPasswordScreen() {
         Scene passwordScene = sceneMap.get("passwordScene");
         if (passwordScene == null) {
@@ -148,6 +158,19 @@ public class StageCoordinator {
             }
         }
         return profile;
+    }
+
+    public Node loadSidebar() {
+        Node sidebar = nodeMap.get("sidebar");
+        if (sidebar == null) {
+            try {
+                sidebar = FXMLLoader.load(getClass().getResource("/views/homePage/sidebar.fxml"));
+                nodeMap.put("sidebar", sidebar);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return sidebar;
     }
 
     public void loadAddContact() {

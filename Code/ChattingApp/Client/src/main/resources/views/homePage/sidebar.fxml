@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<GridPane fx:id="sideBar" prefHeight="642.0" prefWidth="350.0" stylesheets="@homePageStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.SidebarController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="125.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <HBox alignment="CENTER_RIGHT" prefHeight="262.0" prefWidth="350.0" GridPane.rowIndex="2">
+         <children>
+            <FontIcon iconColor="WHITE" iconLiteral="fas-sign-out-alt" iconSize="25" onMouseClicked="#logoutOnMouseClick">
+               <HBox.margin>
+                  <Insets right="10.0" top="8.0" />
+               </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </FontIcon>
+            <Label onMouseClicked="#logoutOnMouseClick" prefHeight="16.0" prefWidth="54.0" text="Log Out" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="10.0" top="8.0" />
+               </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+         </children>
+      </HBox>
+      <Pane onMouseClicked="#openProfileOnMouseClick" prefHeight="122.0" prefWidth="300.0">
+         <children>
+            <Circle fill="WHITE" layoutX="70.0" layoutY="56.0" radius="33.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="#1fff69" layoutX="95.0" layoutY="78.0" radius="8.0" stroke="#400080" strokeType="INSIDE" />
+            <Label layoutX="125.0" layoutY="26.0" prefHeight="35.0" prefWidth="86.0" text="Hend" textFill="WHITE">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="126.0" layoutY="70.0" text="Bio....." textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Pane>
+      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="601.0" prefWidth="300.0" vbarPolicy="NEVER" GridPane.rowIndex="1">
+         <content>
+            <TabPane fx:id="tabPane" prefHeight="534.0" prefWidth="415.0" tabClosingPolicy="UNAVAILABLE">
+               <tabs>
+                  <Tab fx:id="Contacts">
+                     <graphic>
+                        <FontIcon iconColor="WHITE" iconLiteral="fas-comment-dots" iconSize="25">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </FontIcon>
+                     </graphic>
+                     <content>
+                        <AnchorPane prefHeight="463.0" prefWidth="415.0">
+                           <children>
+                              <VBox fx:id="chattingSectionVbox" layoutX="168.0" layoutY="-21.0" prefHeight="467.0" prefWidth="415.0" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Pane>
+                                       <children>
+                                          <TextField fx:id="searchBar" layoutX="36.0" onKeyTyped="#searchOnKeyTyped" prefHeight="46.0" prefWidth="362.0" promptText="Search for contacts........">
+                                             <font>
+                                                <Font size="21.0" />
+                                             </font>
+                                          </TextField>
+                                          <FontIcon iconColor="WHITE" iconLiteral="fas-search" iconSize="20" layoutX="24.0" layoutY="29.0" />
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="chattingGroup">
+                     <graphic>
+                        <FontIcon iconColor="WHITE" iconLiteral="fas-comments" iconSize="25" onMouseClicked="#onMouseClicked">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </FontIcon>
+                     </graphic>
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <VBox fx:id="chattingGroupAreaVbox" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="addContact">
+                     <content>
+                        <AnchorPane fx:id="anchorPaneOfContacts" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox fx:id="addContactsAreaVbox" prefHeight="530.0" prefWidth="349.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                     <graphic>
+                        <FontIcon iconColor="WHITE" iconLiteral="fas-user-friends" iconSize="25">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </FontIcon>
+                     </graphic>
+                  </Tab>
+                  <Tab fx:id="Setting">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox fx:id="SettingAreaVbox" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                     <graphic>
+                        <FontIcon iconColor="WHITE" iconLiteral="fas-cog" iconSize="25">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </FontIcon>
+                     </graphic>
+                  </Tab>
+               </tabs>
+            </TabPane>
+         </content>
+      </ScrollPane>
+   </children>
+</GridPane>
