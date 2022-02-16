@@ -17,7 +17,7 @@ public class RMICreateRegister {
         try {
             RegisterInt register = new RegisterImpl();
             LoginInt loginService = new LoginImpl();
-            Registry registry = LocateRegistry.createRegistry(4004);
+            Registry registry = LocateRegistry.createRegistry(4006);
             registry.rebind("RegisterService",register);
             registry.rebind("loginService",loginService);
         } catch (RemoteException e) {
