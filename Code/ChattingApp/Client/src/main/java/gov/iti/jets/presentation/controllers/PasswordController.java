@@ -10,9 +10,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
@@ -24,22 +26,38 @@ public class PasswordController implements Initializable {
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
     LoginService loginService = new LoginService();
+    RMIRegister rmiRegister = RMIRegister.getInstance();
 
     @FXML
-    private Label passwordError;
+    private FontIcon backArrow;
 
     @FXML
-    private TextField passwordTextField;
+    private GridPane grid;
+
+    @FXML
+    private Button loginButton;
+
+    @FXML
+    private AnchorPane loginPaneContent;
+
+    @FXML
+    private PasswordField passwordTextField;
+
+    @FXML
+    private Label phoneNumberError;
+
+    @FXML
+    private Label welcome;
 
     @FXML
     void OnBackAction(MouseEvent event) {
         stageCoordinator.switchToLoginScreen();
     }
-    RMIRegister rmiRegister = RMIRegister.getInstance();
+
 
     @FXML
     void OnLoginAction(ActionEvent event) throws RemoteException {
-        String userPassword = userModel.getPassword();
+        String userPassword = passwordTextField.getText();
         String userPass = loginService.getPassword();
         if(userPassword.equals(userPass)) {
             loginService.getdata();
@@ -51,6 +69,6 @@ public class PasswordController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        passwordTextField.textProperty().bindBidirectional(userModel.passwordProperty());
+        passwordTextField.setText("");
     }
 }

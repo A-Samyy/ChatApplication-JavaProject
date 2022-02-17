@@ -56,7 +56,7 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
         userHomePageDtoDto.setDateOfBirth(date);
 
         try {
-            System.out.println("error gded1"+encodeImage(userDto.getPicture()));
+//            System.out.println("error gded1"+encodeImage(userDto.getPicture()));
             userHomePageDtoDto.setPicture(encodeImage(userDto.getPicture()));
 
         } catch (IOException e) {
@@ -72,7 +72,7 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
         String imageString = null;
 
         if(!imgPath.isEmpty()){
-            System.out.println("error gded");
+//            System.out.println("error gded");
             FileInputStream stream = new FileInputStream(imgPath);
             byte[] imageData = stream.readAllBytes();
             imageString = Base64.getEncoder().encodeToString(imageData);

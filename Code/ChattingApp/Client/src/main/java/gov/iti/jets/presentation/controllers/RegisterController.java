@@ -176,6 +176,8 @@ public class RegisterController implements Initializable {
         passwordTextField.textProperty().bindBidirectional(userModel.passwordProperty());
         bioTextArea.textProperty().bindBidirectional(userModel.bioProperty());
         //country
+        countryChoiceBox.valueProperty().bindBidirectional(userModel.countryProperty());
+
     }
 
     private void addCountryChoiceBox(){

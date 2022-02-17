@@ -14,6 +14,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 public class LoginController1 implements Initializable {
     private final StageCoordinator stageCoordinator = StageCoordinator.getInstance();
@@ -22,16 +26,33 @@ public class LoginController1 implements Initializable {
     LoginService loginService = new LoginService();
 
     @FXML
-    private Button createbutton;
+    private FontIcon backArrow;
+
+    @FXML
+    private Label createbutton;
+
+    @FXML
+    private GridPane grid;
 
     @FXML
     private Button loginButton;
 
     @FXML
-    private TextField phoneNumberTextField;
+    private AnchorPane loginPaneContent;
 
     @FXML
     private Label phoneNumberError;
+
+    @FXML
+    private TextField phoneNumberTextField;
+
+    @FXML
+    private Label welcome;
+
+    @FXML
+    void ToWelcom(MouseEvent event){
+        stageCoordinator.switchToWelcomScreen();
+    }
 
     @FXML
     void OnLoginAction(ActionEvent event) throws RemoteException{
@@ -51,9 +72,13 @@ public class LoginController1 implements Initializable {
     }
 
     @FXML
-    void OnRegestrationAction(ActionEvent event) {
+    void OnRegestrationAction(MouseEvent ev1ent) {
         stageCoordinator.switchToRegistrationScreen();
     }
+//    @FXML
+//    void ToWelcom(MouseEvent event) {
+//        stageCoordinator.switchToWelcomScreen();
+//    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
