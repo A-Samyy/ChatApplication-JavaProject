@@ -41,12 +41,9 @@ public class LoginController implements  Initializable{
 
     @FXML
     void OnLoginAction(ActionEvent event) throws RemoteException {
-        System.out.println(userModel.getPhoneNumber());
 
         int userId = loginService.getUserId("333333355");
         String userPass = loginService.getPassword();
-
-        System.out.println(userPass);
         String pass = "951357";
 
         if ((userId > -1) && (userPass.equals(pass))){

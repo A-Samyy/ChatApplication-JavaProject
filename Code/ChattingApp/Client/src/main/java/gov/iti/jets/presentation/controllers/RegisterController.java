@@ -45,96 +45,66 @@ public class RegisterController implements Initializable {
 
     @FXML
     private FontIcon backArrow;
-
     @FXML
     private Label backButton;
-
     @FXML
     private Label countryError;
-
     @FXML
     private Label invalidEmail;
-
     @FXML
     private Label invalidName;
-
     @FXML
     private Label invalidPassword;
-
     @FXML
     private Label invalidPhone;
-
     @FXML
     private TextArea bioTextArea;
-
     @FXML
     private PasswordField confirmPasswordTextField;
-
     @FXML
     private ChoiceBox<String> countryChoiceBox;
-
     @FXML
     private DatePicker dateOfBirthTextField;
-
     @FXML
     private TextField emailTextField;
-
-//    @FXML
-//    private Label female;
-
     @FXML
     private RadioButton femaleRadioButton;
-
     @FXML
     private TextField fullNameTextField;
-
-//    @FXML
-//    private Label male;
-
     @FXML
     private RadioButton maleRadioButton;
-
     @FXML
     private PasswordField passwordTextField;
-
     @FXML
     private TextField phoneNumberTextField;
-
     @FXML
     private Circle profilePicture;
 
-    @FXML
-    private Button regbutton;
-
     LocalDate date;
+    String picPath;
+    Image image;
+    String imagePath;
+    FileInputStream stream;
+    ToggleGroup toggleGroup;
+    RadioButton selectedRadioButton;
+    RegisterDto registerDto;
+    Date dateToDto;
 
     public RegisterController() throws RemoteException {
     }
-
-
-
-
-//    @FXML
-//    void OnBackAction(MouseEvent event) {
-//       // stageCoordinator.switchToLoginScreen();
-//    }
 
     @FXML
     void onBackButtonAction(MouseEvent event) {
         stageCoordinator.switchToLoginScreen();
     }
 
-
-
-
     @FXML
     void addYourProfilePicture(MouseEvent event) {
-        String picPath = stageCoordinator.openFile();
+        picPath = stageCoordinator.openFile();
         if (picPath != null) {
-            Image image;
             try {
                 image = new Image(new FileInputStream(picPath));
-                String imagePath = encodeImage(picPath);
+                imagePath = encodeImage(picPath);
                 userModel.setImagePath(imagePath);
                 profilePicture.setFill(new ImagePattern(image));
             } catch (Exception e) {
@@ -144,11 +114,11 @@ public class RegisterController implements Initializable {
     }
 
     public String encodeImage(String imgPath) throws IOException {
-        FileInputStream stream = new FileInputStream(imgPath);
+        stream = new FileInputStream(imgPath);
         byte[] imageData = stream.readAllBytes();
-        String imageString = Base64.getEncoder().encodeToString(imageData);
+        imagePath = Base64.getEncoder().encodeToString(imageData);
         stream.close();
-        return  imageString;
+        return  imagePath;
     }
 
     @FXML
@@ -159,19 +129,26 @@ public class RegisterController implements Initializable {
 
     @FXML
     void Clicked(ActionEvent event) {
-        ToggleGroup toggleGroup = new ToggleGroup();
+        toggleGroup = new ToggleGroup();
         maleRadioButton.setToggleGroup(toggleGroup);
         femaleRadioButton.setToggleGroup(toggleGroup);
-        RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
-        String gender = selectedRadioButton.getText();
-        userModel.setGender(gender);
+        selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
+        userModel.setGender(selectedRadioButton.getText());
     }
 
 
     @FXML
     void registerOnMouseClick(MouseEvent event) {
-
-        RegisterDto registerDto = new RegisterDto();
+        try {
+            if(userModel.getDate() == null){
+                dateToDto = null;
+            }else {
+                dateToDto = new SimpleDateFormat("yyyy-MM-dd").parse(userModel.getDate());
+            }
+        } catch (ParseException e) {
+            e.getMessage();
+        }
+        registerDto = new RegisterDto();
         registerDto.setPhoneNumber(userModel.getPhoneNumber());
         registerDto.setName(userModel.getUserName());
         registerDto.setEmail(userModel.getEmail());
@@ -180,20 +157,14 @@ public class RegisterController implements Initializable {
         registerDto.setBio(userModel.getBio());
         registerDto.setPicture(userModel.getImagePath());
         registerDto.setGender(userModel.getGender());
-        Date date;
-        try {
-            date = new SimpleDateFormat("yyyy-MM-dd").parse(userModel.getDate());
-            registerDto.setDateOfBirth(date);
-        } catch (ParseException e) {
-        }
-        System.out.println(registerDto);
+        registerDto.setDateOfBirth(dateToDto);
         try {
             isRegistered = registerService.registUser(registerDto);
-            stageCoordinator.switchToLoginScreen();
+            if(isRegistered)
+                stageCoordinator.switchToLoginScreen();
         } catch (RemoteException e) {
-            e.printStackTrace();
+            e.getMessage();
         }
-        System.out.println(isRegistered);
     }
 
     @Override
@@ -204,10 +175,7 @@ public class RegisterController implements Initializable {
         emailTextField.textProperty().bindBidirectional(userModel.emailProperty());
         passwordTextField.textProperty().bindBidirectional(userModel.passwordProperty());
         bioTextArea.textProperty().bindBidirectional(userModel.bioProperty());
-//        dateOfBirthTextField.accessibleTextProperty().bindBidirectional(userModel.dateProperty());
-        //Marwaaaaaaaaa attention here ..........
-      //  countryChoiceBox.selectionModelProperty().bindBidirectional(userModel.countryProperty());
-
+        //country
     }
 
     private void addCountryChoiceBox(){

@@ -4,22 +4,18 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import gov.iti.jets.presentation.controllers.HomePageController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class StageCoordinator {
     private static final StageCoordinator stageCoordinator = new StageCoordinator();
-    HomePageController homePageController = new HomePageController();
     private Stage primaryStage;
     private GridPane homepage;
 
@@ -50,8 +46,7 @@ public class StageCoordinator {
         fileChooser.setTitle("Pic Chooser");
         File file = fileChooser.showOpenDialog(primaryStage);
         if (file != null) {
-            String picPath = file.getPath();
-            return picPath;
+            return file.getPath();
         } else {
             return null;
         }
@@ -88,34 +83,15 @@ public class StageCoordinator {
     }
 
     public void switchToGHomePageScreen() {
-        Scene homePageScene = sceneMap.get("homePageScene");
-        if (homePageScene == null) {
-            try {
-                // change Path
-                GridPane root = FXMLLoader.load(getClass().getResource("/views/homePage/homePage.fxml"));
-                homePageScene = new Scene(root);
-                sceneMap.put("homePageScene", homePageScene);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        primaryStage.setScene(homePageScene);
-    }
-
-    public void switchToGHomePageFromProfileScreen() {
-        Scene homePageFromProifleScene;
+        Scene homePageScene = null;
         try {
-            // change Path
             GridPane root = FXMLLoader.load(getClass().getResource("/views/homePage/homePage.fxml"));
-            homePageFromProifleScene = new Scene(root);
-            primaryStage.setScene(homePageFromProifleScene);
+            homePageScene = new Scene(root);
+//            sceneMap.put("homePageScene", homePageScene);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // GridPane gridPane= homePageController.getGridPane();
-        // VBox sideBar= homePageController.getSideBar();
-        // gridPane.getChildren().remove(loadProfile());
-        // gridPane.add(sideBar, 0, 0);
+        primaryStage.setScene(homePageScene);
     }
 
     public void switchToRegistrationScreen() {
@@ -148,27 +124,21 @@ public class StageCoordinator {
     }
 
     public Node loadProfile() {
-        Node profile = nodeMap.get("profile");
-        if (profile == null) {
-            try {
-                profile = FXMLLoader.load(getClass().getResource("/views/profile/profileView.fxml"));
-                nodeMap.put("profile", profile);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        Node profile = null;
+        try {
+            profile = FXMLLoader.load(getClass().getResource("/views/profile/profileView.fxml"));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return profile;
     }
 
     public Node loadSidebar() {
-        Node sidebar = nodeMap.get("sidebar");
-        if (sidebar == null) {
-            try {
-                sidebar = FXMLLoader.load(getClass().getResource("/views/homePage/sidebar.fxml"));
-                nodeMap.put("sidebar", sidebar);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        Node sidebar = null;
+        try {
+            sidebar = FXMLLoader.load(getClass().getResource("/views/homePage/sidebar.fxml"));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return sidebar;
     }

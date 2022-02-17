@@ -45,7 +45,7 @@
                 <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="regbutton" mnemonicParsing="false" onMouseClicked="#registerOnMouseClick" prefHeight="35.0" prefWidth="243.0" text="Register" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                  <Button mnemonicParsing="false" onMouseClicked="#registerOnMouseClick" prefHeight="35.0" prefWidth="243.0" text="Register" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Arial Bold" size="20.0" />
                      </font>

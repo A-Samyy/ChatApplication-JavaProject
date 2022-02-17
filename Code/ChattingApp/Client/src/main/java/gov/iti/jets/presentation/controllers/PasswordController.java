@@ -1,5 +1,6 @@
 package gov.iti.jets.presentation.controllers;
 
+import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
@@ -9,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -26,15 +26,6 @@ public class PasswordController implements Initializable {
     LoginService loginService = new LoginService();
 
     @FXML
-    private FontIcon backArrow;
-
-    @FXML
-    private AnchorPane forgetbutton;
-
-    @FXML
-    private Button loginButton;
-
-    @FXML
     private Label passwordError;
 
     @FXML
@@ -44,12 +35,14 @@ public class PasswordController implements Initializable {
     void OnBackAction(MouseEvent event) {
         stageCoordinator.switchToLoginScreen();
     }
+    RMIRegister rmiRegister = RMIRegister.getInstance();
 
     @FXML
     void OnLoginAction(ActionEvent event) throws RemoteException {
         String userPassword = userModel.getPassword();
         String userPass = loginService.getPassword();
         if(userPassword.equals(userPass)) {
+            loginService.getdata();
             stageCoordinator.switchToGHomePageScreen();
         }else{
             System.out.println("Password is not Correct");

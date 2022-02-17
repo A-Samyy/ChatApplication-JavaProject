@@ -53,14 +53,14 @@
       </HBox>
       <Pane onMouseClicked="#openProfileOnMouseClick" prefHeight="122.0" prefWidth="300.0">
          <children>
-            <Circle fill="WHITE" layoutX="70.0" layoutY="56.0" radius="33.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fill="#1fff69" layoutX="95.0" layoutY="78.0" radius="8.0" stroke="#400080" strokeType="INSIDE" />
-            <Label layoutX="125.0" layoutY="26.0" prefHeight="35.0" prefWidth="86.0" text="Hend" textFill="WHITE">
+            <Circle fx:id="profilePic" fill="WHITE" layoutX="70.0" layoutY="56.0" radius="33.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="status" fill="#1fff69" layoutX="95.0" layoutY="78.0" radius="8.0" stroke="#400080" strokeType="INSIDE" />
+            <Label fx:id="userName" layoutX="125.0" layoutY="26.0" prefHeight="35.0" prefWidth="86.0" text="Hend" textFill="WHITE">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <Label layoutX="126.0" layoutY="70.0" text="Bio....." textFill="WHITE">
+            <Label fx:id="bio" layoutX="126.0" layoutY="70.0" text="Bio....." textFill="WHITE">
                <font>
                   <Font size="17.0" />
                </font>

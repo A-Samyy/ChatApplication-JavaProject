@@ -23,29 +23,6 @@ public class Connector {
         return connector;
     }
 
-
-    public static void MYSQLDataSource() {
-        Properties prop = new Properties();
-        OutputStream output = null;
-        try {
-            output = new FileOutputStream("db.properties");
-            prop.setProperty("MYSQL_DB_URL", "jdbc:mysql://localhost:3306/iti");
-            prop.setProperty("MYSQL_DB_USERNAME", "root");
-            prop.setProperty("MYSQL_DB_PASSWORD", "abdelaziz123@!$");
-            prop.store(output, null);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (output != null) {
-                try {
-                    output.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
     public DataSource getMYSQLDataSource() {
         try {
             fis = new FileInputStream("db.properties");
