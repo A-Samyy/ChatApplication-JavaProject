@@ -4,6 +4,7 @@ import gov.iti.jets.presentation.models.ContactModel;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
+import gov.iti.jets.service.dtos.MessageDto;
 import gov.iti.jets.service.dtos.ContactDto;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,6 +34,7 @@ public class SidebarController implements Initializable {
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
+    MessageDto messageDto=new MessageDto();
 
     @FXML
     private Tab Contacts;
@@ -148,6 +150,6 @@ public class SidebarController implements Initializable {
 //        byte[] data = Base64.getDecoder().decode(image.getBytes(StandardCharsets.UTF_8));
 //        img = new Image(new ByteArrayInputStream(data));
 //        return img;
-    }
+//    }
 
 }
