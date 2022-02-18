@@ -63,8 +63,11 @@ public class ContactDao {
         }
     }
 
-    public List<Integer> getAllUserFriendsById(int userId) {
+    public List<UserDto> getAllUserFriendsById(int userId) {
         try {
+            UserDao userDao= new UserDao();
+            UserDto userDto= new UserDto();
+            List<UserDto> userDtoList = null;
             List<Integer> friendsIds = new ArrayList();
             String sql = "select friend_id from chatting_app.contacts where User_ID=" + userId;
             preparedStatement = conn.prepareStatement(sql);
@@ -72,7 +75,10 @@ public class ContactDao {
             while(resultSet.next()) {
                 friendsIds.add(resultSet.getInt(1));
             }
-            return friendsIds;
+            for(int id : friendsIds){
+                userDtoList.add(userDao.getUserDtoById(id));
+            }
+            return userDtoList;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
