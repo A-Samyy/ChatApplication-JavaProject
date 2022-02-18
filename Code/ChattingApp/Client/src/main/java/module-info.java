@@ -8,5 +8,6 @@ module Client {
     requires javafx.web;
     opens gov.iti.jets.presentation.controllers to javafx.fxml;
     exports gov.iti.jets.service.dtos;
+    exports gov.iti.jets.service;
     exports gov.iti.jets;
 }
