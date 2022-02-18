@@ -113,7 +113,7 @@ public class SidebarController implements Initializable {
         img = new ImageView();
         img.imageProperty().bindBidirectional(userModel.imageProperty());
         profilePic.setFill(new ImagePattern(img.getImage()));
-        if(userModel.getStatus().equals("ACTIVE")){
+        if (userModel.getStatus().equals("ACTIVE")) {
             status.setFill(Color.RED);
         }
 
@@ -151,5 +151,5 @@ public class SidebarController implements Initializable {
 //        img = new Image(new ByteArrayInputStream(data));
 //        return img;
 //    }
-
+    }
 }
