@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public class ChatSectionController {
@@ -26,7 +27,7 @@ public class ChatSectionController {
 
 
     @FXML
-    private AnchorPane chatBox;
+    private VBox chatContainer;
 
     @FXML
     private AnchorPane bottomBar;
@@ -60,7 +61,7 @@ public class ChatSectionController {
 
         //System.out.println(messageDao.getMessageDto());
 
-        chatBox.getChildren().add(stageCoordinator.loadMessage(messageDao));
+        chatContainer.getChildren().add(stageCoordinator.loadMessage(messageDao));
     }
 
 }

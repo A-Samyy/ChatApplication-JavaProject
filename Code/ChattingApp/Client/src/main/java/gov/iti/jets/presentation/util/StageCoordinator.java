@@ -12,10 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -262,7 +259,7 @@ public class StageCoordinator {
     // return null ;
     // }
 
-     public VBox loadMessage( MessageDao messageDao) {
+     public HBox loadMessage( MessageDao messageDao) {
 
 
          try {
@@ -272,7 +269,7 @@ public class StageCoordinator {
              FXMLLoader loader = new FXMLLoader();
              loader.setLocation(getClass().getResource("/views/message/messageView.fxml")); // Your .fxml File
 
-             VBox message = loader.load();
+             HBox message = loader.load();
              MessageController messageController = (MessageController) loader.getController();
 //             Platform.runLater(new Runnable() {
 //                 @Override
