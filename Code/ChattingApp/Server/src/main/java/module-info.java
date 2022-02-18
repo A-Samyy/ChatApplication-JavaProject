@@ -8,7 +8,8 @@ module Server {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.fontawesome5;
     requires transitive java.sql.rowset;
-    requires transitive javafx.graphics;requires java.rmi;
+    requires transitive javafx.graphics;
+    requires java.rmi;
     requires com.zaxxer.hikari;
 
     opens gov.iti.jets.presentation.controllers to javafx.fxml;
