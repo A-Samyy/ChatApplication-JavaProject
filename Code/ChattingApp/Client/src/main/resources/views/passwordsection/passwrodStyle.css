@@ -44,3 +44,17 @@
     -fx-background-color: rgba(0, 0, 0, 0.281);
 
 }
+
+.context-menu {
+    -fx-background-color: #2f2a57;
+    -fx-text-fill: white;
+  }
+  
+  .menu-item .label {
+    -fx-text-fill: white;
+  }
+  
+  .menu-item:focused .label {
+    -fx-text-fill: white;
+  }
+  

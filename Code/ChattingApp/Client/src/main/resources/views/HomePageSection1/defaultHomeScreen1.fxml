@@ -10,8 +10,8 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="144.80001983642578" minHeight="10.0" prefHeight="141.8666534423828" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="671.2000038146973" minHeight="10.0" prefHeight="626.9333465576171" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="144.80001983642578" minHeight="10.0" prefHeight="104.00001373291016" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="671.2000038146973" minHeight="10.0" prefHeight="641.5999862670899" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
       <AnchorPane fx:id="topBar" prefHeight="200.0" prefWidth="200.0" styleClass="chatBar" />
