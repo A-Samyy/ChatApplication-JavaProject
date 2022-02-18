@@ -20,6 +20,8 @@ public class RMICreateRegister {
             Registry registry = LocateRegistry.createRegistry(4004);
             registry.rebind("RegisterService",register);
             registry.rebind("loginService",loginService);
+       //   registry.bind("MessageService", server);
+            //   registry.bind("BroadcastService", server);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

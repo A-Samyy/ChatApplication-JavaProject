@@ -1,4 +1,4 @@
-package gov.iti.jets.presistance.Dtos;
+package gov.iti.jets.presistance.dtos;
 
 import java.io.Serializable;
 import java.util.Date;

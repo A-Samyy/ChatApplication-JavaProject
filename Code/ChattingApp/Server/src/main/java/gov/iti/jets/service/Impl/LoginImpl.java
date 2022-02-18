@@ -1,6 +1,6 @@
 package gov.iti.jets.service.Impl;
 
-import gov.iti.jets.presistance.Daos.UserDao;
+import gov.iti.jets.presistance.daos.UserDao;
 import gov.iti.jets.service.LoginInt;
 import gov.iti.jets.service.dtos.LoginDto;
 

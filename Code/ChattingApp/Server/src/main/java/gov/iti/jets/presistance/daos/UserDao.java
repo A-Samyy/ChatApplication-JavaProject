@@ -1,7 +1,8 @@
-package gov.iti.jets.presistance.Daos;
+package gov.iti.jets.presistance.daos;
 
-import gov.iti.jets.presistance.Dtos.Status;
-import gov.iti.jets.presistance.Dtos.UserDto;
+import gov.iti.jets.presistance.dtos.Status;
+import gov.iti.jets.presistance.dtos.UserDto;
+import gov.iti.jets.presistance.util.Connector;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -12,19 +13,16 @@ import java.util.logging.Logger;
 
 public class UserDao {
 
-    private DataSource ds = null;
+   // private DataSource ds = null;
     private Connection conn = null;
-    private Statement statement = null;
     private PreparedStatement preparedStatement = null;
     Connector connector = Connector.getInstance();
 
     public UserDao() {
         try {
-            ds = connector.getMYSQLDataSource();
-            conn = ds.getConnection();
-            statement = conn.createStatement();
+            conn= connector.getConnection();
         } catch (Exception ex) {
-            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -51,7 +49,8 @@ public class UserDao {
 
         try {
             String sql = "DELETE FROM chatting_app.user WHERE User_ID=" + id;
-            int affectedRows = preparedStatement.executeUpdate(sql);
+            preparedStatement = conn.prepareStatement(sql);
+            int affectedRows = preparedStatement.executeUpdate();
             return affectedRows > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -62,7 +61,8 @@ public class UserDao {
     public UserDto getUserDtoById(int id) {
         try {
             String sql = "select * from chatting_app.user where User_ID=" + id;
-            ResultSet resultSet = statement.executeQuery(sql);
+            preparedStatement = conn.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 UserDto userDto;
                 userDto = extractUser(resultSet);
@@ -77,7 +77,8 @@ public class UserDao {
     public int getUserIdByPhoneNumber(String phone_number) {
         try {
             String sql = "select USER_ID from chatting_app.user where PHONE_NUMBER=" + phone_number;
-            ResultSet resultSet = statement.executeQuery(sql);
+            preparedStatement = conn.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 int number= resultSet.getInt(1);
                 return number;
@@ -91,7 +92,8 @@ public class UserDao {
     public String getUserPasswordById(int id) {
         try {
             String sql = "select PASSWORD from chatting_app.user where User_ID=" + id;
-            ResultSet resultSet = statement.executeQuery(sql);
+            preparedStatement = conn.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 String password = resultSet.getString(1);
                 return password;
@@ -107,7 +109,8 @@ public class UserDao {
         List<UserDto> userList = new ArrayList<>();
         try {
             String sql = "select * from chatting_app.user";
-            ResultSet resultSet = statement.executeQuery(sql);
+            preparedStatement = conn.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 UserDto userDto = extractUser(resultSet);
                 userList.add(userDto);
@@ -121,7 +124,8 @@ public class UserDao {
     public boolean checkUserByPhoneNumber(String id) {
         try {
             String sql = "Select * from chatting_app.user where phone_number=" + id;
-            ResultSet resultSet = statement.executeQuery(sql);
+            preparedStatement = conn.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
             return resultSet.next();
         } catch (SQLException e) {
             return false;

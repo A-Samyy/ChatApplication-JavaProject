@@ -1,8 +1,8 @@
 package gov.iti.jets.service.Impl;
 
-import gov.iti.jets.presistance.Daos.UserDao;
-import gov.iti.jets.presistance.Dtos.Status;
-import gov.iti.jets.presistance.Dtos.UserDto;
+import gov.iti.jets.presistance.daos.UserDao;
+import gov.iti.jets.presistance.dtos.Status;
+import gov.iti.jets.presistance.dtos.UserDto;
 import gov.iti.jets.service.RegisterInt;
 import gov.iti.jets.service.dtos.RegisterDto;
 

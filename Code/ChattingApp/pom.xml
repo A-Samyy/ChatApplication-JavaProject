@@ -8,7 +8,7 @@
     <artifactId>ChattingApp</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    
+
     <modules>
         <module>Server</module>
         <module>Client</module>
@@ -26,6 +26,18 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>8.0.28</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zaxxer</groupId>
+                <artifactId>HikariCP</artifactId>
+                <version>4.0.3</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>2.0.0-alpha5</version>
+                <scope>runtime</scope>
             </dependency>
             <dependency>
                 <groupId>org.kordamp.ikonli</groupId>

@@ -1,4 +1,4 @@
-package gov.iti.jets.presistance.Daos;
+package gov.iti.jets.presistance.daos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,11 +11,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sql.DataSource;
 
-import gov.iti.jets.presistance.Dtos.MessageDto;
+import gov.iti.jets.presistance.dtos.MessageDto;
+import gov.iti.jets.presistance.util.Connector;
 
 public class MessageDao {
 
-    private DataSource ds = null;
+//    private DataSource ds = null;
     private Connection conn = null;
     private Statement statement = null;
     private PreparedStatement preparedStatement = null;
@@ -23,9 +24,7 @@ public class MessageDao {
 
     public MessageDao() {
         try {
-            ds = connector.getMYSQLDataSource();
-            conn = ds.getConnection();
-            statement = conn.createStatement();
+            conn= connector.getConnection();
         } catch (Exception ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,7 +67,8 @@ public class MessageDao {
     public boolean deleteMessageDtoById(int id) {
         try {
             String sql = "DELETE FROM chatting_app.message WHERE MESSAGE_ID =" + id;
-            int affectedRows = preparedStatement.executeUpdate(sql);
+            preparedStatement = conn.prepareStatement(sql);
+            int affectedRows = preparedStatement.executeUpdate();
             if (affectedRows > 0) {
                 return true;
             } else

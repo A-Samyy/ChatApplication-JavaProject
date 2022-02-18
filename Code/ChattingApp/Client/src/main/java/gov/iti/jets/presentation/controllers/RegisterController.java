@@ -112,13 +112,6 @@ public class RegisterController implements Initializable {
     }
 
 
-
-
-//    @FXML
-//    void OnBackAction(MouseEvent event) {
-//       // stageCoordinator.switchToLoginScreen();
-//    }
-
     @FXML
     void onBackButtonAction(MouseEvent event) {
         stageCoordinator.switchToLoginScreen();
