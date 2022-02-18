@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 import java.io.Serializable;
 
 public class ContactDto implements Serializable {
-    private static final long serialVersionUID = 1420672609912364060L;
+    private static final long serialVersionUID = 1427672609912364060L;
 
     private String friendName;
     private String Status;

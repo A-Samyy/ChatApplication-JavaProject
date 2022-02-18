@@ -14,7 +14,7 @@ import java.rmi.RemoteException;
 import java.util.Base64;
 
 public class LoginService {
-    static int userId;
+    public static int userId;
 
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();

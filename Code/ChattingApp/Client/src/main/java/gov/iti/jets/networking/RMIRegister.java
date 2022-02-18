@@ -1,5 +1,6 @@
 package gov.iti.jets.networking;
 
+import gov.iti.jets.service.ContactListInt;
 import gov.iti.jets.service.LoginInt;
 import gov.iti.jets.service.RegisterInt;
 import java.rmi.AccessException;
@@ -50,6 +51,16 @@ public class RMIRegister {
         return loginInt;
     }
 
-
+    public ContactListInt contactListService(){
+        ContactListInt contactListInt = null;
+        try {
+            contactListInt = (ContactListInt) registry.lookup("ContactListService");
+        } catch (NotBoundException |AccessException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return contactListInt;
+    }
 
 }
