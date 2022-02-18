@@ -262,37 +262,30 @@ public class StageCoordinator {
     // return null ;
     // }
 
-     public VBox loadMessage( MessageDao messageDao){
+     public VBox loadMessage( MessageDao messageDao) {
 
 
-     try {
+         try {
 
-         FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/views/message/messageView.fxml"));
-         MessageController messageController = (MessageController) fxmlLoader.getController();
-     VBox message = fxmlLoader.load();
+//             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/message/messageView.fxml"));
+//
+             FXMLLoader loader = new FXMLLoader();
+             loader.setLocation(getClass().getResource("/views/message/messageView.fxml")); // Your .fxml File
 
-//     MessageDao messageDao= new MessageDao();
-         System.out.println(messageDao.getMessageDto());
-         System.out.println("before run"+messageDao.getMessageContent());
-         System.out.println("before run"+messageDao.getMessageUserName());
-         messageController.message();
-         Platform.runLater(new Runnable() {
-             @Override
-             public void run() {
-                 System.out.println("before after"+messageDao.getMessageContent());
-                 System.out.println("before after"+messageDao.getMessageUserName());
-
-                 messageController.message();
-                 messageController.displayMessage(messageDao.getMessageContent(),messageDao.getMessageUserName());
-
-             }
-         });
+             VBox message = loader.load();
+             MessageController messageController = (MessageController) loader.getController();
+//             Platform.runLater(new Runnable() {
+//                 @Override
+//                 public void run() {
+                     messageController.displayMessage(messageDao.getMessageContent(), messageDao.getMessageUserName());
+//                 }
+//             });
 
 
-     return message;
-     }catch(Exception e){
-     System.out.println("File Not Found Exception");
-     }
-     return null ;
-     }
-}
+             return message;
+         } catch (Exception e) {
+             System.out.println("File Not Found Exception");
+         }
+         return null;
+
+     }}
