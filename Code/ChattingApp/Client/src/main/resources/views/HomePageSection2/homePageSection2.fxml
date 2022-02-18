@@ -43,7 +43,7 @@
       </AnchorPane>
       <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="563.0" prefWidth="675.0" style="-fx-background-color: white;" GridPane.rowIndex="1">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+            <AnchorPane fx:id="chatBox" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" />
          </content>
       </ScrollPane>
       <AnchorPane fx:id="bottomBar" styleClass="chatBar" GridPane.rowIndex="2">

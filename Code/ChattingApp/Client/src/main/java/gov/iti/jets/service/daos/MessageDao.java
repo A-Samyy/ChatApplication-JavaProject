@@ -19,4 +19,15 @@ public class MessageDao {
     public MessageDto getMessageDto() {
         return this.messageDto;
     }
+
+    public String getMessageContent(){
+        return messageDto.getMessageContent();
+    }
+
+    public String getMessageUserName(){
+        return messageDto.getUserName();
+    }
+
+
+
 }
