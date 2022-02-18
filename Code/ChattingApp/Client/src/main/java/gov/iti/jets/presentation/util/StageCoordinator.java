@@ -7,6 +7,7 @@ import java.util.Map;
 
 import gov.iti.jets.presentation.controllers.MessageController;
 import gov.iti.jets.service.daos.MessageDao;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -261,16 +262,33 @@ public class StageCoordinator {
     // return null ;
     // }
 
-     public VBox loadMessage(){
+     public VBox loadMessage( MessageDao messageDao){
 
 
      try {
-         FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/views/message/messageView.fxml"));
 
+         FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/views/message/messageView.fxml"));
+         MessageController messageController = (MessageController) fxmlLoader.getController();
      VBox message = fxmlLoader.load();
-     MessageController messageController =fxmlLoader.getController();
-     MessageDao messageDao= new MessageDao();
-     messageController.displayMessage(messageDao.getMessageContent(),messageDao.getMessageUserName());
+
+//     MessageDao messageDao= new MessageDao();
+         System.out.println(messageDao.getMessageDto());
+         System.out.println("before run"+messageDao.getMessageContent());
+         System.out.println("before run"+messageDao.getMessageUserName());
+         messageController.message();
+         Platform.runLater(new Runnable() {
+             @Override
+             public void run() {
+                 System.out.println("before after"+messageDao.getMessageContent());
+                 System.out.println("before after"+messageDao.getMessageUserName());
+
+                 messageController.message();
+                 messageController.displayMessage(messageDao.getMessageContent(),messageDao.getMessageUserName());
+
+             }
+         });
+
+
      return message;
      }catch(Exception e){
      System.out.println("File Not Found Exception");

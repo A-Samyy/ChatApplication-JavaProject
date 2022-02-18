@@ -14,6 +14,10 @@ public class MessageController implements Initializable {
 
     MessageDao messageDao = new MessageDao();
 
+    public MessageController(){
+        System.out.println("hendddddd");
+    }
+
     @FXML
     private Label messageBox;
 
@@ -29,12 +33,17 @@ public class MessageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
+        System.out.println("Marwaaaaaaa");
     }
 
     public  void displayMessage(String message ,String userName){
 
         messageBox.setText(message);
         this.userName.setText(userName);
+    }
+
+    public  void message(){
+
+       System.out.println("a7aaaaaaaa");
     }
 }

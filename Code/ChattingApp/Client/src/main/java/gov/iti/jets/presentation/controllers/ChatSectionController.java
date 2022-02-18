@@ -59,7 +59,7 @@ public class ChatSectionController {
 
         System.out.println(messageDao.getMessageDto());
 
-        chatBox.getChildren().add(stageCoordinator.loadMessage());
+        chatBox.getChildren().add(stageCoordinator.loadMessage(messageDao));
     }
 
 }
