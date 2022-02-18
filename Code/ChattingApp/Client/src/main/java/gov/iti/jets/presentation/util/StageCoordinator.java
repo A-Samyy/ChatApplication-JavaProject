@@ -7,6 +7,7 @@ import java.util.Map;
 
 import gov.iti.jets.presentation.controllers.MessageController;
 import gov.iti.jets.service.daos.MessageDao;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -22,7 +23,7 @@ public class StageCoordinator {
     private static final StageCoordinator stageCoordinator = new StageCoordinator();
     private Stage primaryStage;
     private GridPane homepage;
-
+    private MessageDao messageDao = new MessageDao();
     private final Map<String, Scene> sceneMap = new HashMap<>();
     private final Map<String, Node> nodeMap = new HashMap<>();
 
@@ -262,19 +263,23 @@ public class StageCoordinator {
     // }
 
      public VBox loadMessage(){
-
-
      try {
          FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/views/message/messageView.fxml"));
-
-     VBox message = fxmlLoader.load();
-     MessageController messageController =fxmlLoader.getController();
-     MessageDao messageDao= new MessageDao();
-     messageController.displayMessage(messageDao.getMessageContent(),messageDao.getMessageUserName());
-     return message;
+         VBox message = fxmlLoader.load();
+         MessageController messageController =fxmlLoader.getController();
+         System.out.println(messageDao.getMessageDto());
+         Platform.runLater(new Runnable() {
+             @Override
+             public void run() {
+                 messageController.displayMessage(messageDao.getMessageContent(),messageDao.getMessageUserName());
+             }
+         });
+         System.out.println("add");
+         return message;
      }catch(Exception e){
-     System.out.println("File Not Found Exception");
+        System.out.println("File Not Found Exception");
      }
-     return null ;
+        System.out.println("null");
+        return null ;
      }
 }

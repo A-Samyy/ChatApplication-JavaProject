@@ -19,7 +19,8 @@ public class ChatSectionController {
 
     private final StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     private final ModelFactory modelFactory = ModelFactory.getInstance();
-    MessageDao messageDao=new MessageDao();
+    MessageDto  messageDto= new MessageDto();
+    MessageDao messageDao=new MessageDao(messageDto);
     UserModel userModel = modelFactory.getUserModel();
 
 
@@ -57,7 +58,7 @@ public class ChatSectionController {
         messageDao.setUserName(userModel.getUserName());
         messageDao.setUserID();
 
-        System.out.println(messageDao.getMessageDto());
+        //System.out.println(messageDao.getMessageDto());
 
         chatBox.getChildren().add(stageCoordinator.loadMessage());
     }

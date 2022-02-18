@@ -1,6 +1,7 @@
 package gov.iti.jets.presentation.controllers;
 
 import gov.iti.jets.service.daos.MessageDao;
+import gov.iti.jets.service.dtos.MessageDto;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,7 +13,8 @@ import java.util.ResourceBundle;
 
 public class MessageController implements Initializable {
 
-    MessageDao messageDao = new MessageDao();
+    MessageDto messageDto = new MessageDto();
+    MessageDao messageDao = new MessageDao(messageDto);
 
     @FXML
     private Label messageBox;
@@ -29,12 +31,10 @@ public class MessageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
     }
 
-    public  void displayMessage(String message ,String userName){
-
-        messageBox.setText(message);
+    public void displayMessage(String message ,String userName){
+        this.messageBox.setText(message);
         this.userName.setText(userName);
     }
 }
