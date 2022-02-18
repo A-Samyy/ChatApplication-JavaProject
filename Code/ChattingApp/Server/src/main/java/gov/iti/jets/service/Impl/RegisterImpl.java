@@ -36,8 +36,9 @@ public class RegisterImpl extends UnicastRemoteObject implements RegisterInt {
             fileOutputStream.write(data);
             fileOutputStream.close();
         }else{
-            System.out.println("marwa image  "+image);
+
             savePath = "src/main/resources/clientPictures/default.jgp";
+            System.out.println("marwa image  "+image);
         }
 
         return savePath;
@@ -61,6 +62,7 @@ public class RegisterImpl extends UnicastRemoteObject implements RegisterInt {
         userDto.setPicture(imagePath);
         userDto.setBio(registerDto.getBio());
         userDto.setStatus(Status.ACTIVE);
+        System.out.println("marwa image  ");
         return userDto;
     }
 }

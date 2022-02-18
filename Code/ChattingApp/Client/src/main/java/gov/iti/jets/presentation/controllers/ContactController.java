@@ -33,6 +33,7 @@ public class ContactController implements Initializable {
     @FXML
     private Circle statusOfContact;
     ImageView imageView = new ImageView();
+    String statusCond;
 
     public  void displayContact(String userName,Image image, String status) {
         Platform.runLater(new Runnable() {
@@ -41,6 +42,7 @@ public class ContactController implements Initializable {
                 contactName.setText(userName);
                 imageView.setImage(image);
                 pictureOfContact.setFill(new ImagePattern(imageView.getImage()));
+                statusCond = status;
                 getUserStatus(status);
             }
         });
@@ -49,7 +51,7 @@ public class ContactController implements Initializable {
     @FXML
     void OpenChatOnClick(MouseEvent event) {
         GridPane home = stageCoordinator.getHomepage();
-        home.add( stageCoordinator.loadChatSection(), 1, 0);
+        home.add( stageCoordinator.loadChatSection(contactName.getText(),imageView.getImage(),statusCond), 1, 0);
     }
 
     @Override

@@ -238,9 +238,9 @@
                   <Label layoutX="46.0" layoutY="138.0" styleClass="titles" text="Email :" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="165.0" />
                   <Label layoutX="47.0" layoutY="245.0" prefHeight="31.0" prefWidth="354.0" styleClass="titles" text="Phone-Number :" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="177.0" />
                   <Label layoutX="47.0" layoutY="348.0" prefHeight="31.0" prefWidth="361.0" styleClass="titles" text="Change Password :" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="170.0" />
-                  <PasswordField fx:id="password" layoutX="47.0" layoutY="388.0" prefHeight="55.0" prefWidth="367.0" styleClass="userData" text="hhh" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="163.40000000000003" />
+                  <PasswordField fx:id="password" layoutX="47.0" layoutY="388.0" prefHeight="55.0" prefWidth="367.0" styleClass="userData" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="163.40000000000003" />
                   <Label layoutX="50.0" layoutY="449.0" prefHeight="31.0" prefWidth="360.0" styleClass="titles" text="Confirm New Password :" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="177.0" />
-                  <PasswordField fx:id="confirmPasswrord" layoutX="50.0" layoutY="489.0" prefHeight="55.0" prefWidth="367.0" styleClass="userData" text="hhh" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="163.40000000000003" />
+                  <PasswordField fx:id="confirmPasswrord" layoutX="50.0" layoutY="489.0" prefHeight="55.0" prefWidth="367.0" styleClass="userData" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="163.40000000000003" />
                   <TextField fx:id="userName" layoutX="43.0" layoutY="71.0" prefHeight="54.0" prefWidth="371.0" styleClass="userData" text="hend" />
                   <TextField fx:id="userEmail" layoutX="45.0" layoutY="183.0" prefHeight="54.0" prefWidth="371.0" styleClass="userData" />
                   <TextField fx:id="userPhone" layoutX="46.0" layoutY="285.0" prefHeight="54.0" prefWidth="371.0" styleClass="userData" />

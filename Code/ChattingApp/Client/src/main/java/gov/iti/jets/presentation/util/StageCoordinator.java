@@ -1,5 +1,6 @@
 package gov.iti.jets.presentation.util;
 
+import gov.iti.jets.presentation.controllers.ChatSectionController;
 import gov.iti.jets.presentation.controllers.ContactController;
 import gov.iti.jets.service.dtos.ContactDto;
 import javafx.application.Platform;
@@ -166,7 +167,7 @@ public class StageCoordinator {
                 public void run() {
                     try {
                         contactController.displayContact(contactDto.getFriendName(),decodeImage(contactDto.getPicture()) ,contactDto.getStatus());
-                        decodeImage(contactDto.getPicture());
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -204,10 +205,22 @@ public class StageCoordinator {
         }
         return defaultbar;
     }
-    public Node loadChatSection(){
+    public Node loadChatSection(String name, Image pic , String status){
         Node chatSection = null;
         try {
-            chatSection = FXMLLoader.load(getClass().getResource("/views/HomePageSection2/homePageSection2.fxml"));
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/views/HomePageSection2/homePageSection2.fxml"));
+
+            chatSection = loader.load();
+            ChatSectionController chatSectionController = (ChatSectionController) loader.getController();
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    chatSectionController.display(name,pic,status);
+                }
+            });
+
         } catch (Exception e) {
             e.printStackTrace();
         }

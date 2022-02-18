@@ -28,16 +28,11 @@
    <children>
       <AnchorPane fx:id="topBar" prefHeight="200.0" prefWidth="200.0" styleClass="chatBar">
          <children>
-            <Circle fill="WHITE" layoutX="88.0" layoutY="45.0" radius="33.0" stroke="#2f2a57" strokeType="INSIDE" />
-            <Circle fill="#15ac45" layoutX="114.0" layoutY="65.0" radius="8.0" stroke="#2f2a57" strokeType="INSIDE" />
-            <Label layoutX="141.0" layoutY="18.0" prefHeight="35.0" prefWidth="86.0" text="Hend" textFill="WHITE">
+            <Circle fx:id="profilePicture" fill="WHITE" layoutX="88.0" layoutY="45.0" radius="33.0" stroke="#2f2a57" strokeType="INSIDE" />
+            <Circle fx:id="status" fill="#15ac45" layoutX="114.0" layoutY="65.0" radius="8.0" stroke="#2f2a57" strokeType="INSIDE" />
+            <Label fx:id="userName" layoutX="141.0" layoutY="18.0" prefHeight="35.0" prefWidth="326.0" text="Hend" textFill="WHITE">
                <font>
                   <Font size="23.0" />
-               </font>
-            </Label>
-            <Label layoutX="145.0" layoutY="49.0" text="Bio....." textFill="WHITE">
-               <font>
-                  <Font size="17.0" />
                </font>
             </Label>
          </children>
