@@ -1,7 +1,6 @@
 package gov.iti.jets.service.dtos;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 import java.io.Serializable;
 
