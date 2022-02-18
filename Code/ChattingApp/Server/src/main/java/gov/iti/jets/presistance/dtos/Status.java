@@ -13,7 +13,7 @@ public enum Status {
             if (e.number==num) {
                 return e;
             }
-        } 
+        }
         return null;
     }
 }

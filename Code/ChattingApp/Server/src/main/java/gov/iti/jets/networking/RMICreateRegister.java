@@ -15,7 +15,7 @@ public class RMICreateRegister {
         try {
             RegisterInt register = new RegisterImpl();
             LoginInt loginService = new LoginImpl();
-            Registry registry = LocateRegistry.createRegistry(4002);
+            Registry registry = LocateRegistry.createRegistry(5005);
             registry.rebind("RegisterService",register);
             registry.rebind("loginService",loginService);
        //   registry.bind("MessageService", server);
