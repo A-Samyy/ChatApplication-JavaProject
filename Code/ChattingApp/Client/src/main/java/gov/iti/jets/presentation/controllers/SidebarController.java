@@ -1,8 +1,10 @@
 package gov.iti.jets.presentation.controllers;
 
+import gov.iti.jets.presentation.models.ContactModel;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
+import gov.iti.jets.service.dtos.ContactDto;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -24,6 +26,7 @@ import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class SidebarController implements Initializable {
@@ -81,6 +84,7 @@ public class SidebarController implements Initializable {
 
 //    private String imageAsString;
     ImageView img;
+    ContactModel contactModel;
 
     @FXML
     void logoutOnMouseClick(MouseEvent event) {
@@ -94,9 +98,6 @@ public class SidebarController implements Initializable {
 
     @FXML
     void openProfileOnMouseClick(MouseEvent event) {
-//        GridPane home = stageCoordinator.getHomepage();
-//        home.getChildren().removeIf(node -> GridPane.getColumnIndex(node)==0);
-//        home.add( stageCoordinator.loadProfile(), 0, 0);
         stageCoordinator.switchToProfileScreen();
     }
 
@@ -117,24 +118,36 @@ public class SidebarController implements Initializable {
 
         bio.textProperty().bindBidirectional(userModel.bioProperty());
         userName.textProperty().bindBidirectional(userModel.userNameProperty());
-        anchorPaneOfContacts.getChildren().add(stageCoordinator.loadContacts());
+
+
+        //LIST OF CONTACT HTTCREATE FL CLIENT
+//        for (ContactDto contactDto : List) {
+//            contactModel = new ContactModel();
+//            contactModel.setUserName(contactDto.getFriendName());
+//            contactModel.setStatus(contactDto.getStatus());
+//            contactModel.setPicture(contactDto.getPicture());
+//            anchorPaneOfContacts.getChildren().add(stageCoordinator.loadContacts());
+//        }
+
+//        anchorPaneOfContacts.getChildren().add(stageCoordinator.loadContacts());
+
 //        SettingAreaVbox.getChildren().add(stageCoordinator.loadSettings());
 
-        chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
-        chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
-        chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
-
-        chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
-        chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
-        chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
-        chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
-    }
+//        chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
+//        chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
+//        chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
+//
+//        chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
+//        chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
+//        chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
+//        chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
+//    }
 
 //    public Image decodeImage(String image) throws Exception {
 //        Image img ;
 //        byte[] data = Base64.getDecoder().decode(image.getBytes(StandardCharsets.UTF_8));
 //        img = new Image(new ByteArrayInputStream(data));
 //        return img;
-//    }
+    }
 
 }
