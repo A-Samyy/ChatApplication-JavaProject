@@ -3,7 +3,7 @@ package gov.iti.jets.service.dtos;
 import java.io.Serializable;
 
 public class LoginDto implements Serializable {
-
+    private static final long serialVersionUID = 1420672609912367060L;
     private String phoneNumber ;
     private String password;
 
