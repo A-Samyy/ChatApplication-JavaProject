@@ -5,9 +5,12 @@ import gov.iti.jets.presistance.dtos.UserDto;
 import gov.iti.jets.service.ContactListInt;
 import gov.iti.jets.service.dtos.ContactDto;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public class ContactListImpl extends UnicastRemoteObject implements ContactListInt {
@@ -28,11 +31,22 @@ public class ContactListImpl extends UnicastRemoteObject implements ContactListI
         for(UserDto user : allUserFriendsById){
             ContactDto contactDto = new ContactDto();
             contactDto.setFriendName(user.getName());
-            contactDto.setPicture(user.getPicture());
+            try {
+                contactDto.setPicture(encodeImage(user.getPicture()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             contactDto.setStatus(user.getStatus().toString());
             contactDtoList.add(contactDto);
         }
         System.out.println("server contactDTO "+contactDtoList);
         return contactDtoList;
+    }
+    public String encodeImage(String imgPath) throws IOException {
+        FileInputStream stream = new FileInputStream(imgPath);
+        byte[] imageData = stream.readAllBytes();
+        String imagePath = Base64.getEncoder().encodeToString(imageData);
+        stream.close();
+        return  imagePath;
     }
 }
