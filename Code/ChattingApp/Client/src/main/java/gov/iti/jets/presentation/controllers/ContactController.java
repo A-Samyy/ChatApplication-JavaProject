@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -29,11 +30,14 @@ public class ContactController implements Initializable {
     private Circle statusOfContact;
     ImageView imageView = new ImageView();
 
-    public  void displayContact(String userName) {
+    public  void displayContact(String userName, Image image, String status) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 contactName.setText(userName);
+                imageView.setImage(image);
+                pictureOfContact.setFill(new ImagePattern(imageView.getImage()));
+                getUserStatus(status);
             }
         });
     }
@@ -52,12 +56,12 @@ public class ContactController implements Initializable {
 //    }
 
 
-    void getUserStatus(){
-        if(contactModel.getStatus().equals("ACTIVE")){
+    void getUserStatus(String status){
+        if(status.equals("ACTIVE")){
             statusOfContact.setFill(Color.GREEN);
-        }else if(contactModel.getStatus().equals("DoNotDisturb")){
+        }else if(status.equals("DoNotDisturb")){
             statusOfContact.setFill(Color.YELLOW);
-        }else if(contactModel.getStatus().equals("AWAY")){
+        }else if(status.equals("AWAY")){
             statusOfContact.setFill(Color.RED);
         }
     }

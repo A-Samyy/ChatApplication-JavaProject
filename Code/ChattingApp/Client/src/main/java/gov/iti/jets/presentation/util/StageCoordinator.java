@@ -7,14 +7,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -144,19 +148,18 @@ public class StageCoordinator {
     public Node loadContacts(ContactDto contactDto) {
         Node contactList = null;
         try {
-//            contactList = FXMLLoader.load(getClass().getResource("/views/chattingSection/chatSection.fxml"));
-//            ContactController contactController= new ContactController();
-//            contactController.displayContact(contactDto.getFriendName());
-//
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/views/chattingSection/chatSection.fxml"));
-
             contactList = loader.load();
             ContactController contactController =loader.getController();
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    contactController.displayContact(contactDto.getFriendName());
+                    try {
+                        contactController.displayContact(contactDto.getFriendName() , decodeImage(contactDto.getPicture()) , contactDto.getStatus());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         } catch (Exception e) {
@@ -166,7 +169,12 @@ public class StageCoordinator {
 
         return contactList;
     }
-
+    public Image decodeImage(String image) throws Exception {
+        Image img ;
+        byte[] data = Base64.getDecoder().decode(image.getBytes(StandardCharsets.UTF_8));
+        img = new Image(new ByteArrayInputStream(data));
+        return img;
+    }
     public Node loadSidebar() {
         Node sidebar = null;
         try {

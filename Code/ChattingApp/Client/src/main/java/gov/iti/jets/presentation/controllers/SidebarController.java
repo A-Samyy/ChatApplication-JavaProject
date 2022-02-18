@@ -126,18 +126,8 @@ public class SidebarController implements Initializable {
             contactModel = new ContactModel();
             System.out.println(contactDto.getFriendName());
             chattingSectionVbox.getChildren().add(stageCoordinator.loadContacts(contactDto));
-
-
-
-//            contactModel.setUserName(contactDto.getFriendName());
-            // contactModel.setStatus(contactDto.getStatus());
-            //     ContactController.setUserName(contactDto.getFriendName());
-//            try {
-//                contactModel.setPicture(decodeImage(contactDto.getPicture()));
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
         }
+
 //        chattingSectionVbox.getChildren().add(stageCoordinator.loadContacts());
 //        anchorPaneOfContacts.getChildren().add(stageCoordinator.loadContacts());
 //        SettingAreaVbox.getChildren().add(stageCoordinator.loadSettings());
@@ -149,10 +139,5 @@ public class SidebarController implements Initializable {
 //        chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
 //        chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
     }
-    public Image decodeImage(String image) throws Exception {
-        Image img ;
-        byte[] data = Base64.getDecoder().decode(image.getBytes(StandardCharsets.UTF_8));
-        img = new Image(new ByteArrayInputStream(data));
-        return img;
-    }
+
 }
