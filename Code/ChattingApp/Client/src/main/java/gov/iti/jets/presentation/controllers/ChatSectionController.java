@@ -1,5 +1,9 @@
 package gov.iti.jets.presentation.controllers;
 
+import gov.iti.jets.presentation.models.UserModel;
+import gov.iti.jets.presentation.util.ModelFactory;
+import gov.iti.jets.service.dtos.MessageDto;
+import gov.iti.jets.service.services.LoginService;
 import javafx.fxml.FXML;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
@@ -10,6 +14,9 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 public class ChatSectionController {
 
+    MessageDto messageDto=new MessageDto();
+    ModelFactory modelFactory = ModelFactory.getInstance();
+    UserModel userModel = modelFactory.getUserModel();
     @FXML
     private AnchorPane bottomBar;
 
@@ -20,7 +27,7 @@ public class ChatSectionController {
     private SplitMenuButton htmlEditor;
 
     @FXML
-    private TextField messageTextFiel;
+    private TextField messageTextField;
 
     @FXML
     private FontIcon sendButton;
@@ -36,6 +43,11 @@ public class ChatSectionController {
     @FXML
     void sendButtonClicked(MouseEvent event) {
 
+        messageDto.setMessageContent(messageTextField.getText());
+        messageTextField.setText("");
+        messageDto.setUserName(userModel.getUserName());
+        messageDto.setUserId(LoginService.getId());
+        System.out.println(messageDto);
     }
 
 }
