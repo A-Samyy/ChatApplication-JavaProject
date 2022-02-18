@@ -94,9 +94,10 @@ public class SidebarController implements Initializable {
 
     @FXML
     void openProfileOnMouseClick(MouseEvent event) {
-        GridPane home = stageCoordinator.getHomepage();
-        home.getChildren().removeIf(node -> GridPane.getColumnIndex(node)==0);
-        home.add( stageCoordinator.loadProfile(), 0, 0);
+//        GridPane home = stageCoordinator.getHomepage();
+//        home.getChildren().removeIf(node -> GridPane.getColumnIndex(node)==0);
+//        home.add( stageCoordinator.loadProfile(), 0, 0);
+        stageCoordinator.switchToProfileScreen();
     }
 
     @FXML

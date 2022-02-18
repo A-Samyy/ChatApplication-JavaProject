@@ -14,8 +14,8 @@
          <children>
             <AnchorPane prefHeight="45.0" prefWidth="34.0">
                <children>
-                  <Circle accessibleRole="IMAGE_VIEW" fill="WHITE" layoutX="22.0" layoutY="34.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="16.0" />
-                  <Circle fill="#71ff1a" layoutX="34.0" layoutY="47.999999046325684" radius="4.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="43.999999046325684" />
+                  <Circle accessibleRole="IMAGE_VIEW" fill="WHITE" layoutX="22.0" layoutY="34.0" radius="18.0" stroke="#1e1836" strokeType="INSIDE" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="16.0" />
+                  <Circle fill="#15ac45" layoutX="34.0" layoutY="47.999999046325684" radius="4.0" stroke="#1e1836" strokeType="INSIDE" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="43.999999046325684" />
                </children>
             </AnchorPane>
             <VBox prefHeight="54.0" prefWidth="166.0" HBox.hgrow="ALWAYS">

@@ -56,11 +56,11 @@
             </TextField>
             <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                <content>
-                  <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="601.0" style="-fx-background-color: #4D0099;">
+                  <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="601.0" style="-fx-background-color: #2f2a57;">
                      <children>
                         <Pane layoutX="10.0" layoutY="206.0" prefHeight="61.0" prefWidth="236.0" styleClass="pane">
                            <children>
-                              <Circle fill="DODGERBLUE" layoutX="31.0" layoutY="37.0" radius="21.0" stroke="WHITE" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="31.0" layoutY="37.0" radius="21.0" stroke="#1e1836" strokeType="INSIDE" />
                               <Label alignment="CENTER" layoutX="50.0" layoutY="21.0" prefHeight="18.0" prefWidth="95.0" text="User Name" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
@@ -71,7 +71,7 @@
                                     <Font size="10.0" />
                                  </font>
                               </Label>
-                              <Circle fill="RED" layoutX="48.0" layoutY="47.0" radius="6.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" />
+                              <Circle fill="#d90000" layoutX="48.0" layoutY="47.0" radius="6.0" stroke="#1e1836" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
@@ -82,7 +82,7 @@
                         </Pane>
                         <Pane layoutX="17.0" layoutY="57.0" prefHeight="61.0" prefWidth="236.0" styleClass="pane">
                            <children>
-                              <Circle fill="WHITE" layoutX="31.0" layoutY="37.0" radius="21.0" stroke="WHITE" strokeType="INSIDE" />
+                              <Circle fill="WHITE" layoutX="31.0" layoutY="37.0" radius="21.0" stroke="#1e1836" strokeType="INSIDE" />
                               <Label alignment="CENTER" layoutX="50.0" layoutY="21.0" prefHeight="18.0" prefWidth="95.0" text="User Name" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
@@ -93,7 +93,7 @@
                                     <Font size="10.0" />
                                  </font>
                               </Label>
-                              <Circle fill="#00ff11" layoutX="48.0" layoutY="47.0" radius="6.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" />
+                              <Circle fill="#15ac45" layoutX="48.0" layoutY="47.0" radius="6.0" stroke="#1e1836" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
@@ -104,7 +104,7 @@
                         </Pane>
                         <Pane layoutX="10.0" layoutY="201.0" prefHeight="61.0" prefWidth="236.0" styleClass="pane">
                            <children>
-                              <Circle fill="DODGERBLUE" layoutX="31.0" layoutY="37.0" radius="21.0" stroke="WHITE" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="31.0" layoutY="37.0" radius="21.0" stroke="#1e1836" strokeType="INSIDE" />
                               <Label alignment="CENTER" layoutX="50.0" layoutY="21.0" prefHeight="18.0" prefWidth="95.0" text="User Name" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
@@ -115,7 +115,7 @@
                                     <Font size="10.0" />
                                  </font>
                               </Label>
-                              <Circle fill="#ffc700" layoutX="48.0" layoutY="47.0" radius="6.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" />
+                              <Circle fill="#ffc700" layoutX="48.0" layoutY="47.0" radius="6.0" stroke="#1e1836" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
@@ -126,7 +126,7 @@
                         </Pane>
                         <Pane layoutX="10.0" layoutY="262.0" prefHeight="61.0" prefWidth="236.0" styleClass="pane">
                            <children>
-                              <Circle fill="DODGERBLUE" layoutX="31.0" layoutY="37.0" radius="21.0" stroke="WHITE" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="31.0" layoutY="37.0" radius="21.0" stroke="#1e1836" strokeType="INSIDE" />
                               <Label alignment="CENTER" layoutX="50.0" layoutY="21.0" prefHeight="18.0" prefWidth="95.0" text="User Name" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
@@ -137,7 +137,7 @@
                                     <Font size="10.0" />
                                  </font>
                               </Label>
-                              <Circle fill="#00ff11" layoutX="48.0" layoutY="47.0" radius="6.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" />
+                              <Circle fill="#15ac45" layoutX="48.0" layoutY="47.0" radius="6.0" stroke="#1e1836" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
@@ -148,7 +148,7 @@
                         </Pane>
                         <Pane layoutX="10.0" layoutY="323.0" prefHeight="61.0" prefWidth="236.0" styleClass="pane">
                            <children>
-                              <Circle fill="DODGERBLUE" layoutX="31.0" layoutY="37.0" radius="21.0" stroke="WHITE" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="31.0" layoutY="37.0" radius="21.0" stroke="#1e1836" strokeType="INSIDE" />
                               <Label alignment="CENTER" layoutX="50.0" layoutY="21.0" prefHeight="18.0" prefWidth="95.0" text="User Name" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
@@ -159,7 +159,7 @@
                                     <Font size="10.0" />
                                  </font>
                               </Label>
-                              <Circle fill="RED" layoutX="48.0" layoutY="47.0" radius="6.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" />
+                              <Circle fill="#d90000" layoutX="48.0" layoutY="47.0" radius="6.0" stroke="#1e1836" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />

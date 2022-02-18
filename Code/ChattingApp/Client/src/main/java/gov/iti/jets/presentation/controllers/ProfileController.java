@@ -7,12 +7,11 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -31,16 +30,48 @@ public class ProfileController implements Initializable {
 
     @FXML
     private RadioButton active;
+
     @FXML
     private RadioButton away;
+
+    @FXML
+    private Label backButton;
+
+    @FXML
+    private AnchorPane background;
+
+    @FXML
+    private Label bio;
+
     @FXML
     private RadioButton busy;
+
     @FXML
-    private TextField bio;
+    private PasswordField confirmPasswrord;
+
+    @FXML
+    private AnchorPane editingBox;
+
+    @FXML
+    private GridPane gridPane;
+
+    @FXML
+    private PasswordField password;
+
+    @FXML
+    private Label phoneNumber;
+
     @FXML
     private Circle pofilePic;
+
     @FXML
-    private TextField username;
+    private GridPane top2;
+
+    @FXML
+    private Label userEmail;
+
+    @FXML
+    private Label userName;
 
     private ToggleGroup toggleGroup;
     RadioButton selectedRadioButton;
@@ -48,16 +79,16 @@ public class ProfileController implements Initializable {
     ImageView img;
 
     @FXML
-    void backToMainPageOnMouseClick(MouseEvent event) {
-        homeGrid = stageCoordinator.getHomepage();
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                homeGrid.getChildren().removeIf(node -> GridPane.getColumnIndex(node)==0);
-                homeGrid.add( stageCoordinator.loadSidebar(), 0, 0);
-            }
-        });
-
+    void OnBackAction(MouseEvent event) {
+        stageCoordinator.switchToGHomePageScreen();
+//        homeGrid = stageCoordinator.getHomepage();
+//        Platform.runLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                homeGrid.getChildren().removeIf(node -> GridPane.getColumnIndex(node)==0);
+//                homeGrid.add( stageCoordinator.loadSidebar(), 0, 0);
+//            }
+//        });
     }
 
     @FXML
@@ -76,7 +107,7 @@ public class ProfileController implements Initializable {
         pofilePic.setFill(new ImagePattern(img.getImage()));
         getUserStatus();
         bio.textProperty().bindBidirectional(userModel.bioProperty());
-        username.textProperty().bindBidirectional(userModel.userNameProperty());
+        userName.textProperty().bindBidirectional(userModel.userNameProperty());
 
     }
     void getUserStatus(){

@@ -3,7 +3,7 @@
     
     -fx-font-size: 14px;
     
-    -fx-background-color:  #400080;
+    -fx-background-color:  #2f2a57;
    
   }
 
@@ -12,7 +12,7 @@
   }
 
   #chatBox:hover{
-    -fx-background-color:#290152;
+    -fx-background-color:#1e1836;
 -fx-background-radius:10px;
 }
 

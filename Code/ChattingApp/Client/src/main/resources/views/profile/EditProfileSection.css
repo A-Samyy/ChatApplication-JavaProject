@@ -1,0 +1,26 @@
+#background{
+    -fx-font-family:'Arial';
+    
+    -fx-background-image:url("5.png");
+    -fx-background-size: cover;
+  }
+
+  #editingBox{
+    -fx-background-radius:20px;
+    -fx-background-color: rgba(0, 0, 0, 0.281);
+  }
+
+  #editingBox .titles{
+    -fx-font-size: 26px;
+    -fx-text-fill:  white;
+  }
+
+  .userData{
+    -fx-font-size: 18px;
+    -fx-text-fill:  white;
+    -fx-border-radius:20px;
+    
+    -fx-background-color: transparent;
+    -fx-border-color:#2f2a57;
+    -fx-border-width:2px;
+    }

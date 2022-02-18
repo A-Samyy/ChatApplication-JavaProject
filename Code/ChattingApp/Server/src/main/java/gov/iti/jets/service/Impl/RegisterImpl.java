@@ -27,11 +27,19 @@ public class RegisterImpl extends UnicastRemoteObject implements RegisterInt {
     }
 
     public String decodeImage(String image,String phone_number) throws Exception {
-        byte[] data = Base64.getDecoder().decode(image.getBytes(StandardCharsets.UTF_8));
-        String savePath = "src/main/resources/clientPictures/user" + phone_number + ".jpg";
-        FileOutputStream fileOutputStream = new FileOutputStream(savePath);
-        fileOutputStream.write(data);
-        fileOutputStream.close();
+
+        String savePath ;
+        if(image != null){
+            byte[] data = Base64.getDecoder().decode(image.getBytes(StandardCharsets.UTF_8));
+            savePath = "src/main/resources/clientPictures/user" + phone_number + ".jpg";
+            FileOutputStream fileOutputStream = new FileOutputStream(savePath);
+            fileOutputStream.write(data);
+            fileOutputStream.close();
+        }else{
+            System.out.println("marwa image  "+image);
+            savePath = "src/main/resources/clientPictures/default.jgp";
+        }
+
         return savePath;
     }
 

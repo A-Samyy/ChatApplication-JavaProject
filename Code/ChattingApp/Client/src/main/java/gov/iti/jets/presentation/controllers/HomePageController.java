@@ -25,7 +25,7 @@ public class HomePageController implements Initializable {
   public void initialize(URL arg0, ResourceBundle arg1) {
     stageCoordinator.setHomepage(gridPane);
     gridPane.add( stageCoordinator.loadSidebar(), 0, 0);
-
+    gridPane.add( stageCoordinator.loadDefault(), 1, 0);
 
   }
 

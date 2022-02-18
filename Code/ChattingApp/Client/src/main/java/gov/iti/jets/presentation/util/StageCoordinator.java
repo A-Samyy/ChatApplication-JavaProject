@@ -100,13 +100,25 @@ public class StageCoordinator {
     public void switchToGHomePageScreen() {
         Scene homePageScene = null;
         try {
-            GridPane root = FXMLLoader.load(getClass().getResource("/views/homePage/homePage.fxml"));
+            GridPane root = FXMLLoader.load(getClass().getResource("/views/HomePageStructure/homePage.fxml"));
             homePageScene = new Scene(root);
 //            sceneMap.put("homePageScene", homePageScene);
         } catch (IOException e) {
             e.printStackTrace();
         }
         primaryStage.setScene(homePageScene);
+    }
+
+    public void switchToProfileScreen() {
+        Scene profileScene = null;
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/views/profile/editProfileSection.fxml"));
+            profileScene = new Scene(root);
+//            sceneMap.put("homePageScene", homePageScene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        primaryStage.setScene(profileScene);
     }
 
     public void switchToRegistrationScreen() {
@@ -138,24 +150,33 @@ public class StageCoordinator {
         return contactList;
     }
 
-    public Node loadProfile() {
-        Node profile = null;
-        try {
-            profile = FXMLLoader.load(getClass().getResource("/views/profile/profileView.fxml"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return profile;
-    }
-
     public Node loadSidebar() {
         Node sidebar = null;
         try {
-            sidebar = FXMLLoader.load(getClass().getResource("/views/homePage/sidebar.fxml"));
+            sidebar = FXMLLoader.load(getClass().getResource("/views/SidebarSection/sideBar.fxml"));
         } catch (Exception e) {
             e.printStackTrace();
         }
         return sidebar;
+    }
+
+    public Node loadDefault(){
+        Node defaultbar = null;
+        try {
+            defaultbar = FXMLLoader.load(getClass().getResource("/views/HomePageSection1/defaultHomeScreen1.fxml"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return defaultbar;
+    }
+    public Node loadChatSection(){
+        Node chatSection = null;
+        try {
+            chatSection = FXMLLoader.load(getClass().getResource("/views/HomePageSection2/homePageSection2.fxml"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return chatSection;
     }
 
     public void loadAddContact() {
