@@ -118,7 +118,7 @@ public class SidebarController implements Initializable {
         bio.textProperty().bindBidirectional(userModel.bioProperty());
         userName.textProperty().bindBidirectional(userModel.userNameProperty());
         anchorPaneOfContacts.getChildren().add(stageCoordinator.loadContacts());
-        SettingAreaVbox.getChildren().add(stageCoordinator.loadSettings());
+//        SettingAreaVbox.getChildren().add(stageCoordinator.loadSettings());
 
         chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
         chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
