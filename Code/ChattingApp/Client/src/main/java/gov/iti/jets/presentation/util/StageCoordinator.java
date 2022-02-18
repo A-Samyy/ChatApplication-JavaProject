@@ -1,18 +1,22 @@
 package gov.iti.jets.presentation.util;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import gov.iti.jets.presentation.controllers.ContactController;
+import gov.iti.jets.service.dtos.ContactDto;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StageCoordinator {
     private static final StageCoordinator stageCoordinator = new StageCoordinator();
@@ -33,10 +37,11 @@ public class StageCoordinator {
         this.primaryStage = primaryStage;
     }
 
-    public  void setHomepage(GridPane gridPane){
+    public void setHomepage(GridPane gridPane) {
         homepage = gridPane;
     }
-    public  GridPane getHomepage(){
+
+    public GridPane getHomepage() {
         return homepage;
     }
 
@@ -136,15 +141,27 @@ public class StageCoordinator {
         primaryStage.setScene(registrationScene);
     }
 
-    public Node loadContacts() {
-        Node contactList = nodeMap.get("contactList");
-        if (contactList == null) {
-            try {
-                contactList = FXMLLoader.load(getClass().getResource("/views/contactSection/contactList1.fxml"));
-                nodeMap.put("contactList", contactList);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    public Node loadContacts(ContactDto contactDto) {
+        Node contactList = null;
+        try {
+//            contactList = FXMLLoader.load(getClass().getResource("/views/chattingSection/chatSection.fxml"));
+//            ContactController contactController= new ContactController();
+//            contactController.displayContact(contactDto.getFriendName());
+//
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/views/chattingSection/chatSection.fxml"));
+
+            contactList = loader.load();
+            ContactController contactController =loader.getController();
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    contactController.displayContact(contactDto.getFriendName());
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+
         }
 
         return contactList;
@@ -160,7 +177,7 @@ public class StageCoordinator {
         return sidebar;
     }
 
-    public Node loadDefault(){
+    public Node loadDefault() {
         Node defaultbar = null;
         try {
             defaultbar = FXMLLoader.load(getClass().getResource("/views/HomePageSection1/defaultHomeScreen1.fxml"));
@@ -169,7 +186,8 @@ public class StageCoordinator {
         }
         return defaultbar;
     }
-    public Node loadChatSection(){
+
+    public Node loadChatSection() {
         Node chatSection = null;
         try {
             chatSection = FXMLLoader.load(getClass().getResource("/views/HomePageSection2/homePageSection2.fxml"));
@@ -235,15 +253,6 @@ public class StageCoordinator {
 
     }
 
-    public AnchorPane loadMyChat() {
-        AnchorPane chatSectiodn = null;
-        try {
-            chatSectiodn = FXMLLoader.load(getClass().getResource("/views/chattingSection/chatSection.fxml"));
-        } catch (Exception e) {
-            System.out.println("File Not Found Exception");
-        }
-        return chatSectiodn;
-    }
 
     // public Pane loadUserPane(){
     // try {

@@ -1,6 +1,7 @@
 package gov.iti.jets.presentation.controllers;
 
 import gov.iti.jets.presentation.models.ContactModel;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -15,7 +16,6 @@ import java.util.ResourceBundle;
 
 public class ContactController implements Initializable {
     private ContactModel contactModel = new ContactModel();
-
     @FXML
     private AnchorPane chatBox;
 
@@ -29,14 +29,28 @@ public class ContactController implements Initializable {
     private Circle statusOfContact;
     ImageView imageView = new ImageView();
 
+    public  void displayContact(String userName) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                contactName.setText(userName);
+            }
+        });
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        contactName.setText(contactModel.getUserName());
-        imageView.setImage(contactModel.getPicture());
-        pictureOfContact.setFill(new ImagePattern(imageView.getImage()));
-        getUserStatus();
+  //      contactName.setText(name);
+//        imageView.setImage(contactModel.getPicture());
+//        pictureOfContact.setFill(new ImagePattern(imageView.getImage()));
+//        getUserStatus();
+  //      System.out.println(contactModel.getUserName());
 
     }
+//    static void setUserName(String userName){
+//        name = userName;
+//    }
+
 
     void getUserStatus(){
         if(contactModel.getStatus().equals("ACTIVE")){

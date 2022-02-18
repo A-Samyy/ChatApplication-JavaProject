@@ -65,6 +65,7 @@ public class UserDao {
             if (resultSet.next()) {
                 UserDto userDto;
                 userDto = extractUser(resultSet);
+                System.out.println(userDto + " userDao");
                 return userDto;
             } else
                 return null;

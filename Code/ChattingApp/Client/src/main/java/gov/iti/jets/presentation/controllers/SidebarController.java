@@ -124,15 +124,21 @@ public class SidebarController implements Initializable {
         userName.textProperty().bindBidirectional(userModel.userNameProperty());
         for (ContactDto contactDto : contactListService.getListOfContact(LoginService.userId)) {
             contactModel = new ContactModel();
-            contactModel.setUserName(contactDto.getFriendName());
-            contactModel.setStatus(contactDto.getStatus());
-            try {
-                contactModel.setPicture(decodeImage(contactDto.getPicture()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            anchorPaneOfContacts.getChildren().add(stageCoordinator.loadContacts());
+            System.out.println(contactDto.getFriendName());
+            chattingSectionVbox.getChildren().add(stageCoordinator.loadContacts(contactDto));
+
+
+
+//            contactModel.setUserName(contactDto.getFriendName());
+            // contactModel.setStatus(contactDto.getStatus());
+            //     ContactController.setUserName(contactDto.getFriendName());
+//            try {
+//                contactModel.setPicture(decodeImage(contactDto.getPicture()));
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
         }
+//        chattingSectionVbox.getChildren().add(stageCoordinator.loadContacts());
 //        anchorPaneOfContacts.getChildren().add(stageCoordinator.loadContacts());
 //        SettingAreaVbox.getChildren().add(stageCoordinator.loadSettings());
 //        chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
