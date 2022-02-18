@@ -14,7 +14,8 @@ import java.rmi.RemoteException;
 import java.util.Base64;
 
 public class LoginService {
-    static int userId ;
+    static int userId;
+
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
     RMIRegister rmiRegister = RMIRegister.getInstance();
@@ -69,12 +70,20 @@ public class LoginService {
 
     }
 
+    public void getFriends(int id) {
+
+    }
+
     public Image decodeImage(String image) throws Exception {
         Image img ;
 
         byte[] data = Base64.getDecoder().decode(image.getBytes(StandardCharsets.UTF_8));
         img = new Image(new ByteArrayInputStream(data));
         return img;
+    }
+
+    public static int getId(){
+        return userId;
     }
 
 }

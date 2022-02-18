@@ -1,11 +1,9 @@
 package gov.iti.jets.presistance.daos;
 
-import gov.iti.jets.presistance.dtos.ContactDto;
 import gov.iti.jets.presistance.dtos.GroupChatDto;
 import gov.iti.jets.presistance.dtos.UserDto;
 import gov.iti.jets.presistance.util.Connector;
 
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,16 +31,8 @@ public class GroupChatUsersDao {
 
     public boolean addGroupChatUsersTable(GroupChatDto groupChatDto) {
         boolean check= isGroupExist(groupChatDto);
-        int count= groupChatDto.getUsersId().size();
         if(!check) {
-            String sql = "insert into chatting_app.group_chat_users(group_id,user_id)";
-            String sql2 = " ,values(?, ?)";
-            String sql3=" values(?, ?)";
-            for(int i=0 ; i<count-1 ; i++){
-                sql3=sql3 + sql2;
-            }
-            sql= sql +sql3 +";";
-            System.out.println(sql);
+            String sql = "insert into chatting_app.group_chat_users(group_id,user_id) values(?, ?)";
             return injectContact(groupChatDto , sql);
         }
         else
@@ -73,9 +63,9 @@ public class GroupChatUsersDao {
         }
     }
 
-    public List<Integer> getAllGroupsIdforUser(UserDto userDto) {
+    public ArrayList getAllGroupsIdforUser(UserDto userDto) {
         try {
-            List<Integer> groupsIds = new ArrayList();
+            ArrayList groupsIds = new ArrayList();
             String sql = "select group_id from chatting_app.group_chat_users where User_ID=" + userDto.getUserID();
             preparedStatement = conn.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -91,14 +81,14 @@ public class GroupChatUsersDao {
 
     private boolean injectContact(GroupChatDto groupChatDto ,String sql) {
         try {
-            int x=0;
-            preparedStatement = conn.prepareStatement(sql);
-            for (int userId:groupChatDto.getUsersId()) {
-                preparedStatement.setInt(1+x, groupChatDto.getGroupId());
-                preparedStatement.setInt(2+x, userId);
-                x+=2;
+            int affectedRows=0;
+            for (int userId: groupChatDto.getUsersId()) {
+                System.out.println( " "+userId);
+                preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setInt(1, groupChatDto.getGroupId());
+                preparedStatement.setInt(2, userId);
+                affectedRows= preparedStatement.executeUpdate();
             }
-            int affectedRows = preparedStatement.executeUpdate();
             return affectedRows > 0;
         }catch (SQLException e) {
             e.printStackTrace();

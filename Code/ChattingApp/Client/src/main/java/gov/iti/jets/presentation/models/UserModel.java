@@ -14,15 +14,6 @@ import java.util.Base64;
 import java.util.Date;
 
 public class UserModel{
-  //  static Image img= null;
-//    static{
-//        try{
-//            img = new Image(new FileInputStream("G:/ITI/JAVAFX ADVANCED/ChatWindow/src/main/resources/views/login/1150493-funny-cat-wallpapers-for-desktop-3840x2160-large-resolution.jpg"));
-//        }catch(IOException e){
-//            e.printStackTrace();
-//        }
-//
-//    };
     private final StringProperty userName = new SimpleStringProperty();
     private final StringProperty password = new SimpleStringProperty();
     private final StringProperty email = new SimpleStringProperty();
