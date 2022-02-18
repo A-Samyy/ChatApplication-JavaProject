@@ -2,6 +2,7 @@ package gov.iti.jets.presentation.controllers;
 
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
+import gov.iti.jets.service.daos.MessageDao;
 import gov.iti.jets.service.dtos.MessageDto;
 import gov.iti.jets.service.services.LoginService;
 import javafx.fxml.FXML;
@@ -14,7 +15,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 public class ChatSectionController {
 
-    MessageDto messageDto=new MessageDto();
+    MessageDao messageDao=new MessageDao();
     ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
     @FXML
@@ -42,12 +43,11 @@ public class ChatSectionController {
 
     @FXML
     void sendButtonClicked(MouseEvent event) {
-
-        messageDto.setMessageContent(messageTextField.getText());
+        messageDao.setMessage(messageTextField.getText());
         messageTextField.setText("");
-        messageDto.setUserName(userModel.getUserName());
-        messageDto.setUserId(LoginService.getId());
-        System.out.println(messageDto);
+        messageDao.setUserName(userModel.getUserName());
+        messageDao.setUserID();
+        System.out.println(messageDao.getMessageDto());
     }
 
 }
