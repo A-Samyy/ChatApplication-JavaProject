@@ -1,12 +1,16 @@
 .root{
     -fx-font-family:'Arial';
-    -fx-background-color: #4D0099;
+    -fx-background-color: #2f2a57;
     -fx-font-size: 14px;
     
   }
 
+  .pane{
+    -fx-background-color: #2f2a57;
+  }
+
 .pane:hover{
-    -fx-background-color:#290152;
+    -fx-background-color:#1e1836;
    -fx-background-radius:10px;
 }
 .label{

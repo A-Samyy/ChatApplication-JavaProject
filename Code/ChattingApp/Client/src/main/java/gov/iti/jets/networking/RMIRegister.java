@@ -15,7 +15,7 @@ public class RMIRegister {
 
     private RMIRegister() {
         try {
-            registry = LocateRegistry.getRegistry("localhost", 4004);
+            registry = LocateRegistry.getRegistry("localhost", 5001);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -49,6 +49,7 @@ public class RMIRegister {
         }
         return loginInt;
     }
+
 
 
 }

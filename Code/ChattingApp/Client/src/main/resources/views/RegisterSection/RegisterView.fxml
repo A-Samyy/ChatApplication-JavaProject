@@ -10,13 +10,14 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
@@ -32,7 +33,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <GridPane GridPane.columnIndex="1">
+            <GridPane fx:id="formGrid" GridPane.columnIndex="1">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
@@ -81,7 +82,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="59.0" prefWidth="176.0" spacing="5.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <children>
-                              <Label stylesheets="@style.css" text="Full_Name" textFill="#400080" />
+                              <Label stylesheets="@style.css" text="User_Name" textFill="#400080" />
                               <TextField fx:id="fullNameTextField" prefHeight="25.0" prefWidth="176.0" promptText="Enter your fullName">
                                  <VBox.margin>
                                     <Insets left="15.0" right="15.0" />
@@ -100,7 +101,7 @@
                         <Font name="Arial" size="12.0" />
                      </font>
                      <graphic>
-                        <FontIcon iconColor="#400080" iconLiteral="fas-camera" iconSize="25">
+                        <FontIcon iconColor="#2f2a57" iconLiteral="fas-camera" iconSize="25" text="">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -109,6 +110,9 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
                   </Label>
                   <Circle fx:id="profilePicture" fill="#e8e8e8" radius="47.0" stroke="#f8f8f8" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <GridPane GridPane.rowIndex="2">
@@ -129,7 +133,14 @@
                                  </VBox.margin>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
-                                 </cursor></ChoiceBox>
+                                 </cursor>
+                                 <effect>
+                                    <DropShadow height="23.4" radius="7.1049999999999995" spread="0.05" width="7.02">
+                                       <color>
+                                          <Color red="0.11764705926179886" green="0.0941176488995552" blue="0.21176470816135406" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect></ChoiceBox>
                               <Label fx:id="countryError" prefHeight="17.0" prefWidth="178.0" textAlignment="CENTER" textFill="#ea0000">
                                  <font>
                                     <Font size="9.0" />
@@ -216,7 +227,7 @@
                               <VBox alignment="TOP_CENTER" spacing="5.0">
                                  <children>
                                     <Label text="Date Of Birth" textFill="#400080" />
-                                    <DatePicker fx:id="dateOfBirthTextField" maxWidth="1.7976931348623157E308" onAction="#changeOnAction" promptText="Enter your date of birth">
+                                    <DatePicker fx:id="dateOfBirthTextField" maxWidth="1.7976931348623157E308" onAction="#changeOnAction" promptText="Enter your date of birth" style="-fx-fill: #2f2a57;">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" />
                                        </VBox.margin>
@@ -242,12 +253,12 @@
                                     <Label text="Gender" textFill="#400080" />
                                     <HBox GridPane.rowIndex="1">
                                        <children>
-                                          <RadioButton fx:id="maleRadioButton" mnemonicParsing="false" onAction="#Clicked" text="Male" textFill="#400080" />
+                                          <RadioButton fx:id="maleRadioButton" mnemonicParsing="false" onAction="#Clicked" text="Male" textFill="#2f2a57" />
                                        </children>
                                     </HBox>
                                     <HBox GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
-                                          <RadioButton fx:id="femaleRadioButton" mnemonicParsing="false" onAction="#Clicked" text="Female" textFill="#400080" />
+                                          <RadioButton fx:id="femaleRadioButton" mnemonicParsing="false" onAction="#Clicked" text="Female" textFill="#2f2a57" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -261,14 +272,14 @@
                   </GridPane>
                </children>
             </GridPane>
-            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #400080;">
+            <AnchorPane fx:id="paneSideBar" prefHeight="608.0" prefWidth="300.0">
                <children>
-                  <FontIcon fx:id="backArrow" iconColor="WHITE" iconLiteral="fas-arrow-left" iconSize="25" layoutX="19.0" layoutY="43.125" text="">
+                  <FontIcon fx:id="backArrow" iconColor="WHITE" iconLiteral="fas-arrow-left" iconSize="25" layoutX="25.0" layoutY="43.0" text="" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="21.125">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </FontIcon>
-                  <Label fx:id="backButton" alignment="TOP_RIGHT" layoutX="13.0" layoutY="21.0" onMouseClicked="#onBackButtonAction" prefHeight="27.0" prefWidth="80.0" text="Back" textFill="WHITE">
+                  <Label fx:id="backButton" alignment="TOP_RIGHT" layoutX="15.0" layoutY="21.0" onMouseClicked="#onBackButtonAction" prefHeight="27.0" prefWidth="80.0" text="Back" textFill="WHITE" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="21.0">
                      <font>
                         <Font size="34.0" />
                      </font>
@@ -277,7 +288,7 @@
                      </cursor>
                   </Label>
                </children>
-            </Pane>
+            </AnchorPane>
          </children>
       </GridPane>
    </children>

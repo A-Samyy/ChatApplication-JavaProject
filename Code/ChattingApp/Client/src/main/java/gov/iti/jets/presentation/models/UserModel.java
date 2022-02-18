@@ -4,10 +4,25 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.image.Image;
 
+import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.Date;
 
 public class UserModel{
+    static Image img= null;
+    static{
+        try{
+            img = new Image(new FileInputStream("G:/ITI/JAVAFX ADVANCED/ChatWindow/src/main/resources/views/login/1150493-funny-cat-wallpapers-for-desktop-3840x2160-large-resolution.jpg"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+    };
     private final StringProperty userName = new SimpleStringProperty();
     private final StringProperty password = new SimpleStringProperty();
     private final StringProperty email = new SimpleStringProperty();
@@ -18,7 +33,7 @@ public class UserModel{
     private final StringProperty imagePath = new SimpleStringProperty();
     private final StringProperty status = new SimpleStringProperty();
     private final StringProperty date = new SimpleStringProperty();
-
+    private final ObjectProperty<Image> image = new SimpleObjectProperty<>(img);
     public String getUserName() {
         return userName.get();
     }
@@ -138,4 +153,18 @@ public class UserModel{
     public void setDate(String date) {
         this.date.set(date);
     }
+
+    public Image getImage() {
+        return image.get();
+    }
+
+    public ObjectProperty<Image> imageProperty() {
+
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image.set(image);
+    }
+
 }

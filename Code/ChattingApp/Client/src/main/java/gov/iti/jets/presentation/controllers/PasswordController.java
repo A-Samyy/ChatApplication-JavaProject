@@ -1,5 +1,6 @@
 package gov.iti.jets.presentation.controllers;
 
+import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
@@ -13,6 +14,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
@@ -24,32 +26,41 @@ public class PasswordController implements Initializable {
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
     LoginService loginService = new LoginService();
+    RMIRegister rmiRegister = RMIRegister.getInstance();
 
     @FXML
     private FontIcon backArrow;
 
     @FXML
-    private AnchorPane forgetbutton;
+    private GridPane grid;
 
     @FXML
     private Button loginButton;
 
     @FXML
-    private Label passwordError;
+    private AnchorPane loginPaneContent;
 
     @FXML
-    private TextField passwordTextField;
+    private PasswordField passwordTextField;
+
+    @FXML
+    private Label phoneNumberError;
+
+    @FXML
+    private Label welcome;
 
     @FXML
     void OnBackAction(MouseEvent event) {
         stageCoordinator.switchToLoginScreen();
     }
 
+
     @FXML
     void OnLoginAction(ActionEvent event) throws RemoteException {
-        String userPassword = userModel.getPassword();
+        String userPassword = passwordTextField.getText();
         String userPass = loginService.getPassword();
         if(userPassword.equals(userPass)) {
+            loginService.getdata();
             stageCoordinator.switchToGHomePageScreen();
         }else{
             System.out.println("Password is not Correct");
@@ -58,6 +69,6 @@ public class PasswordController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        passwordTextField.textProperty().bindBidirectional(userModel.passwordProperty());
+        passwordTextField.setText("");
     }
 }

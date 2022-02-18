@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="768.0" styleClass="regbutton" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.RegisterController">
+   <children>
+      <GridPane prefHeight="292.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <GridPane GridPane.columnIndex="1">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="88.20000305175782" minHeight="10.0" prefHeight="29.00000610351563" valignment="BOTTOM" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="100.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button mnemonicParsing="false" onMouseClicked="#registerOnMouseClick" prefHeight="35.0" prefWidth="243.0" text="Register" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Arial Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <GridPane GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="BASELINE" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <VBox alignment="CENTER" spacing="5.0" GridPane.columnIndex="1">
+                           <children>
+                              <Label text="Phone" textFill="#400080" />
+                              <TextField fx:id="phoneNumberTextField" prefHeight="18.0" prefWidth="176.0" promptText="Enter your phone number">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets left="15.0" right="15.0" />
+                                 </VBox.margin></TextField>
+                              <Label fx:id="invalidPhone" prefHeight="17.0" prefWidth="178.0" textAlignment="CENTER" textFill="#ea0000">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="59.0" prefWidth="176.0" spacing="5.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <children>
+                              <Label stylesheets="@style.css" text="Full_Name" textFill="#400080" />
+                              <TextField fx:id="fullNameTextField" prefHeight="25.0" prefWidth="176.0" promptText="Enter your fullName">
+                                 <VBox.margin>
+                                    <Insets left="15.0" right="15.0" />
+                                 </VBox.margin></TextField>
+                              <Label fx:id="invalidName" prefHeight="17.0" prefWidth="178.0" textAlignment="CENTER" textFill="#ea0000">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+                  <Label onMouseClicked="#addYourProfilePicture" text="Add your Pic" textFill="#400080" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                     <graphic>
+                        <FontIcon iconColor="#400080" iconLiteral="fas-camera" iconSize="25">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </FontIcon>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <Circle fx:id="profilePicture" fill="#e8e8e8" radius="47.0" stroke="#f8f8f8" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <GridPane GridPane.rowIndex="2">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <VBox alignment="CENTER" spacing="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <children>
+                              <Label text="Country" textFill="#400080" />
+                              <ChoiceBox fx:id="countryChoiceBox" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets left="15.0" right="15.0" />
+                                 </VBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></ChoiceBox>
+                              <Label fx:id="countryError" prefHeight="17.0" prefWidth="178.0" textAlignment="CENTER" textFill="#ea0000">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="59.0" prefWidth="176.0" spacing="5.0">
+                           <children>
+                              <Label text="Email" textFill="#400080" />
+                              <TextField fx:id="emailTextField" prefHeight="25.0" prefWidth="176.0" promptText="Enter your email">
+                                 <VBox.margin>
+                                    <Insets left="15.0" right="15.0" />
+                                 </VBox.margin></TextField>
+                              <Label fx:id="invalidEmail" prefHeight="17.0" prefWidth="178.0" textAlignment="CENTER" textFill="#ea0000">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+                  <GridPane GridPane.rowIndex="3">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <VBox alignment="CENTER" spacing="5.0">
+                           <children>
+                              <Label text="Password" textFill="#400080" />
+                              <PasswordField fx:id="passwordTextField" prefHeight="25.0" prefWidth="176.0" promptText="Enter your password">
+                                 <VBox.margin>
+                                    <Insets left="15.0" right="15.0" />
+                                 </VBox.margin></PasswordField>
+                              <Label fx:id="invalidPassword" prefHeight="17.0" prefWidth="178.0" textAlignment="CENTER" textFill="#ea0000">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="5.0" GridPane.columnIndex="1">
+                           <children>
+                              <Label text="Confirm Password" textFill="#400080" />
+                              <PasswordField fx:id="confirmPasswordTextField" prefHeight="25.0" prefWidth="176.0" promptText="Enter your password again">
+                                 <VBox.margin>
+                                    <Insets left="15.0" right="15.0" />
+                                 </VBox.margin>
+                              </PasswordField>
+                              <Label prefHeight="17.0" prefWidth="178.0" textAlignment="CENTER" textFill="#ea0000">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+                  <GridPane GridPane.rowIndex="4">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <VBox alignment="CENTER" spacing="5.0" GridPane.columnIndex="1">
+                           <children>
+                              <Label text="Bio" textFill="#400080" />
+                              <TextArea fx:id="bioTextArea" prefHeight="99.0" prefWidth="187.0" promptText="Bio...">
+                                 <VBox.margin>
+                                    <Insets left="15.0" right="15.0" />
+                                 </VBox.margin></TextArea>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.valignment="CENTER">
+                           <children>
+                              <VBox alignment="TOP_CENTER" spacing="5.0">
+                                 <children>
+                                    <Label text="Date Of Birth" textFill="#400080" />
+                                    <DatePicker fx:id="dateOfBirthTextField" maxWidth="1.7976931348623157E308" onAction="#changeOnAction" promptText="Enter your date of birth">
+                                       <VBox.margin>
+                                          <Insets left="15.0" right="15.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </DatePicker>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <GridPane alignment="CENTER" prefHeight="50.0" prefWidth="224.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="15.200000000000003" minHeight="3.200000000000003" prefHeight="3.200000000000003" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label text="Gender" textFill="#400080" />
+                                    <HBox GridPane.rowIndex="1">
+                                       <children>
+                                          <RadioButton fx:id="maleRadioButton" mnemonicParsing="false" onAction="#Clicked" text="Male" textFill="#400080" />
+                                       </children>
+                                    </HBox>
+                                    <HBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <children>
+                                          <RadioButton fx:id="femaleRadioButton" mnemonicParsing="false" onAction="#Clicked" text="Female" textFill="#400080" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="15.0" />
+                                 </VBox.margin>
+                              </GridPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+               </children>
+            </GridPane>
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #400080;">
+               <children>
+                  <FontIcon fx:id="backArrow" iconColor="WHITE" iconLiteral="fas-arrow-left" iconSize="25" layoutX="19.0" layoutY="43.125" text="">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </FontIcon>
+                  <Label fx:id="backButton" alignment="TOP_RIGHT" layoutX="13.0" layoutY="21.0" onMouseClicked="#onBackButtonAction" prefHeight="27.0" prefWidth="80.0" text="Back" textFill="WHITE">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

@@ -30,7 +30,6 @@ public class UserDao {
     public boolean addUserDto(UserDto userDto) { // Email was not checked
         boolean check= checkUserByPhoneNumber(userDto.getPhoneNumber());
         if(!check) {
-            System.out.println(userDto);
             String sql = "insert into chatting_app.user(PHONE_NUMBER, USER_NAME, PASSWORD, GENDER, EMAIL, Picture, COUNTRY, Bio, STATUS, DateOfBirth)  values(?, ?, ?, ? ,?, ? ,? ,?, ? ,?)";
             return injectUser(userDto, sql);
         }

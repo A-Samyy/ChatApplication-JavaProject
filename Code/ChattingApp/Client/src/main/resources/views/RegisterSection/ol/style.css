@@ -1,0 +1,126 @@
+
+.root{
+  -fx-font-family:'Arial';
+  
+  -fx-font-size: 14px;
+}
+
+
+
+
+.text-field{
+  
+    -fx-border-radius:5px;
+    -fx-border-width:0.5px;
+    -fx-text-fill:#400080 ;
+    -fx-font-weight	:normal;
+    -fx-border-color: #400080;
+
+}
+
+
+.text-area{
+
+  -fx-border-radius:5px;
+  -fx-background-radius:10px;
+  -fx-border-width:0.5px;
+  -fx-text-fill:#400080 ;
+  -fx-font-weight:normal;
+  -fx-border-color: #400080;
+}
+
+.password-field{
+  -fx-border-color: #400080;
+}
+
+.label{
+  -fx-font-weight:bold;
+  -fx-text-fill:#400080 ;
+}
+
+.emailfield{
+    -fx-background-radius:5px;
+    -fx-fill:#400080 ;
+}
+
+#male{
+  -fx-font-weight	:normal;
+}
+
+#female{
+  -fx-font-weight	:normal;
+}
+
+#regbutton {
+  -fx-background-color: #400080;
+  -fx-background-radius:100px;
+}
+
+
+#regbutton:hover{
+  -fx-background-color: #441e69;
+ 
+}
+
+
+
+#dateOfBirth{
+  -fx-border-radius:5px;
+  -fx-background-radius:10px;
+  -fx-border-width:0.5px;
+  -fx-text-fill:#400080 ;
+-fx-fill:#400080 ;
+  -fx-font-weight:normal;
+  -fx-border-color: #400080;
+
+}
+
+#countryChoiceBox{
+  -fx-border-radius:5px;
+  -fx-background-radius:10px;
+  -fx-border-width:0.5px;
+  -fx-text-fill:#400080 ;
+-fx-fill:#400080 ;
+  -fx-font-weight:normal;
+  -fx-border-color: #400080;
+}
+
+
+#backButton{
+  -fx-font-weight	:normal;
+  -fx-text-fill:#ffffff ;
+  -fx-font-size: 20px;
+
+}
+
+
+
+
+#invalidName{
+  -fx-text-fill:#ea0000;
+  -fx-font-size: 12px;
+  -fx-font-weight	:normal;
+}
+
+#invalidPhone{
+  -fx-text-fill:#ea0000;
+  -fx-font-size: 12px;
+  -fx-font-weight	:normal;
+}
+#invalidEmail{
+  -fx-text-fill:#ea0000;
+  -fx-font-size: 12px;
+  -fx-font-weight	:normal;
+}
+#invalidPassword{
+  -fx-text-fill:#ea0000;
+  -fx-font-size: 12px;
+  -fx-font-weight	:normal;
+}
+#countryError{
+  -fx-text-fill:#ea0000;
+  -fx-font-size: 12px;
+  -fx-font-weight	:normal;
+}
+
+

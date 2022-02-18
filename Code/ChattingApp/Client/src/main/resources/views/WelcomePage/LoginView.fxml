@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="706.0" stylesheets="@loginStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.WelcomeController">
+   <children>
+      <AnchorPane fx:id="loginContent" layoutX="-7.0" prefHeight="482.0" prefWidth="715.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="195.0" layoutY="-19.0" prefHeight="521.0" prefWidth="400.0" text="With our app your friends are closer than you think!! " textOverrun="CENTER_ELLIPSIS" wrapText="true" AnchorPane.bottomAnchor="-20.0" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="-19.0">
+               <font>
+                  <Font name="Andalus" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="292.0" prefHeight="54.0" prefWidth="400.0" text=" So Join Us NOW!!" textOverrun="CENTER_ELLIPSIS" wrapText="true" AnchorPane.bottomAnchor="135.60000000000002" AnchorPane.leftAnchor="132.0" AnchorPane.rightAnchor="183.0" AnchorPane.topAnchor="292.0">
+               <font>
+                  <Font name="Andalus" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </Label>
+            <Button fx:id="loginButton" layoutX="249.99999999999997" layoutY="370.0" mnemonicParsing="false" onAction="#OnLoginAction" prefHeight="54.0" prefWidth="214.0" text="LOGIN" AnchorPane.bottomAnchor="57.60000000000002" AnchorPane.rightAnchor="250.60000000000002">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Label fx:id="createbutton" layoutX="284.0" layoutY="437.0" onMouseClicked="#OnRegestrationAction" prefHeight="32.0" prefWidth="148.0" text="Create Account?" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="283.0">
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

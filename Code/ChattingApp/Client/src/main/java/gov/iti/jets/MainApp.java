@@ -13,7 +13,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         stageCoordinator.initStage(primaryStage);
-        stageCoordinator.switchToLoginScreen();
+        stageCoordinator.switchToWelcomScreen();
         primaryStage.show();
     }
 }

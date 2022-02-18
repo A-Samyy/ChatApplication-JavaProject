@@ -1,0 +1,87 @@
+.root{
+   -fx-font-family:'Arial';
+   -fx-font-size: 14px;
+ }
+
+#sideBar{
+
+	-fx-background-color: #2f2a57;
+}
+
+#searchBar{
+
+       -fx-background-color: rgba(39, 40, 119, 0.103);  
+       -fx-background-radius: 50px;
+	-fx-text-fill:white ;
+}
+
+.chatBar{
+  
+	-fx-background-color:#2f2a57;
+}
+
+#anchorChat{
+   -fx-background-size: 100% 100%;
+   -fx-background-image: url("64.png");
+   
+}
+/* #chatArea{
+   -fx-background-size: 10px 10px;
+
+} */
+
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+   -fx-background-color: #1e1836;
+}
+
+.text-field {
+    -fx-background-radius: 50px;
+}
+
+#tabPane{
+   -fx-tab-min-height:3em;
+   -fx-tab-max-height:3em;
+   -fx-tab-min-width:4.5em;
+   -fx-tab-max-width:3em;
+}
+
+.tab .tab-label{
+   -fx-background-color: transparent;
+   -fx-alignment:center;
+
+}
+
+.tab {
+   -fx-background-color: #1e1836;
+   
+   fx-background-insets:0px;
+   
+}
+
+.tab:selected{
+   -fx-background-color: #2f2a57;
+   fx-background-insets:0px;
+   fx-background-radius:0px;
+   fx-border-width:5 0 0 0;
+   fx-border-Color:#2f2a57;
+
+}
+
+
+
+.tab:focused {
+   -fx-background-color: transparent;
+   
+}
+
+.tab-pane .tab-header-background{
+   -fx-background-color: transparent;
+}
+
+
+

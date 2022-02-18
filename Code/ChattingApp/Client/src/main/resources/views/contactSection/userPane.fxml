@@ -6,20 +6,20 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="63.0" prefWidth="236.0" style="-fx-background-color: #4D0099;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Pane prefHeight="63.0" prefWidth="236.0" stylesheets="@contacts.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Circle fill="DODGERBLUE" layoutX="35.0" layoutY="32.0" radius="21.0" stroke="WHITE" strokeType="INSIDE" />
+      <Circle fill="DODGERBLUE" layoutX="35.0" layoutY="32.0" radius="21.0" stroke="#1e1836" strokeType="INSIDE" />
       <Label alignment="CENTER" layoutX="50.0" layoutY="21.0" prefHeight="18.0" prefWidth="95.0" text="User Name" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="48.0" layoutY="39.0" prefHeight="18.0" prefWidth="140.0" text="Hi I'm use Chatting App" textAlignment="CENTER" textFill="#fcfcfc">
+      <Label alignment="CENTER" layoutX="60.0" layoutY="39.0" prefHeight="18.0" prefWidth="140.0" text="Hi I'm use Chatting App" textAlignment="CENTER" textFill="#fcfcfc">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Circle fill="#00ff11" layoutX="48.0" layoutY="48.0" radius="5.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" />
+      <Circle fill="#00ff11" layoutX="48.0" layoutY="48.0" radius="5.0" stroke="#1e1836" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" />
    </children>
    <cursor>
       <Cursor fx:constant="HAND" />
