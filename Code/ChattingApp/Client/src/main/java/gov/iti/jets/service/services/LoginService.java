@@ -77,4 +77,8 @@ public class LoginService {
         return img;
     }
 
+    public static int getId(){
+        return userId;
+    }
+
 }

@@ -3,6 +3,7 @@ package gov.iti.jets.presentation.controllers;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
+import gov.iti.jets.service.dtos.MessageDto;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -30,6 +31,7 @@ public class SidebarController implements Initializable {
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
+    MessageDto messageDto=new MessageDto();
 
     @FXML
     private Tab Contacts;
@@ -128,6 +130,8 @@ public class SidebarController implements Initializable {
         chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
         chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
         chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
+
+
     }
 
 //    public Image decodeImage(String image) throws Exception {
