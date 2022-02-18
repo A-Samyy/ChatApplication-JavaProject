@@ -23,6 +23,7 @@ public class StageCoordinator {
     private static final StageCoordinator stageCoordinator = new StageCoordinator();
     private Stage primaryStage;
     private GridPane homepage;
+
     private final Map<String, Scene> sceneMap = new HashMap<>();
     private final Map<String, Node> nodeMap = new HashMap<>();
 
@@ -261,28 +262,30 @@ public class StageCoordinator {
     // return null ;
     // }
 
-     public VBox loadMessage(MessageDao messageDao){
-     try {
-         //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/message/messageView.fxml"));
-         //VBox message = fxmlLoader.load();
-         //MessageController messageController =(MessageController)fxmlLoader.getController();
-         //System.out.println(messageDao.getMessageDto());
-         //System.out.println(messageController);
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/message/messageView.fxml"));
-         VBox message = loader.load();
-         MessageController controller = loader.<MessageController>getController();
-         System.out.println(controller);
-         Platform.runLater(new Runnable() {
-             @Override
-             public void run() {
-                 controller.displayMessage(messageDao.getMessageContent(),messageDao.getMessageUserName());
-             }
-         });
-         return message;
-     }catch(Exception e){
-        System.out.println("File Not Found Exception");
-     }
-        System.out.println("null");
-        return null ;
-     }
-}
+     public VBox loadMessage( MessageDao messageDao) {
+
+
+         try {
+
+//             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/message/messageView.fxml"));
+//
+             FXMLLoader loader = new FXMLLoader();
+             loader.setLocation(getClass().getResource("/views/message/messageView.fxml")); // Your .fxml File
+
+             VBox message = loader.load();
+             MessageController messageController = (MessageController) loader.getController();
+//             Platform.runLater(new Runnable() {
+//                 @Override
+//                 public void run() {
+                     messageController.displayMessage(messageDao.getMessageContent(), messageDao.getMessageUserName());
+//                 }
+//             });
+
+
+             return message;
+         } catch (Exception e) {
+             System.out.println("File Not Found Exception");
+         }
+         return null;
+
+     }}
