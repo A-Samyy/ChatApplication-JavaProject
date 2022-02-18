@@ -5,7 +5,12 @@ import gov.iti.jets.service.services.LoginService;
 
 public class MessageDao {
 
-    MessageDto messageDto = new MessageDto();
+    MessageDto messageDto ;
+
+    public MessageDao(MessageDto messageDto){
+        this.messageDto=messageDto;
+    }
+
     public void setMessage(String message){
         messageDto.setMessageContent(message);
     }
