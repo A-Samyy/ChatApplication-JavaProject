@@ -28,7 +28,10 @@
   }
 
   #bio{
-    -fx-background-radius:20px;
+    /* -fx-background-radius:20px; */
+    /* -fx-border-radius:20px; */
     -fx-background-color: white;
+    -fx-fill:#9a94c018 ;
+    -fx-font-size:18px;
     
   }

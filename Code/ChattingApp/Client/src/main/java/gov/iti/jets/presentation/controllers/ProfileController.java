@@ -41,7 +41,7 @@ public class ProfileController implements Initializable {
     private AnchorPane background;
 
     @FXML
-    private Label bio;
+    private TextArea bio;
 
     @FXML
     private RadioButton busy;
@@ -59,19 +59,22 @@ public class ProfileController implements Initializable {
     private PasswordField password;
 
     @FXML
-    private Label phoneNumber;
+    private Circle pofilePic;
 
     @FXML
-    private Circle pofilePic;
+    private Button saveButton;
 
     @FXML
     private GridPane top2;
 
     @FXML
-    private Label userEmail;
+    private TextField userEmail;
 
     @FXML
-    private Label userName;
+    private TextField userName;
+
+    @FXML
+    private TextField userPhone;
 
     private ToggleGroup toggleGroup;
     RadioButton selectedRadioButton;
