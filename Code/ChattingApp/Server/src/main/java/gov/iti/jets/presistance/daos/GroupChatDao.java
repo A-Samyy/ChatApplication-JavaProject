@@ -3,7 +3,10 @@ package gov.iti.jets.presistance.daos;
 import gov.iti.jets.presistance.dtos.GroupChatDto;
 import gov.iti.jets.presistance.util.Connector;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -12,13 +15,12 @@ public class GroupChatDao {
     //    private DataSource ds = null;
     private Connection conn = null;
     private PreparedStatement preparedStatement = null;
-    Statement statement =null;
     Connector connector = Connector.getInstance();
+    GroupChatUsersDao groupChatUsersDao = new GroupChatUsersDao();
 
     public GroupChatDao() {
         try {
             conn = connector.getConnection();
-            statement=conn.createStatement();
         } catch (Exception ex) {
             Logger.getLogger(GroupChatDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -26,21 +28,22 @@ public class GroupChatDao {
 
 
     public boolean addGroup(GroupChatDto groupChatDto) {
-
-        String sql = "insert into chatting_app.group_chat(group_chat_name)  values(?)";
-        boolean check = injectContact(groupChatDto, sql);
-        boolean cheak2 = false;
+        boolean check;
+        boolean cheak2;
+        check = insertingGroupName(groupChatDto);
         groupChatDto.setGroupId(getTheLastGroupID());
-        System.out.println(groupChatDto.getGroupId());
-        GroupChatUsersDao groupChatUsersDao = new GroupChatUsersDao();
         cheak2 = groupChatUsersDao.addGroupChatUsersTable(groupChatDto);
         return check && cheak2;
+    }
+
+    public boolean insertingGroupName(GroupChatDto groupChatDto) {
+        String sql = "insert into chatting_app.group_chat(group_chat_name)  values(?)";
+        return injectContact(groupChatDto, sql);
     }
 
     public int getTheLastGroupID() {
         String sql = "SELECT max(group_chat_id) FROM chatting_app.group_chat ; ";
         try {
-            //        ResultSet resultSet = statement.executeQuery(sql);
             preparedStatement = conn.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
             System.out.println(resultSet.next());
