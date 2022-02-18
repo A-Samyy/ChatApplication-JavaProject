@@ -23,7 +23,6 @@ public class StageCoordinator {
     private static final StageCoordinator stageCoordinator = new StageCoordinator();
     private Stage primaryStage;
     private GridPane homepage;
-    private MessageDao messageDao = new MessageDao();
     private final Map<String, Scene> sceneMap = new HashMap<>();
     private final Map<String, Node> nodeMap = new HashMap<>();
 
@@ -262,19 +261,23 @@ public class StageCoordinator {
     // return null ;
     // }
 
-     public VBox loadMessage(){
+     public VBox loadMessage(MessageDao messageDao){
      try {
-         FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/views/message/messageView.fxml"));
-         VBox message = fxmlLoader.load();
-         MessageController messageController =fxmlLoader.getController();
-         System.out.println(messageDao.getMessageDto());
+         //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/message/messageView.fxml"));
+         //VBox message = fxmlLoader.load();
+         //MessageController messageController =(MessageController)fxmlLoader.getController();
+         //System.out.println(messageDao.getMessageDto());
+         //System.out.println(messageController);
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/message/messageView.fxml"));
+         VBox message = loader.load();
+         MessageController controller = loader.<MessageController>getController();
+         System.out.println(controller);
          Platform.runLater(new Runnable() {
              @Override
              public void run() {
-                 messageController.displayMessage(messageDao.getMessageContent(),messageDao.getMessageUserName());
+                 controller.displayMessage(messageDao.getMessageContent(),messageDao.getMessageUserName());
              }
          });
-         System.out.println("add");
          return message;
      }catch(Exception e){
         System.out.println("File Not Found Exception");

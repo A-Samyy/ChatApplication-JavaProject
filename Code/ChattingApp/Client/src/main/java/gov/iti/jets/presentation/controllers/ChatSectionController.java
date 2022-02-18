@@ -58,9 +58,9 @@ public class ChatSectionController {
         messageDao.setUserName(userModel.getUserName());
         messageDao.setUserID();
 
-        //System.out.println(messageDao.getMessageDto());
+        System.out.println(messageDao.getMessageDto());
 
-        chatBox.getChildren().add(stageCoordinator.loadMessage());
+        chatBox.getChildren().add(stageCoordinator.loadMessage(messageDao));
     }
 
 }
