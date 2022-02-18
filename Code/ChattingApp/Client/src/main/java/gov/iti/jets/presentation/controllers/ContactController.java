@@ -30,13 +30,13 @@ public class ContactController implements Initializable {
     private Circle statusOfContact;
     ImageView imageView = new ImageView();
 
-    public  void displayContact(String userName, Image image, String status) {
+    public  void displayContact(String userName, String status) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 contactName.setText(userName);
-                imageView.setImage(image);
-                pictureOfContact.setFill(new ImagePattern(imageView.getImage()));
+           //     imageView.setImage(image);
+            //    pictureOfContact.setFill(new ImagePattern(imageView.getImage()));
                 getUserStatus(status);
             }
         });
@@ -58,7 +58,7 @@ public class ContactController implements Initializable {
 
     void getUserStatus(String status){
         if(status.equals("ACTIVE")){
-            statusOfContact.setFill(Color.GREEN);
+            statusOfContact.setFill(Color.BLUE);
         }else if(status.equals("DoNotDisturb")){
             statusOfContact.setFill(Color.YELLOW);
         }else if(status.equals("AWAY")){

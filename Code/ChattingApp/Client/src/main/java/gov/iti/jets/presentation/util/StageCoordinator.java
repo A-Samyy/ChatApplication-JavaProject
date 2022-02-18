@@ -156,7 +156,7 @@ public class StageCoordinator {
                 @Override
                 public void run() {
                     try {
-                        contactController.displayContact(contactDto.getFriendName() , decodeImage(contactDto.getPicture()) , contactDto.getStatus());
+                        contactController.displayContact(contactDto.getFriendName(), contactDto.getStatus());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

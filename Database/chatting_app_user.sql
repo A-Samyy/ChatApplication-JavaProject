@@ -36,7 +36,7 @@ CREATE TABLE `user` (
   `DateOfBirth` date DEFAULT NULL,
   PRIMARY KEY (`User_ID`),
   UNIQUE KEY `PHONE_NUMBER_UNIQUE` (`PHONE_NUMBER`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'333333355','Samyy','951357','male','Samy@hotmail.com','url','Cairo','HI lets talk',2,'1997-03-31'),(2,'22222','Hend','951357','male','Hend@hotmail.com','url','Cairo',NULL,1,'1997-03-31'),(3,'333333','Marwa','02221222','male','Marwaa@hotmail.com',NULL,NULL,NULL,1,NULL),(4,'98712345','Samyyy','11111',NULL,'samy@hotmail.com',NULL,'Egypt',NULL,1,NULL),(5,'01020354036','abdelazeez','123456',NULL,'abdelazeez@gmail.com',NULL,NULL,NULL,1,NULL),(6,'0123333112','Islam Samy','1234',NULL,'Islam@gmail.com',NULL,'Egypt','hii lest\'s talk',1,NULL),(7,'011122556669','Rick Sunches','12304','Male','RickSunches@gmail.com','','WorldOfRick','Wubbalubbadubdub!',1,'2015-02-18'),(8,'0111225788','Rick Sunches','12304','Male','RickSunches@gmail.com','src/main/resources/clientPictures/user0.jpg','WorldOfRick','Wubbalubbadubdub!',1,'2015-02-18'),(9,'012341235','Walter White','1234','Male','walter@gmail.com','src/main/resources/clientPictures/user0.jpg','Usa','Say my name ',1,'2014-02-04'),(10,'0123654556','heheehehe','12422','Male','hehehehe@gmail.com','src/main/resources/clientPictures/user0123654556.jpg','heheheehWorld',NULL,1,'2018-02-13'),(11,'1234','simson','1234','Male','simson@gmail.com','src/main/resources/clientPictures/user1234.jpg',NULL,NULL,1,'1999-02-18');
+INSERT INTO `user` VALUES (1,'0111','MarwaYousef','1234','Female','Marwa@gmail.com','src/main/resources/clientPictures/user0111.jpg','Egypt','Hi i am marwa',1,'1997-03-31'),(2,'01090','AbdelrahmanSamy','1234','Male','Samy@gmail.com','src/main/resources/clientPictures/user01090.jpg','Egypt','blablbalab',1,'1997-03-31'),(3,'010155','Henddd','1234','Female','hend@gmail.com','src/main/resources/clientPictures/user010155.jpg','Egypt','hiiizz i am hend',1,'1997-03-31'),(4,'01000','Abdelazeez','1234','Male','Abdelaziz@gmail.com','src/main/resources/clientPictures/user01000.jpg','Egypt','Salamo 3alako',1,'1997-03-31');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-18 10:06:53
+-- Dump completed on 2022-02-18 21:29:26
