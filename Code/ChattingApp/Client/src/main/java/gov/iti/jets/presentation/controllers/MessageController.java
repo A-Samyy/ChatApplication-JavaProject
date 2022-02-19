@@ -12,12 +12,10 @@ import java.util.ResourceBundle;
 
 public class MessageController implements Initializable {
 
-//    MessageDao messageDao = new MessageDao();
 
     public MessageController(){
 
     }
-
     @FXML
     private Label messageBox;
 
@@ -39,7 +37,6 @@ public class MessageController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
-
     public  void displayMessage(String message ,String userName){
         Platform.runLater(new Runnable() {
             @Override
@@ -48,11 +45,5 @@ public class MessageController implements Initializable {
                 text.setText(message);
             }
         });
-
-    }
-
-    public  void message(){
-
-       System.out.println("a7aaaaaaaa");
     }
 }

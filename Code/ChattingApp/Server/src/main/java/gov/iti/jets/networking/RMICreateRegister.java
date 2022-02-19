@@ -2,8 +2,10 @@ package gov.iti.jets.networking;
 
 import gov.iti.jets.service.Impl.LoginImpl;
 import gov.iti.jets.service.Impl.RegisterImpl;
+import gov.iti.jets.service.Impl.ServerMessageImpl;
 import gov.iti.jets.service.LoginInt;
 import gov.iti.jets.service.RegisterInt;
+import gov.iti.jets.service.ServerMessageInt;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -15,10 +17,11 @@ public class RMICreateRegister {
         try {
             RegisterInt register = new RegisterImpl();
             LoginInt loginService = new LoginImpl();
-            Registry registry = LocateRegistry.getRegistry(5005);
+            ServerMessageInt message = new ServerMessageImpl();
+            Registry registry = LocateRegistry.getRegistry(4000);
             registry.rebind("RegisterService",register);
             registry.rebind("loginService",loginService);
-       //   registry.bind("MessageService", server);
+            registry.rebind("MessageService", message);
             //   registry.bind("BroadcastService", server);
         } catch (RemoteException e) {
             e.printStackTrace();
