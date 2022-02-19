@@ -188,7 +188,6 @@ public class RegisterController implements Initializable {
         try {
             isRegistered = registerService.registUser(registerDto);
             System.out.println(isRegistered);
-            System.out.println(registerDto);
 
             if(isRegistered)
                 stageCoordinator.switchToLoginScreen();

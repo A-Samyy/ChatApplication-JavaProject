@@ -1,11 +1,12 @@
 package gov.iti.jets.service.impl;
 
 import gov.iti.jets.networking.RMIRegister;
+import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.ClientMesseageInt;
 import gov.iti.jets.service.ServerMessageInt;
 import gov.iti.jets.service.dtos.MessageDto;
 import gov.iti.jets.service.services.LoginService;
-import org.jetbrains.annotations.NotNull;
+
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -22,11 +23,13 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
     }
 
     @Override
-    public String reciveMessage(@NotNull MessageDto messageDto) throws RemoteException {
+    public String reciveMessage(MessageDto messageDto) throws RemoteException {
         /*
         Stagecor.loadMessage(messageDto)
          */
 
+//        StageCoordinator stageCoordinator = StageCoordinator.getInstance();
+//        stageCoordinator.getHomepage().add( stageCoordinator.loadChatSection(null,null,null,0), 1, 0);
 
         System.out.println(messageDto + "ay haga");
         return messageDto.getMessageContent();

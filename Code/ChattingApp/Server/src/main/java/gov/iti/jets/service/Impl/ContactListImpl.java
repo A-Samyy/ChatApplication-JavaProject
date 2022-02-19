@@ -26,13 +26,14 @@ public class ContactListImpl extends UnicastRemoteObject implements ContactListI
     }
 
     private List<ContactDto> mappingUserDtoToContactDto(List<UserDto> allUserFriendsById) {
-        System.out.println(allUserFriendsById.toString());
+//        System.out.println(allUserFriendsById.toString());
         List<ContactDto> contactDtoList = new ArrayList<>();
         for(UserDto user : allUserFriendsById){
             ContactDto contactDto = new ContactDto();
+            contactDto.setId(user.getUserID());
             contactDto.setFriendName(user.getName());
             try {
-                System.out.println(user);
+//                System.out.println(user);
                 contactDto.setPicture(encodeImage(user.getPicture()));
             } catch (IOException e) {
                 e.printStackTrace();

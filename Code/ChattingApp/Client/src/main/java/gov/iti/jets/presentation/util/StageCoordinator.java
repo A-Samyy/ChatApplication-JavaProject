@@ -166,7 +166,7 @@ public class StageCoordinator {
                 @Override
                 public void run() {
                     try {
-                        contactController.displayContact(contactDto.getFriendName(),decodeImage(contactDto.getPicture()) ,contactDto.getStatus());
+                        contactController.displayContact(contactDto);
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -180,12 +180,7 @@ public class StageCoordinator {
 
         return contactList;
     }
-    public Image decodeImage(String image) throws Exception {
-        Image img ;
-        byte[] data = Base64.getDecoder().decode(image.getBytes(StandardCharsets.UTF_8));
-        img = new Image(new ByteArrayInputStream(data));
-        return img;
-    }
+
     public Node loadSidebar() {
         Node sidebar = null;
         try {
@@ -205,7 +200,7 @@ public class StageCoordinator {
         }
         return defaultbar;
     }
-    public Node loadChatSection(String name, Image pic , String status){
+    public Node loadChatSection(String name, Image pic , String status , int id){
         Node chatSection = null;
         try {
 
@@ -217,7 +212,7 @@ public class StageCoordinator {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    chatSectionController.display(name,pic,status);
+                    chatSectionController.display(name,pic,status , id);
                 }
             });
 

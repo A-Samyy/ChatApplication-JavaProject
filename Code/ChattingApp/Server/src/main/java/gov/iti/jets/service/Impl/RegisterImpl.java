@@ -38,7 +38,7 @@ public class RegisterImpl extends UnicastRemoteObject implements RegisterInt {
         }else{
 
             savePath = "src/main/resources/clientPictures/default.jgp";
-            System.out.println("marwa image  "+image);
+//            System.out.println("marwa image  "+image);
         }
 
         return savePath;

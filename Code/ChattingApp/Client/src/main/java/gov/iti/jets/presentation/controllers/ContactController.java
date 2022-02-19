@@ -2,6 +2,7 @@ package gov.iti.jets.presentation.controllers;
 
 import gov.iti.jets.presentation.models.ContactModel;
 import gov.iti.jets.presentation.util.StageCoordinator;
+import gov.iti.jets.service.dtos.ContactDto;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,12 +16,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
+import java.io.ByteArrayInputStream;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.ResourceBundle;
 
 public class ContactController implements Initializable {
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     private ContactModel contactModel = new ContactModel();
+    ContactDto contactDto;
     @FXML
     private AnchorPane chatBox;
 
@@ -35,23 +40,32 @@ public class ContactController implements Initializable {
     ImageView imageView = new ImageView();
     String statusCond;
 
-    public  void displayContact(String userName,Image image, String status) {
+    public  void displayContact(ContactDto contactDto) {
+        this.contactDto =contactDto;
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                contactName.setText(userName);
-                imageView.setImage(image);
+                contactName.setText(contactDto.getFriendName());
+                try {
+                    imageView.setImage(decodeImage(contactDto.getPicture()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 pictureOfContact.setFill(new ImagePattern(imageView.getImage()));
-                statusCond = status;
-                getUserStatus(status);
+                getUserStatus(contactDto.getStatus());
             }
         });
     }
-
+    public Image decodeImage(String image) throws Exception {
+        Image img ;
+        byte[] data = Base64.getDecoder().decode(image.getBytes(StandardCharsets.UTF_8));
+        img = new Image(new ByteArrayInputStream(data));
+        return img;
+    }
     @FXML
     void OpenChatOnClick(MouseEvent event) {
         GridPane home = stageCoordinator.getHomepage();
-        home.add( stageCoordinator.loadChatSection(contactName.getText(),imageView.getImage(),statusCond), 1, 0);
+        home.add( stageCoordinator.loadChatSection(contactName.getText(),imageView.getImage(),contactDto.getStatus(),contactDto.getId()), 1, 0);
     }
 
     @Override

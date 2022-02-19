@@ -5,6 +5,7 @@ import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.services.LoginService;
+import gov.iti.jets.service.services.MessageService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -61,6 +62,7 @@ public class PasswordController implements Initializable {
         String userPass = loginService.getPassword();
         if(userPassword.equals(userPass)) {
             loginService.getdata();
+            MessageService.getInstance();
             stageCoordinator.switchToGHomePageScreen();
         }else{
             System.out.println("Password is not Correct");

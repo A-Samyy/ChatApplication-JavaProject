@@ -36,7 +36,7 @@ public class ChatSectionController {
     MessageDto  messageDto= new MessageDto();
     MessageDao messageDao=new MessageDao(messageDto);
     UserModel userModel = modelFactory.getUserModel();
-    MessageService messageService = new MessageService();
+    MessageService messageService = MessageService.getInstance();
 
 
     @FXML
@@ -71,6 +71,7 @@ public class ChatSectionController {
 
     @FXML
     private Label userName;
+    int id;
 
     @FXML
     void onTypingEnter(KeyEvent event) {
@@ -78,13 +79,15 @@ public class ChatSectionController {
     }
     ImageView imageView = new ImageView();
 
-    public  void display(String name, Image image, String status) {
+    public  void display(String name, Image image, String status,int id) {
+        this.id = id;
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 userName.setText(name);
                 imageView.setImage(image);
                 profilePicture.setFill(new ImagePattern(imageView.getImage()));
+                System.out.println(status);
                 getUserStatus(status);
             }
         });
@@ -96,6 +99,7 @@ public class ChatSectionController {
         messageTextField.setText("");
         messageDao.setUserName(userModel.getUserName());
         messageDao.setUserID();
+        messageDao.getMessageDto().setFriendId(id);
         System.out.println(messageDao.getMessageDto());
         //chatBox.getChildren().add(stageCoordinator.loadMessage(messageDao));
         messageService.sendMessageDto(messageDao.getMessageDto());

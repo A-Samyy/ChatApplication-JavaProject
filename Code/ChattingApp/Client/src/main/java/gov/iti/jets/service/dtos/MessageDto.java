@@ -7,7 +7,7 @@ public class MessageDto implements Serializable {
     private String messageContent;
     private String userName;
     private int userId;
-    private int friendId = 2;
+    private int friendId;
 
 
 

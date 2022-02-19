@@ -8,6 +8,7 @@ import java.io.Serializable;
 public class ContactDto implements Serializable {
     private static final long serialVersionUID = 1427672609912364060L;
 
+    private int id;
     private String friendName;
     private String Status;
     private String picture;
@@ -15,6 +16,13 @@ public class ContactDto implements Serializable {
     public ContactDto() {
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getFriendName() {
         return friendName;
     }
@@ -38,12 +46,14 @@ public class ContactDto implements Serializable {
     public void setPicture(String picture) {
         this.picture = picture;
     }
+
     @Override
     public String toString() {
         return "ContactDto{" +
-                "friendName='" + friendName + '\'' +
+                "id=" + id +
+                ", friendName='" + friendName + '\'' +
                 ", Status='" + Status + '\'' +
-                ", picture=" + picture +
+                ", picture='" + picture + '\'' +
                 '}';
     }
 }
