@@ -35,8 +35,8 @@ public class FriendRequestDao {
         if(!check) {
             System.out.println(friendRequestDto.getUserId()+friendRequestDto.getFriendId());
             String sql = "insert into chatting_app.friend_request(user_from,user_to)  values(? ,?)";
-            boolean firstCheck =injectContact(friendRequestDto.getUserId(),friendRequestDto.getFriendId(), sql);
-            return firstCheck ;
+            boolean check2 =injectContact(friendRequestDto.getUserId(),friendRequestDto.getFriendId(), sql);
+            return check2 ;
         }
         else // we suppose to add the contacts ourselves on this false
             return false;
