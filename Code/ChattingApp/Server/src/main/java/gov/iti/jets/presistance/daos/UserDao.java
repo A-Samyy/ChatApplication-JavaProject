@@ -65,6 +65,7 @@ public class UserDao {
             if (resultSet.next()) {
                 UserDto userDto;
                 userDto = extractUser(resultSet);
+                System.out.println(userDto + " userDao");
                 return userDto;
             } else
                 return null;
@@ -73,7 +74,7 @@ public class UserDao {
             return null;
         }
     }
-    public int getUserIdByPhoneNumber(String phone_number) {
+        public int getUserIdByPhoneNumber(String phone_number) {
         try {
             String sql = "select USER_ID from chatting_app.user where PHONE_NUMBER=" + phone_number;
             preparedStatement = conn.prepareStatement(sql);

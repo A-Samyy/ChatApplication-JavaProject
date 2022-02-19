@@ -1,5 +1,6 @@
 package gov.iti.jets.networking;
 
+import gov.iti.jets.service.ContactListInt;
 import gov.iti.jets.service.LoginInt;
 import gov.iti.jets.service.RegisterInt;
 import gov.iti.jets.service.ServerMessageInt;
@@ -15,9 +16,9 @@ public class RMIRegister {
     Registry registry;
 
 
-    public RMIRegister() {
+    private RMIRegister() {
         try {
-            registry = LocateRegistry.getRegistry("localhost", 4000);
+            registry = LocateRegistry.getRegistry("localhost", 5005);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -52,6 +53,17 @@ public class RMIRegister {
         return loginInt;
     }
 
+    public ContactListInt contactListService(){
+        ContactListInt contactListInt = null;
+        try {
+            contactListInt = (ContactListInt) registry.lookup("ContactListService");
+        } catch (NotBoundException |AccessException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return contactListInt;
+    }
     public ServerMessageInt messageService(){
         ServerMessageInt serverMessageInt = null;
         try {

@@ -16,7 +16,8 @@ import java.rmi.RemoteException;
 import java.util.Base64;
 
 public class LoginService {
-    static int userId ;
+    public static int userId;
+
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
     RMIRegister rmiRegister = RMIRegister.getInstance();
@@ -70,6 +71,10 @@ public class LoginService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    public void getFriends(int id) {
 
     }
 

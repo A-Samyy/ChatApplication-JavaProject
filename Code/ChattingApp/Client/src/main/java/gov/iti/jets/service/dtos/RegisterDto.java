@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class RegisterDto implements Serializable {
-    private static final long serialVersionUID = 1420672609912364060L;
+    private static final long serialVersionUID = 1420672669912364060L;
 
     private String phoneNumber;
     private String password;

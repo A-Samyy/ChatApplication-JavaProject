@@ -41,7 +41,7 @@ public class ProfileController implements Initializable {
     private AnchorPane background;
 
     @FXML
-    private Label bio;
+    private TextArea bio;
 
     @FXML
     private RadioButton busy;
@@ -59,19 +59,22 @@ public class ProfileController implements Initializable {
     private PasswordField password;
 
     @FXML
-    private Label phoneNumber;
+    private Circle pofilePic;
 
     @FXML
-    private Circle pofilePic;
+    private Button saveButton;
 
     @FXML
     private GridPane top2;
 
     @FXML
-    private Label userEmail;
+    private TextField userEmail;
 
     @FXML
-    private Label userName;
+    private TextField userName;
+
+    @FXML
+    private TextField userPhone;
 
     private ToggleGroup toggleGroup;
     RadioButton selectedRadioButton;
@@ -81,14 +84,6 @@ public class ProfileController implements Initializable {
     @FXML
     void OnBackAction(MouseEvent event) {
         stageCoordinator.switchToGHomePageScreen();
-//        homeGrid = stageCoordinator.getHomepage();
-//        Platform.runLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                homeGrid.getChildren().removeIf(node -> GridPane.getColumnIndex(node)==0);
-//                homeGrid.add( stageCoordinator.loadSidebar(), 0, 0);
-//            }
-//        });
     }
 
     @FXML
@@ -98,6 +93,7 @@ public class ProfileController implements Initializable {
         busy.setToggleGroup(toggleGroup);
         away.setToggleGroup(toggleGroup);selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
         userModel.setGender(selectedRadioButton.getText());
+
     }
 
     @Override
@@ -108,6 +104,8 @@ public class ProfileController implements Initializable {
         getUserStatus();
         bio.textProperty().bindBidirectional(userModel.bioProperty());
         userName.textProperty().bindBidirectional(userModel.userNameProperty());
+        userEmail.textProperty().bindBidirectional(userModel.emailProperty());
+        userPhone.textProperty().bindBidirectional(userModel.phoneNumberProperty());
 
     }
     void getUserStatus(){

@@ -1,5 +1,9 @@
 package gov.iti.jets.presentation.util;
 
+import gov.iti.jets.presentation.controllers.ChatSectionController;
+import gov.iti.jets.presentation.controllers.ContactController;
+import gov.iti.jets.service.dtos.ContactDto;
+import javafx.application.Platform;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -12,12 +16,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StageCoordinator {
     private static final StageCoordinator stageCoordinator = new StageCoordinator();
@@ -38,10 +51,11 @@ public class StageCoordinator {
         this.primaryStage = primaryStage;
     }
 
-    public  void setHomepage(GridPane gridPane){
+    public void setHomepage(GridPane gridPane) {
         homepage = gridPane;
     }
-    public  GridPane getHomepage(){
+
+    public GridPane getHomepage() {
         return homepage;
     }
 
@@ -141,20 +155,37 @@ public class StageCoordinator {
         primaryStage.setScene(registrationScene);
     }
 
-    public Node loadContacts() {
-        Node contactList = nodeMap.get("contactList");
-        if (contactList == null) {
-            try {
-                contactList = FXMLLoader.load(getClass().getResource("/views/contactSection/contactList1.fxml"));
-                nodeMap.put("contactList", contactList);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    public Node loadContacts(ContactDto contactDto) {
+        Node contactList = null;
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/views/chattingSection/chatSection.fxml"));
+            contactList = loader.load();
+            ContactController contactController =loader.getController();
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        contactController.displayContact(contactDto.getFriendName(),decodeImage(contactDto.getPicture()) ,contactDto.getStatus());
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+
         }
 
         return contactList;
     }
-
+    public Image decodeImage(String image) throws Exception {
+        Image img ;
+        byte[] data = Base64.getDecoder().decode(image.getBytes(StandardCharsets.UTF_8));
+        img = new Image(new ByteArrayInputStream(data));
+        return img;
+    }
     public Node loadSidebar() {
         Node sidebar = null;
         try {
@@ -174,10 +205,22 @@ public class StageCoordinator {
         }
         return defaultbar;
     }
-    public Node loadChatSection(){
+    public Node loadChatSection(String name, Image pic , String status){
         Node chatSection = null;
         try {
-            chatSection = FXMLLoader.load(getClass().getResource("/views/HomePageSection2/homePageSection2.fxml"));
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/views/HomePageSection2/homePageSection2.fxml"));
+
+            chatSection = loader.load();
+            ChatSectionController chatSectionController = (ChatSectionController) loader.getController();
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    chatSectionController.display(name,pic,status);
+                }
+            });
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -240,15 +283,6 @@ public class StageCoordinator {
 
     }
 
-    public AnchorPane loadMyChat() {
-        AnchorPane chatSectiodn = null;
-        try {
-            chatSectiodn = FXMLLoader.load(getClass().getResource("/views/chattingSection/chatSection.fxml"));
-        } catch (Exception e) {
-            System.out.println("File Not Found Exception");
-        }
-        return chatSectiodn;
-    }
 
     // public Pane loadUserPane(){
     // try {
@@ -262,7 +296,18 @@ public class StageCoordinator {
     // return null ;
     // }
 
-     public VBox loadMessage( MessageDao messageDao) {
+    // public VBox loadMessage(){
+    // try {
+    // VBox message =
+    // FXMLLoader.load(getClass().getResource("/views/message/messageView.fxml"));
+    // return message;
+    // }catch(Exception e){
+    // System.out.println("File Not Found Exception");
+    // }
+    // return null ;
+    // }
+
+     public HBox loadMessage( MessageDao messageDao) {
 
 
          try {
@@ -271,7 +316,7 @@ public class StageCoordinator {
              FXMLLoader loader = new FXMLLoader();
              loader.setLocation(getClass().getResource("/views/message/messageView.fxml"));
 
-             VBox message = loader.load();
+             HBox message = loader.load();
              MessageController messageController = (MessageController) loader.getController();
              Platform.runLater(new Runnable() {
                  @Override
