@@ -16,14 +16,13 @@ import java.rmi.RemoteException;
 import java.util.Base64;
 
 public class LoginService {
-    public static int userId;
+    private static int userId;
 
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
     RMIRegister rmiRegister = RMIRegister.getInstance();
     LoginInt loginInt = rmiRegister.loginService();
     LoginDto loginDto = null;
-    ClientMessageImpl clientMesseageInt;
 
     public LoginService() {
 
@@ -41,7 +40,6 @@ public class LoginService {
     }
 
     public void  getdata() throws RemoteException {
-        clientMesseageInt=new ClientMessageImpl();
         UserHomePageDto userHomePageDto = null;
         try {
             userHomePageDto = loginInt.getUserById(this.userId);
@@ -71,10 +69,6 @@ public class LoginService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-    }
-
-    public void getFriends(int id) {
 
     }
 

@@ -3,11 +3,13 @@ package gov.iti.jets.presentation.controllers;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
+import gov.iti.jets.service.ClientMesseageInt;
 import gov.iti.jets.service.ServerMessageInt;
 import gov.iti.jets.service.daos.MessageDao;
 import gov.iti.jets.service.dtos.MessageDto;
 import gov.iti.jets.service.impl.ClientMessageImpl;
 import gov.iti.jets.service.services.LoginService;
+import gov.iti.jets.service.services.MessageService;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -34,7 +36,7 @@ public class ChatSectionController {
     MessageDto  messageDto= new MessageDto();
     MessageDao messageDao=new MessageDao(messageDto);
     UserModel userModel = modelFactory.getUserModel();
-    ClientMessageImpl clientMesseageInt=new ClientMessageImpl();
+    MessageService messageService = new MessageService();
 
 
     @FXML
@@ -96,8 +98,7 @@ public class ChatSectionController {
         messageDao.setUserID();
         System.out.println(messageDao.getMessageDto());
         //chatBox.getChildren().add(stageCoordinator.loadMessage(messageDao));
-        clientMesseageInt.serverMessageInt.getMesssage(messageDao.getMessageDto());
-
+        messageService.sendMessageDto(messageDao.getMessageDto());
         //System.out.println(messageDao.getMessageDto());
 
         chatContainer.getChildren().add(stageCoordinator.loadMessage(messageDao));

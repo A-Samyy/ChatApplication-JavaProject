@@ -3,6 +3,7 @@ package gov.iti.jets.service.Impl;
 import gov.iti.jets.service.ClientMesseageInt;
 import gov.iti.jets.service.ServerMessageInt;
 import gov.iti.jets.service.dtos.MessageDto;
+import org.jetbrains.annotations.NotNull;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -18,7 +19,7 @@ public class ServerMessageImpl extends UnicastRemoteObject implements  ServerMes
     }
 
     @Override
-    public boolean getMesssage(MessageDto messageDto) throws RemoteException {
+    public boolean getMesssage(@NotNull MessageDto messageDto) throws RemoteException {
         if (clients.containsKey(messageDto.getFriendId())){
             sendMessage(messageDto);
             return true;
@@ -43,7 +44,7 @@ public class ServerMessageImpl extends UnicastRemoteObject implements  ServerMes
         return false;
     }
 
-    public boolean sendMessage(MessageDto messageDto){
+    public boolean sendMessage(@NotNull MessageDto messageDto){
         try {
             System.out.println(messageDto.getFriendId());
             clients.get(messageDto.getFriendId()).reciveMessage(messageDto);

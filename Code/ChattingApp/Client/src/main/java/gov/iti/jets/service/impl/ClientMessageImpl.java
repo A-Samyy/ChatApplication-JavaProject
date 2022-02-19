@@ -5,6 +5,7 @@ import gov.iti.jets.service.ClientMesseageInt;
 import gov.iti.jets.service.ServerMessageInt;
 import gov.iti.jets.service.dtos.MessageDto;
 import gov.iti.jets.service.services.LoginService;
+import org.jetbrains.annotations.NotNull;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -21,8 +22,22 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
     }
 
     @Override
-    public String reciveMessage(MessageDto messageDto) throws RemoteException {
+    public String reciveMessage(@NotNull MessageDto messageDto) throws RemoteException {
+        /*
+        Stagecor.loadMessage(messageDto)
+         */
+
+
         System.out.println(messageDto + "ay haga");
         return messageDto.getMessageContent();
+    }
+
+
+    public void sendMessage(MessageDto messageDto){
+        try {
+            serverMessageInt.getMesssage(messageDto);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 }

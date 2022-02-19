@@ -21,19 +21,15 @@ public class RMICreateRegister {
             LoginInt loginService = new LoginImpl();
             ContactListInt contactListInt = new ContactListImpl();
             ServerMessageInt message = new ServerMessageImpl();
-            Registry registry = LocateRegistry.getRegistry(4000);
+            Registry registry = LocateRegistry.createRegistry(4020);
             registry.rebind("RegisterService",register);
             registry.rebind("loginService",loginService);
             registry.rebind("ContactListService",contactListInt);
-//            registry.bind("MessageService", server);
-//            registry.bind("BroadcastService", server);
             registry.rebind("MessageService", message);
-            //   registry.bind("BroadcastService", server);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
     }
-
     public static RMICreateRegister getInstance() {
         return rmiCreateRegister;
     }
