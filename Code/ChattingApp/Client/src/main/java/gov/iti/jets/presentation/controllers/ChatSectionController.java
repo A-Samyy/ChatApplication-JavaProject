@@ -11,25 +11,30 @@ import gov.iti.jets.service.impl.ClientMessageImpl;
 import gov.iti.jets.service.services.LoginService;
 import gov.iti.jets.service.services.MessageService;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.SplitMenuButton;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.geometry.NodeOrientation;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+import java.net.URL;
 import java.rmi.RemoteException;
+import java.util.ResourceBundle;
 
-public class ChatSectionController {
+public class ChatSectionController implements Initializable {
 
     private final StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     private final ModelFactory modelFactory = ModelFactory.getInstance();
@@ -37,13 +42,13 @@ public class ChatSectionController {
     MessageDao messageDao=new MessageDao(messageDto);
     UserModel userModel = modelFactory.getUserModel();
     MessageService messageService = MessageService.getInstance();
-
+    private ObservableList<HBox> messageObservableList;
 
     @FXML
     private AnchorPane bottomBar;
 
     @FXML
-    private VBox chatContainer;
+    private ListView<HBox> chatContainer;
 
     @FXML
     private FontIcon filesButton;
@@ -101,11 +106,11 @@ public class ChatSectionController {
         messageDao.setUserID();
         messageDao.getMessageDto().setFriendId(id);
         System.out.println(messageDao.getMessageDto());
-        //chatBox.getChildren().add(stageCoordinator.loadMessage(messageDao));
-        messageService.sendMessageDto(messageDao.getMessageDto());
-        //System.out.println(messageDao.getMessageDto());
 
-        chatContainer.getChildren().add(stageCoordinator.loadMessage(messageDao));
+        messageService.sendMessageDto(messageDao.getMessageDto());
+
+        createMessage();
+
     }
 
     void getUserStatus(String statusCond){
@@ -117,5 +122,44 @@ public class ChatSectionController {
             status.setFill(Color.RED);
         }
     }
+
+    private void createMessage(){
+
+
+        messageObservableList.add(stageCoordinator.loadMessage(messageDao));
+        chatContainer.setItems(messageObservableList);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        chatContainer.setCellFactory(studentListView -> new MessageListViewCell());
+        messageObservableList = FXCollections.observableArrayList();
+
+    }
+
+    private class MessageListViewCell extends ListCell<HBox> {
+
+       private Pane messageCellContainer=new Pane();
+        public MessageListViewCell() {
+
+
+        }
+
+        @Override
+        protected void updateItem(HBox item, boolean empty) {
+            super.updateItem(item, empty);
+            if (item != null && !empty) { // <== test for null item and empty parameter
+
+                item.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+                messageCellContainer.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+                messageCellContainer.getChildren().add(item);
+                setGraphic(messageCellContainer);
+            } else {
+                setGraphic(null);
+            }
+        }
+    }
+
+
 
 }

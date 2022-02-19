@@ -2,15 +2,14 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.HTMLEditor?>
@@ -37,11 +36,6 @@
             </Label>
          </children>
       </AnchorPane>
-      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="563.0" prefWidth="675.0" GridPane.rowIndex="1">
-         <content>
-            <VBox fx:id="chatContainer" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" />
-         </content>
-      </ScrollPane>
       <AnchorPane fx:id="bottomBar" styleClass="chatBar" GridPane.rowIndex="2">
          <children>
             <FontIcon fx:id="filesButton" iconColor="WHITE" iconLiteral="fas-paperclip" iconSize="25" layoutX="13.0" layoutY="58.99999847412109" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="37.12499847412109">
@@ -73,6 +67,6 @@
             </FontIcon>
          </children>
       </AnchorPane>
-      <VBox prefHeight="200.0" prefWidth="100.0" />
+      <ListView fx:id="chatContainer" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
    </children>
 </GridPane>
