@@ -5,35 +5,31 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 
-<VBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="297.0" style="-fx-background-radius: 20 20 20 20;" stylesheets="@message.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="chatMessage" alignment="TOP_RIGHT" minHeight="70.0" prefHeight="90.0" prefWidth="269.0" style="-fx-background-color: #2f2a57; -fx-background-radius: 10px 10px 10px 0px;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.MessageController">
    <children>
-      <Label alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="68.0" text="Label">
-         <VBox.margin>
-            <Insets bottom="10.0" right="15.0" top="10.0" />
-         </VBox.margin>
+      <Label fx:id="messageBox" prefHeight="46.0" prefWidth="210.0" style="-fx-background-color: transparent; -fx-background-radius: 20 20 20 20; -fx-text-fill: white; -fx-font-size: 15px;" wrapText="true" HBox.hgrow="ALWAYS">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <HBox.margin>
+            <Insets bottom="15.0" left="2.0" top="20.0" />
+         </HBox.margin>
       </Label>
-      <HBox alignment="CENTER" prefWidth="200.0">
+      <VBox prefHeight="98.0" prefWidth="88.0">
          <children>
-            <Label prefWidth="214.0" style="-fx-background-color: WHITE; -fx-background-radius: 20 20 20 20;" wrapText="true">
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" />
-               </HBox.margin>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </Label>
-            <Pane prefHeight="50.0" prefWidth="73.0">
+            <Pane prefHeight="109.0" prefWidth="95.0">
                <children>
-                  <Circle fill="WHITE" layoutX="39.0" layoutY="18.0" radius="25.0" stroke="#1e1836" strokeType="INSIDE" />
-                  <Circle fill="#15ac45" layoutX="57.0" layoutY="35.0" radius="6.0" stroke="#1e1836" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" />
+                  <Label fx:id="userName" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="-13.0" layoutY="5.0" prefHeight="17.0" prefWidth="77.0" style="-fx-text-fill: white; -fx-font-size: 15px;" text="ggg" textAlignment="JUSTIFY" textFill="WHITE">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></Label>
                </children>
             </Pane>
          </children>
-      </HBox>
+      </VBox>
    </children>
    <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      <Insets bottom="5.0" left="5.0" top="5.0" />
    </padding>
-</VBox>
+</HBox>

@@ -2,9 +2,12 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -35,8 +38,8 @@
                   <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="173.60000000000002" minHeight="10.0" prefHeight="172.00000610351563" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="-Infinity" minHeight="0.0" prefHeight="45.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="110.39999999999998" minHeight="10.0" prefHeight="110.39999999999998" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="39.20000610351565" minHeight="10.0" prefHeight="29.600000000000023" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="127.4666809082031" minHeight="10.0" prefHeight="127.4666809082031" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="39.20000610351565" minHeight="10.0" prefHeight="18.333319091796852" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="187.199951171875" minHeight="10.0" prefHeight="100.79998779296875" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="39.19997558593752" minHeight="0.0" prefHeight="26.400048828125023" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="171.20000000000005" minHeight="0.0" prefHeight="167.73333740234375" vgrow="SOMETIMES" />
@@ -114,7 +117,11 @@
                               <Insets left="20.0" top="10.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label fx:id="bio" prefHeight="63.0" prefWidth="303.0" text="Label" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <TextArea fx:id="bio" prefHeight="200.0" prefWidth="200.0" text="helllooooo" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" top="5.0" />
+                           </GridPane.margin>
+                        </TextArea>
                      </children>
                   </GridPane>
                   <GridPane layoutX="10.0" layoutY="99.0" prefHeight="0.0" prefWidth="600.0" styleClass="blueBar" GridPane.rowIndex="4">
@@ -228,59 +235,24 @@
             <AnchorPane fx:id="editingBox" layoutX="57.0" layoutY="149.0" prefHeight="576.0" prefWidth="578.0" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="149.0">
                <children>
                   <Label layoutX="44.0" layoutY="29.0" prefHeight="31.0" prefWidth="354.0" styleClass="titles" text="User_Name :" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="180.0" />
-                  <Label fx:id="userName" layoutX="41.0" layoutY="68.0" prefHeight="55.0" prefWidth="369.0" styleClass="userData" text="Hend" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="165.0">
-                     <padding>
-                        <Insets bottom="10.0" left="20.0" top="10.0" />
-                     </padding>
-                  </Label>
-                  <FontIcon iconColor="WHITE" iconLiteral="fas-user-edit" iconSize="25" layoutX="462.0" layoutY="106.0" AnchorPane.rightAnchor="84.35000000000002" AnchorPane.topAnchor="84.125">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </FontIcon>
                   <Label layoutX="46.0" layoutY="138.0" styleClass="titles" text="Email :" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="165.0" />
-                  <Label fx:id="userEmail" layoutX="43.0" layoutY="177.0" prefHeight="55.0" prefWidth="369.0" styleClass="userData" text="Hend" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="165.0">
-                     <padding>
-                        <Insets bottom="10.0" left="20.0" top="10.0" />
-                     </padding>
-                  </Label>
-                  <FontIcon iconColor="WHITE" iconLiteral="fas-user-edit" iconSize="25" layoutX="464.0" layoutY="215.0" AnchorPane.rightAnchor="82.35000000000002">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </FontIcon>
                   <Label layoutX="47.0" layoutY="245.0" prefHeight="31.0" prefWidth="354.0" styleClass="titles" text="Phone-Number :" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="177.0" />
-                  <Label fx:id="phoneNumber" layoutX="44.0" layoutY="284.0" prefHeight="55.0" prefWidth="369.0" styleClass="userData" text="Hend" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="165.0">
-                     <padding>
-                        <Insets bottom="10.0" left="20.0" top="10.0" />
-                     </padding>
-                  </Label>
-                  <FontIcon iconColor="WHITE" iconLiteral="fas-user-edit" iconSize="25" layoutX="465.0" layoutY="322.0" AnchorPane.rightAnchor="83.10000000000002">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </FontIcon>
                   <Label layoutX="47.0" layoutY="348.0" prefHeight="31.0" prefWidth="361.0" styleClass="titles" text="Change Password :" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="170.0" />
-                  <FontIcon iconColor="WHITE" iconLiteral="fas-user-edit" iconSize="25" layoutX="465.0" layoutY="425.0" AnchorPane.rightAnchor="83.10000000000002">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </FontIcon>
-                  <FontIcon iconColor="WHITE" iconLiteral="fas-user-edit" iconSize="25" layoutX="464.0" layoutY="523.0" AnchorPane.bottomAnchor="49.875" AnchorPane.rightAnchor="82.35000000000002">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </FontIcon>
-                  <PasswordField fx:id="password" layoutX="47.0" layoutY="388.0" prefHeight="55.0" prefWidth="367.0" styleClass="userData" text="hhh" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="163.40000000000003" />
+                  <PasswordField fx:id="password" layoutX="47.0" layoutY="388.0" prefHeight="55.0" prefWidth="367.0" styleClass="userData" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="163.40000000000003" />
                   <Label layoutX="50.0" layoutY="449.0" prefHeight="31.0" prefWidth="360.0" styleClass="titles" text="Confirm New Password :" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="177.0" />
-                  <PasswordField fx:id="confirmPasswrord" layoutX="50.0" layoutY="489.0" prefHeight="55.0" prefWidth="367.0" styleClass="userData" text="hhh" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="163.40000000000003" />
+                  <PasswordField fx:id="confirmPasswrord" layoutX="50.0" layoutY="489.0" prefHeight="55.0" prefWidth="367.0" styleClass="userData" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="163.40000000000003" />
+                  <TextField fx:id="userName" layoutX="43.0" layoutY="71.0" prefHeight="54.0" prefWidth="371.0" styleClass="userData" text="hend" />
+                  <TextField fx:id="userEmail" layoutX="45.0" layoutY="183.0" prefHeight="54.0" prefWidth="371.0" styleClass="userData" />
+                  <TextField fx:id="userPhone" layoutX="46.0" layoutY="285.0" prefHeight="54.0" prefWidth="371.0" styleClass="userData" />
+                  <Button fx:id="saveButton" layoutX="462.0" layoutY="505.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="102.0" text="SAVE" AnchorPane.bottomAnchor="8.600000000000001" AnchorPane.rightAnchor="13.200000000000017" />
                </children>
             </AnchorPane>
-            <Label contentDisplay="CENTER" layoutX="-12.0" layoutY="44.0" prefHeight="66.0" prefWidth="478.0" styleClass="titles" text="        My Account" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="-12.0" AnchorPane.rightAnchor="208.0" AnchorPane.topAnchor="44.0">
+            <Label contentDisplay="CENTER" layoutX="47.0" layoutY="32.0" prefHeight="102.0" prefWidth="478.0" styleClass="titles" text="        My Account" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="149.0" AnchorPane.topAnchor="32.0">
                <font>
                   <Font size="45.0" />
                </font>
             </Label>
+            <FontIcon iconColor="WHITE" iconLiteral="fas-user-edit" iconSize="40" layoutX="80.0" layoutY="96.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="543.6" AnchorPane.topAnchor="61.0" />
          </children>
       </AnchorPane>
    </children>

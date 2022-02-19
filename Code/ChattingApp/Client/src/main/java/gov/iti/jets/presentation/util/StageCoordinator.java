@@ -1,7 +1,16 @@
 package gov.iti.jets.presentation.util;
 
+import gov.iti.jets.presentation.controllers.ChatSectionController;
 import gov.iti.jets.presentation.controllers.ContactController;
 import gov.iti.jets.service.dtos.ContactDto;
+import javafx.application.Platform;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import gov.iti.jets.presentation.controllers.MessageController;
+import gov.iti.jets.service.daos.MessageDao;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -11,6 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -156,7 +166,8 @@ public class StageCoordinator {
                 @Override
                 public void run() {
                     try {
-                        contactController.displayContact(contactDto.getFriendName(), contactDto.getStatus());
+                        contactController.displayContact(contactDto.getFriendName(),decodeImage(contactDto.getPicture()) ,contactDto.getStatus());
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -185,7 +196,7 @@ public class StageCoordinator {
         return sidebar;
     }
 
-    public Node loadDefault() {
+    public Node loadDefault(){
         Node defaultbar = null;
         try {
             defaultbar = FXMLLoader.load(getClass().getResource("/views/HomePageSection1/defaultHomeScreen1.fxml"));
@@ -194,11 +205,22 @@ public class StageCoordinator {
         }
         return defaultbar;
     }
-
-    public Node loadChatSection() {
+    public Node loadChatSection(String name, Image pic , String status){
         Node chatSection = null;
         try {
-            chatSection = FXMLLoader.load(getClass().getResource("/views/HomePageSection2/homePageSection2.fxml"));
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/views/HomePageSection2/homePageSection2.fxml"));
+
+            chatSection = loader.load();
+            ChatSectionController chatSectionController = (ChatSectionController) loader.getController();
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    chatSectionController.display(name,pic,status);
+                }
+            });
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -284,4 +306,31 @@ public class StageCoordinator {
     // }
     // return null ;
     // }
-}
+
+     public HBox loadMessage( MessageDao messageDao) {
+
+
+         try {
+
+//             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/message/messageView.fxml"));
+//
+             FXMLLoader loader = new FXMLLoader();
+             loader.setLocation(getClass().getResource("/views/message/messageView.fxml")); // Your .fxml File
+
+             HBox message = loader.load();
+             MessageController messageController = (MessageController) loader.getController();
+//             Platform.runLater(new Runnable() {
+//                 @Override
+//                 public void run() {
+                     messageController.displayMessage(messageDao.getMessageContent(), messageDao.getMessageUserName());
+//                 }
+//             });
+
+
+             return message;
+         } catch (Exception e) {
+             System.out.println("File Not Found Exception");
+         }
+         return null;
+
+     }}
