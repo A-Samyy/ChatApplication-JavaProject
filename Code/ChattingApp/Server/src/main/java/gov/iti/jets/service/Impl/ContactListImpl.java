@@ -32,6 +32,7 @@ public class ContactListImpl extends UnicastRemoteObject implements ContactListI
             ContactDto contactDto = new ContactDto();
             contactDto.setFriendName(user.getName());
             try {
+                System.out.println(user);
                 contactDto.setPicture(encodeImage(user.getPicture()));
             } catch (IOException e) {
                 e.printStackTrace();

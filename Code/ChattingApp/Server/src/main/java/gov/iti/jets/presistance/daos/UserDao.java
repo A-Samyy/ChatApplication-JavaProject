@@ -92,15 +92,8 @@ public class UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        } finally {
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
+
     }
 
     public int getUserIdByPhoneNumber(String phone_number) {
