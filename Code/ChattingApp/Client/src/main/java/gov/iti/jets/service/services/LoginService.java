@@ -3,9 +3,11 @@ package gov.iti.jets.service.services;
 import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
+import gov.iti.jets.service.ClientMesseageInt;
 import gov.iti.jets.service.LoginInt;
 import gov.iti.jets.service.dtos.LoginDto;
 import gov.iti.jets.service.dtos.UserHomePageDto;
+import gov.iti.jets.service.impl.ClientMessageImpl;
 import javafx.scene.image.Image;
 
 import java.io.ByteArrayInputStream;
@@ -14,7 +16,7 @@ import java.rmi.RemoteException;
 import java.util.Base64;
 
 public class LoginService {
-    public static int userId;
+    private static int userId;
 
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
@@ -37,7 +39,7 @@ public class LoginService {
         return this.loginInt.isPasswordValid();
     }
 
-    public void  getdata(){
+    public void  getdata() throws RemoteException {
         UserHomePageDto userHomePageDto = null;
         try {
             userHomePageDto = loginInt.getUserById(this.userId);
@@ -67,10 +69,6 @@ public class LoginService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-    }
-
-    public void getFriends(int id) {
 
     }
 

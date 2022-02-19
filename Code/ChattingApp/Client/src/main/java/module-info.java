@@ -6,6 +6,7 @@ module Client {
     requires org.kordamp.ikonli.fontawesome5;
     requires java.rmi;
     requires javafx.web;
+    requires org.jetbrains.annotations;
     opens gov.iti.jets.presentation.controllers to javafx.fxml;
     exports gov.iti.jets.service.dtos;
     exports gov.iti.jets.service;

@@ -122,7 +122,7 @@ public class SidebarController implements Initializable {
         }
         bio.textProperty().bindBidirectional(userModel.bioProperty());
         userName.textProperty().bindBidirectional(userModel.userNameProperty());
-        for (ContactDto contactDto : contactListService.getListOfContact(LoginService.userId)) {
+        for (ContactDto contactDto : contactListService.getListOfContact(LoginService.getId())) {
             contactModel = new ContactModel();
             System.out.println(contactDto.getFriendName());
             chattingSectionVbox.getChildren().add(stageCoordinator.loadContacts(contactDto));

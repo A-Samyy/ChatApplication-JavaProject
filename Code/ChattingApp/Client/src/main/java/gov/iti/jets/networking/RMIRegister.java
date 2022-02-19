@@ -3,6 +3,8 @@ package gov.iti.jets.networking;
 import gov.iti.jets.service.ContactListInt;
 import gov.iti.jets.service.LoginInt;
 import gov.iti.jets.service.RegisterInt;
+import gov.iti.jets.service.ServerMessageInt;
+
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -62,5 +64,17 @@ public class RMIRegister {
         }
         return contactListInt;
     }
+    public ServerMessageInt messageService(){
+        ServerMessageInt serverMessageInt = null;
+        try {
+            serverMessageInt = (ServerMessageInt) registry.lookup("MessageService");
+        } catch (NotBoundException |AccessException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return serverMessageInt;
+    }
+
 
 }

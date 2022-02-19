@@ -312,21 +312,18 @@ public class StageCoordinator {
 
          try {
 
-//             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/message/messageView.fxml"));
-//
+            // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/message/messageView.fxml"));
              FXMLLoader loader = new FXMLLoader();
-             loader.setLocation(getClass().getResource("/views/message/messageView.fxml")); // Your .fxml File
+             loader.setLocation(getClass().getResource("/views/message/messageView.fxml"));
 
              HBox message = loader.load();
              MessageController messageController = (MessageController) loader.getController();
-//             Platform.runLater(new Runnable() {
-//                 @Override
-//                 public void run() {
+             Platform.runLater(new Runnable() {
+                 @Override
+                 public void run() {
                      messageController.displayMessage(messageDao.getMessageContent(), messageDao.getMessageUserName());
-//                 }
-//             });
-
-
+                 }
+             });
              return message;
          } catch (Exception e) {
              System.out.println("File Not Found Exception");
