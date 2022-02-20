@@ -10,13 +10,12 @@ module Server {
     requires transitive java.sql.rowset;
     requires transitive javafx.graphics;
     requires java.rmi;
-    requires Common;
+    requires CommonModule;
     requires org.jetbrains.annotations;
     requires com.zaxxer.hikari;
     opens gov.iti.jets.presentation.controllers to javafx.fxml;
     requires org.slf4j;
     requires org.slf4j.jul;
     exports gov.iti.jets.presentation.controllers;
-    exports gov.iti.jets.service;
     exports gov.iti.jets;
 }

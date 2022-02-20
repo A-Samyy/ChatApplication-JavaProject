@@ -2,8 +2,8 @@ package gov.iti.jets.service.Impl;
 
 import gov.iti.jets.presistance.daos.ContactDao;
 import gov.iti.jets.presistance.dtos.UserDto;
-import gov.iti.jets.service.ContactListInt;
-import gov.iti.jets.service.dtos.ContactDto;
+import gov.iti.jets.common.interfaces.ContactListInt;
+import gov.iti.jets.common.dtos.ContactDto;
 
 import java.io.FileInputStream;
 import java.io.IOException;

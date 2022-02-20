@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import gov.iti.jets.common.dtos.RegisterDto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
-import gov.iti.jets.service.dtos.RegisterDto;
 import gov.iti.jets.service.services.RegisterService;
 import javafx.event.ActionEvent;
 import javafx.event.Event;

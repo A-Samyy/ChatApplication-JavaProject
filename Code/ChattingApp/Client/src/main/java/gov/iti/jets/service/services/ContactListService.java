@@ -1,7 +1,7 @@
 package gov.iti.jets.service.services;
 
+import gov.iti.jets.common.dtos.ContactDto;
 import gov.iti.jets.networking.RMIRegister;
-import gov.iti.jets.service.dtos.ContactDto;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;

@@ -1,14 +1,11 @@
 package gov.iti.jets.presentation.controllers;
 
+import gov.iti.jets.common.dtos.MessageDto;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
-import gov.iti.jets.service.ClientMesseageInt;
-import gov.iti.jets.service.ServerMessageInt;
 import gov.iti.jets.service.daos.MessageDao;
-import gov.iti.jets.service.dtos.MessageDto;
 import gov.iti.jets.service.impl.ClientMessageImpl;
-import gov.iti.jets.service.services.LoginService;
 import gov.iti.jets.service.services.MessageService;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -24,7 +21,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;

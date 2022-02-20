@@ -1,9 +1,9 @@
 package gov.iti.jets.service.services;
 
 
+import gov.iti.jets.common.dtos.RegisterDto;
+import gov.iti.jets.common.interfaces.RegisterInt;
 import gov.iti.jets.networking.RMIRegister;
-import gov.iti.jets.service.RegisterInt;
-import gov.iti.jets.service.dtos.RegisterDto;
 import java.rmi.RemoteException;
 
 public class RegisterService {

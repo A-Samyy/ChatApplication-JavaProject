@@ -1,8 +1,8 @@
 package gov.iti.jets.presentation.controllers;
 
+import gov.iti.jets.common.dtos.ContactDto;
 import gov.iti.jets.presentation.models.ContactModel;
 import gov.iti.jets.presentation.util.StageCoordinator;
-import gov.iti.jets.service.dtos.ContactDto;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

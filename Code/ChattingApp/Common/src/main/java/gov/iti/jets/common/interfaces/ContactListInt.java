@@ -1,6 +1,8 @@
-package gov.iti.jets.service;
+package gov.iti.jets.common.interfaces;
 
-import gov.iti.jets.service.dtos.ContactDto;
+
+
+import gov.iti.jets.common.dtos.ContactDto;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

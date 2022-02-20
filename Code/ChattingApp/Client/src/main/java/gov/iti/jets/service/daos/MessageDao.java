@@ -1,6 +1,7 @@
 package gov.iti.jets.service.daos;
 
-import gov.iti.jets.service.dtos.MessageDto;
+
+import gov.iti.jets.common.dtos.MessageDto;
 import gov.iti.jets.service.services.LoginService;
 
 public class MessageDao {

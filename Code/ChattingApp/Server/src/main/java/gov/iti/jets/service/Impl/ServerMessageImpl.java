@@ -1,8 +1,8 @@
 package gov.iti.jets.service.Impl;
 
-import gov.iti.jets.service.ClientMesseageInt;
-import gov.iti.jets.service.ServerMessageInt;
-import gov.iti.jets.service.dtos.MessageDto;
+import gov.iti.jets.common.interfaces.ClientMesseageInt;
+import gov.iti.jets.common.interfaces.ServerMessageInt;
+import gov.iti.jets.common.dtos.MessageDto;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

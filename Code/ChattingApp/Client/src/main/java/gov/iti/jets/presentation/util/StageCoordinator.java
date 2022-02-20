@@ -1,8 +1,9 @@
 package gov.iti.jets.presentation.util;
 
+import gov.iti.jets.common.dtos.ContactDto;
 import gov.iti.jets.presentation.controllers.ChatSectionController;
 import gov.iti.jets.presentation.controllers.ContactController;
-import gov.iti.jets.service.dtos.ContactDto;
+
 import javafx.application.Platform;
 import java.io.File;
 import java.io.IOException;

@@ -1,11 +1,9 @@
 package gov.iti.jets.service.services;
 
+import gov.iti.jets.common.dtos.MessageDto;
 import gov.iti.jets.presentation.util.StageCoordinator;
-import gov.iti.jets.service.ClientMesseageInt;
 import gov.iti.jets.service.daos.MessageDao;
-import gov.iti.jets.service.dtos.MessageDto;
 import gov.iti.jets.service.impl.ClientMessageImpl;
-import javafx.collections.ObservableList;
 import javafx.scene.layout.HBox;
 
 import java.rmi.RemoteException;

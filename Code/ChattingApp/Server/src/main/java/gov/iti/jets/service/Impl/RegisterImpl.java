@@ -1,10 +1,11 @@
 package gov.iti.jets.service.Impl;
 
+import gov.iti.jets.common.dtos.RegisterDto;
 import gov.iti.jets.presistance.daos.UserDao;
 import gov.iti.jets.presistance.dtos.Status;
 import gov.iti.jets.presistance.dtos.UserDto;
-import gov.iti.jets.service.RegisterInt;
-import gov.iti.jets.service.dtos.RegisterDto;
+import gov.iti.jets.common.interfaces.RegisterInt;
+
 
 import java.io.FileOutputStream;
 import java.nio.charset.StandardCharsets;
@@ -19,12 +20,16 @@ public class RegisterImpl extends UnicastRemoteObject implements RegisterInt {
     public RegisterImpl() throws RemoteException {
 
     }
-
     @Override
     public Boolean addUser(RegisterDto registerDTO) throws RemoteException {
         UserDto userDto = mapper(registerDTO);
         return userDao.addUserDto(userDto);
     }
+//    @Override
+//    public Boolean addUser(RegisterDto registerDTO) throws RemoteException {
+//        UserDto userDto = mapper(registerDTO);
+//        return userDao.addUserDto(userDto);
+//    }
 
     public String decodeImage(String image,String phone_number) throws Exception {
 
@@ -65,4 +70,6 @@ public class RegisterImpl extends UnicastRemoteObject implements RegisterInt {
         System.out.println("marwa image  ");
         return userDto;
     }
+
+
 }
