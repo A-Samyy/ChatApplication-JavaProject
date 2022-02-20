@@ -16,12 +16,15 @@ import javafx.scene.layout.HBox;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ClientMessageImpl extends UnicastRemoteObject implements ClientMesseageInt {
 
     RMIRegister rmiRegister=RMIRegister.getInstance();
     public ServerMessageInt serverMessageInt;
+    static public Map<Integer, ObservableList<HBox>> map = new HashMap<>();
     static public ObservableList<HBox> list = FXCollections.observableArrayList();
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     MessageService messageService = MessageService.getInstance();
@@ -41,9 +44,14 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
 //        messageService.recieveMessageDto(messageDto);
 
 //        stageCoordinator.getHomepage().add( stageCoordinator.loadChatSection(null,null,null,0), 1, 0);
+
         messageDao = new MessageDao(messageDto);
 
         list.add(stageCoordinator.loadMessage(messageDao));
+//        if(add){
+            map.put(messageDto.getUserId(),list);
+//        }
+
 
         System.out.println(list.toString());
         return messageDto.getMessageContent();

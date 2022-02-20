@@ -131,10 +131,11 @@ public class ChatSectionController implements Initializable {
 
 
     }
-    public void displayMessage(){
+    public void displayMessage(int id){
         if(!ClientMessageImpl.list.isEmpty()){
-
-            chatContainer.setItems(ClientMessageImpl.list);
+            System.out.println();
+            if(ClientMessageImpl.map.get(id) != null);
+                chatContainer.setItems(ClientMessageImpl.map.get(id)) ;
         }
     }
 

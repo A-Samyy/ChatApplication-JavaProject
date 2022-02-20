@@ -212,8 +212,9 @@ public class StageCoordinator {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
+                    System.out.println(id);
                     chatSectionController.display(name,pic,status , id);
-                    chatSectionController.displayMessage();
+                    chatSectionController.displayMessage(id);
                 }
             });
 

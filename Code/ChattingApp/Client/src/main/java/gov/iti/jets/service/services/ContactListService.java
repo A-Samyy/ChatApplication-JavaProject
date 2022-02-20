@@ -4,6 +4,7 @@ import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.service.dtos.ContactDto;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ContactListService {
@@ -20,4 +21,5 @@ public class ContactListService {
         }
         return null;
     }
+
 }
