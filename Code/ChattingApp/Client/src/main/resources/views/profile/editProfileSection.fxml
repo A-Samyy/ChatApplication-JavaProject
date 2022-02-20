@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #1e1836;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.ProfileController">
+<GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1020.0" style="-fx-background-color: #1e1836;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.ProfileController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="0.0" prefWidth="350.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="607.733349609375" />
@@ -232,7 +232,7 @@
       </AnchorPane>
       <AnchorPane fx:id="background" prefHeight="200.0" prefWidth="200.0" stylesheets="@EditProfileSection.css" GridPane.columnIndex="1">
          <children>
-            <AnchorPane fx:id="editingBox" layoutX="57.0" layoutY="149.0" prefHeight="576.0" prefWidth="578.0" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="149.0">
+            <AnchorPane fx:id="editingBox" layoutX="57.0" layoutY="149.0" prefHeight="595.0" prefWidth="578.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="149.0">
                <children>
                   <Label layoutX="44.0" layoutY="29.0" prefHeight="31.0" prefWidth="354.0" styleClass="titles" text="User_Name :" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="180.0" />
                   <Label layoutX="46.0" layoutY="138.0" styleClass="titles" text="Email :" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="165.0" />
@@ -240,11 +240,15 @@
                   <Label layoutX="47.0" layoutY="348.0" prefHeight="31.0" prefWidth="361.0" styleClass="titles" text="Change Password :" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="170.0" />
                   <PasswordField fx:id="password" layoutX="47.0" layoutY="388.0" prefHeight="55.0" prefWidth="367.0" styleClass="userData" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="163.40000000000003" />
                   <Label layoutX="50.0" layoutY="449.0" prefHeight="31.0" prefWidth="360.0" styleClass="titles" text="Confirm New Password :" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="177.0" />
-                  <PasswordField fx:id="confirmPasswrord" layoutX="50.0" layoutY="489.0" prefHeight="55.0" prefWidth="367.0" styleClass="userData" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="163.40000000000003" />
-                  <TextField fx:id="userName" layoutX="43.0" layoutY="71.0" prefHeight="54.0" prefWidth="371.0" styleClass="userData" text="hend" />
-                  <TextField fx:id="userEmail" layoutX="45.0" layoutY="183.0" prefHeight="54.0" prefWidth="371.0" styleClass="userData" />
-                  <TextField fx:id="userPhone" layoutX="46.0" layoutY="285.0" prefHeight="54.0" prefWidth="371.0" styleClass="userData" />
-                  <Button fx:id="saveButton" layoutX="462.0" layoutY="505.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="102.0" text="SAVE" AnchorPane.bottomAnchor="8.600000000000001" AnchorPane.rightAnchor="13.200000000000017" />
+                  <PasswordField fx:id="confirmPassword" layoutX="50.0" layoutY="489.0" prefHeight="55.0" prefWidth="367.0" styleClass="userData" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="163.40000000000003" />
+                  <TextField fx:id="userName" layoutX="43.0" layoutY="71.0" prefHeight="54.0" prefWidth="371.0" styleClass="userData" text="hend" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="163.40000000000003" />
+                  <TextField fx:id="userEmail" layoutX="45.0" layoutY="183.0" prefHeight="54.0" prefWidth="371.0" styleClass="userData" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="163.40000000000003" />
+                  <TextField fx:id="userPhone" layoutX="46.0" layoutY="285.0" prefHeight="54.0" prefWidth="371.0" styleClass="userData" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="163.40000000000003" />
+                  <Button fx:id="saveButton" layoutX="462.0" layoutY="505.0" mnemonicParsing="false" onMouseClicked="#onSave" prefHeight="62.0" prefWidth="102.0" text="SAVE" AnchorPane.bottomAnchor="8.600000000000001" AnchorPane.rightAnchor="13.200000000000017">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Label fx:id="confirmPasswordError" layoutX="65.0" layoutY="553.0" prefHeight="15.0" prefWidth="341.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="171.0" />
                </children>
             </AnchorPane>
             <Label contentDisplay="CENTER" layoutX="47.0" layoutY="32.0" prefHeight="102.0" prefWidth="478.0" styleClass="titles" text="        My Account" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="149.0" AnchorPane.topAnchor="32.0">

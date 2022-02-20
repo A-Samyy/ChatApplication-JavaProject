@@ -31,3 +31,14 @@
       -fx-font-weight: bold;
     -fx-text-fill:  white;
     }
+
+    .error{
+        -fx-border-color: rgb(245, 43, 43);
+        -fx-border-width: 2;
+    }
+
+    #confirmPasswordError{
+      -fx-text-fill:#ea0000;
+      -fx-font-size: 12px;
+      -fx-font-weight	:normal;
+    }

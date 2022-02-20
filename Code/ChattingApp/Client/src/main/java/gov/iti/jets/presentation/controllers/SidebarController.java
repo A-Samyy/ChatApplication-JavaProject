@@ -134,7 +134,7 @@ public class SidebarController implements Initializable {
 //        chattingSectionVbox.getChildren().add(stageCoordinator.loadContacts());
 //        anchorPaneOfContacts.getChildren().add(stageCoordinator.loadContacts());
 //        SettingAreaVbox.getChildren().add(stageCoordinator.loadSettings());
-//        chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
+ //        chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
 //        chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
 //        chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
 //        chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
