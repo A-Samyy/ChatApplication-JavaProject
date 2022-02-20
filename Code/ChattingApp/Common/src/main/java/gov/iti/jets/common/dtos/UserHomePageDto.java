@@ -1,4 +1,4 @@
-package gov.iti.jets.service.dtos;
+package gov.iti.jets.common.dtos;
 
 import java.io.Serializable;
 import java.util.Date;

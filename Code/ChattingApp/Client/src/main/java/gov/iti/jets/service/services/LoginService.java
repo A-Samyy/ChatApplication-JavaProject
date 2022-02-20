@@ -1,13 +1,12 @@
 package gov.iti.jets.service.services;
 
+
+import gov.iti.jets.common.dtos.LoginDto;
+import gov.iti.jets.common.dtos.UserHomePageDto;
+import gov.iti.jets.common.interfaces.LoginInt;
 import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
-import gov.iti.jets.service.ClientMesseageInt;
-import gov.iti.jets.service.LoginInt;
-import gov.iti.jets.service.dtos.LoginDto;
-import gov.iti.jets.service.dtos.UserHomePageDto;
-import gov.iti.jets.service.impl.ClientMessageImpl;
 import javafx.scene.image.Image;
 
 import java.io.ByteArrayInputStream;
@@ -21,7 +20,7 @@ public class LoginService {
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
     RMIRegister rmiRegister = RMIRegister.getInstance();
-    LoginInt loginInt = rmiRegister.loginService();
+    LoginInt loginInt =rmiRegister.loginService();
     LoginDto loginDto = null;
 
     public LoginService() {

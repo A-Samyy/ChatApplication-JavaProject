@@ -1,7 +1,9 @@
-package gov.iti.jets.service;
+package gov.iti.jets.common.interfaces;
 
-import gov.iti.jets.service.dtos.LoginDto;
-import gov.iti.jets.service.dtos.UserHomePageDto;
+
+
+import gov.iti.jets.common.dtos.LoginDto;
+import gov.iti.jets.common.dtos.UserHomePageDto;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

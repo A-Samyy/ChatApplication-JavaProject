@@ -1,7 +1,7 @@
 package gov.iti.jets.networking;
 
+import gov.iti.jets.common.interfaces.LoginInt;
 import gov.iti.jets.service.ContactListInt;
-import gov.iti.jets.service.LoginInt;
 import gov.iti.jets.service.RegisterInt;
 import gov.iti.jets.service.ServerMessageInt;
 
@@ -18,7 +18,7 @@ public class RMIRegister {
 
     private RMIRegister() {
         try {
-            registry = LocateRegistry.getRegistry("localhost", 4006);
+            registry = LocateRegistry.getRegistry("localhost", 6066);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

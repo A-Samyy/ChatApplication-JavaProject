@@ -10,6 +10,7 @@ module Server {
     requires transitive java.sql.rowset;
     requires transitive javafx.graphics;
     requires java.rmi;
+    requires Common;
     requires org.jetbrains.annotations;
     requires com.zaxxer.hikari;
     opens gov.iti.jets.presentation.controllers to javafx.fxml;

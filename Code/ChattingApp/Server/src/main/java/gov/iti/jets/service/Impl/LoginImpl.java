@@ -1,10 +1,11 @@
 package gov.iti.jets.service.Impl;
 
+import gov.iti.jets.common.dtos.LoginDto;
+import gov.iti.jets.common.dtos.UserHomePageDto;
+
+import gov.iti.jets.common.interfaces.LoginInt;
 import gov.iti.jets.presistance.daos.UserDao;
 import gov.iti.jets.presistance.dtos.UserDto;
-import gov.iti.jets.service.LoginInt;
-import gov.iti.jets.service.dtos.LoginDto;
-import gov.iti.jets.service.dtos.UserHomePageDto;
 
 import java.io.FileInputStream;
 import java.io.IOException;
