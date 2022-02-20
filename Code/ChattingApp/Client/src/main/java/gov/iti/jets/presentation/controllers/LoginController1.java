@@ -3,6 +3,7 @@ package gov.iti.jets.presentation.controllers;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
@@ -17,6 +18,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import org.controlsfx.validation.Severity;
+import org.controlsfx.validation.ValidationSupport;
+import org.controlsfx.validation.Validator;
+import org.controlsfx.validation.decoration.CompoundValidationDecoration;
+import org.controlsfx.validation.decoration.GraphicValidationDecoration;
+import org.controlsfx.validation.decoration.StyleClassValidationDecoration;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public class LoginController1 implements Initializable {
@@ -24,6 +31,7 @@ public class LoginController1 implements Initializable {
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
     LoginService loginService = new LoginService();
+    ValidationSupport validationSupport=new ValidationSupport();
 
     @FXML
     private FontIcon backArrow;
@@ -69,6 +77,18 @@ public class LoginController1 implements Initializable {
             System.out.println("Please register Or youPass is invalid");
         }
 
+        validationSupport.setValidationDecorator(new StyleClassValidationDecoration());
+
+        validationSupport.setValidationDecorator(new CompoundValidationDecoration(
+                new GraphicValidationDecoration(),
+                new StyleClassValidationDecoration()));
+
+
+        validationSupport.registerValidator(phoneNumberTextField, Validator.createRegexValidator(
+                "Number is required",
+                Pattern.compile("^[0-9]+$"), Severity.ERROR));
+
+
     }
 
     @FXML
@@ -82,6 +102,9 @@ public class LoginController1 implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+
         phoneNumberTextField.textProperty().bindBidirectional(userModel.phoneNumberProperty());
 
     }

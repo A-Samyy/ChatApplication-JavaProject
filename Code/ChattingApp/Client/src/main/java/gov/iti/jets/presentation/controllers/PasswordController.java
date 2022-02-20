@@ -16,6 +16,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import org.controlsfx.validation.Severity;
+import org.controlsfx.validation.ValidationSupport;
+import org.controlsfx.validation.Validator;
+import org.controlsfx.validation.decoration.CompoundValidationDecoration;
+import org.controlsfx.validation.decoration.GraphicValidationDecoration;
+import org.controlsfx.validation.decoration.StyleClassValidationDecoration;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
@@ -28,6 +34,7 @@ public class PasswordController implements Initializable {
     UserModel userModel = modelFactory.getUserModel();
     LoginService loginService = new LoginService();
     RMIRegister rmiRegister = RMIRegister.getInstance();
+    ValidationSupport validationSupport=new ValidationSupport();
 
     @FXML
     private FontIcon backArrow;
@@ -67,10 +74,26 @@ public class PasswordController implements Initializable {
         }else{
             System.out.println("Password is not Correct");
         }
+        validationSupport.setValidationDecorator(new StyleClassValidationDecoration());
+
+        validationSupport.setValidationDecorator(new CompoundValidationDecoration(
+                new GraphicValidationDecoration(),
+                new StyleClassValidationDecoration()));
+        validationSupport.registerValidator(passwordTextField, false, Validator.createEmptyValidator(
+                "Password is required",
+                Severity.WARNING));
+
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         passwordTextField.setText("");
+
+
+
+
+
     }
 }

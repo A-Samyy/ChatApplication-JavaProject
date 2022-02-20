@@ -1,6 +1,5 @@
 package gov.iti.jets.service;
 
-import gov.iti.jets.service.dtos.LoginDto;
 import gov.iti.jets.service.dtos.RegisterDto;
 
 import java.rmi.Remote;

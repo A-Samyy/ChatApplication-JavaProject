@@ -16,18 +16,25 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import org.controlsfx.validation.Severity;
+import org.controlsfx.validation.ValidationSupport;
+import org.controlsfx.validation.Validator;
+import org.controlsfx.validation.decoration.CompoundValidationDecoration;
+import org.controlsfx.validation.decoration.GraphicValidationDecoration;
+import org.controlsfx.validation.decoration.StyleClassValidationDecoration;
 
 import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class ProfileController implements Initializable {
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
-
+    ValidationSupport validationSupport =new ValidationSupport();
     @FXML
     private RadioButton active;
 
@@ -47,7 +54,7 @@ public class ProfileController implements Initializable {
     private RadioButton busy;
 
     @FXML
-    private PasswordField confirmPasswrord;
+    private PasswordField confirmPassword;
 
     @FXML
     private AnchorPane editingBox;
@@ -76,10 +83,21 @@ public class ProfileController implements Initializable {
     @FXML
     private TextField userPhone;
 
+    @FXML
+    private Label confirmPasswordError;
+
     private ToggleGroup toggleGroup;
     RadioButton selectedRadioButton;
     GridPane homeGrid;
     ImageView img;
+
+
+
+
+
+
+
+
 
     @FXML
     void OnBackAction(MouseEvent event) {
@@ -116,5 +134,32 @@ public class ProfileController implements Initializable {
         }else if(userModel.getStatus().equals("AWAY")){
             away.setSelected(true);
         }
+    }
+
+
+    @FXML
+    void onSave(MouseEvent event) {
+
+
+
+
+
+        if(!password.getText().equals(confirmPassword.getText())){
+            confirmPassword.setStyle(" -fx-border-color: rgb(245, 43, 43);\n" +
+                    "-fx-border-width: 2;");
+            confirmPasswordError.setText("password is not the same");
+        } else {
+            confirmPassword.setStyle(" -fx-border-radius:5px;\n" +
+                    "    -fx-border-width:0.5px;\n" +
+                    "    -fx-text-fill:#1e1836 ;\n" +
+                    "    -fx-font-weight\t:normal;\n" +
+                    "    -fx-border-color: #1e1836;");
+            confirmPasswordError.setText("");
+        }
+
+
+
+
+
     }
 }
