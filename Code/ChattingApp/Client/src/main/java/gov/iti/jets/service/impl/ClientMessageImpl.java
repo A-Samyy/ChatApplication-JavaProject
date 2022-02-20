@@ -4,18 +4,29 @@ import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.ClientMesseageInt;
 import gov.iti.jets.service.ServerMessageInt;
+import gov.iti.jets.service.daos.MessageDao;
 import gov.iti.jets.service.dtos.MessageDto;
 import gov.iti.jets.service.services.LoginService;
+import gov.iti.jets.service.services.MessageService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.layout.HBox;
 
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClientMessageImpl extends UnicastRemoteObject implements ClientMesseageInt {
 
     RMIRegister rmiRegister=RMIRegister.getInstance();
     public ServerMessageInt serverMessageInt;
+    static public ObservableList<HBox> list = FXCollections.observableArrayList();
+    StageCoordinator stageCoordinator = StageCoordinator.getInstance();
+    MessageService messageService = MessageService.getInstance();
 
+    MessageDao messageDao ;
     public ClientMessageImpl() throws RemoteException {
         super();
         serverMessageInt=rmiRegister.messageService();
@@ -27,11 +38,14 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
         /*
         Stagecor.loadMessage(messageDto)
          */
+//        messageService.recieveMessageDto(messageDto);
 
-//        StageCoordinator stageCoordinator = StageCoordinator.getInstance();
 //        stageCoordinator.getHomepage().add( stageCoordinator.loadChatSection(null,null,null,0), 1, 0);
+        messageDao = new MessageDao(messageDto);
 
-        System.out.println(messageDto + "ay haga");
+        list.add(stageCoordinator.loadMessage(messageDao));
+
+        System.out.println(list.toString());
         return messageDto.getMessageContent();
     }
 

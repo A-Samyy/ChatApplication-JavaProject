@@ -213,6 +213,7 @@ public class StageCoordinator {
                 @Override
                 public void run() {
                     chatSectionController.display(name,pic,status , id);
+                    chatSectionController.displayMessage();
                 }
             });
 

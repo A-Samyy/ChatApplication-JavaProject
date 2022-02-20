@@ -128,12 +128,21 @@ public class ChatSectionController implements Initializable {
 
         messageObservableList.add(stageCoordinator.loadMessage(messageDao));
         chatContainer.setItems(messageObservableList);
+
+
+    }
+    public void displayMessage(){
+        if(!ClientMessageImpl.list.isEmpty()){
+
+            chatContainer.setItems(ClientMessageImpl.list);
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         chatContainer.setCellFactory(studentListView -> new MessageListViewCell());
         messageObservableList = FXCollections.observableArrayList();
+
 
     }
 
