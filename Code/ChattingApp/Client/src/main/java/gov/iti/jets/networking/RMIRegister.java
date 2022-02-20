@@ -18,7 +18,7 @@ public class RMIRegister {
 
     private RMIRegister() {
         try {
-            registry = LocateRegistry.getRegistry("localhost", 4006);
+            registry = LocateRegistry.getRegistry("localhost", 4020);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
