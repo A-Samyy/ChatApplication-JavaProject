@@ -1,11 +1,11 @@
 package gov.iti.jets.presentation.controllers;
 
+import gov.iti.jets.common.dtos.ContactDto;
+import gov.iti.jets.common.dtos.MessageDto;
 import gov.iti.jets.presentation.models.ContactModel;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
-import gov.iti.jets.service.dtos.MessageDto;
-import gov.iti.jets.service.dtos.ContactDto;
 import gov.iti.jets.service.services.ContactListService;
 import gov.iti.jets.service.services.LoginService;
 import javafx.fxml.FXML;

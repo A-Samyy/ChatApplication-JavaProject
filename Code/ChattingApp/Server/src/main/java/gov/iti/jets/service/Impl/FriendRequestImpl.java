@@ -1,10 +1,10 @@
 package gov.iti.jets.service.Impl;
 
+import gov.iti.jets.common.dtos.ClientFriendRequestDto;
+import gov.iti.jets.common.interfaces.FriendRequestInt;
 import gov.iti.jets.presistance.daos.FriendRequestDao;
 import gov.iti.jets.presistance.daos.UserDao;
 import gov.iti.jets.presistance.dtos.FriendRequestDto;
-import gov.iti.jets.service.FriendRequestInt;
-import gov.iti.jets.service.dtos.ClientFriendRequestDto;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

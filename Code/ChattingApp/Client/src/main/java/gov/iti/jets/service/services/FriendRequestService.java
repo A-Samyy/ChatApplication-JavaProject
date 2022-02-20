@@ -1,13 +1,12 @@
 package gov.iti.jets.service.services;
 
 
+import gov.iti.jets.common.dtos.ClientFriendRequestDto;
 import gov.iti.jets.networking.RMIRegister;
-import gov.iti.jets.service.FriendRequestInt;
-import gov.iti.jets.service.RegisterInt;
-import gov.iti.jets.service.dtos.ClientFriendRequestDto;
-import gov.iti.jets.service.dtos.RegisterDto;
-
+import gov.iti.jets.common.interfaces.FriendRequestInt;
 import java.rmi.RemoteException;
+//import gov.iti.jets.common.dtos.;
+
 
 public class FriendRequestService {
     RMIRegister rmiRegister = RMIRegister.getInstance();
