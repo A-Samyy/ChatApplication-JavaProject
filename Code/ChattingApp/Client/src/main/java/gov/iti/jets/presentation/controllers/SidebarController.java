@@ -4,9 +4,11 @@ import gov.iti.jets.presentation.models.ContactModel;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
-import gov.iti.jets.service.dtos.MessageDto;
+import gov.iti.jets.service.dtos.ClientFriendRequestDto;
 import gov.iti.jets.service.dtos.ContactDto;
+import gov.iti.jets.service.dtos.MessageDto;
 import gov.iti.jets.service.services.ContactListService;
+import gov.iti.jets.service.services.FriendRequestService;
 import gov.iti.jets.service.services.LoginService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,7 +16,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -25,11 +26,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
-import java.io.ByteArrayInputStream;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-import java.util.List;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 public class SidebarController implements Initializable {
@@ -37,7 +35,7 @@ public class SidebarController implements Initializable {
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
     ContactListService contactListService = new ContactListService();
-    MessageDto messageDto=new MessageDto();
+    MessageDto messageDto = new MessageDto();
 
 
     @FXML
@@ -88,7 +86,7 @@ public class SidebarController implements Initializable {
     @FXML
     private Label userName;
 
-//    private String imageAsString;
+    //    private String imageAsString;
     ImageView img;
     ContactModel contactModel;
 
@@ -110,6 +108,11 @@ public class SidebarController implements Initializable {
     @FXML
     void searchOnKeyTyped(KeyEvent event) {
 
+    }
+
+    @FXML
+    void OnAddContactMouseClick(MouseEvent event) {
+        stageCoordinator.loadAddContact();
     }
 
     @Override

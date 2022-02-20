@@ -1,9 +1,6 @@
 package gov.iti.jets.networking;
 
-import gov.iti.jets.service.ContactListInt;
-import gov.iti.jets.service.LoginInt;
-import gov.iti.jets.service.RegisterInt;
-import gov.iti.jets.service.ServerMessageInt;
+import gov.iti.jets.service.*;
 
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
@@ -74,6 +71,18 @@ public class RMIRegister {
             e.printStackTrace();
         }
         return serverMessageInt;
+
+    }
+    public FriendRequestInt friendRequestService(){
+        FriendRequestInt  friendRequestInt = null;
+        try {
+            friendRequestInt = (FriendRequestInt) registry.lookup("FriendRequestService");
+        } catch (NotBoundException |AccessException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return friendRequestInt;
     }
 
 
