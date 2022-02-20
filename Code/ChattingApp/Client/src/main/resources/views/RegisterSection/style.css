@@ -102,34 +102,18 @@
 
 }
 
-
-
-
-#invalidName{
+.errorLabel{
   -fx-text-fill:#ea0000;
   -fx-font-size: 12px;
   -fx-font-weight	:normal;
 }
 
-#invalidPhone{
-  -fx-text-fill:#ea0000;
-  -fx-font-size: 12px;
-  -fx-font-weight	:normal;
-}
-#invalidEmail{
-  -fx-text-fill:#ea0000;
-  -fx-font-size: 12px;
-  -fx-font-weight	:normal;
-}
-#invalidPassword{
-  -fx-text-fill:#ea0000;
-  -fx-font-size: 12px;
-  -fx-font-weight	:normal;
-}
-#countryError{
-  -fx-text-fill:#ea0000;
-  -fx-font-size: 12px;
-  -fx-font-weight	:normal;
+
+
+
+.error{
+    -fx-border-color: rgb(245, 43, 43);
+    -fx-border-width: 2;
 }
 
 

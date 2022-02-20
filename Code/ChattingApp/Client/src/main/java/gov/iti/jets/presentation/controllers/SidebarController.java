@@ -1,11 +1,11 @@
 package gov.iti.jets.presentation.controllers;
 
-import gov.iti.jets.common.dtos.ContactDto;
-import gov.iti.jets.common.dtos.MessageDto;
 import gov.iti.jets.presentation.models.ContactModel;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
+import gov.iti.jets.service.dtos.MessageDto;
+import gov.iti.jets.service.dtos.ContactDto;
 import gov.iti.jets.service.services.ContactListService;
 import gov.iti.jets.service.services.LoginService;
 import javafx.fxml.FXML;
@@ -27,9 +27,7 @@ import javafx.scene.shape.Circle;
 
 import java.io.ByteArrayInputStream;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-import java.util.List;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 public class SidebarController implements Initializable {
@@ -38,7 +36,6 @@ public class SidebarController implements Initializable {
     UserModel userModel = modelFactory.getUserModel();
     ContactListService contactListService = new ContactListService();
     MessageDto messageDto=new MessageDto();
-
 
 
     @FXML
@@ -111,6 +108,11 @@ public class SidebarController implements Initializable {
     @FXML
     void searchOnKeyTyped(KeyEvent event) {
 
+    }
+
+    @FXML
+    void OnAddContactMouseClick(MouseEvent event) {
+        stageCoordinator.loadAddContact();
     }
 
     @Override

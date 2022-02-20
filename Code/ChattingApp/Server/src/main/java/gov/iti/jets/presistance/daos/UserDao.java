@@ -10,22 +10,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class UserDao {
-
-    // private DataSource ds = null;
     private Connection conn = null;
     private PreparedStatement preparedStatement = null;
     Connector connector = Connector.getInstance();
 
     public UserDao() {
-        try {
-            conn = connector.getConnection();
-        } catch (Exception ex) {
-            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
 
@@ -33,37 +24,72 @@ public class UserDao {
         boolean check1 = checkUserByPhoneNumber(userDto.getPhoneNumber());
         boolean check2 = checkUserbyMail(userDto.getEmail());
         if (!check1 && !check2) {
-            String sql = "insert into chatting_app.user(PHONE_NUMBER, USER_NAME, PASSWORD, GENDER, EMAIL, Picture, COUNTRY, Bio, STATUS, DateOfBirth)  values(?, ?, ?, ? ,?, ? ,? ,?, ? ,?)";
-            return injectUser(userDto, sql);
+            try {
+                String sql = "insert into chatting_app.user(PHONE_NUMBER, USER_NAME, PASSWORD, GENDER, EMAIL, Picture, COUNTRY, Bio, STATUS, DateOfBirth)  values(?, ?, ?, ? ,?, ? ,? ,?, ? ,?)";
+                return injectUser(userDto, sql);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            } finally {
+                try {
+                    if (conn != null) {
+                        conn.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         } else
             return false;
     }
 
     private boolean checkUserbyMail(String email) {
         try {
-            String sql = "Select * from chatting_app.user where lower(EMAIL) = lower(trim('"+ email + "')); ";
+            conn = connector.getConnection();
+            String sql = "Select * from chatting_app.user where lower(EMAIL) = lower(trim('" + email + "')); ";
             preparedStatement = conn.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
             return resultSet.next();
         } catch (SQLException e) {
             return false;
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public boolean updateUserDto(UserDto userDto) {
-        int id = getUserIdByPhoneNumber(userDto.getPhoneNumber());
-        String sql = "UPDATE chatting_app.user SET PHONE_NUMBER= ?,USER_NAME = ?,PASSWORD = ? ,GENDER = ? ,EMAIL = ? ,Picture = ? ,COUNTRY = ?,Bio = ? ,STATUS=? ,DateOfBirth=? WHERE User_ID="
-                + id;
-        return injectUser(userDto, sql);
+        try {
+            conn = connector.getConnection();
+            int id = getUserIdByPhoneNumber(userDto.getPhoneNumber());
+            String sql = "UPDATE chatting_app.user SET PHONE_NUMBER= ?,USER_NAME = ?,PASSWORD = ? ,GENDER = ? ,EMAIL = ? ,Picture = ? ,COUNTRY = ?,Bio = ? ,STATUS=? ,DateOfBirth=? WHERE User_ID="
+                    + id;
+            return injectUser(userDto, sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public boolean deleteUserDtoById(int id) {
-
         try {
+            conn = connector.getConnection();
             String sql = "DELETE FROM chatting_app.user WHERE User_ID=" + id;
             preparedStatement = conn.prepareStatement(sql);
-            int affectedRows = preparedStatement.executeUpdate();
-            return affectedRows > 0;
+            return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -80,6 +106,7 @@ public class UserDao {
 
     public UserDto getUserDtoById(int id) {
         try {
+            conn = connector.getConnection();
             UserDto userDto;
             String sql = "select * from chatting_app.user where User_ID=" + id;
             preparedStatement = conn.prepareStatement(sql);
@@ -92,45 +119,70 @@ public class UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
     }
 
     public int getUserIdByPhoneNumber(String phone_number) {
         try {
+            conn = connector.getConnection();
             String sql = "select USER_ID from chatting_app.user where PHONE_NUMBER=" + phone_number;
             preparedStatement = conn.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                int number = resultSet.getInt(1);
-                return number;
+                return resultSet.getInt(1);
             } else
                 return -1;
         } catch (SQLException e) {
             e.printStackTrace();
             return -1;
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public String getUserPasswordById(int id) {
         try {
+            conn = connector.getConnection();
             String sql = "select PASSWORD from chatting_app.user where User_ID=" + id;
             preparedStatement = conn.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                String password = resultSet.getString(1);
-                return password;
+                return resultSet.getString(1);
             } else
                 return null;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public List<UserDto> getAllUser() {
         List<UserDto> userList = new ArrayList<>();
         try {
+            conn = connector.getConnection();
             String sql = "select * from chatting_app.user";
             preparedStatement = conn.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -138,25 +190,43 @@ public class UserDao {
                 UserDto userDto = extractUser(resultSet);
                 userList.add(userDto);
             }
+            return userList;
         } catch (SQLException e) {
             e.printStackTrace();
+            return userList;
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        return userList;
     }
 
     public boolean checkUserByPhoneNumber(String id) {
         try {
+            conn = connector.getConnection();
             String sql = "Select * from chatting_app.user where phone_number=" + id;
             preparedStatement = conn.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            return resultSet.next();
+            return preparedStatement.executeQuery().next();
         } catch (SQLException e) {
             return false;
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     private boolean injectUser(UserDto userDto, String sql) {
         try {
+            conn = connector.getConnection();
             preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, userDto.getPhoneNumber());
             preparedStatement.setString(2, userDto.getName());
@@ -168,16 +238,25 @@ public class UserDao {
             preparedStatement.setString(8, userDto.getBio());
             preparedStatement.setInt(9, userDto.getStatusNumber());
             preparedStatement.setDate(10, convertUtilToSql(userDto.getDateOfBirth()));
-            int affectedRows = preparedStatement.executeUpdate();
-            return affectedRows > 0;
+            return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        return false;
+
     }
 
     private UserDto extractUser(ResultSet resultSet) {
         try {
+            conn= connector.getConnection();
             UserDto userDto = new UserDto();
             userDto.setUserID(resultSet.getInt(1));
             userDto.setPhoneNumber(resultSet.getString(2));
@@ -193,6 +272,14 @@ public class UserDao {
             return userDto;
         } catch (SQLException e) {
             return null;
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 

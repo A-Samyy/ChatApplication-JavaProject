@@ -56,4 +56,15 @@
   .menu-item:focused .label {
     -fx-text-fill: white;
   }
+
+  .warning{
+      -fx-border-color: orange;
+      -fx-border-width: 2;
+  }
+
+
+  .error{
+      -fx-border-color: rgb(245, 43, 43);
+      -fx-border-width: 2;
+  }
   

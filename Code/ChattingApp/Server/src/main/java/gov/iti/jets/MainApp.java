@@ -18,7 +18,12 @@ public class MainApp extends Application {
         RMICreateRegister rmiCreateRegister= RMICreateRegister.getInstance();
         Application.launch(arg);
     }
-
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        Connector connector= Connector.getInstance();
+        connector.endConnection();
+    }
     @Override
     public void start(Stage primaryStage){
         stageCoordinator.initStage(primaryStage);

@@ -4,20 +4,19 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane depthTest="ENABLE" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" pickOnBounds="false" prefHeight="183.0" prefWidth="294.0" stylesheets="@contacts.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Pane depthTest="ENABLE" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" pickOnBounds="false" prefHeight="183.0" prefWidth="294.0" stylesheets="@contacts.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.AddContactController">
    <children>
       <Label alignment="CENTER" layoutX="80.0" layoutY="14.0" prefHeight="48.0" prefWidth="136.0" text="Add Contact" textFill="WHITE">
          <font>
             <Font name="System Bold" size="11.0" />
          </font>
       </Label>
-      <TextField layoutX="28.0" layoutY="79.0" prefHeight="25.0" prefWidth="240.0" />
+      <TextField fx:id="AddingFriendTextArea" layoutX="28.0" layoutY="79.0" onKeyPressed="#OnEnterPressed" prefHeight="25.0" prefWidth="240.0" />
       <HBox alignment="CENTER" layoutX="63.0" layoutY="128.0" prefHeight="33.0" prefWidth="169.0">
          <children>
             <ImageView fitHeight="41.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">

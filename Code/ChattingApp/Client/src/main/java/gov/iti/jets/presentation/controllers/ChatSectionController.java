@@ -24,8 +24,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import org.controlsfx.validation.ValidationSupport;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+import javax.xml.validation.Validator;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
@@ -39,7 +41,7 @@ public class ChatSectionController implements Initializable {
     UserModel userModel = modelFactory.getUserModel();
     MessageService messageService = MessageService.getInstance();
     private ObservableList<HBox> messageObservableList;
-
+    private Boolean messageReceived=false;
     @FXML
     private AnchorPane bottomBar;
 
@@ -66,6 +68,7 @@ public class ChatSectionController implements Initializable {
 
     @FXML
     private AnchorPane topBar;
+
 
     public ChatSectionController() throws RemoteException {
     }
@@ -131,13 +134,17 @@ public class ChatSectionController implements Initializable {
         if(!ClientMessageImpl.list.isEmpty()){
             System.out.println();
             if(ClientMessageImpl.map.get(id) != null);
-                chatContainer.setItems(ClientMessageImpl.map.get(id)) ;
+            {
+                messageReceived=true;
+                System.out.println(messageReceived);
+                chatContainer.setItems(ClientMessageImpl.map.get(id));
+            }
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        chatContainer.setCellFactory(studentListView -> new MessageListViewCell());
+        chatContainer.setCellFactory(messageListView -> new MessageListViewCell());
         messageObservableList = FXCollections.observableArrayList();
 
 
@@ -148,16 +155,20 @@ public class ChatSectionController implements Initializable {
        private Pane messageCellContainer=new Pane();
         public MessageListViewCell() {
 
-
+            System.out.println(messageReceived);
         }
 
         @Override
         protected void updateItem(HBox item, boolean empty) {
             super.updateItem(item, empty);
             if (item != null && !empty) { // <== test for null item and empty parameter
-
-                item.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
-                messageCellContainer.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+                if(messageReceived){
+                    messageCellContainer.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+                    messageReceived=false;
+                }else {
+                    messageCellContainer.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+                    item.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+                }
                 messageCellContainer.getChildren().add(item);
                 setGraphic(messageCellContainer);
             } else {

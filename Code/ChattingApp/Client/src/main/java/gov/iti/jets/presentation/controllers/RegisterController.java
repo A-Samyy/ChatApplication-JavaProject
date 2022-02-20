@@ -24,6 +24,13 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import org.controlsfx.validation.Severity;
+import org.controlsfx.validation.ValidationResult;
+import org.controlsfx.validation.ValidationSupport;
+import org.controlsfx.validation.Validator;
+import org.controlsfx.validation.decoration.CompoundValidationDecoration;
+import org.controlsfx.validation.decoration.GraphicValidationDecoration;
+import org.controlsfx.validation.decoration.StyleClassValidationDecoration;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
@@ -34,6 +41,7 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class RegisterController implements Initializable {
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
@@ -41,7 +49,7 @@ public class RegisterController implements Initializable {
     UserModel userModel = modelFactory.getUserModel();
     RegisterService registerService = new RegisterService();
     Boolean isRegistered;
-
+    ValidationSupport validationSupport=new ValidationSupport();
 
     @FXML
     private FontIcon backArrow;
@@ -90,6 +98,11 @@ public class RegisterController implements Initializable {
 
 //    @FXML
 //    private Label male;
+
+    @FXML
+    private Label confirmPasswordError;
+    @FXML
+    private Label genderError;
 
     @FXML
     private RadioButton maleRadioButton;
@@ -194,10 +207,52 @@ public class RegisterController implements Initializable {
         } catch (RemoteException e) {
             e.getMessage();
         }
+
+        validationSupport.setValidationDecorator(new StyleClassValidationDecoration());
+
+        validationSupport.setValidationDecorator(new CompoundValidationDecoration(
+                new GraphicValidationDecoration(),
+                new StyleClassValidationDecoration()));
+
+
+        validationSupport.registerValidator(fullNameTextField, Validator.createRegexValidator(
+                "Enter a valid Name that contains only characters",
+                Pattern.compile("^\\p{Alpha}+$"), Severity.ERROR));
+
+        validationSupport.registerValidator(phoneNumberTextField, Validator.createRegexValidator(
+                "Enter only numbers",
+                Pattern.compile("^[0-9]+$"), Severity.ERROR));
+
+
+
+        validationSupport.registerValidator(passwordTextField, Validator.createRegexValidator(
+                "This password is weak!",
+                Pattern.compile("^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[@#$%^&+=])(?=\\S+$).{8,}$"), Severity.ERROR));
+        if(!passwordTextField.getText().equals(confirmPasswordTextField.getText())){
+            confirmPasswordTextField.setStyle(" -fx-border-color: rgb(245, 43, 43);\n" +
+                    "-fx-border-width: 2;");
+            confirmPasswordError.setText("password is not the same");
+        } else {
+        confirmPasswordTextField.setStyle(" -fx-border-radius:5px;\n" +
+                "    -fx-border-width:0.5px;\n" +
+                "    -fx-text-fill:#1e1836 ;\n" +
+                "    -fx-font-weight\t:normal;\n" +
+                "    -fx-border-color: #1e1836;");
+            confirmPasswordError.setText("");
+        }
+
+
+        validationSupport.registerValidator(emailTextField, Validator.createRegexValidator(
+                "Enter a valid email format",
+                Pattern.compile("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b"), Severity.ERROR));
+
+        validationSupport.registerValidator(countryChoiceBox,Validator.createEmptyValidator("You have to choose a country"));
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        validationSupport.setErrorDecorationEnabled(true);
         addCountryChoiceBox();
         phoneNumberTextField.textProperty().bindBidirectional(userModel.phoneNumberProperty());
         fullNameTextField.textProperty().bindBidirectional(userModel.userNameProperty());
@@ -206,7 +261,8 @@ public class RegisterController implements Initializable {
         bioTextArea.textProperty().bindBidirectional(userModel.bioProperty());
         //country
         countryChoiceBox.valueProperty().bindBidirectional(userModel.countryProperty());
-
+        passwordTextField.setText("");
+        confirmPasswordTextField.setText("");
     }
 
     private void addCountryChoiceBox(){

@@ -148,6 +148,7 @@ public class StageCoordinator {
                 // change Path
                 Parent root = FXMLLoader.load(getClass().getResource("/views/RegisterSection/RegisterView.fxml"));
                 registrationScene = new Scene(root);
+
                 sceneMap.put("registrationScene", registrationScene);
             } catch (IOException e) {
                 e.printStackTrace();
