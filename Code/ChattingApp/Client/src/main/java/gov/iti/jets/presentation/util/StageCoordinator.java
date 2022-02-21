@@ -1,9 +1,11 @@
 package gov.iti.jets.presentation.util;
 
 import gov.iti.jets.common.dtos.ContactDto;
+import gov.iti.jets.common.dtos.GroupDto;
 import gov.iti.jets.presentation.controllers.ChatSectionController;
 import gov.iti.jets.presentation.controllers.ContactController;
 
+import gov.iti.jets.presentation.controllers.GroupListController;
 import javafx.application.Platform;
 import java.io.File;
 import java.io.IOException;
@@ -184,6 +186,34 @@ public class StageCoordinator {
 
         return contactList;
     }
+
+    public Node loadGroups(GroupDto groupDto) {
+        Node grouplist = null;
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/views/contactSection/userPane.fxml"));
+            grouplist = loader.load();
+            GroupListController groupListController =loader.getController();
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        System.out.println((groupDto));
+                        groupListController.displayGroup(groupDto);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
+        return grouplist;
+    }
+
 
     public Node loadSidebar() {
         Node sidebar = null;

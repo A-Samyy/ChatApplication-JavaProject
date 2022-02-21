@@ -20,6 +20,6 @@ public class MainApp extends Application {
     @Override
     public void stop() throws Exception {
         super.stop();
-        System.exit(1);
+        System.exit(0);
     }
 }

@@ -71,11 +71,11 @@ public class GroupChatUsersDao {
         }
     }
 
-    public ArrayList getAllGroupsIdforUser(UserDto userDto) {
+    public ArrayList getAllGroupsIdforUser(int id) {
         try {
             conn = connector.getConnection();
             ArrayList groupsIds = new ArrayList();
-            String sql = "select group_id from chatting_app.group_chat_users where User_ID=" + userDto.getUserID();
+            String sql = "select group_id from chatting_app.group_chat_users where User_ID=" + id;
             preparedStatement = conn.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {

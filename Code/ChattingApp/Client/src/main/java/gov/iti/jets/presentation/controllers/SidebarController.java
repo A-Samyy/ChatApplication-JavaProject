@@ -1,12 +1,14 @@
 package gov.iti.jets.presentation.controllers;
 
 import gov.iti.jets.common.dtos.ContactDto;
+import gov.iti.jets.common.dtos.GroupDto;
 import gov.iti.jets.common.dtos.MessageDto;
 import gov.iti.jets.presentation.models.ContactModel;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.services.ContactListService;
+import gov.iti.jets.service.services.GroupListService;
 import gov.iti.jets.service.services.LoginService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,6 +37,7 @@ public class SidebarController implements Initializable {
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
     ContactListService contactListService = new ContactListService();
+    GroupListService groupListService = new GroupListService();
     MessageDto messageDto=new MessageDto();
 
 
@@ -129,6 +132,11 @@ public class SidebarController implements Initializable {
             contactModel = new ContactModel();
             System.out.println(contactDto.getFriendName());
             chattingSectionVbox.getChildren().add(stageCoordinator.loadContacts(contactDto));
+        }
+
+        for (GroupDto groupDto : groupListService.getListOfGroup(LoginService.getId())) {
+//            contactModel = new ContactModel();
+            chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadGroups(groupDto));
         }
 
 //        chattingSectionVbox.getChildren().add(stageCoordinator.loadContacts());

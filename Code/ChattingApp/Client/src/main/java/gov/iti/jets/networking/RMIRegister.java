@@ -63,6 +63,19 @@ public class RMIRegister {
         }
         return contactListInt;
     }
+
+    public GroupListInt groupListService(){
+        GroupListInt groupListInt = null;
+        try {
+            groupListInt = (GroupListInt) registry.lookup("GroupListService");
+        } catch (NotBoundException |AccessException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return groupListInt;
+    }
+
     public ServerMessageInt messageService(){
         ServerMessageInt serverMessageInt = null;
         try {

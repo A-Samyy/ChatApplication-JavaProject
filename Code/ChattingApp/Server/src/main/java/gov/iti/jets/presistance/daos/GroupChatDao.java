@@ -85,10 +85,10 @@ public class GroupChatDao {
         }
     }
 
-    public String getGroupsNameById(GroupChatDto groupChatDto) {
+    public String getGroupsNameById(int id) {
         try {
             conn = connector.getConnection();
-            String sql = "select group_chat_name from chatting_app.group_chat where group_chat_ID=" + groupChatDto.getGroupId();
+            String sql = "select group_chat_name from chatting_app.group_chat where group_chat_ID=" + id;
             preparedStatement = conn.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {

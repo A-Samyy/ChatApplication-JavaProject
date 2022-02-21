@@ -37,6 +37,10 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
 
     @Override
     public String reciveMessage(MessageDto messageDto) throws RemoteException {
+
+        //for tomorrow
+//        Map<Integer, ObservableList<HBox>> map = new HashMap<>();
+//        ObservableList<HBox> list = FXCollections.observableArrayList();
         messageDao = new MessageDao(messageDto);
 
         list.add(stageCoordinator.loadMessage(messageDao));
