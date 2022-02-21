@@ -27,4 +27,12 @@ public class ClientFriendRequestDto implements Serializable {
     public void setFriendPhoneNumber(String friendPhoneNumber) {
         this.friendPhoneNumber = friendPhoneNumber;
     }
+
+    @Override
+    public String toString() {
+        return "ClientFriendRequestDto{" +
+                "UserId=" + UserId +
+                ", friendPhoneNumber='" + friendPhoneNumber + '\'' +
+                '}';
+    }
 }

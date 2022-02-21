@@ -178,6 +178,29 @@ public class UserDao {
             }
         }
     }
+    public String getUserNameById(int id) {
+        try {
+            conn = connector.getConnection();
+            String sql = "select USER_NAME from chatting_app.user where User_ID=" + id;
+            preparedStatement = conn.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getString(1);
+            } else
+                return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     public List<UserDto> getAllUser() {
         List<UserDto> userList = new ArrayList<>();

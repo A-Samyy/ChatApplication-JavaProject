@@ -6,7 +6,10 @@ import gov.iti.jets.presistance.util.Connector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FriendRequestDao {
     private Connection conn = null;
@@ -48,7 +51,7 @@ public class FriendRequestDao {
                     return -1;
                 }
             }
-        }else
+        } else
             return -1;   // the user already requested and it's still pending
     }
 
@@ -78,7 +81,7 @@ public class FriendRequestDao {
         contactDto.setUserId(friendRequestDto.getUserId());
         contactDto.setFriendId(friendRequestDto.getFriendId());
         check = contactDao.addFriendDto(contactDto);
-        if(check){
+        if (check) {
             deleteFriendRequest(friendRequestDto);
         }
         return check;
@@ -124,6 +127,31 @@ public class FriendRequestDao {
         }
     }
 
+    public List<FriendRequestDto> getAllFriendRequestsForUser(int id) {
+        List<FriendRequestDto> friendRequestList = new ArrayList<>();
+        try {
+            conn = connector.getConnection();
+            String sql = "select user_from,user_to from chatting_app.friend_request where (user_to =" + id + ");";
+            preparedStatement = conn.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                FriendRequestDto friendRequestDto = extractFriendRequest(resultSet);
+                friendRequestList.add(friendRequestDto);
+            }
+            return friendRequestList;
+        } catch (SQLException e) {
+            return friendRequestList;
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private boolean injectContact(int userId, int friendId, String sql) {
         try {
             conn = connector.getConnection();
@@ -134,6 +162,26 @@ public class FriendRequestDao {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private FriendRequestDto extractFriendRequest(ResultSet resultSet) {
+        try {
+            conn = connector.getConnection();
+            FriendRequestDto friendRequestDto = new FriendRequestDto();
+            friendRequestDto.setUserId(resultSet.getInt(1));
+            friendRequestDto.setFriendId(resultSet.getInt(2));
+            return friendRequestDto;
+        } catch (SQLException e) {
+            return null;
         } finally {
             try {
                 if (conn != null) {
