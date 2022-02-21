@@ -46,6 +46,7 @@ public class ChatSectionController implements Initializable {
     MessageService messageService = MessageService.getInstance();
     private ObservableList<Map<Boolean,HBox>> messageObservableList;
     private Boolean messageReceived=false;
+    Map<Boolean,HBox> map = new TreeMap<>();;
     @FXML
     private AnchorPane bottomBar;
 
@@ -128,7 +129,6 @@ public class ChatSectionController implements Initializable {
 
     private void createMessage(){
 
-        Map<Boolean,HBox> map=new TreeMap<>();
         map.put(true,stageCoordinator.loadMessage(messageDao));
         messageObservableList.add(map);
         chatContainer.setItems(messageObservableList);
@@ -140,18 +140,15 @@ public class ChatSectionController implements Initializable {
             System.out.println();
             if(ClientMessageImpl.map.get(id) != null);
             {
-                messageReceived=true;
-                System.out.println(messageReceived);
                 for (HBox message:ClientMessageImpl.map.get(id) ) {
-                    Map<Boolean,HBox> map=new TreeMap<>();
                     map.put(false,message);
                     messageObservableList.add(map);
-
                 }
                 chatContainer.setItems(messageObservableList);
-
             }
         }
+//        ClientMessageImpl.map.clear();
+//        messageObservableList.clear();
     }
 
     @Override
