@@ -17,7 +17,7 @@ public class RMIRegister {
 
     private RMIRegister() {
         try {
-            registry = LocateRegistry.getRegistry("localhost", 4006);
+            registry = LocateRegistry.getRegistry("localhost", 4005);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -85,6 +85,16 @@ public class RMIRegister {
             e.printStackTrace();
         }
         return friendRequestInt;
+    }
+    public AddGroupChatInt addGroupChatService(){
+        AddGroupChatInt addGroupChatInt =null;
+        try{
+            addGroupChatInt =(AddGroupChatInt) registry.lookup("AddGroupChatService");
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }catch (NotBoundException e) {
+            e.printStackTrace();
+        }return addGroupChatInt;
     }
 
 
