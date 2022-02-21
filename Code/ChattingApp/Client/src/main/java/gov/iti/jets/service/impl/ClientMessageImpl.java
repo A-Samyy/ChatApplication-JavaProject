@@ -37,22 +37,14 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
 
     @Override
     public String reciveMessage(MessageDto messageDto) throws RemoteException {
-        /*
-        Stagecor.loadMessage(messageDto)
-         */
-//        messageService.recieveMessageDto(messageDto);
-
-//        stageCoordinator.getHomepage().add( stageCoordinator.loadChatSection(null,null,null,0), 1, 0);
-
         messageDao = new MessageDao(messageDto);
 
         list.add(stageCoordinator.loadMessage(messageDao));
-//        if(add){
-            map.put(messageDto.getUserId(),list);
-//        }
+        map.put(messageDto.getUserId(),list);
 
 
-        System.out.println(list.toString());
+
+//        System.out.println(map.get(messageDto.getFriendId()).toString());
         return messageDto.getMessageContent();
     }
 
