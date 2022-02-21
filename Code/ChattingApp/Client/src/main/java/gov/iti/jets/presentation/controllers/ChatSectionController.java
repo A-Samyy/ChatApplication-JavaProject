@@ -30,7 +30,10 @@ import org.kordamp.ikonli.javafx.FontIcon;
 import javax.xml.validation.Validator;
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 
 public class ChatSectionController implements Initializable {
 
@@ -40,13 +43,13 @@ public class ChatSectionController implements Initializable {
     MessageDao messageDao=new MessageDao(messageDto);
     UserModel userModel = modelFactory.getUserModel();
     MessageService messageService = MessageService.getInstance();
-    private ObservableList<HBox> messageObservableList;
+    private ObservableList<Map<Boolean,HBox>> messageObservableList;
     private Boolean messageReceived=false;
     @FXML
     private AnchorPane bottomBar;
 
     @FXML
-    private ListView<HBox> chatContainer;
+    private ListView<Map<Boolean,HBox>> chatContainer;
 
     @FXML
     private FontIcon filesButton;
@@ -124,10 +127,10 @@ public class ChatSectionController implements Initializable {
 
     private void createMessage(){
 
-
-        messageObservableList.add(stageCoordinator.loadMessage(messageDao));
+        Map<Boolean,HBox> map=new TreeMap<>();
+        map.put(true,stageCoordinator.loadMessage(messageDao));
+        messageObservableList.add(map);
         chatContainer.setItems(messageObservableList);
-
 
     }
     public void displayMessage(int id){
@@ -137,7 +140,14 @@ public class ChatSectionController implements Initializable {
             {
                 messageReceived=true;
                 System.out.println(messageReceived);
-               ClientMessageImpl.map.get(id);
+                for (HBox message:ClientMessageImpl.map.get(id) ) {
+                    Map<Boolean,HBox> map=new TreeMap<>();
+                    map.put(false,message);
+                    messageObservableList.add(map);
+
+                }
+                chatContainer.setItems(messageObservableList);
+
             }
         }
     }
@@ -150,7 +160,7 @@ public class ChatSectionController implements Initializable {
 
     }
 
-    private class MessageListViewCell extends ListCell<HBox> {
+    private class MessageListViewCell extends ListCell<Map<Boolean,HBox>> {
 
        private Pane messageCellContainer=new Pane();
         public MessageListViewCell() {
@@ -159,17 +169,20 @@ public class ChatSectionController implements Initializable {
         }
 
         @Override
-        protected void updateItem(HBox item, boolean empty) {
+        protected void updateItem(Map<Boolean,HBox> item, boolean empty) {
             super.updateItem(item, empty);
             if (item != null && !empty) { // <== test for null item and empty parameter
-                if(messageReceived){
-                    messageCellContainer.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
-                    messageReceived=false;
-                }else {
+                if(item.containsKey(true)){
+
                     messageCellContainer.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
-                    item.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+                    item.get(true).setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+                    messageCellContainer.getChildren().add(item.get(true));
+                }else {
+                    messageCellContainer.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+                    item.get(false).setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+                    messageCellContainer.getChildren().add(item.get(false));
                 }
-                messageCellContainer.getChildren().add(item);
+
                 setGraphic(messageCellContainer);
             } else {
                 setGraphic(null);
