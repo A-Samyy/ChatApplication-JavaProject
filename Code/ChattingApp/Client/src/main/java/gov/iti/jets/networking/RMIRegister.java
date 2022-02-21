@@ -1,9 +1,8 @@
 package gov.iti.jets.networking;
 
-import gov.iti.jets.service.ContactListInt;
-import gov.iti.jets.service.LoginInt;
-import gov.iti.jets.service.RegisterInt;
-import gov.iti.jets.service.ServerMessageInt;
+
+
+import gov.iti.jets.common.interfaces.*;
 
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
