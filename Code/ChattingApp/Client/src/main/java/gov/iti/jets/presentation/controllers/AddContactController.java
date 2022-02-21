@@ -1,6 +1,7 @@
 package gov.iti.jets.presentation.controllers;
 
 
+import gov.iti.jets.common.dtos.ClientFriendRequestDto;
 import gov.iti.jets.service.services.FriendRequestService;
 import gov.iti.jets.service.services.LoginService;
 import javafx.application.Platform;
