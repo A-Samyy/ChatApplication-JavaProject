@@ -40,6 +40,8 @@ public class StageCoordinator {
 
     private final Map<String, Scene> sceneMap = new HashMap<>();
     private final Map<String, Node> nodeMap = new HashMap<>();
+    private final Map<Integer, Node> chatSectionMap = new HashMap<>();
+    private final Map<Integer, ChatSectionController> chatSectionControllerMap = new HashMap<>();
 
     private StageCoordinator() {
     }
@@ -203,26 +205,27 @@ public class StageCoordinator {
         return defaultbar;
     }
     public Node loadChatSection(String name, Image pic , String status , int id){
-        Node chatSection = null;
-        try {
-
+        Node chatSection = chatSectionMap.get(id);
+        if(chatSection == null){
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/views/HomePageSection2/homePageSection2.fxml"));
-
-            chatSection = loader.load();
-            ChatSectionController chatSectionController = (ChatSectionController) loader.getController();
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println(id);
-                    chatSectionController.display(name,pic,status , id);
-                    chatSectionController.displayMessage(id);
-                }
-            });
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                chatSection = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            ChatSectionController chatSectionController = loader.getController();
+            chatSectionMap.put(id,chatSection);
+            chatSectionControllerMap.put(id,chatSectionController);
         }
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                chatSectionControllerMap.get(id).display(name,pic,status , id);
+                chatSectionControllerMap.get(id).displayMessage(id);
+            }
+        });
+
         return chatSection;
     }
 

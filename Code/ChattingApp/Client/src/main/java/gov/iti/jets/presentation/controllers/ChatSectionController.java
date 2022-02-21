@@ -137,7 +137,7 @@ public class ChatSectionController implements Initializable {
             {
                 messageReceived=true;
                 System.out.println(messageReceived);
-                chatContainer.setItems(ClientMessageImpl.map.get(id));
+               ClientMessageImpl.map.get(id);
             }
         }
     }

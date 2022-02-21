@@ -65,6 +65,7 @@ public class ContactController implements Initializable {
     @FXML
     void OpenChatOnClick(MouseEvent event) {
         GridPane home = stageCoordinator.getHomepage();
+        home.getChildren().removeIf(node -> GridPane.getColumnIndex(node) == 1);
         home.add( stageCoordinator.loadChatSection(contactName.getText(),imageView.getImage(),contactDto.getStatus(),contactDto.getId()), 1, 0);
     }
 
