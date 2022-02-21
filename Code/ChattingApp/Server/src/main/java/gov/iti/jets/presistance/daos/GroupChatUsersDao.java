@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GroupChatUsersDao {
 
@@ -95,6 +96,30 @@ public class GroupChatUsersDao {
                 groupsIds.add(resultSet.getInt(1));
             }
             return groupsIds;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public List<Integer> getAllUsersIdFromGroupId(int groupId) {
+        try {
+            conn = connector.getConnection();
+            List<Integer> usersList = new ArrayList();
+            String sql = "select user_id from chatting_app.group_chat_users where group_ID=" + groupId;
+            preparedStatement = conn.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                usersList.add(resultSet.getInt(1));
+            }
+            return usersList;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
