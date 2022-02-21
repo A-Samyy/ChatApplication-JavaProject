@@ -30,7 +30,9 @@ import org.kordamp.ikonli.javafx.FontIcon;
 import javax.xml.validation.Validator;
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 
 public class ChatSectionController implements Initializable {
 
@@ -124,7 +126,7 @@ public class ChatSectionController implements Initializable {
 
     private void createMessage(){
 
-
+        Map<Boolean,HBox> map = new TreeMap<>();
         messageObservableList.add(stageCoordinator.loadMessage(messageDao));
         chatContainer.setItems(messageObservableList);
 
