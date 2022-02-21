@@ -17,9 +17,9 @@ public class Connector {
 
     static {
         HikariConfig config =new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://localhost:3306/iti");
+        config.setJdbcUrl("jdbc:mysql://localhost:3307/chatting_app");
         config.setUsername("root");
-        config.setPassword("rootpassword");
+        config.setPassword("hend1234");
         dataSource= new HikariDataSource( config );
         dataSource.setMaximumPoolSize(20);
     }
