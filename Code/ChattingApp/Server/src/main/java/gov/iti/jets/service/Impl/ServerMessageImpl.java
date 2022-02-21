@@ -45,7 +45,7 @@ public class ServerMessageImpl extends UnicastRemoteObject implements  ServerMes
         return false;
     }
 
-    public boolean sendMessage( MessageDto messageDto){
+    public boolean sendMessage(MessageDto messageDto){
         try {
             System.out.println("dakhlt feh el heta ely byndahg feha el reciev"+messageDto.getFriendId());
             clients.get(messageDto.getFriendId()).reciveMessage(messageDto);

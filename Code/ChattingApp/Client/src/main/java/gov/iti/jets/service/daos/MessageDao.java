@@ -33,7 +33,4 @@ public class MessageDao {
     public String getMessageUserName(){
         return messageDto.getUserName();
     }
-
-
-
 }

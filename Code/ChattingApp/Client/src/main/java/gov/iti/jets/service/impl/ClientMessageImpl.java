@@ -1,6 +1,7 @@
 package gov.iti.jets.service.impl;
 
 import gov.iti.jets.common.dtos.MessageDto;
+import gov.iti.jets.common.dtos.MessageGroupDto;
 import gov.iti.jets.common.interfaces.ClientMesseageInt;
 import gov.iti.jets.common.interfaces.ServerMessageInt;
 import gov.iti.jets.networking.RMIRegister;
@@ -54,6 +55,11 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
 
         System.out.println(list.toString());
         return messageDto.getMessageContent();
+    }
+
+    @Override
+    public String reciveGroupMessage(MessageGroupDto messageGroupDto) throws RemoteException {
+        return messageGroupDto.getMessageContent();
     }
 
 
