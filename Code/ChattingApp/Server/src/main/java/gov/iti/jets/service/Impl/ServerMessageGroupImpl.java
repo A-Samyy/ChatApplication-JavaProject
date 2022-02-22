@@ -44,12 +44,12 @@ public class ServerMessageGroupImpl extends UnicastRemoteObject implements Serve
 
 
     private void sendMessage(MessageGroupDto messageGroupDto) {
-        for (ClientMesseageInt clientMesseageInt : groupClients.get(messageGroupDto.getGroupId())) {
-            try {
-                clientMesseageInt.reciveGroupMessage(messageGroupDto);
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+//        for (ClientMesseageInt clientMesseageInt : groupClients.get(messageGroupDto.getGroupId())) {
+//            try {
+//      //          clientMesseageInt.reciveGroupMessage(messageGroupDto);
+//            } catch (RemoteException e) {
+//                e.printStackTrace();
+//            }
+//        }
+   }
 }

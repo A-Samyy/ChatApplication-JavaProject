@@ -58,8 +58,11 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
     }
 
     @Override
-    public String reciveGroupMessage(MessageGroupDto messageGroupDto) throws RemoteException {
-        return messageGroupDto.getMessageContent();
+    public void reciveGroupMessage(MessageGroupDto messageGroupDto , int receivedUserId) throws RemoteException {
+        if(receivedUserId==LoginService.getId()){
+            System.out.println(messageGroupDto.toString());
+        }
+
     }
 
 

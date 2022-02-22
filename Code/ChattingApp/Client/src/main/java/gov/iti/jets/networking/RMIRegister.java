@@ -3,6 +3,7 @@ package gov.iti.jets.networking;
 
 
 import gov.iti.jets.common.interfaces.*;
+import gov.iti.jets.service.impl.ClientGroupChatMessageImpl;
 
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
@@ -18,6 +19,8 @@ public class RMIRegister {
     private RMIRegister() {
         try {
             registry = LocateRegistry.getRegistry("localhost", 4006);
+            ClientGroupChatMessageInt clientGroupChatMessageInt = new ClientGroupChatMessageImpl();
+            registry.rebind("ClientGroupChatMessageService",clientGroupChatMessageInt);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -85,6 +88,16 @@ public class RMIRegister {
             e.printStackTrace();
         }
         return friendRequestInt;
+    }public ServerGroupChatMessageInt groupChatMessageService(){
+        ServerGroupChatMessageInt  serverGroupChatMessageInt = null;
+        try {
+            serverGroupChatMessageInt = (ServerGroupChatMessageInt) registry.lookup("GroupChatMessageService");
+        } catch (NotBoundException |AccessException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return serverGroupChatMessageInt;
     }
 
 

@@ -10,5 +10,5 @@ import java.rmi.RemoteException;
 
 public interface ClientMesseageInt extends Remote {
     public String reciveMessage(MessageDto messageDto) throws RemoteException;
-    public String reciveGroupMessage(MessageGroupDto messageGroupDto) throws RemoteException;
+    public void reciveGroupMessage(MessageGroupDto messageGroupDto, int userId) throws RemoteException;
 }

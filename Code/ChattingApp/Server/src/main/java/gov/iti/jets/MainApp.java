@@ -1,9 +1,11 @@
 package gov.iti.jets;
 
 
+import gov.iti.jets.common.dtos.MessageGroupDto;
 import gov.iti.jets.networking.RMICreateRegister;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.presistance.util.Connector;
+import gov.iti.jets.service.Impl.ServerGroupChatMessageImpl;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -27,8 +29,10 @@ public class MainApp extends Application {
     }
     @Override
     public void start(Stage primaryStage){
+
         stageCoordinator.initStage(primaryStage);
         stageCoordinator.switchToLoginScreen();
         primaryStage.show();
+
     }
 }

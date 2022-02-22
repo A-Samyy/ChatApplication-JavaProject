@@ -18,12 +18,14 @@ public class RMICreateRegister {
             ContactListInt contactListInt = new ContactListImpl();
             ServerMessageInt message = new ServerMessageImpl();
             FriendRequestInt friendRequestInt= new FriendRequestImpl();
+            ServerGroupChatMessageInt serverGroupChatMessageInt =new ServerGroupChatMessageImpl();
             Registry registry = LocateRegistry.createRegistry(4006);
             registry.rebind("RegisterService",register);
             registry.rebind("loginService",loginService);
             registry.rebind("ContactListService",contactListInt);
             registry.rebind("MessageService", message);
             registry.rebind("FriendRequestService", friendRequestInt);
+            registry.rebind("GroupChatMessageService",serverGroupChatMessageInt);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

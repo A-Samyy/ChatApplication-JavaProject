@@ -3,8 +3,8 @@ package gov.iti.jets.common.dtos;
 import java.io.Serializable;
 
 public class MessageGroupDto implements Serializable {
-
     private static final long serialVersionUID = 1420672609912364188L;
+
     private String messageContent ;
     private int senderId ;
     private int groupId ;
@@ -31,5 +31,14 @@ public class MessageGroupDto implements Serializable {
 
     public void setGroupId(int groupId) {
         this.groupId = groupId;
+    }
+
+    @Override
+    public String toString() {
+        return "MessageGroupDto{" +
+                "messageContent='" + messageContent + '\'' +
+                ", senderId=" + senderId +
+                ", groupId=" + groupId +
+                '}';
     }
 }
