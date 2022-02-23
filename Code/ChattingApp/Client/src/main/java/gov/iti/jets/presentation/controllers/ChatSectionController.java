@@ -146,8 +146,6 @@ public class ChatSectionController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         chatContainer.setCellFactory(messageListView -> new MessageListViewCell());
         messageObservableList = FXCollections.observableArrayList();
-
-
     }
 
     private class MessageListViewCell extends ListCell<HBox> {

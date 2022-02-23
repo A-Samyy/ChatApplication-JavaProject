@@ -1,11 +1,13 @@
 package gov.iti.jets.presentation.controllers;
 
 import gov.iti.jets.common.dtos.MessageGroupDto;
+import gov.iti.jets.common.interfaces.ClientGroupChatMessageInt;
 import gov.iti.jets.common.interfaces.ServerGroupChatMessageInt;
 import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
+import gov.iti.jets.service.impl.ClientGroupChatMessageImpl;
 import gov.iti.jets.service.services.LoginService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,6 +23,7 @@ public class HomePageController implements Initializable {
     UserModel userModel = modelFactory.getUserModel();
     RMIRegister rmiRegister = RMIRegister.getInstance();
     ServerGroupChatMessageInt serverGroupChatMessage = rmiRegister.groupChatMessageService();
+    ClientGroupChatMessageInt clientGroupChatMessageInt ;
     @FXML
     public GridPane gridPane;
 
@@ -30,13 +33,19 @@ public class HomePageController implements Initializable {
         stageCoordinator.setHomepage(gridPane);
         gridPane.add(stageCoordinator.loadSidebar(), 0, 0);
         gridPane.add(stageCoordinator.loadDefault(), 1, 0);
+        try {
+            clientGroupChatMessageInt= new ClientGroupChatMessageImpl();
+            System.out.println("group chat registered");
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         if (LoginService.getId() == 1) {
             MessageGroupDto messageGroupDto1 = new MessageGroupDto();
             messageGroupDto1.setGroupId(1);
             messageGroupDto1.setMessageContent("hi group");
             messageGroupDto1.setSenderId(LoginService.getId());
             try {
-                System.out.println("homee page "+serverGroupChatMessage.sendGroupChatMessage(messageGroupDto1));
+                System.out.println("homee page message "+serverGroupChatMessage.sendGroupChatMessage(messageGroupDto1));
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
