@@ -2,19 +2,15 @@ package gov.iti.jets.presentation.util;
 
 import gov.iti.jets.common.dtos.ContactDto;
 import gov.iti.jets.common.dtos.GroupDto;
-import gov.iti.jets.presentation.controllers.ChatSectionController;
-import gov.iti.jets.presentation.controllers.ContactController;
+import gov.iti.jets.presentation.controllers.*;
 
-import gov.iti.jets.presentation.controllers.GroupListController;
 import javafx.application.Platform;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import gov.iti.jets.presentation.controllers.MessageController;
 import gov.iti.jets.service.daos.MessageDao;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -22,18 +18,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
 
 public class StageCoordinator {
     private static final StageCoordinator stageCoordinator = new StageCoordinator();
@@ -258,10 +245,23 @@ public class StageCoordinator {
 
         return chatSection;
     }
-
+    public Node loadFriendRequest(String name){
+        Node friendReq = null;
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/views/contactSection/friendReq.fxml"));
+//            friendReq = FXMLLoader.load(getClass().getResource("/views/contactSection/friendReq.fxml"));
+            friendReq = loader.load();
+            FriendRequestController friendRequestCont= loader.getController();
+            friendRequestCont.dispalyFriendReq(name);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return friendReq;
+    }
     public void loadAddContact() {
         Stage addNewContact = new Stage();
-        Pane addContact = null;
+        Parent addContact = null;
         try {
             addContact = FXMLLoader.load(getClass().getResource("/views/contactSection/addContact.fxml"));
         } catch (Exception e) {

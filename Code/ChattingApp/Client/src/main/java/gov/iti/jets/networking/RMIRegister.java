@@ -17,7 +17,7 @@ public class RMIRegister {
 
     private RMIRegister() {
         try {
-            registry = LocateRegistry.getRegistry("localhost", 4005);
+            registry = LocateRegistry.getRegistry("localhost", 7000);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -50,6 +50,18 @@ public class RMIRegister {
             e.printStackTrace();
         }
         return loginInt;
+    }
+
+    public UpdateUserInt updateUserService(){
+        UpdateUserInt updateUserInt = null;
+        try {
+            updateUserInt = (UpdateUserInt) registry.lookup("updateUserService");
+        } catch (NotBoundException |AccessException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return updateUserInt;
     }
 
     public ContactListInt contactListService(){

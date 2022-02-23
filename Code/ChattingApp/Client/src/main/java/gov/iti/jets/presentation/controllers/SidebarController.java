@@ -1,6 +1,7 @@
 package gov.iti.jets.presentation.controllers;
 
 import gov.iti.jets.common.dtos.ContactDto;
+import gov.iti.jets.common.dtos.FriendRequestSenderDto;
 import gov.iti.jets.common.dtos.GroupDto;
 import gov.iti.jets.common.dtos.MessageDto;
 import gov.iti.jets.presentation.models.ContactModel;
@@ -8,6 +9,7 @@ import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.services.ContactListService;
+import gov.iti.jets.service.services.FriendRequestService;
 import gov.iti.jets.service.services.GroupListService;
 import gov.iti.jets.service.services.LoginService;
 import javafx.fxml.FXML;
@@ -37,6 +39,7 @@ public class SidebarController implements Initializable {
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
     ContactListService contactListService = new ContactListService();
+    FriendRequestService friendRequestService = new FriendRequestService();
     GroupListService groupListService = new GroupListService();
     MessageDto messageDto=new MessageDto();
 
@@ -93,6 +96,9 @@ public class SidebarController implements Initializable {
     ImageView img;
     ContactModel contactModel;
 
+    public SidebarController() throws RemoteException {
+    }
+
     @FXML
     void logoutOnMouseClick(MouseEvent event) {
         stageCoordinator.switchToLoginScreen();
@@ -101,6 +107,10 @@ public class SidebarController implements Initializable {
     @FXML
     void onMouseClicked(MouseEvent event) {
 
+    }
+    @FXML
+    void OnAddingContact(MouseEvent event) {
+        stageCoordinator.loadAddContact();
     }
 
     @FXML
@@ -113,42 +123,47 @@ public class SidebarController implements Initializable {
 
     }
 
-    @FXML
-    void OnAddContactMouseClick(MouseEvent event) {
-        stageCoordinator.loadAddContact();
-    }
+//    @FXML
+//    void OnAddContactMouseClick(MouseEvent event) {
+//        stageCoordinator.loadAddContact();
+//    }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        img = new ImageView();
-        img.imageProperty().bindBidirectional(userModel.imageProperty());
-        profilePic.setFill(new ImagePattern(img.getImage()));
+//        img = new ImageView();
+//        img.imageProperty().bindBidirectional(userModel.imageProperty());
+//        profilePic.setFill(new ImagePattern(img.getImage()));
         if (userModel.getStatus().equals("ACTIVE")) {
             status.setFill(Color.RED);
         }
         bio.textProperty().bindBidirectional(userModel.bioProperty());
         userName.textProperty().bindBidirectional(userModel.userNameProperty());
-        for (ContactDto contactDto : contactListService.getListOfContact(LoginService.getId())) {
-            contactModel = new ContactModel();
-            System.out.println(contactDto.getFriendName());
-            chattingSectionVbox.getChildren().add(stageCoordinator.loadContacts(contactDto));
+        if(!contactListService.getListOfContact((LoginService.getId())).isEmpty()){
+            for (ContactDto contactDto : contactListService.getListOfContact(LoginService.getId())) {
+                contactModel = new ContactModel();
+                System.out.println(contactDto.getFriendName());
+                chattingSectionVbox.getChildren().add(stageCoordinator.loadContacts(contactDto));
+            }
         }
-
-        for (GroupDto groupDto : groupListService.getListOfGroup(LoginService.getId())) {
+        if(!groupListService.getListOfGroup(LoginService.getId()).isEmpty()){
+            for (GroupDto groupDto : groupListService.getListOfGroup(LoginService.getId())) {
 //            contactModel = new ContactModel();
-            chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadGroups(groupDto));
+                chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadGroups(groupDto));
+            }
+        }
+        try {
+            if(!friendRequestService.getFriendRequestsNotifcation().isEmpty()){
+                for(FriendRequestSenderDto friendRequestSenderDto : friendRequestService.getFriendRequestsNotifcation()){
+                    System.out.println(friendRequestSenderDto);
+                    SettingAreaVbox.getChildren().add(stageCoordinator.loadFriendRequest(friendRequestSenderDto.getSenderName()));
+
+                }
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
 
-//        chattingSectionVbox.getChildren().add(stageCoordinator.loadContacts());
-//        anchorPaneOfContacts.getChildren().add(stageCoordinator.loadContacts());
-//        SettingAreaVbox.getChildren().add(stageCoordinator.loadSettings());
-//        chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
-//        chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
-//        chattingSectionVbox.getChildren().add(stageCoordinator.loadMyChat());
-//        chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
-//        chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
-//        chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
-//        chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadMyChat());
+
     }
 
 }
