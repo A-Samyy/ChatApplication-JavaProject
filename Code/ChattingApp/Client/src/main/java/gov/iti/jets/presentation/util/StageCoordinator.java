@@ -7,8 +7,7 @@ import gov.iti.jets.presentation.controllers.ContactController;
 import javafx.application.Platform;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import gov.iti.jets.presentation.controllers.MessageController;
 import gov.iti.jets.service.daos.MessageDao;
@@ -29,7 +28,6 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,7 +40,7 @@ public class StageCoordinator {
     private final Map<String, Node> nodeMap = new HashMap<>();
     private final Map<Integer, Node> chatSectionMap = new HashMap<>();
     private final Map<Integer, ChatSectionController> chatSectionControllerMap = new HashMap<>();
-
+Map<Integer,List<HBox>> map=new HashMap<>();
     private StageCoordinator() {
     }
 
