@@ -19,8 +19,6 @@ public class RMIRegister {
     private RMIRegister() {
         try {
             registry = LocateRegistry.getRegistry("localhost", 4006);
-            ClientGroupChatMessageInt clientGroupChatMessageInt = new ClientGroupChatMessageImpl();
-            registry.rebind("ClientGroupChatMessageService",clientGroupChatMessageInt);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
