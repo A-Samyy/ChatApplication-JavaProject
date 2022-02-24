@@ -12,6 +12,8 @@ import gov.iti.jets.service.services.ContactListService;
 import gov.iti.jets.service.services.FriendRequestService;
 import gov.iti.jets.service.services.GroupListService;
 import gov.iti.jets.service.services.LoginService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -32,9 +34,13 @@ import javafx.scene.shape.Circle;
 import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 
 public class SidebarController implements Initializable {
+    static public Map<Integer , ObservableList<MessageDto>> observableListMap = new TreeMap<>();
+    ObservableList<MessageDto> list ;
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
@@ -130,9 +136,9 @@ public class SidebarController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-//        img = new ImageView();
-//        img.imageProperty().bindBidirectional(userModel.imageProperty());
-//        profilePic.setFill(new ImagePattern(img.getImage()));
+        img = new ImageView();
+        img.imageProperty().bindBidirectional(userModel.imageProperty());
+        profilePic.setFill(new ImagePattern(img.getImage()));
         if (userModel.getStatus().equals("ACTIVE")) {
             status.setFill(Color.RED);
         }
@@ -141,7 +147,9 @@ public class SidebarController implements Initializable {
         if(!contactListService.getListOfContact((LoginService.getId())).isEmpty()){
             for (ContactDto contactDto : contactListService.getListOfContact(LoginService.getId())) {
                 contactModel = new ContactModel();
+                list = FXCollections.observableArrayList();
                 System.out.println(contactDto.getFriendName());
+                observableListMap.put(contactDto.getId(),list);
                 chattingSectionVbox.getChildren().add(stageCoordinator.loadContacts(contactDto));
             }
         }

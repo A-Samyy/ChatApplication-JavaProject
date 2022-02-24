@@ -23,15 +23,19 @@ public class RMICreateRegister {
             UpdateUserInt updateUserInt = new UpdateUserImpl();
             Registry registry;
 //            try{
-                registry = LocateRegistry.getRegistry(7000);
+                registry = LocateRegistry.getRegistry(7003);
 //            }catch(Exception e){
 //                registry = LocateRegistry.createRegistry(7000);
 //            }
+
             registry.rebind("RegisterService",register);
             registry.rebind("loginService",loginService);
             registry.rebind("ContactListService",contactListInt);
             registry.rebind("MessageService", message);
             registry.rebind("FriendRequestService", friendRequestInt);
+            registry.rebind("AddGroupChatService", addGroupChatInt);
+            registry.rebind("GroupListService",groupListInt);
+            registry.rebind("updateUserService",updateUserInt);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

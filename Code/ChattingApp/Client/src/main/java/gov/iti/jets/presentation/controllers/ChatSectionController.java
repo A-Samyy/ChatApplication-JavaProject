@@ -1,11 +1,13 @@
 package gov.iti.jets.presentation.controllers;
 
+import gov.iti.jets.common.dtos.ContactDto;
 import gov.iti.jets.common.dtos.MessageDto;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.daos.MessageDao;
 import gov.iti.jets.service.impl.ClientMessageImpl;
+import gov.iti.jets.service.services.ContactListService;
 import gov.iti.jets.service.services.LoginService;
 import gov.iti.jets.service.services.MessageService;
 import javafx.application.Platform;
@@ -38,11 +40,12 @@ public class ChatSectionController implements Initializable {
 
     private final StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     private final ModelFactory modelFactory = ModelFactory.getInstance();
+    ContactListService contactListService = new ContactListService();
+    List<ContactDto> list = new ArrayList<>();
     MessageDto  messageDto= new MessageDto();
     MessageDao messageDao=new MessageDao(messageDto);
     UserModel userModel = modelFactory.getUserModel();
     MessageService messageService = MessageService.getInstance();
-    Map<Integer , ObservableList<MessageDto>> observableListMap = new TreeMap<>();
     @FXML
     private AnchorPane bottomBar;
 
@@ -124,14 +127,14 @@ public class ChatSectionController implements Initializable {
 
     private void createMessage(){
         ObservableList observableList;
-        System.out.println(observableListMap.get(messageDao.getMessageDto().getFriendId()));
-        if(observableListMap.get(messageDao.getMessageDto().getFriendId()) == null){
-            System.out.println("create list for frined when i msg");
-            observableList = FXCollections.observableArrayList();
-            observableListMap.put(messageDao.getMessageDto().getFriendId(),observableList);
-        }else{
-            observableList= observableListMap.get(messageDao.getMessageDto().getFriendId());
-        }
+        System.out.println("create"+SidebarController.observableListMap.get(messageDao.getMessageDto().getFriendId()));
+//        if(observableListMap.get(messageDao.getMessageDto().getFriendId()) == null){
+////            System.out.println("create list for frined when i msg");
+//            observableList = FXCollections.observableArrayList();
+//            observableListMap.put(messageDao.getMessageDto().getFriendId(),observableList);
+//        }else{
+            observableList= SidebarController.observableListMap.get(messageDao.getMessageDto().getFriendId());
+//        }
         observableList.add(messageDao.getMessageDto());
         chatContainer.setItems(observableList);
     }
@@ -139,12 +142,13 @@ public class ChatSectionController implements Initializable {
         ObservableList list;
         if(ClientMessageImpl.map.get(id) != null){
             //check this condition
-            if(observableListMap.get(id) == null){
-                System.out.println("create lis again i dontt know why");
-                list = FXCollections.observableArrayList();
-            }else{
-                list = observableListMap.get(id);
-            }
+            System.out.println("display"+SidebarController.observableListMap.get(id));
+//            if(observableListMap.get(id) == null){
+//                System.out.println("create lis again i dontt know why");
+//                list = FXCollections.observableArrayList();
+//            }else{
+                list = SidebarController.observableListMap.get(id);
+//            }
             for (MessageDao messageDao: ClientMessageImpl.map.get(id)) {
                 list.add(messageDao.getMessageDto());
             }
@@ -157,6 +161,12 @@ public class ChatSectionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+//        list = contactListService.getListOfContact(LoginService.getId());
+//        for (ContactDto contactDto: list) {
+////            System.out.println();
+//            ObservableList list1 = FXCollections.observableArrayList();
+//            observableListMap.put(contactDto.getId(),list1);
+//        }
         chatContainer.setCellFactory(messageListView -> new MessageListViewCell());
 //        messageObservableList = FXCollections.observableArrayList();
 
