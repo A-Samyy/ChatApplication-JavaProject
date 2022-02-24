@@ -3,6 +3,7 @@ package gov.iti.jets.service.Impl;
 import gov.iti.jets.common.interfaces.ClientMesseageInt;
 import gov.iti.jets.common.interfaces.ServerMessageInt;
 import gov.iti.jets.common.dtos.MessageDto;
+import gov.iti.jets.service.services.ServerControlService;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -20,12 +21,19 @@ public class ServerMessageImpl extends UnicastRemoteObject implements  ServerMes
     @Override
     public boolean getMesssage(MessageDto messageDto) throws RemoteException {
         System.out.println("mwgd?"+clients.containsKey(messageDto.getFriendId()));
-        if (clients.containsKey(messageDto.getFriendId())){
-            System.out.println("friendId "+messageDto.getFriendId());
-            sendMessage(messageDto);
-            return true;
+        if(ServerControlService.flag) {
+            if (clients.containsKey(messageDto.getFriendId())) {
+                System.out.println("friendId " + messageDto.getFriendId());
+                sendMessage(messageDto);
+                return true;
+            }
+            return false;
         }
-        return false;
+        else{
+            System.out.println("system is offline");
+            return false;
+        }
+
     }
 
     @Override

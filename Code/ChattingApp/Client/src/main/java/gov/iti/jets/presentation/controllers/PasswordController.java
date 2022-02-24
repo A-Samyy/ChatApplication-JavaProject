@@ -67,21 +67,25 @@ public class PasswordController implements Initializable {
     void OnLoginAction(ActionEvent event) throws RemoteException {
         String userPassword = passwordTextField.getText();
         String userPass = loginService.getPassword();
-        if(userPassword.equals(userPass)) {
-            loginService.getdata();
-            MessageService.getInstance();
-            stageCoordinator.switchToGHomePageScreen();
-        }else{
-            System.out.println("Password is not Correct");
-        }
-        validationSupport.setValidationDecorator(new StyleClassValidationDecoration());
+        if(!loginService.getPassword().equals("stopped")) {
+            if (userPassword.equals(userPass)) {
+                loginService.getdata();
+                MessageService.getInstance();
+                stageCoordinator.switchToGHomePageScreen();
+            } else {
+                System.out.println("Password is not Correct");
+            }
+            validationSupport.setValidationDecorator(new StyleClassValidationDecoration());
 
-        validationSupport.setValidationDecorator(new CompoundValidationDecoration(
-                new GraphicValidationDecoration(),
-                new StyleClassValidationDecoration()));
-        validationSupport.registerValidator(passwordTextField, false, Validator.createEmptyValidator(
-                "Password is required",
-                Severity.WARNING));
+            validationSupport.setValidationDecorator(new CompoundValidationDecoration(
+                    new GraphicValidationDecoration(),
+                    new StyleClassValidationDecoration()));
+            validationSupport.registerValidator(passwordTextField, false, Validator.createEmptyValidator(
+                    "Password is required",
+                    Severity.WARNING));
+        }else {
+            System.out.println("the system is stopped");
+        }
 
 
     }
