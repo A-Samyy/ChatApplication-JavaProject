@@ -1,6 +1,7 @@
 package gov.iti.jets.presentation.util;
 
 import gov.iti.jets.common.dtos.ContactDto;
+import gov.iti.jets.common.dtos.FriendRequestSenderDto;
 import gov.iti.jets.common.dtos.GroupDto;
 import gov.iti.jets.presentation.controllers.*;
 
@@ -259,7 +260,7 @@ Map<Integer,List<HBox>> map=new HashMap<>();
         return this.chatSectionController;
     }
 
-    public Node loadFriendRequest(String name){
+    public Node loadFriendRequest(String name, FriendRequestSenderDto friendRequestSenderDto){
         Node friendReq = null;
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -267,7 +268,7 @@ Map<Integer,List<HBox>> map=new HashMap<>();
 //            friendReq = FXMLLoader.load(getClass().getResource("/views/contactSection/friendReq.fxml"));
             friendReq = loader.load();
             FriendRequestController friendRequestCont= loader.getController();
-            friendRequestCont.dispalyFriendReq(name);
+            friendRequestCont.dispalyFriendReq(name , friendRequestSenderDto);
         } catch (IOException e) {
             e.printStackTrace();
         }

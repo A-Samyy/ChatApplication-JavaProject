@@ -163,7 +163,7 @@ public class SidebarController implements Initializable {
             if(!friendRequestService.getFriendRequestsNotifcation().isEmpty()){
                 for(FriendRequestSenderDto friendRequestSenderDto : friendRequestService.getFriendRequestsNotifcation()){
                     System.out.println(friendRequestSenderDto);
-                    SettingAreaVbox.getChildren().add(stageCoordinator.loadFriendRequest(friendRequestSenderDto.getSenderName()));
+                    SettingAreaVbox.getChildren().add(stageCoordinator.loadFriendRequest(friendRequestSenderDto.getSenderName(),friendRequestSenderDto));
 
                 }
             }
