@@ -32,9 +32,9 @@ public class RMICreateRegister {
             e.printStackTrace();
         }
     }
-    public static RMICreateRegister getInstance() {
-        return rmiCreateRegister;
-    }
+        public static RMICreateRegister getInstance() {
+            return rmiCreateRegister;
+        }
 
 
 }
