@@ -117,9 +117,9 @@ public class SidebarController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        img = new ImageView();
-        img.imageProperty().bindBidirectional(userModel.imageProperty());
-        profilePic.setFill(new ImagePattern(img.getImage()));
+//        img = new ImageView();
+//        img.imageProperty().bindBidirectional(userModel.imageProperty());
+//        profilePic.setFill(new ImagePattern(img.getImage()));
         if (userModel.getStatus().equals("ACTIVE")) {
             status.setFill(Color.RED);
         }

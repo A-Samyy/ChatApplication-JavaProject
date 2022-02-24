@@ -30,7 +30,6 @@ public class MessageService {
     }
     public void sendMessageDto(MessageDto messageDto){
         this.messageDto = messageDto;
-        System.out.println("messageService");
         clientMessage.sendMessage(this.messageDto);
     }
     public void recieveMessageDto(MessageDto messageDto){
@@ -39,7 +38,6 @@ public class MessageService {
 
 //        list.add(stageCoordinator.loadMessage(messageDao));
 //        System.out.println(list.toString());
-        System.out.println("marwa"+list1.toString());
 
 
     }

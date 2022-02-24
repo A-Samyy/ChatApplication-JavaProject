@@ -35,6 +35,7 @@ public class StageCoordinator {
     private static final StageCoordinator stageCoordinator = new StageCoordinator();
     private Stage primaryStage;
     private GridPane homepage;
+    private ChatSectionController chatSectionController;
 
     private final Map<String, Scene> sceneMap = new HashMap<>();
     private final Map<String, Node> nodeMap = new HashMap<>();
@@ -212,7 +213,7 @@ Map<Integer,List<HBox>> map=new HashMap<>();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            ChatSectionController chatSectionController = loader.getController();
+            this.chatSectionController = loader.getController();
             chatSectionMap.put(id,chatSection);
             chatSectionControllerMap.put(id,chatSectionController);
         }
@@ -225,6 +226,9 @@ Map<Integer,List<HBox>> map=new HashMap<>();
         });
 
         return chatSection;
+    }
+    public ChatSectionController getChatSectionController(){
+        return this.chatSectionController;
     }
 
     public void loadAddContact() {

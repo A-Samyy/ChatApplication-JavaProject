@@ -18,7 +18,7 @@ public class RMICreateRegister {
             ContactListInt contactListInt = new ContactListImpl();
             ServerMessageInt message = new ServerMessageImpl();
             FriendRequestInt friendRequestInt= new FriendRequestImpl();
-            Registry registry = LocateRegistry.createRegistry(4006);
+            Registry registry = LocateRegistry.getRegistry(4006);
             registry.rebind("RegisterService",register);
             registry.rebind("loginService",loginService);
             registry.rebind("ContactListService",contactListInt);
