@@ -32,7 +32,7 @@ CREATE TABLE `friend_request` (
   KEY `user_to_fk_idx` (`user_to`),
   CONSTRAINT `user_from_fk` FOREIGN KEY (`user_from`) REFERENCES `user` (`User_ID`),
   CONSTRAINT `user_to_fk` FOREIGN KEY (`user_to`) REFERENCES `user` (`User_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-18 21:29:26
+-- Dump completed on 2022-02-24  4:30:57
