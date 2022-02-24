@@ -5,6 +5,7 @@ import gov.iti.jets.presistance.daos.UserDao;
 import gov.iti.jets.presistance.dtos.Status;
 import gov.iti.jets.presistance.dtos.UserDto;
 import gov.iti.jets.common.interfaces.RegisterInt;
+import gov.iti.jets.service.services.ServerControlService;
 
 
 import java.io.FileOutputStream;
@@ -22,8 +23,13 @@ public class RegisterImpl extends UnicastRemoteObject implements RegisterInt {
     }
     @Override
     public Boolean addUser(RegisterDto registerDTO) throws RemoteException {
-        UserDto userDto = mapper(registerDTO);
-        return userDao.addUserDto(userDto);
+        if(ServerControlService.flag) {
+            UserDto userDto = mapper(registerDTO);
+            return userDao.addUserDto(userDto);
+        }
+        else {
+            return false;
+        }
     }
 //    @Override
 //    public Boolean addUser(RegisterDto registerDTO) throws RemoteException {

@@ -4,6 +4,7 @@ import gov.iti.jets.common.dtos.MessageGroupDto;
 import gov.iti.jets.common.interfaces.ClientGroupChatMessageInt;
 import gov.iti.jets.common.interfaces.ServerGroupChatMessageInt;
 import gov.iti.jets.presistance.daos.GroupChatUsersDao;
+import gov.iti.jets.service.services.ServerControlService;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -23,20 +24,25 @@ public class ServerGroupChatMessageImpl extends UnicastRemoteObject implements S
 
     @Override
     public boolean sendGroupChatMessage(MessageGroupDto messageGroupDto) throws RemoteException {
-        userIds = groupChatUsersDao.getAllUsersIdFromGroupId(messageGroupDto.getGroupId());
-        for (int userId : userIds) {
-            try {
-                if (userId != messageGroupDto.getSenderId()) {
-                    if(clients.containsKey(userId)){
-                        sendMessage(messageGroupDto , userId);
+        if(ServerControlService.flag) {
+            userIds = groupChatUsersDao.getAllUsersIdFromGroupId(messageGroupDto.getGroupId());
+            for (int userId : userIds) {
+                try {
+                    if (userId != messageGroupDto.getSenderId()) {
+                        if (clients.containsKey(userId)) {
+                            sendMessage(messageGroupDto, userId);
+                        }
                     }
+                } catch (Exception e) {
+                    System.out.println(userId + " user is offline");
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                System.out.println(userId + " user is offline");
-                e.printStackTrace();
             }
+            return true;
         }
-        return true;
+        else {
+            return false;
+        }
     }
 
     @Override

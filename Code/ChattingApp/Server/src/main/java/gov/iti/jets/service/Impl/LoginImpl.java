@@ -2,10 +2,10 @@ package gov.iti.jets.service.Impl;
 
 import gov.iti.jets.common.dtos.LoginDto;
 import gov.iti.jets.common.dtos.UserHomePageDto;
-
 import gov.iti.jets.common.interfaces.LoginInt;
 import gov.iti.jets.presistance.daos.UserDao;
 import gov.iti.jets.presistance.dtos.UserDto;
+import gov.iti.jets.service.services.ServerControlService;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -23,23 +23,33 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
 
     @Override
     public int isPhoneNumberExist(LoginDto loginDto) throws RemoteException {
-        this.userID=userDao.getUserIdByPhoneNumber(loginDto.getPhoneNumber());
-        return this.userID;
+        if (ServerControlService.flag) {
+            this.userID = userDao.getUserIdByPhoneNumber(loginDto.getPhoneNumber());
+            return this.userID;
+        }
+        return -1;
     }
 
     @Override
     public String isPasswordValid() throws RemoteException {
-        return userDao.getUserPasswordById(this.userID);
+        if (ServerControlService.flag) {
+            return userDao.getUserPasswordById(this.userID);
+        }
+        return "stopped";
     }
 
     @Override
     public UserHomePageDto getUserById(int id) throws RemoteException {
         UserHomePageDto userHomePageDtoDto = new UserHomePageDto();
-        UserDto userDto = userDao.getUserDtoById(id);
-        userHomePageDtoDto = mapperToUser(userDto);
+        if (ServerControlService.flag) {
+            UserDto userDto = userDao.getUserDtoById(id);
+            userHomePageDtoDto = mapperToUser(userDto);
+            return userHomePageDtoDto;
+        }
         return userHomePageDtoDto;
     }
-    UserHomePageDto mapperToUser(UserDto userDto){
+
+    UserHomePageDto mapperToUser(UserDto userDto) {
         UserHomePageDto userHomePageDtoDto = new UserHomePageDto();
         userHomePageDtoDto.setPhoneNumber(userDto.getPhoneNumber());
         userHomePageDtoDto.setName(userDto.getName());
@@ -49,9 +59,9 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
         userHomePageDtoDto.setBio(userDto.getBio());
         //
         java.util.Date date;
-        if(userDto.getDateOfBirth() == null){
+        if (userDto.getDateOfBirth() == null) {
             date = null;
-        }else {
+        } else {
             date = new java.util.Date(userDto.getDateOfBirth().getTime());
         }
         userHomePageDtoDto.setDateOfBirth(date);
@@ -72,7 +82,7 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
     public String encodeImage(String imgPath) throws IOException {
         String imageString = null;
 
-        if(!imgPath.isEmpty()){
+        if (!imgPath.isEmpty()) {
 //            System.out.println("error gded"+imgPath);
             FileInputStream stream = new FileInputStream(imgPath);
             byte[] imageData = stream.readAllBytes();
@@ -80,6 +90,6 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
             stream.close();
 
         }
-        return  imageString;
+        return imageString;
     }
 }
