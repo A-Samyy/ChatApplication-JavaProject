@@ -130,7 +130,53 @@ public class UserDao {
         }
 
     }
+    public int getNumberofMaleUsers(){
+        try {
+            conn = connector.getConnection();
+            String sql ="select count(User_ID) from chatting_app.user where gender ='Male';";
+            preparedStatement = conn.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            } else
+                return -1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
+    public int getNumberofFemaleUsers(){
+        try {
+            conn = connector.getConnection();
+            String sql ="select count(User_ID) from chatting_app.user where gender ='Female';";
+            preparedStatement = conn.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            } else
+                return -1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     public int getUserIdByPhoneNumber(String phone_number) {
         try {
             conn = connector.getConnection();

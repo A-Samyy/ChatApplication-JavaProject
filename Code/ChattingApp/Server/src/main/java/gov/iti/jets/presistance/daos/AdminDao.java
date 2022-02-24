@@ -43,7 +43,7 @@ public class AdminDao {
             return false;
     }
 
-    private boolean checkAdminId(int id) {
+    public boolean checkAdminId(int id) {
         try {
             conn = connector.getConnection();
             String sql = "Select * from chatting_app.admin where admin_id ="+ id + ";" ;
@@ -129,19 +129,17 @@ public class AdminDao {
         }
 
     }
-    public String getAdminPasswordById(int id) {
+
+    public boolean checkAdminPassword(AdminDto adminDto) {
         try {
             conn = connector.getConnection();
-            String sql = "select admin_PASSWORD from chatting_app.admin where admin_ID=" + id;
+            String sql = "Select admin_password from chatting_app.admin where lower(admin_password) = lower(trim('" + adminDto.getPassword() + "')); ";
             preparedStatement = conn.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                return resultSet.getString(1);
-            } else
-                return null;
+            return resultSet.next();
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            return false;
         } finally {
             try {
                 if (conn != null) {

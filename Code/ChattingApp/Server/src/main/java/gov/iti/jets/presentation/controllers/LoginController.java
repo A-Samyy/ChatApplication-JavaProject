@@ -1,20 +1,31 @@
 package gov.iti.jets.presentation.controllers;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import gov.iti.jets.presentation.util.StageCoordinator;
+import gov.iti.jets.presistance.dtos.AdminDto;
+import gov.iti.jets.service.services.LoginAdminService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
-public class LoginController implements  Initializable{
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class LoginController implements Initializable {
     private final StageCoordinator stageCoordinator = StageCoordinator.getInstance();
+    AdminDto adminDto = new AdminDto();
+    LoginAdminService loginAdminService = new LoginAdminService();
+
+    @FXML
+    private TextField AdminIDTextField;
+
+    @FXML
+    private TextField AdminPasswordTextField;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        
+
     }
 
     @FXML
@@ -22,8 +33,17 @@ public class LoginController implements  Initializable{
 
     @FXML
     void OnLoginAction(ActionEvent event) {
-        stageCoordinator.switchToGHomePageScreen();
+        adminDto.setAdminID(Integer.parseInt(AdminIDTextField.getText()));
+        adminDto.setPassword(AdminPasswordTextField.getText());
+        boolean check = loginAdminService.checkAdminLogin(adminDto);
+        if(check){
+            stageCoordinator.switchToGHomePageScreen();
+        }
+        else {
+            System.out.println("wrong login");
+        }
+
     }
 
-    
+
 }

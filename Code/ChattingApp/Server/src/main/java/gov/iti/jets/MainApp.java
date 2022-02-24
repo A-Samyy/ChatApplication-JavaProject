@@ -1,7 +1,6 @@
 package gov.iti.jets;
 
 
-import gov.iti.jets.common.dtos.MessageGroupDto;
 import gov.iti.jets.networking.RMICreateRegister;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.presistance.util.Connector;
