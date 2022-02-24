@@ -16,32 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `friend_request`
+-- Table structure for table `admin`
 --
 
-DROP TABLE IF EXISTS `friend_request`;
+DROP TABLE IF EXISTS `admin`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `friend_request` (
-  `friend_request_id` int NOT NULL AUTO_INCREMENT,
-  `user_from` int NOT NULL,
-  `user_to` int NOT NULL,
-  `status` varchar(45) DEFAULT 'null',
-  PRIMARY KEY (`friend_request_id`),
-  KEY `user_from_fk_idx` (`user_from`),
-  KEY `user_to_fk_idx` (`user_to`),
-  CONSTRAINT `user_from_fk` FOREIGN KEY (`user_from`) REFERENCES `user` (`User_ID`),
-  CONSTRAINT `user_to_fk` FOREIGN KEY (`user_to`) REFERENCES `user` (`User_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `admin` (
+  `admin_id` int NOT NULL,
+  `admin_name` varchar(45) DEFAULT NULL,
+  `admin_password` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`admin_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `friend_request`
+-- Dumping data for table `admin`
 --
 
-LOCK TABLES `friend_request` WRITE;
-/*!40000 ALTER TABLE `friend_request` DISABLE KEYS */;
-/*!40000 ALTER TABLE `friend_request` ENABLE KEYS */;
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` VALUES (1000,'abdelaziz','admin');
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-24  3:59:37
+-- Dump completed on 2022-02-24  3:59:39

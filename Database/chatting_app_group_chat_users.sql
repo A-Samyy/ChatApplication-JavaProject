@@ -39,6 +39,7 @@ CREATE TABLE `group_chat_users` (
 
 LOCK TABLES `group_chat_users` WRITE;
 /*!40000 ALTER TABLE `group_chat_users` DISABLE KEYS */;
+INSERT INTO `group_chat_users` VALUES (1,1),(2,1),(1,2),(2,2),(1,3);
 /*!40000 ALTER TABLE `group_chat_users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-18 21:29:26
+-- Dump completed on 2022-02-24  3:59:37
