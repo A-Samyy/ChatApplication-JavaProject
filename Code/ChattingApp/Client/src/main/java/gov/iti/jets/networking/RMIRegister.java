@@ -16,8 +16,8 @@ public class RMIRegister {
     Registry registry;
 
 
-    private RMIRegister() {
-        try {
+    private RMIRegister() {                 /// cmd-> ipconfig
+        try {                                ///getRegistry("192.168.100.2", port)
             registry = LocateRegistry.getRegistry("localhost", 4006);
         } catch (RemoteException e) {
             e.printStackTrace();

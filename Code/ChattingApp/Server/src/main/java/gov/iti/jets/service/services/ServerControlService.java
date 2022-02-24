@@ -3,7 +3,7 @@ package gov.iti.jets.service.services;
 import gov.iti.jets.networking.RMICreateRegister;
 
 public class ServerControlService {
-    public static boolean flag =true;
+    public static boolean flag =false;
     private static ServerControlService serverControlService = new ServerControlService();
     public static ServerControlService getInstance() {
         return serverControlService;
