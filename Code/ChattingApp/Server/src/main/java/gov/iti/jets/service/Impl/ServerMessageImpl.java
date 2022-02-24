@@ -1,5 +1,6 @@
 package gov.iti.jets.service.Impl;
 
+import gov.iti.jets.common.interfaces.ClientGroupChatMessageInt;
 import gov.iti.jets.common.interfaces.ClientMesseageInt;
 import gov.iti.jets.common.interfaces.ServerMessageInt;
 import gov.iti.jets.common.dtos.MessageDto;
@@ -40,7 +41,7 @@ public class ServerMessageImpl extends UnicastRemoteObject implements  ServerMes
 
     @Override
     public boolean unRegister(ClientMesseageInt clientMesseageInt ,int userId) throws RemoteException {
-        if (clients.remove(userId,clientMesseageInt))
+        if(clients.remove(userId,clientMesseageInt))
             return true;
         return false;
     }
@@ -53,5 +54,9 @@ public class ServerMessageImpl extends UnicastRemoteObject implements  ServerMes
             e.printStackTrace();
         }
         return false;
+    }
+
+    public Map<Integer, ClientMesseageInt> clientsOnline(){
+        return this.clients;
     }
 }

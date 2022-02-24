@@ -18,7 +18,7 @@ public class RMIRegister {
 
     private RMIRegister() {
         try {
-            registry = LocateRegistry.getRegistry("localhost", 4006);
+            registry = LocateRegistry.getRegistry("localhost", 7777);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -86,7 +86,8 @@ public class RMIRegister {
             e.printStackTrace();
         }
         return friendRequestInt;
-    }public ServerGroupChatMessageInt groupChatMessageService(){
+    }
+    public ServerGroupChatMessageInt groupChatMessageService(){
         ServerGroupChatMessageInt  serverGroupChatMessageInt = null;
         try {
             serverGroupChatMessageInt = (ServerGroupChatMessageInt) registry.lookup("GroupChatMessageService");
@@ -97,6 +98,15 @@ public class RMIRegister {
         }
         return serverGroupChatMessageInt;
     }
-
-
+    public ServerMessageAnnouncetInt serverAnnouncement(){
+        ServerMessageAnnouncetInt  serverMessageAnnouncetInt = null;
+        try {
+            serverMessageAnnouncetInt = (ServerMessageAnnouncetInt) registry.lookup("AnnouncementService");
+        } catch (NotBoundException |AccessException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return serverMessageAnnouncetInt;
+    }
 }

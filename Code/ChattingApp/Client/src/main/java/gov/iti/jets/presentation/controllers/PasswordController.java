@@ -1,9 +1,11 @@
 package gov.iti.jets.presentation.controllers;
 
+import gov.iti.jets.common.interfaces.ClientAnnounceMessageInt;
 import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
+import gov.iti.jets.service.impl.ClientAnnounceImpl;
 import gov.iti.jets.service.services.LoginService;
 import gov.iti.jets.service.services.MessageService;
 import javafx.event.ActionEvent;
@@ -34,6 +36,7 @@ public class PasswordController implements Initializable {
     UserModel userModel = modelFactory.getUserModel();
     LoginService loginService = new LoginService();
     RMIRegister rmiRegister = RMIRegister.getInstance();
+    ClientAnnounceMessageInt clientAnnounceMessageInt ;
     ValidationSupport validationSupport=new ValidationSupport();
 
     @FXML
@@ -90,10 +93,6 @@ public class PasswordController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         passwordTextField.setText("");
-
-
-
-
 
     }
 }

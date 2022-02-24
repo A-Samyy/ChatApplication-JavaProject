@@ -1,12 +1,16 @@
 package gov.iti.jets.presentation.controllers;
 
+import gov.iti.jets.common.dtos.MessageAnnounceDto;
 import gov.iti.jets.common.dtos.MessageGroupDto;
+import gov.iti.jets.common.interfaces.ClientAnnounceMessageInt;
 import gov.iti.jets.common.interfaces.ClientGroupChatMessageInt;
 import gov.iti.jets.common.interfaces.ServerGroupChatMessageInt;
+import gov.iti.jets.common.interfaces.ServerMessageAnnouncetInt;
 import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
+import gov.iti.jets.service.impl.ClientAnnounceImpl;
 import gov.iti.jets.service.impl.ClientGroupChatMessageImpl;
 import gov.iti.jets.service.services.LoginService;
 import javafx.fxml.FXML;
@@ -24,9 +28,10 @@ public class HomePageController implements Initializable {
     RMIRegister rmiRegister = RMIRegister.getInstance();
     ServerGroupChatMessageInt serverGroupChatMessage = rmiRegister.groupChatMessageService();
     ClientGroupChatMessageInt clientGroupChatMessageInt ;
+    ClientAnnounceMessageInt clientAnnounceMessageInt;
+    ServerMessageAnnouncetInt serverMessageAnnouncetInt = rmiRegister.serverAnnouncement();
     @FXML
     public GridPane gridPane;
-
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -50,6 +55,15 @@ public class HomePageController implements Initializable {
                 e.printStackTrace();
             }
         }
+        try {
+            clientAnnounceMessageInt =new ClientAnnounceImpl();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        try {
+            serverMessageAnnouncetInt.getMessage();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
-
 }

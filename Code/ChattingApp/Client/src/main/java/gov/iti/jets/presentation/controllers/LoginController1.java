@@ -5,9 +5,11 @@ import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
+import gov.iti.jets.common.interfaces.ClientAnnounceMessageInt;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
+import gov.iti.jets.service.impl.ClientAnnounceImpl;
 import gov.iti.jets.service.services.LoginService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,6 +33,7 @@ public class LoginController1 implements Initializable {
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
     LoginService loginService = new LoginService();
+
     ValidationSupport validationSupport=new ValidationSupport();
 
     @FXML
@@ -106,6 +109,7 @@ public class LoginController1 implements Initializable {
 
 
         phoneNumberTextField.textProperty().bindBidirectional(userModel.phoneNumberProperty());
+
 
     }
 }
