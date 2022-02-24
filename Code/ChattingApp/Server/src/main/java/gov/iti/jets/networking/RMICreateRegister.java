@@ -32,9 +32,6 @@ public class RMICreateRegister {
             registry.rebind("ContactListService",contactListInt);
             registry.rebind("MessageService", message);
             registry.rebind("FriendRequestService", friendRequestInt);
-            registry.rebind("AddGroupChatService", addGroupChatInt);
-            registry.rebind("GroupListService",groupListInt);
-            registry.rebind("updateUserService",updateUserInt);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

@@ -7,10 +7,11 @@ import gov.iti.jets.presentation.controllers.*;
 import javafx.application.Platform;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
+import gov.iti.jets.presentation.controllers.MessageController;
 import gov.iti.jets.service.daos.MessageDao;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -18,20 +19,29 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StageCoordinator {
     private static final StageCoordinator stageCoordinator = new StageCoordinator();
     private Stage primaryStage;
     private GridPane homepage;
+    private ChatSectionController chatSectionController;
 
     private final Map<String, Scene> sceneMap = new HashMap<>();
     private final Map<String, Node> nodeMap = new HashMap<>();
     private final Map<Integer, Node> chatSectionMap = new HashMap<>();
     private final Map<Integer, ChatSectionController> chatSectionControllerMap = new HashMap<>();
-
+Map<Integer,List<HBox>> map=new HashMap<>();
     private StageCoordinator() {
     }
 
@@ -245,6 +255,10 @@ public class StageCoordinator {
 
         return chatSection;
     }
+    public ChatSectionController getChatSectionController(){
+        return this.chatSectionController;
+    }
+
     public Node loadFriendRequest(String name){
         Node friendReq = null;
         try {
@@ -261,7 +275,7 @@ public class StageCoordinator {
     }
     public void loadAddContact() {
         Stage addNewContact = new Stage();
-        Parent addContact = null;
+        Pane addContact = null;
         try {
             addContact = FXMLLoader.load(getClass().getResource("/views/contactSection/addContact.fxml"));
         } catch (Exception e) {
