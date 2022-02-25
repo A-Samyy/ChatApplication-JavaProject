@@ -4,7 +4,7 @@
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
@@ -90,7 +90,7 @@
             </VBox>
             <VBox alignment="CENTER" maxWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: WHITE;" HBox.hgrow="ALWAYS">
                <children>
-                  <GridPane style="-fx-background-color: BLACK;">
+                  <GridPane prefHeight="252.0" prefWidth="276.0" style="-fx-background-color: BLACK;">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="300.0" />
                      </columnConstraints>
@@ -105,12 +105,18 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                     <content>
-                        <VBox prefHeight="200.0" prefWidth="100.0" />
-                     </content>
-                  </ScrollPane>
-                  <GridPane layoutX="10.0" layoutY="10.0">
+                  <GridPane prefHeight="428.0" prefWidth="276.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ListView fx:id="listView" prefHeight="273.0" prefWidth="276.0" />
+                     </children>
+                  </GridPane>
+                  <GridPane layoutX="10.0" layoutY="10.0" prefHeight="140.0" prefWidth="276.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="250.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="30.0" />
@@ -119,14 +125,14 @@
                         <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <TextField>
+                        <TextField fx:id="messageTextField" prefHeight="30.0" prefWidth="239.0">
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" />
                            </GridPane.margin>
                         </TextField>
-                        <FontIcon iconLiteral="fab-telegram-plane" iconSize="25" wrappingWidth="22.499999046325684" GridPane.columnIndex="1">
+                        <FontIcon iconLiteral="fab-telegram-plane" iconSize="25" onMouseClicked="#sendAction" wrappingWidth="22.499999046325684" GridPane.columnIndex="1">
                            <GridPane.margin>
-                              <Insets left="10.0" />
+                              <Insets left="3.0" />
                            </GridPane.margin>
                         </FontIcon>
                      </children>

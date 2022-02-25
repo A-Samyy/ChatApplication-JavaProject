@@ -4,10 +4,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import gov.iti.jets.common.dtos.MessageAnnounceDto;
+import gov.iti.jets.presentation.controllers.MessageServerController;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class StageCoordinator {
@@ -72,4 +76,29 @@ public class StageCoordinator {
        }
        return addUserNode;
    }
-}
+
+
+    public HBox loadMessage(MessageAnnounceDto messageAnnounceDto) {
+
+
+        try {
+
+            // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/message/messageView.fxml"));
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/views/messageView/messageView.fxml"));
+
+            HBox message = loader.load();
+            MessageServerController messageController = (MessageServerController) loader.getController();
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    messageController.displayMessage(messageAnnounceDto.getMessageContent(), messageAnnounceDto.getMessageSender());
+                }
+            });
+            return message;
+        } catch (Exception e) {
+            System.out.println("File Not Found Exception");
+        }
+        return null;
+
+    }}

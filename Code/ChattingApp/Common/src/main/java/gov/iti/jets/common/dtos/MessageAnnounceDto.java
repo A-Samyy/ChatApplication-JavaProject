@@ -16,6 +16,12 @@ public class MessageAnnounceDto implements Serializable {
         MessageContent = messageContent;
     }
 
+    public String getMessageSender(){
+        return this.sender;
+    }
+
+
+
     @Override
     public String toString() {
         return "MessageAnnounceDto{" +
