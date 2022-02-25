@@ -43,6 +43,7 @@ public class StageCoordinator {
     private final Map<Integer, Node> chatSectionMap = new HashMap<>();
     private final Map<Integer, ChatSectionController> chatSectionControllerMap = new HashMap<>();
 Map<Integer,List<HBox>> map=new HashMap<>();
+
     private StageCoordinator() {
     }
 
@@ -212,19 +213,7 @@ Map<Integer,List<HBox>> map=new HashMap<>();
         return grouplist;
     }
 
-    public void loadAddGroup() {
-        Stage addNewGroup = new Stage();
-        Pane addGroup = null;
-        try {
-            addGroup = FXMLLoader.load(getClass().getResource("/views/contactSection/addGroup.fxml"));
-        } catch (Exception e) {
-            System.out.println("File Not Found Exception");
-        }
-        Scene scene = new Scene(addGroup);
-        addNewGroup.setScene(scene);
-        addNewGroup.setTitle("Add New Group");
-        addNewGroup.show();
-    }
+
 
     public Node loadSidebar() {
         Node sidebar = null;
@@ -255,7 +244,7 @@ Map<Integer,List<HBox>> map=new HashMap<>();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            ChatSectionController chatSectionController = loader.getController();
+            chatSectionController = loader.getController();
             chatSectionMap.put(id,chatSection);
             chatSectionControllerMap.put(id,chatSectionController);
         }
@@ -263,14 +252,14 @@ Map<Integer,List<HBox>> map=new HashMap<>();
             @Override
             public void run() {
                 chatSectionControllerMap.get(id).display(name,pic,status , id);
-                chatSectionControllerMap.get(id).displayMessage(id);
+//                chatSectionControllerMap.get(id).displayMessage(id);
             }
         });
 
         return chatSection;
     }
-    public ChatSectionController getChatSectionController(){
-        return this.chatSectionController;
+    public Map<Integer,ChatSectionController> getChatSectionController(){
+        return chatSectionControllerMap;
     }
 
     public Node loadFriendRequest(String name, FriendRequestSenderDto friendRequestSenderDto){
