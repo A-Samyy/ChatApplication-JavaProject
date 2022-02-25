@@ -174,12 +174,6 @@ public class SidebarController implements Initializable {
 
     }
 
-    @FXML
-    void OnAddingGroup(MouseEvent event) {
-        System.out.println("eneter");
-        stageCoordinator.loadAddGroup();
-    }
-
 
 //    @FXML
 //    void OnAddContactMouseClick(MouseEvent event) {

@@ -301,19 +301,6 @@ Map<Integer,List<HBox>> map=new HashMap<>();
         addNewContact.show();
     }
 
-    public void loadAddGroup() {
-        Stage addNewGroup = new Stage();
-        Pane addGroup = null;
-        try {
-            addGroup = FXMLLoader.load(getClass().getResource("/views/contactSection/addGroup.fxml"));
-        } catch (Exception e) {
-            System.out.println("File Not Found Exception");
-        }
-        Scene scene = new Scene(addGroup);
-        addNewGroup.setScene(scene);
-        addNewGroup.setTitle("Add New Group");
-        addNewGroup.show();
-    }
 
     public Node loadSettings() {
         Node settings = nodeMap.get("settings");
