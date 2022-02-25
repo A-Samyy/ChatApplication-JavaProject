@@ -47,6 +47,7 @@ public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements Se
 
             for(ClientAnnounceMessageInt client : clientAnnounceMessageIntList){
                 try {
+                    System.out.println("messageContent in get Message Impl"+messageAnnounceDto.getMessageContent());
                     client.reciveMessage(messageAnnounceDto);
                 } catch (RemoteException e) {
                     e.printStackTrace();

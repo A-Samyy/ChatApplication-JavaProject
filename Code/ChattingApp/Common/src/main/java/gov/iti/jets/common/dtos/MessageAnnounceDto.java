@@ -14,6 +14,7 @@ public class MessageAnnounceDto implements Serializable {
 
     public void setMessageContent(String messageContent) {
         MessageContent = messageContent;
+        System.out.println("messageContent in get Message common"+messageContent);
     }
 
     public String getMessageSender(){

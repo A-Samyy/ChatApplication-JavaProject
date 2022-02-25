@@ -5,6 +5,7 @@ import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.Impl.ServerMessageAnnounceImpl;
 import gov.iti.jets.service.services.AnalysisService;
 import gov.iti.jets.service.services.ServerControlService;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -28,6 +29,7 @@ public class HomePageController implements Initializable {
     MessageAnnounceDto messageAnnounceDto=new MessageAnnounceDto();
     ServerMessageAnnounceImpl serverMessageAnnounce= new ServerMessageAnnounceImpl();
     private ObservableList<HBox> messageObservableList;
+    int onlineUsers=serverMessageAnnounce.onlinUsers();
     @FXML
     private AnchorPane content;
     @FXML
@@ -70,7 +72,7 @@ public class HomePageController implements Initializable {
         listView.setItems(messageObservableList);
 
         serverMessageAnnounce.getMessageAnnounceDto(this.messageAnnounceDto);
-
+        System.out.println("messageAnnounce:"+this.messageAnnounceDto);
         messageTextField.setText("");
 
     }
@@ -81,23 +83,40 @@ public class HomePageController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 
+
+
+
+
+
+
+
         listView.setCellFactory(messageListView -> new MessageServerListViewCell());
         messageObservableList = FXCollections.observableArrayList();
 
         ObservableList<PieChart.Data> genderTypeList= FXCollections.observableArrayList(
-            new PieChart.Data("Number of Females",analysisService.getNumberOfFemaleUsers()),
-            new PieChart.Data("Number of Males",analysisService.getNumberOfMaleUsers())
+                new PieChart.Data("Number of Females",analysisService.getNumberOfFemaleUsers()),
+                new PieChart.Data("Number of Males",analysisService.getNumberOfMaleUsers())
         );
         genderChart.setData(genderTypeList);
         genderChart.setTitle("Users_Gender");
-//        ObservableList<PieChart.Data> sattusList= FXCollections.observableArrayList(
-//                new PieChart.Data("Number of Females",analysisService.getNumberOfFemaleUsers()),
-//                new PieChart.Data("Number of Males",analysisService.getNumberOfMaleUsers())
-//        );
-//        statusChart.setData(genderTypeList);
+
+        ObservableList<PieChart.Data> statusList= FXCollections.observableArrayList(
+                new PieChart.Data("Number of onlineUsers",onlineUsers),
+                new PieChart.Data("Number of offlineUsers",analysisService.getNumberOfAllUsers()-onlineUsers)
+        );
+        statusChart.setData(statusList);
 
 
+        statusChart.setTitle("Online_users");
 
+//        new Thread(() -> {
+//            while (true) {
+//
+//                    Platform.runLater(() -> {
+//
+//                    });
+//            }
+//        }).start();
 
 
         // ( (AnchorPane)userAdd.getContent()).getChildren().add(stageCoordinator.loadAddUser());

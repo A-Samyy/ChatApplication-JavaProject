@@ -1,6 +1,7 @@
 package gov.iti.jets;
 
 
+import gov.iti.jets.networking.FileTransferConnection;
 import gov.iti.jets.networking.RMICreateRegister;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.presistance.util.Connector;
@@ -12,11 +13,21 @@ import java.rmi.RemoteException;
 
 public class MainApp extends Application {
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
+
     public static void main(String[] arg) throws RemoteException {
+        FileTransferConnection fileTransferConnection = FileTransferConnection.getInstance();
+
+
 //        Connector connector= Connector.getInstance();
 //        connector.getConnection();
- //       System.out.println("after connection");
+//       System.out.println("after connection");
         //Marwa merging
+
+//        try {
+//            fileTransferConnection.receiveFile("hamada.txt");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         RMICreateRegister rmiCreateRegister= RMICreateRegister.getInstance();
         Application.launch(arg);
     }

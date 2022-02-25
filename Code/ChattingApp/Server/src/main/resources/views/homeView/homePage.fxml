@@ -41,7 +41,7 @@
                       <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#onCloseConnectionMouseClick" text="Close Connection" GridPane.rowIndex="1">
+                        <Button mnemonicParsing="false" onMouseClicked="#onOpenConnectionMouseClick" text="Close Connection" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="167.0" />
                            </GridPane.margin>
