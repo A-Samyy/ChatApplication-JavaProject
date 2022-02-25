@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class MessageAnnounceDto implements Serializable {
 
     private static final long serialVersionUID = 1420672609912367055L;
-    private String MessageContent ="hi My Clients Welcome to our apps" ;
+    private String MessageContent ;
     private final String sender ="Admin";
 
     public String getMessageContent() {

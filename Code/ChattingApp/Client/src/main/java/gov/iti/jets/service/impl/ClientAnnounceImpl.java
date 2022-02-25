@@ -15,7 +15,7 @@ public class ClientAnnounceImpl extends UnicastRemoteObject implements ClientAnn
     ServerMessageAnnouncetInt serverMessageAnnouncetInt;
     public ClientAnnounceImpl() throws RemoteException {
         super();
-       serverMessageAnnouncetInt=rmiRegister.serverAnnouncement();
+       serverMessageAnnouncetInt=rmiRegister.serverMessageAnnouncetInt();
         System.out.println("registerd : "+serverMessageAnnouncetInt.register(this));
     }
 

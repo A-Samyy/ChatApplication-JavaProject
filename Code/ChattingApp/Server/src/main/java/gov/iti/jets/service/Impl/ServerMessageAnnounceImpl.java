@@ -15,7 +15,7 @@ import java.util.Map;
 public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements ServerMessageAnnouncetInt {
 
     private List<ClientAnnounceMessageInt> clientAnnounceMessageIntList = new ArrayList<>();
-    MessageAnnounceDto messageAnnounceDto1 = new MessageAnnounceDto();
+    MessageAnnounceDto messageAnnounceDto1 ;
 
     public ServerMessageAnnounceImpl() throws RemoteException {
         super();
@@ -49,4 +49,9 @@ public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements Se
             }
         return true ;
     }
+    /*
+    public void retMessage(MessageAnnounceDto messageAnnounceDto){
+        this.messageAnnounceDto1=messageAnnounceDto;
+    }
+    */
 }
