@@ -7,7 +7,17 @@ public class ClientGroupChatDto implements Serializable {
     private static final long serialVersionUID = 1427672609912564060L;
     int  groupId ;
     String groupName;
-    List<Integer> usersId;
+    List<String> usersId;
+
+    public int getGroupCreatorId() {
+        return groupCreatorId;
+    }
+
+    public void setGroupCreatorId(int groupCreatorId) {
+        this.groupCreatorId = groupCreatorId;
+    }
+
+    int groupCreatorId;
 
     public int getGroupId() {
         return groupId;
@@ -25,11 +35,11 @@ public class ClientGroupChatDto implements Serializable {
         this.groupName = groupName;
     }
 
-    public List<Integer> getUsersId() {
+    public List<String> getUsersId() {
         return usersId;
     }
 
-    public void setUsersId(List<Integer> usersId) {
+    public void setUsersId(List<String> usersId) {
         this.usersId = usersId;
     }
 
