@@ -150,6 +150,16 @@ public class RegisterController implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }else {
+            try {
+                picPath="src/main/resources/images/profileimage.png";
+                image = new Image(new FileInputStream(picPath));
+                imagePath = encodeImage(picPath);
+                userModel.setImagePath(imagePath);
+                profilePicture.setFill(new ImagePattern(image));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -187,6 +197,17 @@ public class RegisterController implements Initializable {
             }
         } catch (ParseException e) {
             e.getMessage();
+        }
+        if(userModel.getImagePath()==null){
+            try {
+                picPath="src/main/resources/images/profileimage.png";
+                image = new Image(new FileInputStream(picPath));
+                imagePath = encodeImage(picPath);
+                userModel.setImagePath(imagePath);
+                profilePicture.setFill(new ImagePattern(image));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         registerDto = new RegisterDto();
         registerDto.setPhoneNumber(userModel.getPhoneNumber());

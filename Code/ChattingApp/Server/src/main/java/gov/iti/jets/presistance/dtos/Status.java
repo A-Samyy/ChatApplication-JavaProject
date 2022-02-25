@@ -3,7 +3,8 @@ package gov.iti.jets.presistance.dtos;
 public enum Status {
     ACTIVE(1),
     DoNotDisturb(2),
-    AWAY(3);
+    AWAY(3),
+    OFFLINE(4);
     final int number;
     Status(int number){
         this.number=number;
