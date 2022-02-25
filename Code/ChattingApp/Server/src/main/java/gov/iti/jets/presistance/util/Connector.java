@@ -17,11 +17,11 @@ public class Connector {
 
     static {
         HikariConfig config =new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://localhost:3306/iti");
-        config.setUsername("root");
-        config.setPassword("rootpassword");
+        config.setJdbcUrl("jdbc:mysql://localhost:3306/chatting_app");
+        config.setUsername("marwa");
+        config.setPassword("Ma19971993");
         dataSource= new HikariDataSource( config );
-        dataSource.setMaximumPoolSize(20);
+        dataSource.setMaximumPoolSize(50);
     }
 
     private static Connector connector = new Connector();

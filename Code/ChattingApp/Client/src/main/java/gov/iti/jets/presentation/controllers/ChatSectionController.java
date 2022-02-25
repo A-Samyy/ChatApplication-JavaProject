@@ -41,7 +41,6 @@ public class ChatSectionController implements Initializable {
     private final StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     ContactListService contactListService = new ContactListService();
-    List<ContactDto> list = new ArrayList<>();
     MessageDto  messageDto= new MessageDto();
     MessageDao messageDao=new MessageDao(messageDto);
     UserModel userModel = modelFactory.getUserModel();
@@ -79,7 +78,7 @@ public class ChatSectionController implements Initializable {
 
     @FXML
     private Label userName;
-    int id;
+    int friendId;
 
     @FXML
     void onTypingEnter(KeyEvent event) {
@@ -88,14 +87,17 @@ public class ChatSectionController implements Initializable {
     ImageView imageView = new ImageView();
 
     public  void display(String name, Image image, String status,int id) {
-        this.id = id;
+//        if(observableListMap.get(id) == null){
+//            list = FXCollections.observableArrayList();
+//            observableListMap.put(id,list);
+//        }
+        this.friendId = id;
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 userName.setText(name);
                 imageView.setImage(image);
                 profilePicture.setFill(new ImagePattern(imageView.getImage()));
-
                 getUserStatus(status);
             }
         });
@@ -107,10 +109,8 @@ public class ChatSectionController implements Initializable {
         messageTextField.setText("");
         messageDao.setUserName(userModel.getUserName());
         messageDao.setUserID();
-        messageDao.getMessageDto().setFriendId(id);
-
+        messageDao.getMessageDto().setFriendId(friendId);
         messageService.sendMessageDto(messageDao.getMessageDto());
-
         createMessage();
 
     }
@@ -127,28 +127,15 @@ public class ChatSectionController implements Initializable {
 
     private void createMessage(){
         ObservableList observableList;
-        System.out.println("create"+SidebarController.observableListMap.get(messageDao.getMessageDto().getFriendId()));
-//        if(observableListMap.get(messageDao.getMessageDto().getFriendId()) == null){
-////            System.out.println("create list for frined when i msg");
-//            observableList = FXCollections.observableArrayList();
-//            observableListMap.put(messageDao.getMessageDto().getFriendId(),observableList);
-//        }else{
+
             observableList= SidebarController.observableListMap.get(messageDao.getMessageDto().getFriendId());
-//        }
         observableList.add(messageDao.getMessageDto());
         chatContainer.setItems(observableList);
     }
     public void displayMessage(int id){
         ObservableList list;
         if(ClientMessageImpl.map.get(id) != null){
-            //check this condition
-            System.out.println("display"+SidebarController.observableListMap.get(id));
-//            if(observableListMap.get(id) == null){
-//                System.out.println("create lis again i dontt know why");
-//                list = FXCollections.observableArrayList();
-//            }else{
                 list = SidebarController.observableListMap.get(id);
-//            }
             for (MessageDao messageDao: ClientMessageImpl.map.get(id)) {
                 list.add(messageDao.getMessageDto());
             }
@@ -160,17 +147,7 @@ public class ChatSectionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-//        list = contactListService.getListOfContact(LoginService.getId());
-//        for (ContactDto contactDto: list) {
-////            System.out.println();
-//            ObservableList list1 = FXCollections.observableArrayList();
-//            observableListMap.put(contactDto.getId(),list1);
-//        }
         chatContainer.setCellFactory(messageListView -> new MessageListViewCell());
-//        messageObservableList = FXCollections.observableArrayList();
-
-
     }
 
     private class MessageListViewCell extends ListCell<MessageDto> {

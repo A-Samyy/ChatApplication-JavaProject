@@ -40,7 +40,7 @@ import java.util.TreeMap;
 
 public class SidebarController implements Initializable {
     static public Map<Integer , ObservableList<MessageDto>> observableListMap = new TreeMap<>();
-    ObservableList<MessageDto> list ;
+    ObservableList list ;
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
@@ -146,9 +146,7 @@ public class SidebarController implements Initializable {
         userName.textProperty().bindBidirectional(userModel.userNameProperty());
         if(!contactListService.getListOfContact((LoginService.getId())).isEmpty()){
             for (ContactDto contactDto : contactListService.getListOfContact(LoginService.getId())) {
-                contactModel = new ContactModel();
                 list = FXCollections.observableArrayList();
-                System.out.println(contactDto.getFriendName());
                 observableListMap.put(contactDto.getId(),list);
                 chattingSectionVbox.getChildren().add(stageCoordinator.loadContacts(contactDto));
             }
