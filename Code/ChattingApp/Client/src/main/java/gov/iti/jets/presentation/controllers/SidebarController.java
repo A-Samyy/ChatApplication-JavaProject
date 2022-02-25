@@ -8,10 +8,7 @@ import gov.iti.jets.presentation.models.ContactModel;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
-import gov.iti.jets.service.services.ContactListService;
-import gov.iti.jets.service.services.FriendRequestService;
-import gov.iti.jets.service.services.GroupListService;
-import gov.iti.jets.service.services.LoginService;
+import gov.iti.jets.service.services.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -50,7 +47,6 @@ public class SidebarController implements Initializable {
     FriendRequestService friendRequestService = new FriendRequestService();
     GroupListService groupListService = new GroupListService();
     MessageDto messageDto=new MessageDto();
-
 
     @FXML
     private Tab Contacts;
@@ -107,7 +103,10 @@ public class SidebarController implements Initializable {
     public SidebarController() throws RemoteException {
 
     }
-
+    @FXML
+    void OnAddingGroup(MouseEvent event) {
+        stageCoordinator.loadAddGroup();
+    }
 
 
     @FXML
