@@ -33,6 +33,7 @@ public class AddViewController implements Initializable {
         userDto.setName(UserNameTextfield.getText());
         userDto.setEmail(emailTextField.getText());
         userDto.setPassword(passwordTextField.getText());
+        userDto.setPicture("src/main/resources/clientPictures/user.png");
         userDto.setStatus(Status.ACTIVE);
         addUserService.addUser(userDto);
     }
