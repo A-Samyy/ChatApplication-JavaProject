@@ -27,21 +27,28 @@ public class FriendRequestImpl extends UnicastRemoteObject implements FriendRequ
     public Boolean sendFriendRequest(ClientFriendRequestDto clientFriendRequestDto) throws RemoteException {
         FriendRequestDto friendRequestDto;
         friendRequestDto = mapperToFriendRequestDto(clientFriendRequestDto);
-        if (!areTheyalreadyFriends(friendRequestDto)) {   // Check if they are already friends from the contacts table before trying to add them
-            int i = friendRequestDao.addFriendRequestDto(friendRequestDto);
-            if (i == 1) {
-                System.out.println("Request is added");
-                return true;
-            }
-            if (i == 0) {
-                System.out.println("they tried to add each other and they are friends now");
-                return true;
-            } else {
-                System.out.println("nothing happened");
+        if (isUserExist(clientFriendRequestDto)) { //check if the phone number actually exist in the database
+            if (!areTheyalreadyFriends(friendRequestDto)) {// Check if they are already friends from the contacts table before trying to add them
+                int i = friendRequestDao.addFriendRequestDto(friendRequestDto);
+                if (i == 1) {
+                    System.out.println("Request is added");
+                    return true;
+                }
+                if (i == 0) {
+                    System.out.println("they tried to add each other and they are friends now");
+                    return true;
+                } else {
+                    System.out.println("nothing happened");
+                    return false;
+                }
+            } else
                 return false;
-            }
         } else
             return false;
+    }
+
+    private boolean isUserExist(ClientFriendRequestDto clientFriendRequestDto) {
+        return userDao.checkUserByPhoneNumber(clientFriendRequestDto.getFriendPhoneNumber());
     }
 
     @Override
@@ -54,8 +61,8 @@ public class FriendRequestImpl extends UnicastRemoteObject implements FriendRequ
     @Override
     public Boolean acceptingFriendRequest(FriendRequestSenderDto friendRequestSenderDto) throws RemoteException {
         ContactDao contactDao = new ContactDao();
-        boolean check1=contactDao.addFriendDto(mapperToContactDto(friendRequestSenderDto));
-        boolean check2=friendRequestDao.deleteFriendRequest(mapperToFriendRequestDto(friendRequestSenderDto));
+        boolean check1 = contactDao.addFriendDto(mapperToContactDto(friendRequestSenderDto));
+        boolean check2 = friendRequestDao.deleteFriendRequest(mapperToFriendRequestDto(friendRequestSenderDto));
         return check1 && check2;
     }
 
@@ -89,6 +96,7 @@ public class FriendRequestImpl extends UnicastRemoteObject implements FriendRequ
         friendRequestDto.setFriendId(userDao.getUserIdByPhoneNumber(clientFriendRequestDto.getFriendPhoneNumber()));
         return friendRequestDto;
     }
+
     private FriendRequestDto mapperToFriendRequestDto(FriendRequestSenderDto friendRequestSenderDto) {
         FriendRequestDto friendRequestDto = new FriendRequestDto();
         friendRequestDto.setUserId(friendRequestSenderDto.getSenderId());
