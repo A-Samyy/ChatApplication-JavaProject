@@ -119,6 +119,7 @@ public class ProfileController implements Initializable {
         img.imageProperty().bindBidirectional(userModel.imageProperty());
         pofilePic.setFill(new ImagePattern(img.getImage()));
         getUserStatus();
+
         bio.textProperty().bindBidirectional(userModel.bioProperty());
         userName.textProperty().bindBidirectional(userModel.userNameProperty());
         userEmail.textProperty().bindBidirectional(userModel.emailProperty());
@@ -128,7 +129,6 @@ public class ProfileController implements Initializable {
     }
     void getUserStatus(){
         if(userModel.getStatus().equals("ACTIVE")){
-
             active.setSelected(true);
         }else if(userModel.getStatus().equals("DoNotDisturb")){
             busy.setSelected(true);
@@ -178,6 +178,7 @@ public class ProfileController implements Initializable {
         selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
 
         if(!selectedRadioButton.getText().isEmpty()){
+            setStatusToUserModel(selectedRadioButton.getText());
             updateDto.setStatus(selectedRadioButton.getText());
 
         }
@@ -197,6 +198,15 @@ public class ProfileController implements Initializable {
                     "    -fx-font-weight\t:normal;\n" +
                     "    -fx-border-color: #1e1836;");
             confirmPasswordError.setText("");
+        }
+    }
+    void setStatusToUserModel(String status){
+        if(status.equals("Active")){
+            userModel.setStatus("ACTIVE");
+        }else if(status.equals("Busy")){
+            userModel.setStatus("DoNotDisturb");
+        }else if(status.equals("Away")){
+            userModel.setStatus("AWAY");
         }
     }
 }

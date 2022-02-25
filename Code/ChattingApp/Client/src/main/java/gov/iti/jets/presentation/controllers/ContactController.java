@@ -78,7 +78,7 @@ public class ContactController implements Initializable {
 
     void getUserStatus(String status){
         if(status.equals("ACTIVE")){
-            statusOfContact.setFill(Color.BLUE);
+            statusOfContact.setFill(Color.GREEN);
         }else if(status.equals("DoNotDisturb")){
             statusOfContact.setFill(Color.YELLOW);
         }else if(status.equals("AWAY")){

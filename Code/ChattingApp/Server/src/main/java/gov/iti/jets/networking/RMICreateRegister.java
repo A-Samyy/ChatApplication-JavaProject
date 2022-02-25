@@ -23,7 +23,7 @@ public class RMICreateRegister {
             UpdateUserInt updateUserInt = new UpdateUserImpl();
             Registry registry;
 //            try{
-                registry = LocateRegistry.getRegistry(7004);
+                registry = LocateRegistry.getRegistry(7005);
 //            }catch(Exception e){
 //                registry = LocateRegistry.createRegistry(7000);
 //            }

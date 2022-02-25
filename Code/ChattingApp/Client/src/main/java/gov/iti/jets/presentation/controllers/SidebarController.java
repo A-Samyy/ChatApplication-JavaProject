@@ -12,6 +12,8 @@ import gov.iti.jets.service.services.ContactListService;
 import gov.iti.jets.service.services.FriendRequestService;
 import gov.iti.jets.service.services.GroupListService;
 import gov.iti.jets.service.services.LoginService;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -103,7 +105,10 @@ public class SidebarController implements Initializable {
     ContactModel contactModel;
 
     public SidebarController() throws RemoteException {
+
     }
+
+
 
     @FXML
     void logoutOnMouseClick(MouseEvent event) {
@@ -111,8 +116,47 @@ public class SidebarController implements Initializable {
     }
 
     @FXML
-    void onMouseClicked(MouseEvent event) {
+    void OnChangingTab(MouseEvent event) {
+        if(tabPane.getSelectionModel().getSelectedIndex()==0){
+            getContact();
+        }else if(tabPane.getSelectionModel().getSelectedIndex()==1){
+            getGroup();
+        }else if(tabPane.getSelectionModel().getSelectedIndex()==3){
+            getNotification();
+        }
+    }
+    void getContact(){
+        chattingSectionVbox.getChildren().clear();
+        if(!contactListService.getListOfContact((LoginService.getId())).isEmpty()){
+            for (ContactDto contactDto : contactListService.getListOfContact(LoginService.getId())) {
+                list = FXCollections.observableArrayList();
+                observableListMap.put(contactDto.getId(),list);
+                chattingSectionVbox.getChildren().add(stageCoordinator.loadContacts(contactDto));
+            }
+        }
+    }
+    void getGroup(){
+        chattingGroupAreaVbox.getChildren().clear();
+        if(!groupListService.getListOfGroup(LoginService.getId()).isEmpty()){
+            for (GroupDto groupDto : groupListService.getListOfGroup(LoginService.getId())) {
+//            contactModel = new ContactModel();
+                chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadGroups(groupDto));
+            }
+        }
+    }
+    void getNotification(){
+        SettingAreaVbox.getChildren().clear();
+        try {
+            if(!friendRequestService.getFriendRequestsNotifcation().isEmpty()){
+                for(FriendRequestSenderDto friendRequestSenderDto : friendRequestService.getFriendRequestsNotifcation()){
+                    System.out.println(friendRequestSenderDto);
+                    SettingAreaVbox.getChildren().add(stageCoordinator.loadFriendRequest(friendRequestSenderDto.getSenderName(),friendRequestSenderDto));
 
+                }
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
     @FXML
     void OnAddingContact(MouseEvent event) {
@@ -136,12 +180,11 @@ public class SidebarController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        ;
         img = new ImageView();
         img.imageProperty().bindBidirectional(userModel.imageProperty());
         profilePic.setFill(new ImagePattern(img.getImage()));
-        if (userModel.getStatus().equals("ACTIVE")) {
-            status.setFill(Color.RED);
-        }
+        getUserStatus(userModel.getStatus());
         bio.textProperty().bindBidirectional(userModel.bioProperty());
         userName.textProperty().bindBidirectional(userModel.userNameProperty());
         if(!contactListService.getListOfContact((LoginService.getId())).isEmpty()){
@@ -151,25 +194,20 @@ public class SidebarController implements Initializable {
                 chattingSectionVbox.getChildren().add(stageCoordinator.loadContacts(contactDto));
             }
         }
-        if(!groupListService.getListOfGroup(LoginService.getId()).isEmpty()){
-            for (GroupDto groupDto : groupListService.getListOfGroup(LoginService.getId())) {
-//            contactModel = new ContactModel();
-                chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadGroups(groupDto));
-            }
-        }
-        try {
-            if(!friendRequestService.getFriendRequestsNotifcation().isEmpty()){
-                for(FriendRequestSenderDto friendRequestSenderDto : friendRequestService.getFriendRequestsNotifcation()){
-                    System.out.println(friendRequestSenderDto);
-                    SettingAreaVbox.getChildren().add(stageCoordinator.loadFriendRequest(friendRequestSenderDto.getSenderName(),friendRequestSenderDto));
 
-                }
-            }
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+
 
 
     }
+    void getUserStatus(String statusCond){
+        if(statusCond.equals("ACTIVE")){
+            status.setFill(Color.GREEN);
+        }else if(statusCond.equals("DoNotDisturb")){
+            status.setFill(Color.YELLOW);
+        }else if(statusCond.equals("AWAY")){
+            status.setFill(Color.RED);
+        }
+    }
+
 
 }
