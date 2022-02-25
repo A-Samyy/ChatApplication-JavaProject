@@ -175,6 +175,8 @@ public class SidebarController implements Initializable {
     }
 
 
+
+
 //    @FXML
 //    void OnAddContactMouseClick(MouseEvent event) {
 //        stageCoordinator.loadAddContact();
