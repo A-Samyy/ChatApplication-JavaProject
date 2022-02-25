@@ -49,6 +49,8 @@ public class UpdateUserImpl extends UnicastRemoteObject implements UpdateUserInt
             number = 2;
         }else if(status.equals("Away")){
             number = 3;
+        }else if(status.equals("Offine")){
+            number = 4;
         }
         return number;
     }
