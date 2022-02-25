@@ -22,6 +22,7 @@ public class LoginService {
     RMIRegister rmiRegister = RMIRegister.getInstance();
     LoginInt loginInt =rmiRegister.loginService();
     LoginDto loginDto = null;
+    static public UserHomePageDto userHomePageDtoToSend = new UserHomePageDto();
 
     public LoginService() {
 
@@ -45,6 +46,8 @@ public class LoginService {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+        userHomePageDtoToSend = userHomePageDto;
+        System.out.println("test"+userHomePageDtoToSend.getBio());
         userModel.setPhoneNumber(userHomePageDto.getPhoneNumber());
         userModel.setUserName(userHomePageDto.getName());
         userModel.setGender(userHomePageDto.getGender());
@@ -70,6 +73,10 @@ public class LoginService {
         }
 
     }
+
+//    public UserHomePageDto getUser(){
+//        return this.userHomePageDtoToSend;
+//    }
 
     public Image decodeImage(String image) throws Exception {
         Image img ;

@@ -120,11 +120,13 @@ public class ChatSectionController implements Initializable {
 
     void getUserStatus(String statusCond){
         if(statusCond.equals("ACTIVE")){
-            status.setFill(Color.BLUE);
+            status.setFill(Color.GREEN);
         }else if(statusCond.equals("DoNotDisturb")){
             status.setFill(Color.YELLOW);
         }else if(statusCond.equals("AWAY")){
             status.setFill(Color.RED);
+        }else if(statusCond.equals("OFFLINE")){
+            status.setFill(Color.GRAY);
         }
     }
 

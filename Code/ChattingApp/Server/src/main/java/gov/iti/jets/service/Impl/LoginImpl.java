@@ -5,6 +5,7 @@ import gov.iti.jets.common.dtos.UserHomePageDto;
 
 import gov.iti.jets.common.interfaces.LoginInt;
 import gov.iti.jets.presistance.daos.UserDao;
+import gov.iti.jets.presistance.dtos.Status;
 import gov.iti.jets.presistance.dtos.UserDto;
 import gov.iti.jets.service.services.ServerControlService;
 
@@ -74,8 +75,10 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
             e.printStackTrace();
         }
         //satuts
+        userDto.setStatus(Status.ACTIVE);
+        System.out.println("see status"+userDto.getStatus().name());
         userHomePageDtoDto.setStatus(userDto.getStatus().name());
-
+        userDao.updateUserDto(userDto);
         return userHomePageDtoDto;
     }
 

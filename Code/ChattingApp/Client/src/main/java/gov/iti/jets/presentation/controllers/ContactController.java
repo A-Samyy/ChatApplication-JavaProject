@@ -83,6 +83,8 @@ public class ContactController implements Initializable {
             statusOfContact.setFill(Color.YELLOW);
         }else if(status.equals("AWAY")){
             statusOfContact.setFill(Color.RED);
+        }else if(status.equals("OFFLINE")){
+            statusOfContact.setFill(Color.GRAY);
         }
     }
 }

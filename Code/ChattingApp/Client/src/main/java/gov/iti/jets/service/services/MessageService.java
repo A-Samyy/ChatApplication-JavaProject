@@ -25,6 +25,9 @@ public class MessageService {
             e.printStackTrace();
         }
     }
+    public ClientMessageImpl getClient(){
+        return this.clientMessage;
+    }
     public static MessageService getInstance(){
         return messageService;
     }

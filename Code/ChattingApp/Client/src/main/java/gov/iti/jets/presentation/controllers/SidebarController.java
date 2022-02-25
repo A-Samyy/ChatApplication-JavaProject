@@ -28,6 +28,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -99,6 +100,7 @@ public class SidebarController implements Initializable {
 
     @FXML
     private Label userName;
+
 
 //    private String imageAsString;
     ImageView img;
@@ -173,6 +175,13 @@ public class SidebarController implements Initializable {
 
     }
 
+    @FXML
+    void OnAddingGroup(MouseEvent event) {
+        System.out.println("eneter");
+        stageCoordinator.loadAddGroup();
+    }
+
+
 //    @FXML
 //    void OnAddContactMouseClick(MouseEvent event) {
 //        stageCoordinator.loadAddContact();
@@ -206,6 +215,8 @@ public class SidebarController implements Initializable {
             status.setFill(Color.YELLOW);
         }else if(statusCond.equals("AWAY")){
             status.setFill(Color.RED);
+        }else if(statusCond.equals("OFFLINE")){
+            status.setFill(Color.GRAY);
         }
     }
 

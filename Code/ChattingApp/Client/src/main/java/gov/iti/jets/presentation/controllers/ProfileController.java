@@ -150,6 +150,7 @@ public class ProfileController implements Initializable {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
+                        userModel.setImage(image);
                         userModel.setImagePath(imagePath);
                         pofilePic.setFill(new ImagePattern(image));
                     }
@@ -178,26 +179,15 @@ public class ProfileController implements Initializable {
         updateDto.setEmail(userModel.getEmail());
         updateDto.setName(userModel.getUserName());
         if(!password.getText().isEmpty()){
-            System.out.println("OnsaveFunction"+password.getText());
             updateDto.setPassword(password.getText());
         }
-
-//        System.out.println(selectedRadioButton.getText());
         if(toggleGroup.getSelectedToggle() == null){
-            System.out.println(userModel.getStatus());
             updateDto.setStatus(getStatusToUpdateUser(userModel.getStatus()));
         }else {
-            System.out.println("done");
             selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
             setStatusToUserModel(selectedRadioButton.getText());
             updateDto.setStatus(selectedRadioButton.getText());
         }
-//        if(selectedRadioButton != null){
-//            selectedRadioButton =(RadioButton) toggleGroup.getSelectedToggle();
-//            setStatusToUserModel(selectedRadioButton.getText());
-//            updateDto.setStatus(selectedRadioButton.getText());
-
-//        }
         updateDto.setPicture(userModel.getImagePath());
         updateDto.setPhoneNumber(userModel.getPhoneNumber());
         updateUserService.updateUser(updateDto);
@@ -226,7 +216,7 @@ public class ProfileController implements Initializable {
     String getStatusToUpdateUser(String status){
         String Status = "";
         if(status.equals("ACTIVE")){
-            Status = ("active");
+            Status = ("Active");
         }else if(status.equals("DoNotDisturb")){
             Status = ("Busy");
         }else if(status.equals("AWAY")){

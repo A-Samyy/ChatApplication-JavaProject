@@ -2,14 +2,18 @@ package gov.iti.jets.service.impl;
 
 import gov.iti.jets.common.dtos.MessageDto;
 import gov.iti.jets.common.dtos.MessageGroupDto;
+import gov.iti.jets.common.dtos.UpdateDto;
+import gov.iti.jets.common.dtos.UserHomePageDto;
 import gov.iti.jets.common.interfaces.ClientMesseageInt;
 import gov.iti.jets.common.interfaces.ServerMessageInt;
+import gov.iti.jets.common.interfaces.UpdateUserInt;
 import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.daos.MessageDao;
 
 import gov.iti.jets.service.services.LoginService;
 import gov.iti.jets.service.services.MessageService;
+import gov.iti.jets.service.services.UpdateUserService;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,12 +45,7 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
 
     @Override
     public String reciveMessage(MessageDto messageDto) throws RemoteException {
-
-        //for tomorrow
-//        Map<Integer, ObservableList<HBox>> map = new HashMap<>();
-//        ObservableList<HBox> list = FXCollections.observableArrayList();
         messageDao = new MessageDao(messageDto);
-
         list.add(messageDao);
         map.put(messageDto.getUserId(),list);
 //        Platform.runLater(new Runnable() {
@@ -56,8 +55,6 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
 //
 //            }
 //        });
-
-
 //        System.out.println(map.get(messageDto.getFriendId()).toString());
         return messageDto.getMessageContent();
     }
@@ -77,5 +74,23 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+    }
+    public void removeMe() throws RemoteException {
+        UpdateUserInt updateUserInt= rmiRegister.updateUserService();
+        updateUserInt.updateUser(mapperToUpdateDto(LoginService.userHomePageDtoToSend));
+        serverMessageInt.unRegister(this,LoginService.getId());
+    }
+
+    UpdateDto mapperToUpdateDto(UserHomePageDto userHomePageDto){
+        UpdateDto updateDto = new UpdateDto();
+        updateDto.setPhoneNumber(userHomePageDto.getPhoneNumber());
+        updateDto.setPicture(userHomePageDto.getPicture());
+        updateDto.setEmail(userHomePageDto.getEmail());
+        updateDto.setName(userHomePageDto.getName());
+        updateDto.setBio(userHomePageDto.getBio());
+        updateDto.setPassword(userHomePageDto.getPassword());
+        updateDto.setId(LoginService.getId());
+        updateDto.setStatus("Offline");
+        return  updateDto;
     }
 }
