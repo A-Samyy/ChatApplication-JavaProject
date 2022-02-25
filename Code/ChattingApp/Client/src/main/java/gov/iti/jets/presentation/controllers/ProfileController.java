@@ -109,7 +109,7 @@ public class ProfileController implements Initializable {
         busy.setToggleGroup(toggleGroup);
         away.setToggleGroup(toggleGroup);
         selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
-        userModel.setGender(selectedRadioButton.getText());
+        userModel.setStatus(selectedRadioButton.getText());
 
     }
 
@@ -147,8 +147,14 @@ public class ProfileController implements Initializable {
             try {
                 image = new Image(new FileInputStream(picPath));
                 imagePath = encodeImage(picPath);
-                userModel.setImagePath(imagePath);
-                pofilePic.setFill(new ImagePattern(image));
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        userModel.setImagePath(imagePath);
+                        pofilePic.setFill(new ImagePattern(image));
+                    }
+                });
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -175,17 +181,25 @@ public class ProfileController implements Initializable {
             System.out.println("OnsaveFunction"+password.getText());
             updateDto.setPassword(password.getText());
         }
-        selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
 
-        if(!selectedRadioButton.getText().isEmpty()){
+//        System.out.println(selectedRadioButton.getText());
+        if(toggleGroup.getSelectedToggle() == null){
+            System.out.println(userModel.getStatus());
+            updateDto.setStatus(getStatusToUpdateUser(userModel.getStatus()));
+        }else {
+            System.out.println("done");
+            selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
             setStatusToUserModel(selectedRadioButton.getText());
             updateDto.setStatus(selectedRadioButton.getText());
-
         }
-//        System.out.println("OnsaveFunction "+);
+//        if(selectedRadioButton != null){
+//            selectedRadioButton =(RadioButton) toggleGroup.getSelectedToggle();
+//            setStatusToUserModel(selectedRadioButton.getText());
+//            updateDto.setStatus(selectedRadioButton.getText());
+
+//        }
         updateDto.setPicture(userModel.getImagePath());
         updateDto.setPhoneNumber(userModel.getPhoneNumber());
-        System.out.println(updateDto.toString());
         updateUserService.updateUser(updateDto);
         if(!password.getText().equals(confirmPassword.getText())){
             confirmPassword.setStyle(" -fx-border-color: rgb(245, 43, 43);\n" +
@@ -208,5 +222,16 @@ public class ProfileController implements Initializable {
         }else if(status.equals("Away")){
             userModel.setStatus("AWAY");
         }
+    }
+    String getStatusToUpdateUser(String status){
+        String Status = "";
+        if(status.equals("ACTIVE")){
+            Status = ("active");
+        }else if(status.equals("DoNotDisturb")){
+            Status = ("Busy");
+        }else if(status.equals("AWAY")){
+            Status = ("Away");
+        }
+        return Status;
     }
 }

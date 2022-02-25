@@ -19,7 +19,6 @@ public class UpdateUserImpl extends UnicastRemoteObject implements UpdateUserInt
 
     @Override
     public Boolean updateUser(UpdateDto updateDto) throws RemoteException {
-        System.out.println("onserver to save:"+updateDto);
         UserDto  userDto = userDao.getUserDtoById(updateDto.getId());
         userDto.setBio(updateDto.getBio());
         userDto.setEmail(updateDto.getEmail());
