@@ -18,7 +18,7 @@ public class RMIRegister {
 
     private RMIRegister() {                 /// cmd-> ipconfig
         try {                                ///getRegistry("192.168.100.2", port)
-            registry = LocateRegistry.getRegistry("localhost", 4006);
+            registry = LocateRegistry.getRegistry("localhost", 3333);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -96,6 +96,16 @@ public class RMIRegister {
             e.printStackTrace();
         }
         return serverGroupChatMessageInt;
+    }public ServerMessageAnnouncetInt serverMessageAnnouncetInt(){
+        ServerMessageAnnouncetInt  serverMessageAnnouncetInt = null;
+        try {
+            serverMessageAnnouncetInt = (ServerMessageAnnouncetInt) registry.lookup("AnnouncementService");
+        } catch (NotBoundException |AccessException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return serverMessageAnnouncetInt;
     }
 
 

@@ -29,7 +29,7 @@ public class HomePageController implements Initializable {
     ServerGroupChatMessageInt serverGroupChatMessage = rmiRegister.groupChatMessageService();
     ClientGroupChatMessageInt clientGroupChatMessageInt ;
     ClientAnnounceMessageInt clientAnnounceMessageInt;
-    ServerMessageAnnouncetInt serverMessageAnnouncetInt = rmiRegister.serverAnnouncement();
+    ServerMessageAnnouncetInt serverMessageAnnouncetInt = rmiRegister.serverMessageAnnouncetInt();
     @FXML
     public GridPane gridPane;
 

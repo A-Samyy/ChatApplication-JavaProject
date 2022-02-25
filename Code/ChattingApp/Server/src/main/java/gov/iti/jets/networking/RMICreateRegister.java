@@ -20,7 +20,7 @@ public class RMICreateRegister {
             FriendRequestInt friendRequestInt= new FriendRequestImpl();
             ServerMessageAnnouncetInt serverMessageAnnouncetInt = new ServerMessageAnnounceImpl();
             ServerGroupChatMessageInt serverGroupChatMessageInt =new ServerGroupChatMessageImpl();
-            Registry registry = LocateRegistry.getRegistry(7777);
+            Registry registry = LocateRegistry.getRegistry(3333);
             registry.rebind("RegisterService",register);
             registry.rebind("loginService",loginService);
             registry.rebind("ContactListService",contactListInt);
