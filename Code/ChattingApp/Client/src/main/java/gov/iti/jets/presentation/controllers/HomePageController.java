@@ -13,6 +13,7 @@ import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.impl.ClientAnnounceImpl;
 import gov.iti.jets.service.impl.ClientGroupChatMessageImpl;
 import gov.iti.jets.service.services.LoginService;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
@@ -60,10 +61,21 @@ public class HomePageController implements Initializable {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        try {
-            serverMessageAnnouncetInt.getMessage();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+
+
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        System.out.println("hiiii ana shaghal");
+                        serverMessageAnnouncetInt.getMessage();
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+
+
     }
 }

@@ -63,14 +63,12 @@ public class HomePageController implements Initializable {
         serverControlService.openConnection();
     }
 
-
     @FXML
     void sendAction(MouseEvent event) throws RemoteException {
         messageAnnounceDto.setMessageContent(messageTextField.getText());
 
         messageObservableList.add(stageCoordinator.loadMessage(messageAnnounceDto));
         listView.setItems(messageObservableList);
-
         serverMessageAnnounce.getMessageAnnounceDto(this.messageAnnounceDto);
         System.out.println("messageAnnounce:"+this.messageAnnounceDto);
         messageTextField.setText("");

@@ -5,15 +5,15 @@ import java.io.Serializable;
 public class MessageAnnounceDto implements Serializable {
 
     private static final long serialVersionUID = 1420672609912367055L;
-    private String MessageContent ;
+    private String messageContent ;
     private final String sender ="Admin";
 
     public String getMessageContent() {
-        return MessageContent;
+        return messageContent;
     }
 
     public void setMessageContent(String messageContent) {
-        MessageContent = messageContent;
+        this.messageContent = messageContent;
         System.out.println("messageContent in get Message common"+messageContent);
     }
 
@@ -26,7 +26,7 @@ public class MessageAnnounceDto implements Serializable {
     @Override
     public String toString() {
         return "MessageAnnounceDto{" +
-                "MessageContent='" + MessageContent + '\'' +
+                "MessageContent='" + messageContent + '\'' +
                 ", sender='" + sender + '\'' +
                 '}';
     }
