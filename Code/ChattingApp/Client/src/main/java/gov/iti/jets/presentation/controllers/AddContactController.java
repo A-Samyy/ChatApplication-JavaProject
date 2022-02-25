@@ -43,7 +43,7 @@ public class AddContactController implements Initializable {
                             if(statusOfFriendRequest){
                                 ValidatePhoneNumber.setText("Done");
                                 AddingFriendTextArea.setText("");
-                                ValidatePhoneNumber.setTextFill(Color.BLUE);
+                                ValidatePhoneNumber.setTextFill(Color.GREEN);
                             }
                             else {
                                 ValidatePhoneNumber.setText("There is no Contact with This number");
