@@ -90,6 +90,7 @@ public class UserDto implements Serializable {
         return status.number;
     }
     public void setStatus(Status status) {
+        System.out.println("insideUsedDTO "+status);
         this.status = status;
     }
 

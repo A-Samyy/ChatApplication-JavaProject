@@ -25,19 +25,12 @@ public class GroupChatUsersDao {
         boolean check = isGroupExist(groupChatDto);
         if (!check) {
             try {
+                System.out.println("before inserting"+check);
                 String sql = "insert into chatting_app.group_chat_users(group_id,user_id) values(?, ?)";
                 return injectContact(groupChatDto, sql);
             } catch (Exception e) {
                 e.printStackTrace();
                 return false;
-            } finally {
-                try {
-                    if (conn != null) {
-                        conn.close();
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
             }
         } else
             return false;
@@ -48,17 +41,11 @@ public class GroupChatUsersDao {
             conn = connector.getConnection();
             String sql = "Select group_id from chatting_app.group_chat_users where group_chat_id=" + groupChatDto.getGroupId();
             preparedStatement = conn.prepareStatement(sql);
-            return preparedStatement.executeQuery().next();
+            boolean check= preparedStatement.executeQuery().next();
+            System.out.println("is group exist"+check);
+            return check;
         } catch (SQLException e) {
             return false;
-        } finally {
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
 
@@ -85,11 +72,11 @@ public class GroupChatUsersDao {
         }
     }
 
-    public ArrayList getAllGroupsIdforUser(UserDto userDto) {
+    public ArrayList getAllGroupsIdforUser(int id) {
         try {
             conn = connector.getConnection();
             ArrayList groupsIds = new ArrayList();
-            String sql = "select group_id from chatting_app.group_chat_users where User_ID=" + userDto.getUserID();
+            String sql = "select group_id from chatting_app.group_chat_users where User_ID=" + id;
             preparedStatement = conn.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -136,7 +123,7 @@ public class GroupChatUsersDao {
 
     private boolean injectContact(GroupChatDto groupChatDto, String sql) {
         try {
-            conn = connector.getConnection();
+            System.out.println("inject method");
             int affectedRows = 0;
             for (int userId : groupChatDto.getUsersId()) {
                 System.out.println(" " + userId);
@@ -149,14 +136,6 @@ public class GroupChatUsersDao {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
-        } finally {
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
 
     }

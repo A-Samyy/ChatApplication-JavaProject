@@ -66,9 +66,9 @@ public class UserDao {
     public boolean updateUserDto(UserDto userDto) {
         try {
             conn = connector.getConnection();
-            int id = getUserIdByPhoneNumber(userDto.getPhoneNumber());
+//            int id = getUserIdByPhoneNumber(userDto.getPhoneNumber());
             String sql = "UPDATE chatting_app.user SET PHONE_NUMBER= ?,USER_NAME = ?,PASSWORD = ? ,GENDER = ? ,EMAIL = ? ,Picture = ? ,COUNTRY = ?,Bio = ? ,STATUS=? ,DateOfBirth=? WHERE User_ID="
-                    + id;
+                    + userDto.getUserID();
             return injectUser(userDto, sql);
         } catch (Exception e) {
             e.printStackTrace();
@@ -205,6 +205,29 @@ public class UserDao {
         try {
             conn = connector.getConnection();
             String sql = "select PASSWORD from chatting_app.user where User_ID=" + id;
+            preparedStatement = conn.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getString(1);
+            } else
+                return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public String getUserNameById(int id) {
+        try {
+            conn = connector.getConnection();
+            String sql = "select USER_NAME from chatting_app.user where User_ID=" + id;
             preparedStatement = conn.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {

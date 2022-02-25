@@ -2,6 +2,7 @@ package gov.iti.jets.service.Impl;
 
 import gov.iti.jets.common.dtos.LoginDto;
 import gov.iti.jets.common.dtos.UserHomePageDto;
+
 import gov.iti.jets.common.interfaces.LoginInt;
 import gov.iti.jets.presistance.daos.UserDao;
 import gov.iti.jets.presistance.dtos.UserDto;
@@ -67,7 +68,6 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
         userHomePageDtoDto.setDateOfBirth(date);
 
         try {
-//            System.out.println("error gded1"+encodeImage(userDto.getPicture()));
             userHomePageDtoDto.setPicture(encodeImage(userDto.getPicture()));
 
         } catch (IOException e) {

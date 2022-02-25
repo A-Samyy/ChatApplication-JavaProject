@@ -20,7 +20,9 @@ import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 
 public class ContactController implements Initializable {
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
@@ -65,16 +67,18 @@ public class ContactController implements Initializable {
     @FXML
     void OpenChatOnClick(MouseEvent event) {
         GridPane home = stageCoordinator.getHomepage();
+        home.getChildren().removeIf(node -> GridPane.getColumnIndex(node) == 1);
         home.add( stageCoordinator.loadChatSection(contactName.getText(),imageView.getImage(),contactDto.getStatus(),contactDto.getId()), 1, 0);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 
     void getUserStatus(String status){
         if(status.equals("ACTIVE")){
-            statusOfContact.setFill(Color.BLUE);
+            statusOfContact.setFill(Color.GREEN);
         }else if(status.equals("DoNotDisturb")){
             statusOfContact.setFill(Color.YELLOW);
         }else if(status.equals("AWAY")){

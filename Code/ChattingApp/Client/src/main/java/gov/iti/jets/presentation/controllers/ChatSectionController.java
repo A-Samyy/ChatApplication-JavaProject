@@ -1,11 +1,14 @@
 package gov.iti.jets.presentation.controllers;
 
+import gov.iti.jets.common.dtos.ContactDto;
 import gov.iti.jets.common.dtos.MessageDto;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.daos.MessageDao;
 import gov.iti.jets.service.impl.ClientMessageImpl;
+import gov.iti.jets.service.services.ContactListService;
+import gov.iti.jets.service.services.LoginService;
 import gov.iti.jets.service.services.MessageService;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -30,12 +33,14 @@ import org.kordamp.ikonli.javafx.FontIcon;
 import javax.xml.validation.Validator;
 import java.net.URL;
 import java.rmi.RemoteException;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.Map;
 
 public class ChatSectionController implements Initializable {
 
     private final StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     private final ModelFactory modelFactory = ModelFactory.getInstance();
+    ContactListService contactListService = new ContactListService();
     MessageDto  messageDto= new MessageDto();
     MessageDao messageDao=new MessageDao(messageDto);
     UserModel userModel = modelFactory.getUserModel();
@@ -46,7 +51,7 @@ public class ChatSectionController implements Initializable {
     private AnchorPane bottomBar;
 
     @FXML
-    private ListView<HBox> chatContainer;
+    private ListView<MessageDto> chatContainer;
 
     @FXML
     private FontIcon filesButton;
@@ -75,7 +80,7 @@ public class ChatSectionController implements Initializable {
 
     @FXML
     private Label userName;
-    int id;
+    int friendId;
 
     @FXML
     void onTypingEnter(KeyEvent event) {
@@ -84,14 +89,17 @@ public class ChatSectionController implements Initializable {
     ImageView imageView = new ImageView();
 
     public  void display(String name, Image image, String status,int id) {
-        this.id = id;
+//        if(observableListMap.get(id) == null){
+//            list = FXCollections.observableArrayList();
+//            observableListMap.put(id,list);
+//        }
+        this.friendId = id;
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 userName.setText(name);
                 imageView.setImage(image);
                 profilePicture.setFill(new ImagePattern(imageView.getImage()));
-                System.out.println(status);
                 getUserStatus(status);
             }
         });
@@ -103,9 +111,7 @@ public class ChatSectionController implements Initializable {
         messageTextField.setText("");
         messageDao.setUserName(userModel.getUserName());
         messageDao.setUserID();
-        messageDao.getMessageDto().setFriendId(id);
-        System.out.println(messageDao.getMessageDto());
-
+        messageDao.getMessageDto().setFriendId(friendId);
         messageService.sendMessageDto(messageDao.getMessageDto());
 
         createMessage();
@@ -123,51 +129,53 @@ public class ChatSectionController implements Initializable {
     }
 
     private void createMessage(){
+        ObservableList observableList;
 
-
-        messageObservableList.add(stageCoordinator.loadMessage(messageDao));
-        chatContainer.setItems(messageObservableList);
-
-
+            observableList= SidebarController.observableListMap.get(messageDao.getMessageDto().getFriendId());
+        observableList.add(messageDao.getMessageDto());
+        chatContainer.setItems(observableList);
     }
     public void displayMessage(int id){
-        if(!ClientMessageImpl.list.isEmpty()){
-            System.out.println();
-            if(ClientMessageImpl.map.get(id) != null);
-            {
-                messageReceived=true;
-                System.out.println(messageReceived);
-                chatContainer.setItems(ClientMessageImpl.map.get(id));
+        ObservableList list;
+        if(ClientMessageImpl.map.get(id) != null){
+                list = SidebarController.observableListMap.get(id);
+            for (MessageDao messageDao: ClientMessageImpl.map.get(id)) {
+                list.add(messageDao.getMessageDto());
             }
+            chatContainer.setItems(list);
+            ClientMessageImpl.list.clear();
+            ClientMessageImpl.map.clear();
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         chatContainer.setCellFactory(messageListView -> new MessageListViewCell());
-        messageObservableList = FXCollections.observableArrayList();
     }
 
-    private class MessageListViewCell extends ListCell<HBox> {
+    private class MessageListViewCell extends ListCell<MessageDto> {
 
        private Pane messageCellContainer=new Pane();
         public MessageListViewCell() {
 
-            System.out.println(messageReceived);
         }
 
         @Override
-        protected void updateItem(HBox item, boolean empty) {
+        protected void updateItem(MessageDto item, boolean empty) {
             super.updateItem(item, empty);
             if (item != null && !empty) { // <== test for null item and empty parameter
-                if(messageReceived){
-                    messageCellContainer.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
-                    messageReceived=false;
-                }else {
+                if(LoginService.getId() == item.getUserId()){
                     messageCellContainer.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
-                    item.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+                    HBox hbox = stageCoordinator.loadMessage(new MessageDao(item));
+                    hbox.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+                    messageCellContainer.getChildren().add(hbox);
+                }else {
+                    messageCellContainer.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+                    HBox hBox = stageCoordinator .loadMessage(new MessageDao(item));
+                    hBox.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+                    messageCellContainer.getChildren().add(hBox);
                 }
-                messageCellContainer.getChildren().add(item);
+
                 setGraphic(messageCellContainer);
             } else {
                 setGraphic(null);

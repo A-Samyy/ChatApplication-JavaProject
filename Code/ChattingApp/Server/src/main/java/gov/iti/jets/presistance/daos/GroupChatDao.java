@@ -25,7 +25,9 @@ public class GroupChatDao {
             conn = connector.getConnection();
             check = insertingGroupName(groupChatDto);
             groupChatDto.setGroupId(getTheLastGroupID());
+            System.out.println("before adding groupchatUser for group id = "+getTheLastGroupID());
             cheak2 = groupChatUsersDao.addGroupChatUsersTable(groupChatDto);
+            System.out.println(cheak2);
             return check && cheak2;
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,8 +51,13 @@ public class GroupChatDao {
     public int getTheLastGroupID() {
         String sql = "SELECT max(group_chat_id) FROM chatting_app.group_chat ; ";
         try {
+            conn = connector.getConnection();
             preparedStatement = conn.prepareStatement(sql);
-            return preparedStatement.executeQuery().getInt(1);
+            ResultSet resultSet= preparedStatement.executeQuery();
+            resultSet.next();
+            int id =resultSet.getInt(1);
+            System.out.println(id);
+            return id;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -78,10 +85,10 @@ public class GroupChatDao {
         }
     }
 
-    public String getGroupsNameById(GroupChatDto groupChatDto) {
+    public String getGroupsNameById(int id) {
         try {
             conn = connector.getConnection();
-            String sql = "select group_chat_name from chatting_app.group_chat where group_chat_ID=" + groupChatDto.getGroupId();
+            String sql = "select group_chat_name from chatting_app.group_chat where group_chat_ID=" + id;
             preparedStatement = conn.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -104,22 +111,12 @@ public class GroupChatDao {
 
     private boolean injectContact(GroupChatDto groupChatDto, String sql) {
         try {
-            conn= connector.getConnection();
             preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, groupChatDto.getGroupName());
             return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
-        } finally {
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
-
     }
 }

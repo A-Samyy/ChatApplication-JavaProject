@@ -10,6 +10,7 @@ import gov.iti.jets.service.daos.MessageDao;
 
 import gov.iti.jets.service.services.LoginService;
 import gov.iti.jets.service.services.MessageService;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.HBox;
@@ -17,15 +18,17 @@ import javafx.scene.layout.HBox;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ClientMessageImpl extends UnicastRemoteObject implements ClientMesseageInt {
 
     RMIRegister rmiRegister=RMIRegister.getInstance();
     public ServerMessageInt serverMessageInt;
-    static public Map<Integer, ObservableList<HBox>> map = new HashMap<>();
-    static public ObservableList<HBox> list = FXCollections.observableArrayList();
+    static public Map<Integer, List<MessageDao>> map = new HashMap<>();
+    static public List<MessageDao> list = new ArrayList<>();
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     MessageService messageService = MessageService.getInstance();
 
@@ -38,22 +41,24 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
 
     @Override
     public String reciveMessage(MessageDto messageDto) throws RemoteException {
-        /*
-        Stagecor.loadMessage(messageDto)
-         */
-//        messageService.recieveMessageDto(messageDto);
 
-//        stageCoordinator.getHomepage().add( stageCoordinator.loadChatSection(null,null,null,0), 1, 0);
-
+        //for tomorrow
+//        Map<Integer, ObservableList<HBox>> map = new HashMap<>();
+//        ObservableList<HBox> list = FXCollections.observableArrayList();
         messageDao = new MessageDao(messageDto);
 
-        list.add(stageCoordinator.loadMessage(messageDao));
-//        if(add){
-            map.put(messageDto.getUserId(),list);
-//        }
+        list.add(messageDao);
+        map.put(messageDto.getUserId(),list);
+//        Platform.runLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                stageCoordinator.getChatSectionController().displayMessage(messageDto.getUserId());
+//
+//            }
+//        });
 
 
-        System.out.println(list.toString());
+//        System.out.println(map.get(messageDto.getFriendId()).toString());
         return messageDto.getMessageContent();
     }
 

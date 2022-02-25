@@ -16,9 +16,9 @@ public class RMIRegister {
     Registry registry;
 
 
-    private RMIRegister() {                 /// cmd-> ipconfig
-        try {                                ///getRegistry("192.168.100.2", port)
-            registry = LocateRegistry.getRegistry("localhost", 3334);
+    private RMIRegister() {
+        try {
+            registry = LocateRegistry.getRegistry("localhost", 4006);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -53,6 +53,18 @@ public class RMIRegister {
         return loginInt;
     }
 
+    public UpdateUserInt updateUserService(){
+        UpdateUserInt updateUserInt = null;
+        try {
+            updateUserInt = (UpdateUserInt) registry.lookup("updateUserService");
+        } catch (NotBoundException |AccessException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return updateUserInt;
+    }
+
     public ContactListInt contactListService(){
         ContactListInt contactListInt = null;
         try {
@@ -64,6 +76,19 @@ public class RMIRegister {
         }
         return contactListInt;
     }
+
+    public GroupListInt groupListService(){
+        GroupListInt groupListInt = null;
+        try {
+            groupListInt = (GroupListInt) registry.lookup("GroupListService");
+        } catch (NotBoundException |AccessException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return groupListInt;
+    }
+
     public ServerMessageInt messageService(){
         ServerMessageInt serverMessageInt = null;
         try {
@@ -106,6 +131,16 @@ public class RMIRegister {
             e.printStackTrace();
         }
         return serverMessageAnnouncetInt;
+    }
+    public AddGroupChatInt addGroupChatService(){
+        AddGroupChatInt addGroupChatInt =null;
+        try{
+            addGroupChatInt =(AddGroupChatInt) registry.lookup("AddGroupChatService");
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }catch (NotBoundException e) {
+            e.printStackTrace();
+        }return addGroupChatInt;
     }
 
 

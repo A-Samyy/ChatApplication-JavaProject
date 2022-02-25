@@ -16,4 +16,10 @@ public class MainApp extends Application {
         stageCoordinator.switchToWelcomScreen();
         primaryStage.show();
     }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        System.exit(0);
+    }
 }

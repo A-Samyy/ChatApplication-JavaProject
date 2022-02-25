@@ -1,8 +1,11 @@
 package gov.iti.jets.presentation.controllers;
 
+import gov.iti.jets.common.dtos.UpdateDto;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
+import gov.iti.jets.service.services.LoginService;
+import gov.iti.jets.service.services.UpdateUserService;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,6 +27,8 @@ import org.controlsfx.validation.decoration.GraphicValidationDecoration;
 import org.controlsfx.validation.decoration.StyleClassValidationDecoration;
 
 import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -34,6 +39,7 @@ public class ProfileController implements Initializable {
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
+    UpdateUserService updateUserService = new UpdateUserService();
     ValidationSupport validationSupport =new ValidationSupport();
     @FXML
     private RadioButton active;
@@ -86,18 +92,10 @@ public class ProfileController implements Initializable {
     @FXML
     private Label confirmPasswordError;
 
-    private ToggleGroup toggleGroup;
+    private ToggleGroup toggleGroup = new ToggleGroup();;
     RadioButton selectedRadioButton;
     GridPane homeGrid;
     ImageView img;
-
-
-
-
-
-
-
-
 
     @FXML
     void OnBackAction(MouseEvent event) {
@@ -106,10 +104,11 @@ public class ProfileController implements Initializable {
 
     @FXML
     void OnChoosingStatus(ActionEvent event) {
-        toggleGroup = new ToggleGroup();
+
         active.setToggleGroup(toggleGroup);
         busy.setToggleGroup(toggleGroup);
-        away.setToggleGroup(toggleGroup);selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
+        away.setToggleGroup(toggleGroup);
+        selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
         userModel.setGender(selectedRadioButton.getText());
 
     }
@@ -120,11 +119,13 @@ public class ProfileController implements Initializable {
         img.imageProperty().bindBidirectional(userModel.imageProperty());
         pofilePic.setFill(new ImagePattern(img.getImage()));
         getUserStatus();
+
         bio.textProperty().bindBidirectional(userModel.bioProperty());
         userName.textProperty().bindBidirectional(userModel.userNameProperty());
         userEmail.textProperty().bindBidirectional(userModel.emailProperty());
         userPhone.textProperty().bindBidirectional(userModel.phoneNumberProperty());
 
+//        st
     }
     void getUserStatus(){
         if(userModel.getStatus().equals("ACTIVE")){
@@ -135,15 +136,57 @@ public class ProfileController implements Initializable {
             away.setSelected(true);
         }
     }
+    String picPath;
+    Image image;
+    String imagePath;
+    FileInputStream stream;
+    @FXML
+    void OnChangingPic(MouseEvent event) {
+        picPath = stageCoordinator.openFile();
+        if (picPath != null) {
+            try {
+                image = new Image(new FileInputStream(picPath));
+                imagePath = encodeImage(picPath);
+                userModel.setImagePath(imagePath);
+                pofilePic.setFill(new ImagePattern(image));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public String encodeImage(String imgPath) throws IOException {
+        stream = new FileInputStream(imgPath);
+        byte[] imageData = stream.readAllBytes();
+        imagePath = Base64.getEncoder().encodeToString(imageData);
+        stream.close();
+        return  imagePath;
+    }
 
 
     @FXML
     void onSave(MouseEvent event) {
+        UpdateDto updateDto = new UpdateDto();
+        updateDto.setId(LoginService.getId());
+        updateDto.setBio(userModel.getBio());
+        updateDto.setEmail(userModel.getEmail());
+        updateDto.setName(userModel.getUserName());
+        if(!password.getText().isEmpty()){
+            System.out.println("OnsaveFunction"+password.getText());
+            updateDto.setPassword(password.getText());
+        }
+        selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
 
+        if(!selectedRadioButton.getText().isEmpty()){
+            setStatusToUserModel(selectedRadioButton.getText());
+            updateDto.setStatus(selectedRadioButton.getText());
 
-
-
-
+        }
+//        System.out.println("OnsaveFunction "+);
+        updateDto.setPicture(userModel.getImagePath());
+        updateDto.setPhoneNumber(userModel.getPhoneNumber());
+        System.out.println(updateDto.toString());
+        updateUserService.updateUser(updateDto);
         if(!password.getText().equals(confirmPassword.getText())){
             confirmPassword.setStyle(" -fx-border-color: rgb(245, 43, 43);\n" +
                     "-fx-border-width: 2;");
@@ -156,10 +199,14 @@ public class ProfileController implements Initializable {
                     "    -fx-border-color: #1e1836;");
             confirmPasswordError.setText("");
         }
-
-
-
-
-
+    }
+    void setStatusToUserModel(String status){
+        if(status.equals("Active")){
+            userModel.setStatus("ACTIVE");
+        }else if(status.equals("Busy")){
+            userModel.setStatus("DoNotDisturb");
+        }else if(status.equals("Away")){
+            userModel.setStatus("AWAY");
+        }
     }
 }
