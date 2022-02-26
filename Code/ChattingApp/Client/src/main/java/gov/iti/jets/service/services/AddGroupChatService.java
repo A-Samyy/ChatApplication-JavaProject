@@ -16,8 +16,7 @@ public class AddGroupChatService {
     }
     public boolean addGroupChat(ClientGroupChatDto clientGroupChatDto) throws RemoteException {
         AddGroupChatInt addGroupChatInt=rmiRegister.addGroupChatService();
-        System.out.println(addGroupChatInt.addGroupChat(clientGroupChatDto));
-        return true;
+        return addGroupChatInt.addGroupChat(clientGroupChatDto);
     }
 
 

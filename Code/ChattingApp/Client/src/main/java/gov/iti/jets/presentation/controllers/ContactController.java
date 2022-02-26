@@ -55,6 +55,7 @@ public class ContactController implements Initializable {
                 }
                 pictureOfContact.setFill(new ImagePattern(imageView.getImage()));
                 getUserStatus(contactDto.getStatus());
+                stageCoordinator.loadChatSection(contactName.getText(),imageView.getImage(),contactDto.getStatus(),contactDto.getId());
             }
         });
     }
@@ -83,6 +84,8 @@ public class ContactController implements Initializable {
             statusOfContact.setFill(Color.YELLOW);
         }else if(status.equals("AWAY")){
             statusOfContact.setFill(Color.RED);
+        }else if(status.equals("OFFLINE")){
+            statusOfContact.setFill(Color.GRAY);
         }
     }
 }

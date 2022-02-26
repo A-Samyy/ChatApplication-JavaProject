@@ -19,7 +19,7 @@ public class UpdateUserImpl extends UnicastRemoteObject implements UpdateUserInt
 
     @Override
     public Boolean updateUser(UpdateDto updateDto) throws RemoteException {
-        System.out.println("onserver to save:"+updateDto);
+        System.out.println(updateDto.toString());
         UserDto  userDto = userDao.getUserDtoById(updateDto.getId());
         userDto.setBio(updateDto.getBio());
         userDto.setEmail(updateDto.getEmail());
@@ -49,6 +49,8 @@ public class UpdateUserImpl extends UnicastRemoteObject implements UpdateUserInt
             number = 2;
         }else if(status.equals("Away")){
             number = 3;
+        }else if(status.equals("Offline")){
+            number = 4;
         }
         return number;
     }

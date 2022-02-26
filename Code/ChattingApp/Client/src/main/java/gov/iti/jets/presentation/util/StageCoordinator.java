@@ -37,12 +37,17 @@ public class StageCoordinator {
     private Stage primaryStage;
     private GridPane homepage;
     private ChatSectionController chatSectionController;
+    private GroupSectionController groupSectionController;
+
 
     private final Map<String, Scene> sceneMap = new HashMap<>();
     private final Map<String, Node> nodeMap = new HashMap<>();
     private final Map<Integer, Node> chatSectionMap = new HashMap<>();
     private final Map<Integer, ChatSectionController> chatSectionControllerMap = new HashMap<>();
-Map<Integer,List<HBox>> map=new HashMap<>();
+
+    private final Map<Integer, Node> groupSectionMap = new HashMap<>();
+    private final Map<Integer, GroupSectionController> groupSectionControllerMap = new HashMap<>();
+
     private StageCoordinator() {
     }
 
@@ -212,6 +217,19 @@ Map<Integer,List<HBox>> map=new HashMap<>();
         return grouplist;
     }
 
+    public void loadAddGroup() {
+        Stage addNewGroup = new Stage();
+        Pane addGroup = null;
+        try {
+            addGroup = FXMLLoader.load(getClass().getResource("/views/contactSection/addGroup.fxml"));
+        } catch (Exception e) {
+            System.out.println("File Not Found Exception");
+        }
+        Scene scene = new Scene(addGroup);
+        addNewGroup.setScene(scene);
+        addNewGroup.setTitle("Add New Group");
+        addNewGroup.show();
+    }
 
     public Node loadSidebar() {
         Node sidebar = null;
@@ -242,7 +260,7 @@ Map<Integer,List<HBox>> map=new HashMap<>();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            ChatSectionController chatSectionController = loader.getController();
+            chatSectionController = loader.getController();
             chatSectionMap.put(id,chatSection);
             chatSectionControllerMap.put(id,chatSectionController);
         }
@@ -250,14 +268,40 @@ Map<Integer,List<HBox>> map=new HashMap<>();
             @Override
             public void run() {
                 chatSectionControllerMap.get(id).display(name,pic,status , id);
-                chatSectionControllerMap.get(id).displayMessage(id);
+//                chatSectionControllerMap.get(id).displayMessage(id);
             }
         });
 
         return chatSection;
     }
-    public ChatSectionController getChatSectionController(){
-        return this.chatSectionController;
+
+    public Node loadChatSectionForGroup(GroupDto groupDto){
+        Node groupSection = chatSectionMap.get(groupDto.getId());
+        if(groupSection == null){
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/views/HomePageSection2/groupChatSection.fxml"));
+            try {
+                groupSection = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            groupSectionController = loader.getController();
+            groupSectionMap.put(groupDto.getId(),groupSection);
+            groupSectionControllerMap.put(groupDto.getId(),groupSectionController);
+        }
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println( "stage"+groupDto.getGroupName());
+                groupSectionControllerMap.get(groupDto.getId()).displayGroup(groupDto);
+//                chatSectionControllerMap.get(id).displayMessage(id);
+            }
+        });
+
+        return groupSection;
+    }
+    public Map<Integer,ChatSectionController> getChatSectionController(){
+        return chatSectionControllerMap;
     }
 
     public Node loadFriendRequest(String name, FriendRequestSenderDto friendRequestSenderDto){
@@ -287,6 +331,7 @@ Map<Integer,List<HBox>> map=new HashMap<>();
         addNewContact.setTitle("Add New Contact");
         addNewContact.show();
     }
+
 
     public Node loadSettings() {
         Node settings = nodeMap.get("settings");

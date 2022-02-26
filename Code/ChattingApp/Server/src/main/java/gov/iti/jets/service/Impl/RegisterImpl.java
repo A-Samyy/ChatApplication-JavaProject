@@ -71,7 +71,7 @@ public class RegisterImpl extends UnicastRemoteObject implements RegisterInt {
         userDto.setGender(registerDto.getGender());
         userDto.setPicture(imagePath);
         userDto.setBio(registerDto.getBio());
-        userDto.setStatus(Status.ACTIVE);
+        userDto.setStatus(Status.OFFLINE);
         return userDto;
     }
 

@@ -6,7 +6,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -28,7 +27,7 @@
       <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <HBox alignment="CENTER_RIGHT" prefHeight="262.0" prefWidth="350.0" GridPane.rowIndex="2">
+      <HBox alignment="CENTER_RIGHT" prefWidth="350.0" GridPane.rowIndex="2">
          <children>
             <FontIcon iconColor="WHITE" iconLiteral="fas-sign-out-alt" iconSize="25" onMouseClicked="#logoutOnMouseClick">
                <HBox.margin>
@@ -50,6 +49,9 @@
                </cursor>
             </Label>
          </children>
+         <GridPane.margin>
+            <Insets top="12.0" />
+         </GridPane.margin>
       </HBox>
       <Pane onMouseClicked="#openProfileOnMouseClick" prefHeight="80.0" prefWidth="350.0">
          <children>
@@ -86,21 +88,12 @@
                      <content>
                         <AnchorPane prefHeight="463.0" prefWidth="415.0">
                            <children>
-                              <VBox fx:id="chattingSectionVbox" layoutX="168.0" layoutY="-21.0" prefHeight="467.0" prefWidth="415.0" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Pane prefHeight="46.0" prefWidth="272.0">
                                  <children>
-                                    <Pane prefHeight="46.0" prefWidth="272.0">
-                                       <children>
-                                          <TextField fx:id="searchBar" layoutX="36.0" onKeyTyped="#searchOnKeyTyped" prefHeight="46.0" prefWidth="295.0" promptText="Search for contacts........">
-                                             <font>
-                                                <Font size="21.0" />
-                                             </font>
-                                          </TextField>
-                                          <FontIcon iconColor="WHITE" iconLiteral="fas-search" iconSize="20" layoutX="24.0" layoutY="29.0" />
-                                          <FontIcon iconColor="WHITE" iconLiteral="far-plus-square" iconSize="20" layoutX="311.0" layoutY="29.0" onMouseClicked="#OnAddingContact" />
-                                       </children>
-                                    </Pane>
+                                    <FontIcon iconColor="WHITE" iconLiteral="far-plus-square" iconSize="20" layoutX="311.0" layoutY="29.0" onMouseClicked="#OnAddingContact" />
                                  </children>
-                              </VBox>
+                              </Pane>
+                              <VBox fx:id="chattingSectionVbox" layoutX="168.0" layoutY="46.0" prefHeight="345.0" prefWidth="349.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -116,7 +109,12 @@
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <VBox fx:id="chattingGroupAreaVbox" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <AnchorPane prefHeight="44.0" prefWidth="350.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <FontIcon iconColor="WHITE" iconLiteral="far-plus-square" iconSize="20" layoutX="316.0" layoutY="26.0" onMouseClicked="#OnAddingGroup" AnchorPane.bottomAnchor="15.5" AnchorPane.rightAnchor="16.899999999999977" AnchorPane.topAnchor="8.5" />
+                                 </children>
+                              </AnchorPane>
+                              <VBox fx:id="chattingGroupAreaVbox" layoutY="38.0" prefHeight="351.0" prefWidth="349.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="38.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -141,7 +139,7 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <VBox fx:id="SettingAreaVbox" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <VBox fx:id="SettingAreaVbox" prefHeight="407.0" prefWidth="349.0" AnchorPane.bottomAnchor="-18.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                      </content>

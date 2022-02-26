@@ -8,10 +8,7 @@ import gov.iti.jets.presentation.models.ContactModel;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
-import gov.iti.jets.service.services.ContactListService;
-import gov.iti.jets.service.services.FriendRequestService;
-import gov.iti.jets.service.services.GroupListService;
-import gov.iti.jets.service.services.LoginService;
+import gov.iti.jets.service.services.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -28,6 +25,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -50,7 +48,6 @@ public class SidebarController implements Initializable {
     FriendRequestService friendRequestService = new FriendRequestService();
     GroupListService groupListService = new GroupListService();
     MessageDto messageDto=new MessageDto();
-
 
     @FXML
     private Tab Contacts;
@@ -100,6 +97,7 @@ public class SidebarController implements Initializable {
     @FXML
     private Label userName;
 
+
 //    private String imageAsString;
     ImageView img;
     ContactModel contactModel;
@@ -107,7 +105,10 @@ public class SidebarController implements Initializable {
     public SidebarController() throws RemoteException {
 
     }
-
+    @FXML
+    void OnAddingGroup(MouseEvent event) {
+        stageCoordinator.loadAddGroup();
+    }
 
 
     @FXML
@@ -173,6 +174,9 @@ public class SidebarController implements Initializable {
 
     }
 
+
+
+
 //    @FXML
 //    void OnAddContactMouseClick(MouseEvent event) {
 //        stageCoordinator.loadAddContact();
@@ -206,6 +210,8 @@ public class SidebarController implements Initializable {
             status.setFill(Color.YELLOW);
         }else if(statusCond.equals("AWAY")){
             status.setFill(Color.RED);
+        }else if(statusCond.equals("OFFLINE")){
+            status.setFill(Color.GRAY);
         }
     }
 

@@ -7,17 +7,21 @@ import gov.iti.jets.service.services.LoginService;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 public class AddContactController implements Initializable {
-
+    boolean statusOfFriendRequest;
+    @FXML
+    private Label ValidatePhoneNumber;
     @FXML
     private TextField AddingFriendTextArea;
     @FXML
@@ -35,8 +39,16 @@ public class AddContactController implements Initializable {
                             clientFriendRequestDto.setFriendPhoneNumber(AddingFriendTextArea.getText());
                             clientFriendRequestDto.setUserId(LoginService.getId());
                             System.out.println(clientFriendRequestDto.getFriendPhoneNumber());
-
-                            friendRequestService.friendRequest(clientFriendRequestDto);
+                            statusOfFriendRequest= friendRequestService.friendRequest(clientFriendRequestDto);
+                            if(statusOfFriendRequest){
+                                ValidatePhoneNumber.setText("Done");
+                                AddingFriendTextArea.setText("");
+                                ValidatePhoneNumber.setTextFill(Color.GREEN);
+                            }
+                            else {
+                                ValidatePhoneNumber.setText("There is no Contact with This number");
+                                ValidatePhoneNumber.setTextFill(Color.RED);
+                            }
                         } catch (RemoteException e) {
                             e.printStackTrace();
                         }
@@ -80,6 +92,7 @@ public class AddContactController implements Initializable {
             @Override
             public void run() {
                 AddingFriendTextArea.setText("");
+                ValidatePhoneNumber.setText("");
             }
         });
     }
