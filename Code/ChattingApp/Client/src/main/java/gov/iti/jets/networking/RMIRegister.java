@@ -16,7 +16,7 @@ public class RMIRegister {
 
     private RMIRegister() {
         try {
-            registry = LocateRegistry.getRegistry(host, 7005);
+            registry = LocateRegistry.getRegistry(host, 7008);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -25,6 +25,7 @@ public class RMIRegister {
     public String getHost() {
         return host;
     }
+
     public void setHost(String host) {
         this.host = host;
     }

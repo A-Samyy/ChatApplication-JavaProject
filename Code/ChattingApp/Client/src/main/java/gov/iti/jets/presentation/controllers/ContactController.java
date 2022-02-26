@@ -55,6 +55,7 @@ public class ContactController implements Initializable {
                 }
                 pictureOfContact.setFill(new ImagePattern(imageView.getImage()));
                 getUserStatus(contactDto.getStatus());
+                stageCoordinator.loadChatSection(contactName.getText(),imageView.getImage(),contactDto.getStatus(),contactDto.getId());
             }
         });
     }
