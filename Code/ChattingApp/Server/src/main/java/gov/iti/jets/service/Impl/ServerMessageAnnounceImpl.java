@@ -31,8 +31,13 @@ public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements Se
 
     @Override
     public boolean getMessage() throws RemoteException {
-        sendMessage(messageAnnounceDto);
-        return false;
+        if(messageAnnounceDto.getMessageContent()==null){
+            return false;
+        }else{
+            sendMessage(messageAnnounceDto);
+            return true;
+        }
+
     }
 
     @Override

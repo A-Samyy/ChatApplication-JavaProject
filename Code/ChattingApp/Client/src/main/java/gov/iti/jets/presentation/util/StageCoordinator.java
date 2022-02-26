@@ -250,6 +250,17 @@ public class StageCoordinator {
         }
         return defaultbar;
     }
+
+    public Node loadAdminMessageNotification(){
+        Node adminNotification = null;
+        try {
+            adminNotification = FXMLLoader.load(getClass().getResource("/views/AdminMessageNotification/adminMessageNotification.fxml"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return adminNotification;
+    }
+
     public Node loadChatSection(String name, Image pic , String status , int id){
         Node chatSection = chatSectionMap.get(id);
         if(chatSection == null){
@@ -330,6 +341,31 @@ public class StageCoordinator {
         addNewContact.setScene(scene);
         addNewContact.setTitle("Add New Contact");
         addNewContact.show();
+    }
+
+    public void loadAdminMessageContainer(List<String> messagesFromAdmin) {
+        Stage addAdminMessageContainer = new Stage();
+        Parent addAdminMessage = null;
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/views/AdminMessageNotification/adminMessages.fxml"));
+
+            addAdminMessage = loader.load();
+            AdminMessageContainerController adminMessageController = ( AdminMessageContainerController) loader.getController();
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    adminMessageController.displayMessage(messagesFromAdmin);
+                }
+            });
+        } catch (Exception e) {
+            System.out.println("File Not Found Exception");
+        }
+        Scene scene = new Scene(addAdminMessage);
+        addAdminMessageContainer.setScene(scene);
+        addAdminMessageContainer.setTitle("Add New Contact");
+        addAdminMessageContainer.show();
     }
 
 

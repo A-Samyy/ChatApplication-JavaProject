@@ -4,6 +4,8 @@ import gov.iti.jets.common.dtos.ContactDto;
 import gov.iti.jets.common.dtos.FriendRequestSenderDto;
 import gov.iti.jets.common.dtos.GroupDto;
 import gov.iti.jets.common.dtos.MessageDto;
+import gov.iti.jets.common.interfaces.ServerMessageAnnouncetInt;
+import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.presentation.models.ContactModel;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
@@ -41,6 +43,7 @@ import java.util.TreeMap;
 public class SidebarController implements Initializable {
     static public Map<Integer , ObservableList<MessageDto>> observableListMap = new TreeMap<>();
     ObservableList list ;
+    RMIRegister rmiRegister = RMIRegister.getInstance();
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
@@ -48,7 +51,7 @@ public class SidebarController implements Initializable {
     FriendRequestService friendRequestService = new FriendRequestService();
     GroupListService groupListService = new GroupListService();
     MessageDto messageDto=new MessageDto();
-
+    ServerMessageAnnouncetInt serverMessageAnnouncetInt = rmiRegister.serverMessageAnnouncetInt();
     @FXML
     private Tab Contacts;
 
@@ -155,6 +158,11 @@ public class SidebarController implements Initializable {
 
                 }
             }
+            if(serverMessageAnnouncetInt.getMessage()){
+               SettingAreaVbox.getChildren().add(stageCoordinator.loadAdminMessageNotification());
+            }
+
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }

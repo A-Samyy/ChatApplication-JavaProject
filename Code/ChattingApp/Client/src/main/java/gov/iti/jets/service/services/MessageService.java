@@ -3,6 +3,7 @@ package gov.iti.jets.service.services;
 import gov.iti.jets.common.dtos.MessageDto;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.daos.MessageDao;
+import gov.iti.jets.service.impl.ClientAnnounceImpl;
 import gov.iti.jets.service.impl.ClientGroupChatMessageImpl;
 import gov.iti.jets.service.impl.ClientMessageImpl;
 import javafx.scene.layout.HBox;
@@ -15,19 +16,23 @@ public class MessageService {
     static MessageService messageService = new MessageService();
     ClientMessageImpl clientMessage ;
     ClientGroupChatMessageImpl clientGroupChatMessageInt;
+    ClientAnnounceImpl clientAnnounceMessageInt;
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     MessageDto messageDto = new MessageDto();
     MessageDao messageDao;
     List<HBox> list = new ArrayList<HBox>();
     List<MessageDao> list1 = new ArrayList<>();
-    private MessageService(){
+    private MessageService() {
         try {
+            clientAnnounceMessageInt = new ClientAnnounceImpl();
             clientMessage = new ClientMessageImpl();
-            clientGroupChatMessageInt= new ClientGroupChatMessageImpl();
+            clientGroupChatMessageInt = new ClientGroupChatMessageImpl();
             System.out.println("group chat registered");
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+
+
     }
     public ClientMessageImpl getClient(){
         return this.clientMessage;

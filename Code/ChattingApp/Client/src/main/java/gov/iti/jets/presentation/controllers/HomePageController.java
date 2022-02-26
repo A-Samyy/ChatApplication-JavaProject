@@ -29,7 +29,7 @@ public class HomePageController implements Initializable {
     ServerGroupChatMessageInt serverGroupChatMessage = rmiRegister.groupChatMessageService();
     ClientGroupChatMessageInt clientGroupChatMessageInt ;
     ClientAnnounceMessageInt clientAnnounceMessageInt;
-    ServerMessageAnnouncetInt serverMessageAnnouncetInt = rmiRegister.serverMessageAnnouncetInt();
+
     @FXML
     public GridPane gridPane;
 
@@ -38,32 +38,8 @@ public class HomePageController implements Initializable {
         stageCoordinator.setHomepage(gridPane);
         gridPane.add(stageCoordinator.loadSidebar(), 0, 0);
         gridPane.add(stageCoordinator.loadDefault(), 1, 0);
-//        try {
-//            clientGroupChatMessageInt= new ClientGroupChatMessageImpl();
-//            System.out.println("group chat registered");
-//        } catch (RemoteException e) {
-//            e.printStackTrace();
-//        }
-//        if (LoginService.getId() == 1) {
-//            MessageGroupDto messageGroupDto1 = new MessageGroupDto();
-//            messageGroupDto1.setGroupId(1);
-//            messageGroupDto1.setMessageContent("hi group");
-//            messageGroupDto1.setSenderId(LoginService.getId());
-//            try {
-//                System.out.println("homee page message "+serverGroupChatMessage.sendGroupChatMessage(messageGroupDto1));
-//            } catch (RemoteException e) {
-//                e.printStackTrace();
-//            }
-//        }
-        try {
-            clientAnnounceMessageInt =new ClientAnnounceImpl();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        try {
-            serverMessageAnnouncetInt.getMessage();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+
+
+
     }
 }
