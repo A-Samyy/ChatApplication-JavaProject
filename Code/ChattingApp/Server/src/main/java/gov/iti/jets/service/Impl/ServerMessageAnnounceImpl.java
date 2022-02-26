@@ -20,6 +20,7 @@ public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements Se
 
     public ServerMessageAnnounceImpl() throws RemoteException {
         super();
+
     }
 
     public  void getMessageAnnounceDto(MessageAnnounceDto messageAnnounceDto){
