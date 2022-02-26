@@ -105,6 +105,18 @@ public class ChatSectionController implements Initializable {
         });
     }
 
+    public  void displayGroup(String name) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println(name);
+                status.setVisible(false);
+                profilePicture.setVisible(false);
+                userName.setText(name);
+            }
+        });
+    }
+
     @FXML
     void sendButtonClicked(MouseEvent event) throws RemoteException {
         messageDao.setMessage(messageTextField.getText());

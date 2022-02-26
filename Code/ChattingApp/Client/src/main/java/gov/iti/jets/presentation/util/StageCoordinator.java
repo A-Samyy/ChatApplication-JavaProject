@@ -37,12 +37,16 @@ public class StageCoordinator {
     private Stage primaryStage;
     private GridPane homepage;
     private ChatSectionController chatSectionController;
+    private ChatSectionController groupSectionController;
+
 
     private final Map<String, Scene> sceneMap = new HashMap<>();
     private final Map<String, Node> nodeMap = new HashMap<>();
     private final Map<Integer, Node> chatSectionMap = new HashMap<>();
     private final Map<Integer, ChatSectionController> chatSectionControllerMap = new HashMap<>();
-Map<Integer,List<HBox>> map=new HashMap<>();
+
+    private final Map<Integer, Node> groupSectionMap = new HashMap<>();
+    private final Map<Integer, ChatSectionController> groupSectionControllerMap = new HashMap<>();
 
     private StageCoordinator() {
     }
@@ -257,6 +261,32 @@ Map<Integer,List<HBox>> map=new HashMap<>();
         });
 
         return chatSection;
+    }
+
+    public Node loadChatSectionForGroup(GroupDto groupDto){
+        Node groupSection = chatSectionMap.get(groupDto.getId());
+        if(groupSection == null){
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/views/HomePageSection2/homePageSection2.fxml"));
+            try {
+                groupSection = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            groupSectionController = loader.getController();
+            groupSectionMap.put(groupDto.getId(),groupSection);
+            groupSectionControllerMap.put(groupDto.getId(),groupSectionController);
+        }
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println( "stage"+groupDto.getGroupName());
+                groupSectionControllerMap.get(groupDto.getId()).displayGroup(groupDto.getGroupName());
+//                chatSectionControllerMap.get(id).displayMessage(id);
+            }
+        });
+
+        return groupSection;
     }
     public Map<Integer,ChatSectionController> getChatSectionController(){
         return chatSectionControllerMap;
