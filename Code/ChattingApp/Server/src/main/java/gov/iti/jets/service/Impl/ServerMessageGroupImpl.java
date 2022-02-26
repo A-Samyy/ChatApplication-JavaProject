@@ -1,5 +1,5 @@
-package gov.iti.jets.service.Impl;
-
+//package gov.iti.jets.service.Impl;
+//
 //
 //import gov.iti.jets.common.dtos.MessageGroupDto;
 //import gov.iti.jets.common.interfaces.ClientMesseageInt;
@@ -45,12 +45,12 @@ package gov.iti.jets.service.Impl;
 //
 //
 //    private void sendMessage(MessageGroupDto messageGroupDto) {
-////        for (ClientMesseageInt clientMesseageInt : groupClients.get(messageGroupDto.getGroupId())) {
-////            try {
-////      //          clientMesseageInt.reciveGroupMessage(messageGroupDto);
-////            } catch (RemoteException e) {
-////                e.printStackTrace();
-////            }
-////        }
+//        for (ClientMesseageInt clientMesseageInt : groupClients.get(messageGroupDto.getGroupId())) {
+//            try {
+//                clientMesseageInt.reciveGroupMessage(messageGroupDto);
+//            } catch (RemoteException e) {
+//                e.printStackTrace();
+//            }
+//        }
 //   }
 //}

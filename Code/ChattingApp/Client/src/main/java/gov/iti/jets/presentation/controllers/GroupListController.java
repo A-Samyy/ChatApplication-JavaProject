@@ -30,6 +30,8 @@ public class GroupListController implements Initializable {
                 groupName.setText(groupDto.getGroupName());
             }
         });
+        stageCoordinator.loadChatSectionForGroup(groupDto);
+
     }
 
     @FXML

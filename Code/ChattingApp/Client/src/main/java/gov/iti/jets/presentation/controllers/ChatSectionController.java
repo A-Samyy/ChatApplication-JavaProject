@@ -170,12 +170,12 @@ public class ChatSectionController implements Initializable {
             if (item != null && !empty) { // <== test for null item and empty parameter
                 if(LoginService.getId() == item.getUserId()){
                     messageCellContainer.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
-                    HBox hbox = stageCoordinator.loadMessage(new MessageDao(item));
+                    HBox hbox = stageCoordinator.loadMessage(new MessageDao(item) , 0);
                     hbox.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
                     messageCellContainer.getChildren().add(hbox);
                 }else {
                     messageCellContainer.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
-                    HBox hBox = stageCoordinator .loadMessage(new MessageDao(item));
+                    HBox hBox = stageCoordinator .loadMessage(new MessageDao(item) ,0);
                     hBox.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
                     messageCellContainer.getChildren().add(hBox);
                 }

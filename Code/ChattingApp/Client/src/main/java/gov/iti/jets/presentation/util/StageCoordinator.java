@@ -287,7 +287,7 @@ public class StageCoordinator {
     }
 
     public Node loadChatSectionForGroup(GroupDto groupDto){
-        Node groupSection = chatSectionMap.get(groupDto.getId());
+        Node groupSection = groupSectionMap.get(groupDto.getId());
         if(groupSection == null){
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/views/HomePageSection2/groupChatSection.fxml"));
@@ -313,6 +313,9 @@ public class StageCoordinator {
     }
     public Map<Integer,ChatSectionController> getChatSectionController(){
         return chatSectionControllerMap;
+    }
+    public Map<Integer,GroupSectionController> getGroupChatSectionController(){
+        return groupSectionControllerMap;
     }
 
     public Node loadFriendRequest(String name, FriendRequestSenderDto friendRequestSenderDto){
@@ -435,7 +438,7 @@ public class StageCoordinator {
     // return null ;
     // }
 
-     public HBox loadMessage( MessageDao messageDao) {
+     public HBox loadMessage( MessageDao messageDao , int flag) {
 
 
          try {
@@ -449,7 +452,13 @@ public class StageCoordinator {
              Platform.runLater(new Runnable() {
                  @Override
                  public void run() {
-                     messageController.displayMessage(messageDao.getMessageContent(), messageDao.getMessageUserName());
+                     if(flag == 0 ){
+                         messageController.displayMessage(messageDao.getMessageContent(), messageDao.getMessageUserName());
+
+                     }else{
+                         messageController.displayMessage(messageDao.getMessageGroupContent(), messageDao.getMessageGroupSenderName());
+
+                     }
                  }
              });
              return message;

@@ -1,9 +1,6 @@
 package gov.iti.jets.presentation.controllers;
 
-import gov.iti.jets.common.dtos.ContactDto;
-import gov.iti.jets.common.dtos.FriendRequestSenderDto;
-import gov.iti.jets.common.dtos.GroupDto;
-import gov.iti.jets.common.dtos.MessageDto;
+import gov.iti.jets.common.dtos.*;
 import gov.iti.jets.common.interfaces.ServerMessageAnnouncetInt;
 import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.presentation.models.ContactModel;
@@ -42,7 +39,9 @@ import java.util.TreeMap;
 
 public class SidebarController implements Initializable {
     static public Map<Integer , ObservableList<MessageDto>> observableListMap = new TreeMap<>();
+    static public Map<Integer , ObservableList<MessageGroupDto>> observableListMapForGroup = new TreeMap<>();
     ObservableList list ;
+    ObservableList grouplist ;
     RMIRegister rmiRegister = RMIRegister.getInstance();
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     private final ModelFactory modelFactory = ModelFactory.getInstance();
@@ -50,7 +49,6 @@ public class SidebarController implements Initializable {
     ContactListService contactListService = new ContactListService();
     FriendRequestService friendRequestService = new FriendRequestService();
     GroupListService groupListService = new GroupListService();
-    MessageDto messageDto=new MessageDto();
     ServerMessageAnnouncetInt serverMessageAnnouncetInt = rmiRegister.serverMessageAnnouncetInt();
     @FXML
     private Tab Contacts;
@@ -143,7 +141,8 @@ public class SidebarController implements Initializable {
         chattingGroupAreaVbox.getChildren().clear();
         if(!groupListService.getListOfGroup(LoginService.getId()).isEmpty()){
             for (GroupDto groupDto : groupListService.getListOfGroup(LoginService.getId())) {
-//            contactModel = new ContactModel();
+                grouplist = FXCollections.observableArrayList();
+                observableListMapForGroup.put(groupDto.getId(),grouplist);
                 chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadGroups(groupDto));
             }
         }
@@ -206,10 +205,6 @@ public class SidebarController implements Initializable {
                 chattingSectionVbox.getChildren().add(stageCoordinator.loadContacts(contactDto));
             }
         }
-
-
-
-
     }
     void getUserStatus(String statusCond){
         if(statusCond.equals("ACTIVE")){

@@ -2,14 +2,19 @@ package gov.iti.jets.service.daos;
 
 
 import gov.iti.jets.common.dtos.MessageDto;
+import gov.iti.jets.common.dtos.MessageGroupDto;
 import gov.iti.jets.service.services.LoginService;
 
 public class MessageDao {
 
     MessageDto messageDto ;
+    MessageGroupDto messageGroupDto;
 
     public MessageDao(MessageDto messageDto){
         this.messageDto=messageDto;
+    }
+    public MessageDao(MessageGroupDto messageGroupDto){
+        this.messageGroupDto=messageGroupDto;
     }
 
     public void setMessage(String message){
@@ -32,5 +37,23 @@ public class MessageDao {
 
     public String getMessageUserName(){
         return messageDto.getUserName();
+    }
+
+    public MessageGroupDto getMessageGroupDto() {
+        return this.messageGroupDto;
+    }
+
+    public String getMessageGroupContent(){
+        return messageGroupDto.getMessageContent();
+    }
+
+    public int getMessageGroupId(){
+        return messageGroupDto.getGroupId();
+    }
+    public int getMessageGroupSenderId(){
+        return messageGroupDto.getSenderId();
+    }
+    public String getMessageGroupSenderName(){
+        return messageGroupDto.getSenderName();
     }
 }

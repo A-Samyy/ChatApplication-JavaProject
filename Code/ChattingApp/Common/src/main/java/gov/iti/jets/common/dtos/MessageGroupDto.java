@@ -8,7 +8,15 @@ public class MessageGroupDto implements Serializable {
     private String messageContent ;
     private int senderId ;
     private int groupId ;
+    private String senderName;
 
+    public String getSenderName() {
+        return senderName;
+    }
+
+    public void setSenderName(String senderName) {
+        this.senderName = senderName;
+    }
     public String getMessageContent() {
         return messageContent;
     }
