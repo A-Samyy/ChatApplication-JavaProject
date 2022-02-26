@@ -18,6 +18,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
@@ -29,6 +34,7 @@ public class HomePageController implements Initializable {
     MessageAnnounceDto messageAnnounceDto=new MessageAnnounceDto();
     ServerMessageAnnounceImpl serverMessageAnnounce= new ServerMessageAnnounceImpl();
     private ObservableList<HBox> messageObservableList;
+
     int onlineUsers=serverMessageAnnounce.onlinUsers();
     @FXML
     private AnchorPane content;
@@ -78,18 +84,12 @@ public class HomePageController implements Initializable {
     }
 
 
-
+    public MessageAnnounceDto getMessageAnnounceDto(){
+        return this.messageAnnounceDto;
+    }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-
-
-
-
-
-
-
-
         listView.setCellFactory(messageListView -> new MessageServerListViewCell());
         messageObservableList = FXCollections.observableArrayList();
 
@@ -142,5 +142,4 @@ public class HomePageController implements Initializable {
             }
         }
     }
-
 }

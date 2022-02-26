@@ -33,7 +33,11 @@ import org.controlsfx.validation.ValidationSupport;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import javax.xml.validation.Validator;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.net.Socket;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.*;
@@ -50,7 +54,9 @@ public class ChatSectionController implements Initializable {
     MessageService messageService = MessageService.getInstance();
     private ObservableList<HBox> messageObservableList;
     private Boolean messageReceived=false;
-    ClientFileTransfer clientFileTransfer =new ClientFileTransfer("localhost",7777);
+    private static DataOutputStream dataOutputStream = null;
+    private static DataInputStream dataInputStream = null;
+
     @FXML
     private AnchorPane bottomBar;
 
@@ -83,13 +89,17 @@ public class ChatSectionController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(null);
 
-        try {
-            clientFileTransfer.sendFile(selectedFile.getPath());
-        } catch (Exception e) {
+        try(Socket socket = new Socket("localhost",9999)) {
+            dataInputStream = new DataInputStream(socket.getInputStream());
+            dataOutputStream = new DataOutputStream(socket.getOutputStream());
+
+            sendFil(selectedFile.getPath());
+
+            dataInputStream.close();
+            dataInputStream.close();
+        }catch (Exception e){
             e.printStackTrace();
         }
-        // if(selectedFile==fileChooser.APPROVE_OPTION);
-
     }
 
 
@@ -202,5 +212,19 @@ public class ChatSectionController implements Initializable {
     }
 
 
+    private static void sendFil(String path) throws Exception{
+        int bytes = 0;
+        File file = new File(path);
+        FileInputStream fileInputStream = new FileInputStream(file);
 
+        // send file size
+        dataOutputStream.writeLong(file.length());
+        // break file into chunks
+        byte[] buffer = new byte[4*1024];
+        while ((bytes=fileInputStream.read(buffer))!=-1){
+            dataOutputStream.write(buffer,0,bytes);
+            dataOutputStream.flush();
+        }
+        fileInputStream.close();
+    }
 }

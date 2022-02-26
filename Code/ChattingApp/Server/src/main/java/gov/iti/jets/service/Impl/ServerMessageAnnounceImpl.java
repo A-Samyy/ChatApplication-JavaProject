@@ -4,6 +4,7 @@ import gov.iti.jets.common.dtos.MessageAnnounceDto;
 import gov.iti.jets.common.interfaces.ClientAnnounceMessageInt;
 import gov.iti.jets.common.interfaces.ClientMesseageInt;
 import gov.iti.jets.common.interfaces.ServerMessageAnnouncetInt;
+import gov.iti.jets.presentation.controllers.HomePageController;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -15,11 +16,10 @@ import java.util.Map;
 public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements ServerMessageAnnouncetInt {
 
     private List<ClientAnnounceMessageInt> clientAnnounceMessageIntList = new ArrayList<>();
-    MessageAnnounceDto messageAnnounceDto=new MessageAnnounceDto();
+    MessageAnnounceDto messageAnnounceDto = new MessageAnnounceDto();
 
     public ServerMessageAnnounceImpl() throws RemoteException {
         super();
-
     }
 
     public  void getMessageAnnounceDto(MessageAnnounceDto messageAnnounceDto){
