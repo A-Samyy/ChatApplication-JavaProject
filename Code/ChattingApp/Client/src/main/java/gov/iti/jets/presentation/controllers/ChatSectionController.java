@@ -1,8 +1,6 @@
 package gov.iti.jets.presentation.controllers;
 
-import gov.iti.jets.common.dtos.ContactDto;
 import gov.iti.jets.common.dtos.MessageDto;
-import gov.iti.jets.networking.ClientFileTransfer;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
@@ -12,7 +10,6 @@ import gov.iti.jets.service.services.ContactListService;
 import gov.iti.jets.service.services.LoginService;
 import gov.iti.jets.service.services.MessageService;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,10 +26,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
-import org.controlsfx.validation.ValidationSupport;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-import javax.xml.validation.Validator;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -41,7 +36,6 @@ import java.net.Socket;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.*;
-import java.util.Map;
 
 public class ChatSectionController implements Initializable {
 
@@ -89,14 +83,18 @@ public class ChatSectionController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(null);
 
-        try(Socket socket = new Socket("localhost",9999)) {
+        try(Socket socket = new Socket("localhost",5555)) {
             dataInputStream = new DataInputStream(socket.getInputStream());
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
 
-            sendFil(selectedFile.getPath());
+           String fileName = selectedFile.getName();
+           System.out.println(fileName);
 
-            dataInputStream.close();
-            dataInputStream.close();
+           dataOutputStream.writeUTF(fileName);
+           //sendFil(selectedFile.getPath());
+
+           // dataInputStream.close();
+            //dataInputStream.close();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -209,22 +207,5 @@ public class ChatSectionController implements Initializable {
                 setGraphic(null);
             }
         }
-    }
-
-
-    private static void sendFil(String path) throws Exception{
-        int bytes = 0;
-        File file = new File(path);
-        FileInputStream fileInputStream = new FileInputStream(file);
-
-        // send file size
-        dataOutputStream.writeLong(file.length());
-        // break file into chunks
-        byte[] buffer = new byte[4*1024];
-        while ((bytes=fileInputStream.read(buffer))!=-1){
-            dataOutputStream.write(buffer,0,bytes);
-            dataOutputStream.flush();
-        }
-        fileInputStream.close();
     }
 }
