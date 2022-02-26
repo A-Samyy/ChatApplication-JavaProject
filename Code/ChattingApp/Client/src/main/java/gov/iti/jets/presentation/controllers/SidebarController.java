@@ -1,13 +1,11 @@
 package gov.iti.jets.presentation.controllers;
 
-import gov.iti.jets.common.dtos.ContactDto;
-import gov.iti.jets.common.dtos.FriendRequestSenderDto;
-import gov.iti.jets.common.dtos.GroupDto;
-import gov.iti.jets.common.dtos.MessageDto;
+import gov.iti.jets.common.dtos.*;
 import gov.iti.jets.presentation.models.ContactModel;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
+import gov.iti.jets.service.impl.ClientFileRequestImpl;
 import gov.iti.jets.service.services.ContactListService;
 import gov.iti.jets.service.services.FriendRequestService;
 import gov.iti.jets.service.services.GroupListService;
@@ -151,6 +149,13 @@ public class SidebarController implements Initializable {
                 for(FriendRequestSenderDto friendRequestSenderDto : friendRequestService.getFriendRequestsNotifcation()){
                     System.out.println(friendRequestSenderDto);
                     SettingAreaVbox.getChildren().add(stageCoordinator.loadFriendRequest(friendRequestSenderDto.getSenderName(),friendRequestSenderDto));
+
+                }
+            }
+            if(!ClientFileRequestImpl.fileRequestDtos.isEmpty()){
+                for(FileRequestDto fileRequestDto : ClientFileRequestImpl.fileRequestDtos){
+                    System.out.println(fileRequestDto);
+                    SettingAreaVbox.getChildren().add(stageCoordinator.loadFileRequest(fileRequestDto.getFileName(),fileRequestDto));
 
                 }
             }

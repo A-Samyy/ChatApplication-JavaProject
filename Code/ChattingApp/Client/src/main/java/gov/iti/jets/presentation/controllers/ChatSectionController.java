@@ -1,10 +1,12 @@
 package gov.iti.jets.presentation.controllers;
 
+import gov.iti.jets.common.dtos.FileRequestDto;
 import gov.iti.jets.common.dtos.MessageDto;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.daos.MessageDao;
+import gov.iti.jets.service.impl.ClientFileRequestImpl;
 import gov.iti.jets.service.impl.ClientMessageImpl;
 import gov.iti.jets.service.services.ContactListService;
 import gov.iti.jets.service.services.LoginService;
@@ -50,6 +52,7 @@ public class ChatSectionController implements Initializable {
     private Boolean messageReceived=false;
     private static DataOutputStream dataOutputStream = null;
     private static DataInputStream dataInputStream = null;
+    ClientFileRequestImpl clientFileRequest = new ClientFileRequestImpl();
 
     @FXML
     private AnchorPane bottomBar;
@@ -83,6 +86,14 @@ public class ChatSectionController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(null);
 
+        FileRequestDto fileRequestDto =new FileRequestDto();
+        fileRequestDto.setFileName(selectedFile.getName());
+        fileRequestDto.setFilePath(selectedFile.getPath());
+        fileRequestDto.setSenderId(LoginService.getId());
+        fileRequestDto.setReceiverId(messageDao.getMessageDto().getFriendId());
+        clientFileRequest.sendMyRequest(fileRequestDto);
+
+        /*
         try(Socket socket = new Socket("localhost",5555)) {
             dataInputStream = new DataInputStream(socket.getInputStream());
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
@@ -98,6 +109,8 @@ public class ChatSectionController implements Initializable {
         }catch (Exception e){
             e.printStackTrace();
         }
+
+         */
     }
 
 

@@ -1,5 +1,6 @@
 package gov.iti.jets.presentation.controllers;
 
+import gov.iti.jets.common.dtos.FileRequestDto;
 import gov.iti.jets.common.dtos.FriendRequestSenderDto;
 import gov.iti.jets.service.services.FriendRequestService;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ public class FriendRequestController implements Initializable {
     @FXML
     private Label FriendSendName;
     FriendRequestSenderDto friendRequestSenderDto;
+    FileRequestDto fileRequestDto;
 
     public FriendRequestController() throws RemoteException {
     }
@@ -43,6 +45,10 @@ public class FriendRequestController implements Initializable {
     public void dispalyFriendReq(String name, FriendRequestSenderDto friendRequestSenderDto){
         FriendSendName.setText(name);
         this.friendRequestSenderDto = friendRequestSenderDto;
+    }
+        public void dispalyFileReq(String name, FileRequestDto fileRequestDto) {
+        FriendSendName.setText(name);
+        this.fileRequestDto = fileRequestDto;
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

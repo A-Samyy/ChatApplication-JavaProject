@@ -18,7 +18,7 @@ public class RMIRegister {
 
     private RMIRegister() {
         try {
-            registry = LocateRegistry.getRegistry("localhost", 8888);
+            registry = LocateRegistry.getRegistry("localhost", 8899);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -143,5 +143,14 @@ public class RMIRegister {
         }return addGroupChatInt;
     }
 
-
+    public ServerFileRequestInt serverFileRequestService(){
+        ServerFileRequestInt serverFileRequesInt =null;
+        try{
+            serverFileRequesInt =(ServerFileRequestInt) registry.lookup("serverFileRequestService");
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }catch (NotBoundException e) {
+            e.printStackTrace();
+        }return serverFileRequesInt;
+    }
 }

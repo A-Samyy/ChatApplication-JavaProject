@@ -1,6 +1,7 @@
 package gov.iti.jets.presentation.util;
 
 import gov.iti.jets.common.dtos.ContactDto;
+import gov.iti.jets.common.dtos.FileRequestDto;
 import gov.iti.jets.common.dtos.FriendRequestSenderDto;
 import gov.iti.jets.common.dtos.GroupDto;
 import gov.iti.jets.presentation.controllers.*;
@@ -353,6 +354,21 @@ Map<Integer,List<HBox>> map=new HashMap<>();
     // }
     // return null ;
     // }
+
+        public Node loadFileRequest(String name, FileRequestDto fileRequestDto){
+        Node fileReq = null;
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/views/contactSection/friendReq.fxml"));
+//            friendReq = FXMLLoader.load(getClass().getResource("/views/contactSection/friendReq.fxml"));
+            fileReq = loader.load();
+            FriendRequestController friendRequestCont= loader.getController();
+            friendRequestCont.dispalyFileReq(name , fileRequestDto);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return fileReq;
+    }
 
      public HBox loadMessage( MessageDao messageDao) {
 
