@@ -37,7 +37,7 @@ public class StageCoordinator {
     private Stage primaryStage;
     private GridPane homepage;
     private ChatSectionController chatSectionController;
-    private ChatSectionController groupSectionController;
+    private GroupSectionController groupSectionController;
 
 
     private final Map<String, Scene> sceneMap = new HashMap<>();
@@ -46,7 +46,7 @@ public class StageCoordinator {
     private final Map<Integer, ChatSectionController> chatSectionControllerMap = new HashMap<>();
 
     private final Map<Integer, Node> groupSectionMap = new HashMap<>();
-    private final Map<Integer, ChatSectionController> groupSectionControllerMap = new HashMap<>();
+    private final Map<Integer, GroupSectionController> groupSectionControllerMap = new HashMap<>();
 
     private StageCoordinator() {
     }
@@ -267,7 +267,7 @@ public class StageCoordinator {
         Node groupSection = chatSectionMap.get(groupDto.getId());
         if(groupSection == null){
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/views/HomePageSection2/homePageSection2.fxml"));
+            loader.setLocation(getClass().getResource("/views/HomePageSection2/groupChatSection.fxml"));
             try {
                 groupSection = loader.load();
             } catch (IOException e) {
@@ -281,7 +281,7 @@ public class StageCoordinator {
             @Override
             public void run() {
                 System.out.println( "stage"+groupDto.getGroupName());
-                groupSectionControllerMap.get(groupDto.getId()).displayGroup(groupDto.getGroupName());
+                groupSectionControllerMap.get(groupDto.getId()).displayGroup(groupDto);
 //                chatSectionControllerMap.get(id).displayMessage(id);
             }
         });
