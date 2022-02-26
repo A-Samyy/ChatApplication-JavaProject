@@ -48,6 +48,7 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
         messageDao = new MessageDao(messageDto);
         list.add(messageDao);
         map.put(messageDto.getUserId(),list);
+        System.out.println(messageDto);
         if(stageCoordinator.getChatSectionController().get(messageDto.getUserId()) != null){
             Platform.runLater(new Runnable() {
                 @Override

@@ -4,6 +4,7 @@ import gov.iti.jets.common.interfaces.ClientGroupChatMessageInt;
 import gov.iti.jets.common.interfaces.ClientMesseageInt;
 import gov.iti.jets.common.interfaces.ServerMessageInt;
 import gov.iti.jets.common.dtos.MessageDto;
+import gov.iti.jets.service.services.ChatBotService;
 import gov.iti.jets.service.services.ServerControlService;
 
 import java.rmi.RemoteException;
@@ -14,7 +15,7 @@ import java.util.Map;
 public class ServerMessageImpl extends UnicastRemoteObject implements  ServerMessageInt{
 
     Map<Integer,ClientMesseageInt> clients =new HashMap<>();
-
+ChatBotService chatBotService =new ChatBotService();
     public ServerMessageImpl() throws RemoteException {
         super();
     }
@@ -27,8 +28,15 @@ public class ServerMessageImpl extends UnicastRemoteObject implements  ServerMes
                 System.out.println("friendId " + messageDto.getFriendId());
                 sendMessage(messageDto);
                 return true;
+            }else {
+                MessageDto messageBot = new MessageDto();
+                messageBot.setFriendId(messageDto.getUserId());
+                messageBot.setUserName("Mr.ChatBot");
+                messageBot.setUserId(messageDto.getFriendId());
+                messageBot.setMessageContent(chatBotService.chatBotReply(messageDto.getMessageContent()));
+                return sendChatBotMessage(messageBot);
             }
-            return false;
+
         }
         else{
             System.out.println("system is offline");
@@ -36,6 +44,8 @@ public class ServerMessageImpl extends UnicastRemoteObject implements  ServerMes
         }
 
     }
+
+
 
     @Override
     public boolean register(ClientMesseageInt clientMesseageInt ,int userId) throws RemoteException {
@@ -53,7 +63,15 @@ public class ServerMessageImpl extends UnicastRemoteObject implements  ServerMes
             return true;
         return false;
     }
-
+    private boolean sendChatBotMessage(MessageDto messageBot) {
+        try {
+            System.out.println("dakhlt feh sendChatBotMessage = "+messageBot.getMessageContent());
+            clients.get(messageBot.getFriendId()).reciveMessage(messageBot);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
     public boolean sendMessage(MessageDto messageDto){
         try {
             System.out.println("dakhlt feh el heta ely byndahg feha el reciev"+messageDto.getFriendId());
