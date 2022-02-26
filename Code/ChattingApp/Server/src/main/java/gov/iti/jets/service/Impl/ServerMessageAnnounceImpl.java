@@ -15,7 +15,8 @@ import java.util.Map;
 public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements ServerMessageAnnouncetInt {
 
     private List<ClientAnnounceMessageInt> clientAnnounceMessageIntList = new ArrayList<>();
-    MessageAnnounceDto messageAnnounceDto=new MessageAnnounceDto();
+    private static MessageAnnounceDto messageAnnounceDto=new MessageAnnounceDto();
+
 
     public ServerMessageAnnounceImpl() throws RemoteException {
         super();
@@ -23,7 +24,9 @@ public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements Se
     }
 
     public  void getMessageAnnounceDto(MessageAnnounceDto messageAnnounceDto){
+
         this.messageAnnounceDto=messageAnnounceDto;
+        System.out.println("messageDto in get"+messageAnnounceDto.getMessageContent());
     }
 
     @Override
@@ -42,15 +45,18 @@ public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements Se
     public boolean unRegister(ClientAnnounceMessageInt clientAnnounceMessageInt) throws RemoteException {
         return false;
     }
-
     public boolean sendMessage(MessageAnnounceDto messageAnnounceDto){
 
             for(ClientAnnounceMessageInt client : clientAnnounceMessageIntList){
+
+                    System.out.println("messageContent in get Message Impl"+ messageAnnounceDto.getMessageContent());
                 try {
+
                     client.reciveMessage(messageAnnounceDto);
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
+
             }
         return true ;
     }
