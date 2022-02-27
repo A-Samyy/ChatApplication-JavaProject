@@ -10,11 +10,11 @@ import java.io.Serializable;
 public class LoginDto implements Serializable {
     private static final long serialVersionUID = 1420672609912367060L;
     @NotNull(message = "phone number is required")
-    @Size(min = 11,max = 11,message = "uncorrected phone number")
+    @Size(min = 5,max = 11,message = "uncorrected phone number")
     @NotEmpty(message = "phone can't be empty")
     private String phoneNumber ;
     @NotNull(message = "password is required")
-    @Size(min = 5,max=20,message = "invalid password")
+    @Size(min = 6,max=20,message = "invalid password")
     private String password;
 
     public LoginDto(String phoneNumber){

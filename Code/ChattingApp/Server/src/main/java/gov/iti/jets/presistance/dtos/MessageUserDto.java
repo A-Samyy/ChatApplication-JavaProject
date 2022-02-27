@@ -9,30 +9,30 @@ import jakarta.validation.constraints.Positive;
 import java.util.Date;
 
 public class MessageUserDto {
-    @Positive
+//    @Positive
     int messageId;
-    @NotNull
-    @NotEmpty
+//    @NotNull
+//    @NotEmpty
     String toId;
-    @NotNull
-    @NotEmpty
+//    @NotNull
+//    @NotEmpty
     String fromId;
-    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$")
+//    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$")
     Date date;
-    @NotNull
-    @NotEmpty
+//    @NotNull
+//    @NotEmpty
     String fontStyle;
-    @NotNull
-    @NotEmpty
+//    @NotNull
+//    @NotEmpty
     String fontColor;
-    @NotNull
-    @NotEmpty
+//    @NotNull
+//    @NotEmpty
     String fontWeight;
-    @Positive
+//    @Positive
     int fontSize;
 
     public MessageUserDto(){
-        ValidationMaker.getInstance().validate(this);
+        //ValidationMaker.getInstance().validate(this);
     }
     public MessageUserDto(int messageId, String toId, String fromId, 
                             Date date, String fontStyle, String fontColor

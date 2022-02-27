@@ -16,24 +16,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import org.controlsfx.validation.Severity;
 import org.controlsfx.validation.ValidationSupport;
-import org.controlsfx.validation.Validator;
-import org.controlsfx.validation.decoration.CompoundValidationDecoration;
-import org.controlsfx.validation.decoration.GraphicValidationDecoration;
-import org.controlsfx.validation.decoration.StyleClassValidationDecoration;
-
-import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.ResourceBundle;
-import java.util.regex.Pattern;
 
 public class ProfileController implements Initializable {
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();

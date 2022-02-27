@@ -27,7 +27,6 @@ public class MessageService {
             clientAnnounceMessageInt = new ClientAnnounceImpl();
             clientMessage = new ClientMessageImpl();
             clientGroupChatMessageInt = new ClientGroupChatMessageImpl();
-            System.out.println("group chat registered");
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -44,18 +43,10 @@ public class MessageService {
         this.messageDto = messageDto;
         clientMessage.sendMessage(this.messageDto);
     }
-    public void recieveMessageDto(MessageDto messageDto){
+    public void recieveMessageDto(MessageDto messageDto) {
         messageDao = new MessageDao(messageDto);
         list1.add(messageDao);
-
-//        list.add(stageCoordinator.loadMessage(messageDao));
-//        System.out.println(list.toString());
-
-
     }
-//    public List<HBox> getListOfMessage(){
-//        return list;
-//    }
 
 
 }

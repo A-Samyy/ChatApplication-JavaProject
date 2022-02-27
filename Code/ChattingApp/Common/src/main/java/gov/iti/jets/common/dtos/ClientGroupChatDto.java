@@ -10,10 +10,10 @@ import java.util.List;
 
 public class ClientGroupChatDto implements Serializable {
     private static final long serialVersionUID = 1427672609912564060L;
-    @Positive(message = "Id can't be negative")
+//    @Positive(message = "Id can't be negative")
     int  groupId ;
-    @NotNull(message = "group name can't be empty")
-    @NotEmpty(message = "group name can't be empty")
+//    @NotNull(message = "group name can't be empty")
+//    @NotEmpty(message = "group name can't be empty")
     String groupName;
     List<String> usersId;
 

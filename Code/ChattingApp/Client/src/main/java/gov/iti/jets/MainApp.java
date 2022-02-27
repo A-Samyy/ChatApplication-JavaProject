@@ -1,8 +1,6 @@
 package gov.iti.jets;
 
-import gov.iti.jets.common.interfaces.ServerMessageInt;
 import gov.iti.jets.presentation.util.StageCoordinator;
-import gov.iti.jets.service.impl.ClientMessageImpl;
 import gov.iti.jets.service.services.MessageService;
 import javafx.application.Application;
 import javafx.stage.Stage;

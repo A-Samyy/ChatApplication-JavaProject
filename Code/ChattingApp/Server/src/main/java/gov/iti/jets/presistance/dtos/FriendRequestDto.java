@@ -4,13 +4,13 @@ import gov.iti.jets.common.hibernate.ValidationMaker;
 import jakarta.validation.constraints.Positive;
 
 public class FriendRequestDto {
-    @Positive(message = "user Id can't be Negative")
+//    @Positive(message = "user Id can't be Negative")
     int userId;
-    @Positive(message = "friend Id can't be Negative")
+//    @Positive(message = "friend Id can't be Negative")
     int friendId;
 
     public FriendRequestDto() {
-        ValidationMaker.getInstance().validate(this);
+        //ValidationMaker.getInstance().validate(this);
     }
 
     public int getUserId() {

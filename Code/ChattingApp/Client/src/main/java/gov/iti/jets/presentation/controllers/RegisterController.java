@@ -1,7 +1,6 @@
 package gov.iti.jets.presentation.controllers;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,8 +14,6 @@ import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.services.RegisterService;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -25,7 +22,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import org.controlsfx.validation.Severity;
-import org.controlsfx.validation.ValidationResult;
 import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
 import org.controlsfx.validation.decoration.CompoundValidationDecoration;
@@ -35,7 +31,6 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
 import java.rmi.RemoteException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Base64;
 import java.util.Date;
@@ -87,17 +82,11 @@ public class RegisterController implements Initializable {
     @FXML
     private TextField emailTextField;
 
-//    @FXML
-//    private Label female;
-
     @FXML
     private RadioButton femaleRadioButton;
 
     @FXML
     private TextField fullNameTextField;
-
-//    @FXML
-//    private Label male;
 
     @FXML
     private Label confirmPasswordError;
@@ -221,7 +210,6 @@ public class RegisterController implements Initializable {
         registerDto.setDateOfBirth(dateToDto);
         try {
             isRegistered = registerService.registUser(registerDto);
-            System.out.println(isRegistered);
 
             if(isRegistered)
                 stageCoordinator.switchToLoginScreen();

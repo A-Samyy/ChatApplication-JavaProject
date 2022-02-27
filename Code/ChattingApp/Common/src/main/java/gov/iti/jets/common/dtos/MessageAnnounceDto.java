@@ -9,13 +9,13 @@ import java.io.Serializable;
 public class MessageAnnounceDto implements Serializable {
 
     private static final long serialVersionUID = 1420672609912367055L;
-    @NotEmpty
-    @NotNull
+//    @NotEmpty
+//    @NotNull
     private String messageContent="" ;
-    @NotEmpty
+//    @NotEmpty
     private final String sender ="Admin";
     public MessageAnnounceDto(){
-        ValidationMaker.getInstance().validate(this);
+        //ValidationMaker.getInstance().validate(this);
     }
 
     public String getMessageContent() {

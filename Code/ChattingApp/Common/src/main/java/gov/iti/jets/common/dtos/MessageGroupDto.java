@@ -9,16 +9,16 @@ import java.io.Serializable;
 
 public class MessageGroupDto implements Serializable {
     private static final long serialVersionUID = 1420672609912364188L;
-    @NotEmpty
-    @NotNull
+//    @NotEmpty
+//    @NotNull
     private String messageContent ;
-    @Positive
+//    @Positive
     private int senderId ;
-    @Positive
+//    @Positive
     private int groupId ;
     private String senderName;
     public MessageGroupDto(){
-        ValidationMaker.getInstance().validate(this);
+        //ValidationMaker.getInstance().validate(this);
     }
 
     public String getSenderName() {

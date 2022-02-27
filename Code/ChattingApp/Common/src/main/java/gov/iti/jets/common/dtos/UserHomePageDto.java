@@ -12,29 +12,29 @@ import java.util.Date;
 public class UserHomePageDto implements Serializable {
 
     private static final long serialVersionUID = 1420672609912364060L;
-    @Size(min = 11,max = 11)
+//    @Size(min = 11,max = 11)
     private String phoneNumber;
-    @NotNull
-    @Positive
+//    @NotNull
+//    @Positive
     private String password;
-    @NotNull
+//    @NotNull
     private String name;
-    @NotNull
+//    @NotNull
     private String gender;
-    @Email
+//    @Email
     private String email;
     private Date dateOfBirth;
-    @NotNull
+//    @NotNull
     private String picture;
-    @NotNull
+//    @NotNull
     private String country;
-    @NotNull
+//    @NotNull
     private String bio;
-    @NotNull
+//    @NotNull
     private String status;
 
     public UserHomePageDto() {
-        ValidationMaker.getInstance().validate(this);
+        //ValidationMaker.getInstance().validate(this);
     }
 
     public String getStatus() {

@@ -8,7 +8,7 @@ public enum Status {
     DoNotDisturb(2),
     AWAY(3),
     OFFLINE(4);
-    @Positive
+//    @Positive
     final int number;
     Status(int number){
         ValidationMaker.getInstance().validate(this);

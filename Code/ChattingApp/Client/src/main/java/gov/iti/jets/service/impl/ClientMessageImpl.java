@@ -13,13 +13,7 @@ import gov.iti.jets.service.daos.MessageDao;
 
 import gov.iti.jets.service.services.LoginService;
 import gov.iti.jets.service.services.MessageService;
-import gov.iti.jets.service.services.UpdateUserService;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.layout.HBox;
-
-
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -40,7 +34,7 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
     public ClientMessageImpl() throws RemoteException {
         super();
         serverMessageInt=rmiRegister.messageService();
-        System.out.println("regester client ?  "+serverMessageInt.register(this,LoginService.getId()));
+        serverMessageInt.register(this,LoginService.getId());
     }
 
     @Override
@@ -48,7 +42,6 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
         messageDao = new MessageDao(messageDto);
         list.add(messageDao);
         map.put(messageDto.getUserId(),list);
-        System.out.println(messageDto);
         if(stageCoordinator.getChatSectionController().get(messageDto.getUserId()) != null){
             Platform.runLater(new Runnable() {
                 @Override
@@ -58,8 +51,6 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
                 }
             });
         }
-
-//        System.out.println(map.get(messageDto.getFriendId()).toString());
         return messageDto.getMessageContent();
     }
 

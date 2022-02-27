@@ -1,6 +1,5 @@
 package gov.iti.jets.presentation.controllers;
 
-import gov.iti.jets.common.dtos.ContactDto;
 import gov.iti.jets.common.dtos.MessageDto;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
@@ -11,7 +10,6 @@ import gov.iti.jets.service.services.ContactListService;
 import gov.iti.jets.service.services.LoginService;
 import gov.iti.jets.service.services.MessageService;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,14 +25,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import org.controlsfx.validation.ValidationSupport;
 import org.kordamp.ikonli.javafx.FontIcon;
-
-import javax.xml.validation.Validator;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.*;
-import java.util.Map;
 
 public class ChatSectionController implements Initializable {
 
@@ -167,7 +161,7 @@ public class ChatSectionController implements Initializable {
         @Override
         protected void updateItem(MessageDto item, boolean empty) {
             super.updateItem(item, empty);
-            if (item != null && !empty) { // <== test for null item and empty parameter
+            if (item != null && !empty) {
                 if(LoginService.getId() == item.getUserId()){
                     messageCellContainer.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
                     HBox hbox = stageCoordinator.loadMessage(new MessageDao(item) , 0);

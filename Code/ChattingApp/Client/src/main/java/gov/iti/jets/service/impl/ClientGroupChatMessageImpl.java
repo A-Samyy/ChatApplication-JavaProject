@@ -1,13 +1,10 @@
 package gov.iti.jets.service.impl;
 
-import gov.iti.jets.common.dtos.LoginDto;
 import gov.iti.jets.common.dtos.MessageGroupDto;
 import gov.iti.jets.common.interfaces.ClientGroupChatMessageInt;
 import gov.iti.jets.common.interfaces.ServerGroupChatMessageInt;
-import gov.iti.jets.common.interfaces.ServerMessageGroupInt;
 import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.presentation.util.StageCoordinator;
-import gov.iti.jets.service.daos.MessageDao;
 import gov.iti.jets.service.services.LoginService;
 import javafx.application.Platform;
 
@@ -45,7 +42,6 @@ public class ClientGroupChatMessageImpl extends UnicastRemoteObject implements C
                 }
             });
         }
-        System.out.println(messageGroupDto.toString());
         return false;
     }
 }

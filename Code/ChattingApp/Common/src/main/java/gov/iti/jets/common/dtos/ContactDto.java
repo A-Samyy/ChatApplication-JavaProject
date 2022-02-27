@@ -11,17 +11,17 @@ import java.io.Serializable;
 public class ContactDto implements Serializable {
     private static final long serialVersionUID = 1427672609912364060L;
 
-    @Positive
+//    @Positive
     private int id;
-    @NotEmpty
+//    @NotEmpty
     private String friendName;
-    @NotNull
+//    @NotNull
     private String Status;
-    @NotNull
+//    @NotNull
     private String picture;
 
     public ContactDto() {
-        ValidationMaker.getInstance().validate(this);
+        //ValidationMaker.getInstance().validate(this);
     }
 
     public int getId() {

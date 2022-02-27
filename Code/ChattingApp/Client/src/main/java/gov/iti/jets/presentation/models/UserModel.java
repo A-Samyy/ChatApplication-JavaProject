@@ -6,13 +6,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.image.Image;
 
-import java.io.ByteArrayInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-import java.util.Date;
-
 public class UserModel{
     private final StringProperty userName = new SimpleStringProperty();
     private final StringProperty password = new SimpleStringProperty();

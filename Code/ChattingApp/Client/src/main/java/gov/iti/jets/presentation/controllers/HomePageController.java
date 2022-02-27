@@ -1,24 +1,17 @@
 package gov.iti.jets.presentation.controllers;
 
-import gov.iti.jets.common.dtos.MessageAnnounceDto;
-import gov.iti.jets.common.dtos.MessageGroupDto;
 import gov.iti.jets.common.interfaces.ClientAnnounceMessageInt;
 import gov.iti.jets.common.interfaces.ClientGroupChatMessageInt;
 import gov.iti.jets.common.interfaces.ServerGroupChatMessageInt;
-import gov.iti.jets.common.interfaces.ServerMessageAnnouncetInt;
 import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
-import gov.iti.jets.service.impl.ClientAnnounceImpl;
-import gov.iti.jets.service.impl.ClientGroupChatMessageImpl;
-import gov.iti.jets.service.services.LoginService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
 
 import java.net.URL;
-import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 public class HomePageController implements Initializable {

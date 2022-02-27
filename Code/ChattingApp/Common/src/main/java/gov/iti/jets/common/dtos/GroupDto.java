@@ -9,13 +9,13 @@ import java.io.Serializable;
 public class GroupDto implements Serializable {
     private static final long serialVersionUID = 1427372609914364060L;
 
-    @Positive
+//    @Positive
     private int id;
-    @NotNull
+//    @NotNull
     private String groupName;
 
     public GroupDto() {
-        ValidationMaker.getInstance().validate(this);
+       // ValidationMaker.getInstance().validate(this);
     }
 
     public int getId() {

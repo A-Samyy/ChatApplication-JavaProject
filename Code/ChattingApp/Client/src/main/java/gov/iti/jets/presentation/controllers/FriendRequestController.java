@@ -22,7 +22,6 @@ public class FriendRequestController implements Initializable {
 
     @FXML
     void OnAccept(MouseEvent event) {
-        System.out.println("onAccept");
         try {
             friendRequestService.acceptingFriendRequest(this.friendRequestSenderDto);
         } catch (RemoteException e) {
@@ -32,8 +31,6 @@ public class FriendRequestController implements Initializable {
 
     @FXML
     void OnReject(MouseEvent event) {
-        System.out.println("onReject");
-
         try {
             friendRequestService.rejectingFriendRequest(this.friendRequestSenderDto);
         } catch (RemoteException e) {

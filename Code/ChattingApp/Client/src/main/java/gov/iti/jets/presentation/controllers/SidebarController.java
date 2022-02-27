@@ -8,29 +8,21 @@ import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.services.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.control.*;
 
-import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.Map;
@@ -99,7 +91,6 @@ public class SidebarController implements Initializable {
     private Label userName;
 
 
-//    private String imageAsString;
     ImageView img;
     ContactModel contactModel;
 
@@ -152,7 +143,6 @@ public class SidebarController implements Initializable {
         try {
             if(!friendRequestService.getFriendRequestsNotifcation().isEmpty()){
                 for(FriendRequestSenderDto friendRequestSenderDto : friendRequestService.getFriendRequestsNotifcation()){
-                    System.out.println(friendRequestSenderDto);
                     SettingAreaVbox.getChildren().add(stageCoordinator.loadFriendRequest(friendRequestSenderDto.getSenderName(),friendRequestSenderDto));
 
                 }
@@ -181,13 +171,6 @@ public class SidebarController implements Initializable {
 
     }
 
-
-
-
-//    @FXML
-//    void OnAddContactMouseClick(MouseEvent event) {
-//        stageCoordinator.loadAddContact();
-//    }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {

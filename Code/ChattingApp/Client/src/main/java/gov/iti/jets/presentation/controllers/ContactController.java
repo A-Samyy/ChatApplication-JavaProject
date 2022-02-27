@@ -20,9 +20,7 @@ import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.TreeMap;
 
 public class ContactController implements Initializable {
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();

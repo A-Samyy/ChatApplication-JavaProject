@@ -7,16 +7,16 @@ import jakarta.validation.constraints.Positive;
 import java.io.InputStream;
 
 public class MessageDto {
-    @Positive(message = "id must be positive number")
+//    @Positive(message = "id must be positive number")
     int messageId;
-    @NotNull
-    @NotEmpty(message = "content name can't be empty")
+//    @NotNull
+//    @NotEmpty(message = "content name can't be empty")
     String content;
-    @NotNull
+//    @NotNull
     InputStream fileForUser;
 
     public MessageDto(){
-        ValidationMaker.getInstance().validate(this);
+//        ValidationMaker.getInstance().validate(this);
     }
     // public MessageDto(int messageId, String content, File fileForUser){
     //     this.messageId = messageId;
