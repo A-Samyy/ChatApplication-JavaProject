@@ -9,11 +9,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.NodeOrientation;
+import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import org.controlsfx.control.ToggleSwitch;
@@ -31,7 +34,11 @@ public class HomePageController implements Initializable {
     private ObservableList<HBox> messageObservableList;
     int onlineUsers=serverMessageAnnounce.onlinUsers();
 
+    @FXML
+    private GridPane chartsBigGrid;
 
+    @FXML
+    private GridPane chartsGrid;
     @FXML
     private Label onOffLabel;
     @FXML
@@ -45,7 +52,10 @@ public class HomePageController implements Initializable {
     private PieChart genderChart;
 
     @FXML
-    private PieChart numberOfUsersChart;
+    private GridPane numberOfUsers;
+
+    @FXML
+    private Label usersNumber;
 
     @FXML
     private PieChart statusChart;
@@ -63,24 +73,22 @@ public class HomePageController implements Initializable {
 
 
 
+    @FXML
+    void onGetActiveUsers(MouseEvent event) {
+        statusChart();
 
+    }
 
+    @FXML
+    void onGetGender(MouseEvent event) {
+        genderChart();
 
+    }
 
-
-
-//    @FXML
-//    void sendAction(MouseEvent event) throws RemoteException {
-//        messageAnnounceDto.setMessageContent(messageTextField.getText());
-//
-//        messageObservableList.add(stageCoordinator.loadMessage(messageAnnounceDto));
-//        listView.setItems(messageObservableList);
-//
-//        serverMessageAnnounce.getMessageAnnounceDto(this.messageAnnounceDto);
-//
-//        messageTextField.setText("");
-//
-//    }
+    @FXML
+    void onGetNumberOfUsers(MouseEvent event) {
+        getNumberOfUsers();
+    }
 
 
     @FXML
@@ -96,62 +104,71 @@ public class HomePageController implements Initializable {
     }
 
 
-
-
-
-
-
-
-
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-
 
         toggleButton.selectedProperty().addListener((observable,oldValue,newValue)->{
 
             if(newValue)
             {
                 serverControlService.openConnection();
+
                 onOffLabel.setText("ON");
             }else{
                 serverControlService.closeConnection();
+
                 onOffLabel.setText("OFF");
             }
 
-
         });
 
-
-
-
-
-
-
+        genderChart();
+        statusChart();
+        getNumberOfUsers();
 
 
         listView.setCellFactory(messageListView -> new MessageServerListViewCell());
         messageObservableList = FXCollections.observableArrayList();
 
-        ObservableList<PieChart.Data> genderTypeList= FXCollections.observableArrayList(
-            new PieChart.Data("Number of Females",analysisService.getNumberOfFemaleUsers()),
-            new PieChart.Data("Number of Males",analysisService.getNumberOfMaleUsers())
+        Node child= stageCoordinator.loadAddUser();
+        content.getChildren().add(child);
+        content.setTopAnchor(child, 0.0);
+        AnchorPane.setLeftAnchor(child, 0.0);
+        AnchorPane.setRightAnchor(child, 0.0);
+        AnchorPane.setBottomAnchor(child, 0.0);
+
+    }
+
+    private void getNumberOfUsers() {
+        usersNumber.setText(String.valueOf(analysisService.getNumberOfAllUsers()));
+    }
+
+
+    private void genderChart() {
+
+        ObservableList<PieChart.Data> genderTypeList = FXCollections.observableArrayList(
+                new PieChart.Data("Number of Females", analysisService.getNumberOfFemaleUsers()),
+                new PieChart.Data("Number of Males", analysisService.getNumberOfMaleUsers())
         );
         genderChart.setData(genderTypeList);
-        genderChart.setTitle("Users_Gender");
+
+    }
+    private void statusChart(){
         ObservableList<PieChart.Data> statusList= FXCollections.observableArrayList(
                 new PieChart.Data("Number of onlineUsers",onlineUsers),
                 new PieChart.Data("Number of offlineUsers",analysisService.getNumberOfAllUsers()-onlineUsers)
         );
         statusChart.setData(statusList);
-        statusChart.setTitle("Online and Offline users");
-
-
-
-
-        // ( (AnchorPane)userAdd.getContent()).getChildren().add(stageCoordinator.loadAddUser());
-        content.getChildren().add(stageCoordinator.loadAddUser());
 
     }
+
+
+
+
+
+
+
+
     private class MessageServerListViewCell extends ListCell<HBox> {
 
         private Pane messageCellContainer=new Pane();
@@ -165,6 +182,7 @@ public class HomePageController implements Initializable {
                 messageCellContainer.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
                 item.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
                 messageCellContainer.getChildren().add(item);
+
                 setGraphic(messageCellContainer);
             } else {
                 setGraphic(null);

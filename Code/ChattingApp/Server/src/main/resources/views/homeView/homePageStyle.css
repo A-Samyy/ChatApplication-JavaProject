@@ -1,4 +1,7 @@
-
+.root{
+   -fx-background-image: url("4.jfif");
+   -fx-background-size: 100% 100%;
+}
 
 .scroll-pane > .viewport {
    -fx-background-color: transparent;
@@ -17,7 +20,7 @@
    -fx-tab-max-height:4em;
    -fx-tab-min-width:6em;
    -fx-tab-max-width:6.5em;
-   -fx-background-color: #1e1836;
+  
 }
 
 #content{
@@ -58,3 +61,24 @@
 }
 
 
+
+.Chart{
+   -fx-text-fill:white;
+   -fx-background-color: rgba(247, 247, 247, 0.164);
+   -fx-background-radius:20px;
+   
+}
+
+
+.default-color0.chart-pie{-fx-pie-color: #2f2a57;}
+.default-color1.chart-pie{-fx-pie-color: #1e1836;}
+
+.chart-pie-label{
+   -fx-fill:white;
+   -fx-stroke:white;
+   -fx-font-size:20px;
+}
+
+.purple:selected .thumb-area {
+   -fx-background-color: #2f2a57;;
+}
