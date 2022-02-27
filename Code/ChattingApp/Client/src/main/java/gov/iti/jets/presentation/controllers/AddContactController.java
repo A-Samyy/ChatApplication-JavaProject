@@ -13,6 +13,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
 import java.rmi.RemoteException;
@@ -21,9 +22,13 @@ import java.util.ResourceBundle;
 public class AddContactController implements Initializable {
     boolean statusOfFriendRequest;
     @FXML
-    private Label ValidatePhoneNumber;
-    @FXML
     private TextField AddingFriendTextArea;
+
+    @FXML
+    private Label ValidatePhoneNumber;
+
+    @FXML
+    private FontIcon addContact;
     @FXML
     void OnAddNewContactClicked(MouseEvent event) {
         System.out.println("dakhlt gwa el add function");

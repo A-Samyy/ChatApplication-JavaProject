@@ -1,0 +1,10 @@
+.root{
+    
+     -fx-background-color:#393253;
+   
+}
+
+.root:hover{
+   
+   -fx-background-color:  #2f2a57;
+}
