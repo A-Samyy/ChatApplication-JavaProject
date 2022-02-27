@@ -347,6 +347,7 @@ public class StageCoordinator {
     }
 
     public void loadAdminMessageContainer(List<String> messagesFromAdmin) {
+        System.out.println(messagesFromAdmin.size());
         Stage addAdminMessageContainer = new Stage();
         Parent addAdminMessage = null;
         try {
@@ -359,6 +360,7 @@ public class StageCoordinator {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
+                    System.out.println("imhere");
                     adminMessageController.displayMessage(messagesFromAdmin);
                 }
             });

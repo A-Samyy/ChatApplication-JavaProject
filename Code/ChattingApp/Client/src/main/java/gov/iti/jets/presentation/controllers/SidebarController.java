@@ -123,7 +123,7 @@ public class SidebarController implements Initializable {
             getContact();
         }else if(tabPane.getSelectionModel().getSelectedIndex()==1){
             getGroup();
-        }else if(tabPane.getSelectionModel().getSelectedIndex()==3){
+        }else if(tabPane.getSelectionModel().getSelectedIndex()==2){
             getNotification();
         }
     }

@@ -21,7 +21,7 @@ public class MessageAdminController implements Initializable {
     void onMessageAdminClicked(MouseEvent event) {
         List<String> messagesFromAdmin = ClientAnnounceImpl.messagesFromAdmin;
         stageCoordinator.loadAdminMessageContainer(messagesFromAdmin);
-        ClientAnnounceImpl.messagesFromAdmin.clear();
+//        ClientAnnounceImpl.messagesFromAdmin.clear();
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
