@@ -1,5 +1,9 @@
 package gov.iti.jets.common.dtos;
 
+import gov.iti.jets.common.hibernate.ValidationMaker;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import javafx.scene.image.Image;
 
 import java.io.Serializable;
@@ -7,13 +11,17 @@ import java.io.Serializable;
 public class ContactDto implements Serializable {
     private static final long serialVersionUID = 1427672609912364060L;
 
-
+    @Positive
     private int id;
+    @NotEmpty
     private String friendName;
+    @NotNull
     private String Status;
+    @NotNull
     private String picture;
 
     public ContactDto() {
+        ValidationMaker.getInstance().validate(this);
     }
 
     public int getId() {

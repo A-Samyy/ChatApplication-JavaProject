@@ -16,6 +16,8 @@ module Server {
     opens gov.iti.jets.presentation.controllers to javafx.fxml;
     requires org.slf4j;
     requires org.slf4j.jul;
+    requires jakarta.validation;
     exports gov.iti.jets.presentation.controllers;
     exports gov.iti.jets;
+    opens gov.iti.jets.presistance.dtos to org.hibernate.validator;
 }
