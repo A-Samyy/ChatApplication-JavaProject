@@ -25,6 +25,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import org.kordamp.ikonli.javafx.FontIcon;
 import java.net.URL;
 import java.rmi.RemoteException;
@@ -76,6 +77,10 @@ public class ChatSectionController implements Initializable {
     private Label userName;
     int friendId;
 
+    @FXML
+    void onAddAttachmentMouseClicked(MouseEvent event) {
+        FileChooser fileChooser= new FileChooser();
+    }
     @FXML
     void onTypingEnter(KeyEvent event) {
 

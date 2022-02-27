@@ -7,6 +7,7 @@ import gov.iti.jets.presentation.models.ContactModel;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
+import gov.iti.jets.service.impl.ClientFileRequestImpl;
 import gov.iti.jets.service.services.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -145,6 +146,12 @@ public class SidebarController implements Initializable {
                 for(FriendRequestSenderDto friendRequestSenderDto : friendRequestService.getFriendRequestsNotifcation()){
                     SettingAreaVbox.getChildren().add(stageCoordinator.loadFriendRequest(friendRequestSenderDto.getSenderName(),friendRequestSenderDto));
 
+                }
+            }
+            if(!ClientFileRequestImpl.fileRequestDtos.isEmpty()){
+                for(FileRequestDto fileRequestDto : ClientFileRequestImpl.fileRequestDtos){
+                    System.out.println(fileRequestDto);
+                    SettingAreaVbox.getChildren().add(stageCoordinator.loadFileRequest(fileRequestDto.getFileName(),fileRequestDto));
                 }
             }
             if(serverMessageAnnouncetInt.getMessage()){

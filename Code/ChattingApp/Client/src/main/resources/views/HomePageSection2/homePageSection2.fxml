@@ -38,7 +38,7 @@
       </AnchorPane>
       <AnchorPane fx:id="bottomBar" styleClass="chatBar" GridPane.rowIndex="2">
          <children>
-            <FontIcon fx:id="filesButton" iconColor="WHITE" iconLiteral="fas-paperclip" iconSize="25" layoutX="13.0" layoutY="58.99999847412109" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="37.12499847412109">
+            <FontIcon fx:id="filesButton" iconColor="WHITE" iconLiteral="fas-paperclip" iconSize="25" layoutX="13.0" layoutY="58.99999847412109" onMouseClicked="#onAddAttachmentMouseClicked" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="37.12499847412109">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

@@ -29,8 +29,7 @@ public class ServerFileRequestImpl extends UnicastRemoteObject implements Server
             return false;
         }
         else{
-            System.out.println("system is offline");
-            return false;
+             return false;
         }
      }
 
@@ -52,8 +51,7 @@ public class ServerFileRequestImpl extends UnicastRemoteObject implements Server
     public boolean register(ClientFileRequestInt clientFileRequestInt,int userId) throws RemoteException {
         clients.put(userId,clientFileRequestInt);
         if(clients.containsKey(userId)){
-            System.out.println("regestred");
-            return true;
+             return true;
         }
         return false;
     }

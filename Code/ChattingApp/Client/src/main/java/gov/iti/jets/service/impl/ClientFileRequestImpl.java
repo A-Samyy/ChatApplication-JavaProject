@@ -31,6 +31,7 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
     @Override
     public boolean receiveMyRequest(FileRequestDto fileRequestDto) throws RemoteException {
         try {
+            System.out.println("FileTransferService to send the file last stop before sending file");
             //FileTransferService.sendFile(fileRequestDto.getFilePath());
         } catch (Exception e) {
             e.printStackTrace();
@@ -41,7 +42,7 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
     @Override
     public boolean receiveOutSideRequest(FileRequestDto fileRequestDto) throws RemoteException {
         //send to the Gui to accept or refuse Controller by StageCoordinetor
-        //fileRequestDtos.add(fileRequestDto);
+        fileRequestDtos.add(fileRequestDto);
         System.out.println(fileRequestDto.toString());
         return true;
     }
@@ -58,6 +59,7 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
     public boolean sendResponseRequest(FileRequestDto fileRequestDto) {
         // //ONlY on accepting request from controller
         try {
+            fileRequestDtos.remove(fileRequestDto);
             //FileTransferService.receiveFile(fileRequestDto.getFileName());
             serverFileRequestInt.acceptingFileRequest(fileRequestDto);
         } catch (IOException e) {
