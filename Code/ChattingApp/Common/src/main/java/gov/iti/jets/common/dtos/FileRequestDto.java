@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class FileRequestDto implements Serializable {
 
-    private static final long serialVersionUID = 1427672609912364171L;
+    private static final long serialVersionUID = 1427672609912364145L;
     private int senderId ;
     private int receiverId;
     private String fileName;

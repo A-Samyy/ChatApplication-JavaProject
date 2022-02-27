@@ -25,7 +25,7 @@ public class RMICreateRegister {
             GroupListInt groupListInt = new GroupListImpl();
             UpdateUserInt updateUserInt = new UpdateUserImpl();
             Registry registry;
-                registry = LocateRegistry.getRegistry(6666);
+                registry = LocateRegistry.createRegistry(3333);
 
             registry.rebind("RegisterService",register);
             registry.rebind("loginService",loginService);
@@ -37,7 +37,7 @@ public class RMICreateRegister {
             registry.rebind("AddGroupChatService", addGroupChatInt);
             registry.rebind("GroupListService",groupListInt);
             registry.rebind("updateUserService",updateUserInt);
-            registry.rebind("serverFileRequestService",serverFileRequesInt);
+            registry.rebind("serverfileservice",serverFileRequesInt);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

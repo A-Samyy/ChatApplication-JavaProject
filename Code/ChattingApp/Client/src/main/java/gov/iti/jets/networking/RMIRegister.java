@@ -16,7 +16,7 @@ public class RMIRegister {
 
     private RMIRegister() {
         try {
-            registry = LocateRegistry.getRegistry(host, 6666);
+            registry = LocateRegistry.getRegistry(host, 3333);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -159,7 +159,7 @@ public class RMIRegister {
     public ServerFileRequestInt serverFileRequestService(){
         ServerFileRequestInt serverFileRequesInt =null;
         try{
-            serverFileRequesInt =(ServerFileRequestInt) registry.lookup("serverFileRequestService");
+            serverFileRequesInt =(ServerFileRequestInt) registry.lookup("serverfileservice");
         }catch (RemoteException e){
             e.printStackTrace();
         }catch (NotBoundException e) {

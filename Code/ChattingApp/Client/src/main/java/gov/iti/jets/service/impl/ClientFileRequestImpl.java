@@ -17,6 +17,7 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
 
     private RMIRegister rmiRegister = RMIRegister.getInstance();
     private ServerFileRequestInt serverFileRequestInt = rmiRegister.serverFileRequestService();
+    private FileRequestDto fileRequestDto=new FileRequestDto();
     FileTransferService fileTransferService = new FileTransferService();
     boolean outsideRequestResponse;
     public static List<FileRequestDto> fileRequestDtos = new ArrayList<>();
@@ -30,7 +31,7 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
     @Override
     public boolean receiveMyRequest(FileRequestDto fileRequestDto) throws RemoteException {
         try {
-            FileTransferService.sendFile(fileRequestDto.getFilePath());
+            //FileTransferService.sendFile(fileRequestDto.getFilePath());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -40,7 +41,8 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
     @Override
     public boolean receiveOutSideRequest(FileRequestDto fileRequestDto) throws RemoteException {
         //send to the Gui to accept or refuse Controller by StageCoordinetor
-        fileRequestDtos.add(fileRequestDto);
+        //fileRequestDtos.add(fileRequestDto);
+        System.out.println(fileRequestDto.toString());
         return true;
     }
 
@@ -56,7 +58,7 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
     public boolean sendResponseRequest(FileRequestDto fileRequestDto) {
         // //ONlY on accepting request from controller
         try {
-            FileTransferService.receiveFile(fileRequestDto.getFileName());
+            //FileTransferService.receiveFile(fileRequestDto.getFileName());
             serverFileRequestInt.acceptingFileRequest(fileRequestDto);
         } catch (IOException e) {
             e.printStackTrace();
