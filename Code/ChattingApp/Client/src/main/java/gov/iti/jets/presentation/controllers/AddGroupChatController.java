@@ -5,6 +5,7 @@ import gov.iti.jets.common.dtos.ClientGroupChatDto;
 import gov.iti.jets.service.services.AddGroupChatService;
 import gov.iti.jets.service.services.LoginService;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -23,6 +24,8 @@ public class AddGroupChatController {
 
     @FXML
     private TextField GroupNameTextArea;
+    @FXML
+    private Button addButton;
 
     @FXML
     void OnAddNewGroupClicked(MouseEvent event) {

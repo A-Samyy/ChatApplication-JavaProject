@@ -8,7 +8,7 @@
 
 <AnchorPane onMouseClicked="#OnOpenGroupChat" prefHeight="60.0" prefWidth="314.0" stylesheets="@userPaneStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.GroupListController">
    <children>
-      <Label fx:id="groupName" prefHeight="40.0" prefWidth="191.0" text="User Name" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label fx:id="groupName" prefHeight="40.0" prefWidth="191.0" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font name="Arial Bold" size="19.0" />
          </font>

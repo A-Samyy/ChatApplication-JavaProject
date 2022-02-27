@@ -1,0 +1,25 @@
+.root{
+    -fx-background-color:  #2f2a57;
+   
+}
+
+.label{
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+}
+
+#addButton{
+    -fx-border-radius:100px;
+    -fx-background-color: transparent;
+    -fx-border-color:white;
+    -fx-border-width:5px;
+    -fx-text-fill:white;
+    -fx-font-weight:bold;
+    -fx-font-size:15px;
+    }
+    .text-field{
+    
+        -fx-border-radius:100px;
+        -fx-background-radius:100px;
+       
+        }

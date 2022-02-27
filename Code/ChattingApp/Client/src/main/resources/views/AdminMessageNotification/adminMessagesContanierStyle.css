@@ -1,0 +1,15 @@
+.root{
+    -fx-background-color:  #2f2a57;
+   
+}
+
+
+
+.list-view .list-cell:even {
+    -fx-background-color: #1e1836;
+    -fx-text-fill: white;
+    }
+.list-view .list-cell:odd {
+    -fx-background-color: #1e1836;
+    -fx-text-fill: white;
+ }

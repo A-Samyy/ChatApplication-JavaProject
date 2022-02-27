@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.AdminMessageContainerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="300.0" stylesheets="@adminMessagesContanierStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.AdminMessageContainerController">
    <children>
       <GridPane layoutX="-2.0" layoutY="-1.0" prefHeight="315.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -20,12 +19,12 @@
           <RowConstraints maxHeight="507.80000610351567" minHeight="10.0" prefHeight="507.80000610351567" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label prefHeight="30.0" prefWidth="167.0" text="Admin Messages">
+            <Label prefHeight="35.0" prefWidth="186.0" text="Admin Messages" textFill="WHITE">
                <font>
-                  <Font size="16.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
-            <ListView fx:id="adminMessageListView" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+            <ListView fx:id="adminMessageListView" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2f2a57;" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>

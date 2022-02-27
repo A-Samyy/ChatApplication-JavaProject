@@ -114,7 +114,10 @@
                                     <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="60.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <FontIcon iconColor="WHITE" iconLiteral="fas-user-plus" iconSize="20" onMouseClicked="#OnAddingContact" />
+                                    <FontIcon iconColor="WHITE" iconLiteral="fas-user-plus" iconSize="20" onMouseClicked="#OnAddingContact">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor></FontIcon>
                                     <Label text="Add Contact" textFill="WHITE" GridPane.columnIndex="1">
                                        <font>
                                           <Font name="Arial Bold" size="17.0" />
@@ -162,8 +165,14 @@
                                  <children>
                                     <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="60.0" prefWidth="154.0" rowValignment="BASELINE">
                                        <children>
-                                          <FontIcon iconColor="WHITE" iconLiteral="fas-user-friends" iconSize="20" onMouseClicked="#OnAddingGroup" />
-                                          <FontIcon iconColor="WHITE" iconLiteral="fas-user-plus" iconSize="20" onMouseClicked="#OnAddingGroup" />
+                                          <FontIcon iconColor="WHITE" iconLiteral="fas-user-friends" iconSize="20" onMouseClicked="#OnAddingGroup">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></FontIcon>
+                                          <FontIcon iconColor="WHITE" iconLiteral="fas-user-plus" iconSize="20" onMouseClicked="#OnAddingGroup">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></FontIcon>
                                        </children>
                                     </FlowPane>
                                     <Label text="Add Group" textFill="#faf9f9" GridPane.columnIndex="1">
