@@ -1,23 +1,40 @@
 package gov.iti.jets.common.dtos;
 
+import gov.iti.jets.common.hibernate.ValidationMaker;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+
 import java.io.Serializable;
 import java.util.Date;
 
 public class UserHomePageDto implements Serializable {
 
     private static final long serialVersionUID = 1420672609912364060L;
+    @Size(min = 11,max = 11)
     private String phoneNumber;
+    @NotNull
+    @Positive
     private String password;
+    @NotNull
     private String name;
+    @NotNull
     private String gender;
+    @Email
     private String email;
     private Date dateOfBirth;
+    @NotNull
     private String picture;
+    @NotNull
     private String country;
+    @NotNull
     private String bio;
+    @NotNull
     private String status;
 
     public UserHomePageDto() {
+        ValidationMaker.getInstance().validate(this);
     }
 
     public String getStatus() {

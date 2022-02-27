@@ -1,24 +1,50 @@
 package gov.iti.jets.presistance.dtos;
 
+import gov.iti.jets.common.hibernate.ValidationMaker;
+import jakarta.validation.constraints.*;
+
 import java.io.Serializable;
 import java.util.Date;
 
 
 public class UserDto implements Serializable {
     private static final long serialVersionUID = 1420672609912364060L;
+    @Positive
     private int userID;
+    @Size(min = 11,max = 11)
+    @NotNull
+    @NotEmpty
     private String phoneNumber;
+    @NotNull
+    @NotEmpty
     private String password;
+    @NotNull
+    @NotEmpty
     private String name;
+    @NotNull
+    @NotEmpty
     private String gender;
+    @Email
     private String email;
+    @NotNull
+    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$")
     private Date dateOfBirth;
+    @NotNull
+    @NotEmpty
     private String picture;
+    @NotNull
+    @NotEmpty
+
     private String country;
+    @NotNull
+    @NotEmpty
     private String bio;
+    @NotNull
+    @NotEmpty
     private Status status;
     
     public UserDto() {
+        ValidationMaker.getInstance().validate(this);
     }
     
     public int getUserID() {

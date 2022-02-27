@@ -1,12 +1,23 @@
 package gov.iti.jets.presistance.dtos;
+import gov.iti.jets.common.hibernate.ValidationMaker;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 import java.io.InputStream;
 
 public class MessageDto {
+    @Positive(message = "id must be positive number")
     int messageId;
+    @NotNull
+    @NotEmpty(message = "content name can't be empty")
     String content;
+    @NotNull
     InputStream fileForUser;
 
-    public MessageDto(){}
+    public MessageDto(){
+        ValidationMaker.getInstance().validate(this);
+    }
     // public MessageDto(int messageId, String content, File fileForUser){
     //     this.messageId = messageId;
     //     this.content = content;

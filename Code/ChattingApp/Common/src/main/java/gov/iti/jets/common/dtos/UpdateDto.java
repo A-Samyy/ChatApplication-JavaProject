@@ -1,20 +1,34 @@
 package gov.iti.jets.common.dtos;
 
+import gov.iti.jets.common.hibernate.ValidationMaker;
+import jakarta.validation.constraints.*;
+
 import java.io.Serializable;
 import java.util.Date;
 
 public class UpdateDto implements Serializable {
     private static final long serialVersionUID = 1420672669912364060L;
+    @Positive
     private int Id;
+    @NotEmpty
+    @NotNull
     private String password;
+    @Size(min = 11,max = 11)
+    @NotNull
     private String phoneNumber;
+    @NotNull
     private String name;
+    @Email
     private String email;
+    @NotNull
     private String picture;
+    @NotNull
     private String bio;
+    @NotNull
     private String status;
 
     public UpdateDto() {
+        ValidationMaker.getInstance().validate(this);
     }
 
     public String getPhoneNumber() {

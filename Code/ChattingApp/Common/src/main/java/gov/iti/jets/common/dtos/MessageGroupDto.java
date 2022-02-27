@@ -1,14 +1,25 @@
 package gov.iti.jets.common.dtos;
 
+import gov.iti.jets.common.hibernate.ValidationMaker;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 import java.io.Serializable;
 
 public class MessageGroupDto implements Serializable {
     private static final long serialVersionUID = 1420672609912364188L;
-
+    @NotEmpty
+    @NotNull
     private String messageContent ;
+    @Positive
     private int senderId ;
+    @Positive
     private int groupId ;
     private String senderName;
+    public MessageGroupDto(){
+        ValidationMaker.getInstance().validate(this);
+    }
 
     public String getSenderName() {
         return senderName;
