@@ -19,21 +19,21 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="144.80001983642578" minHeight="10.0" prefHeight="98.93333740234375" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="671.2000038146973" minHeight="10.0" prefHeight="621.1332885742188" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="671.2000038146973" minHeight="10.0" prefHeight="48.06671142578125" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="86.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="671.2000038146973" minHeight="10.0" prefHeight="668.0000030517579" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
       <AnchorPane fx:id="topBar" prefHeight="200.0" prefWidth="200.0" styleClass="chatBar">
          <children>
-            <Label fx:id="userName" layoutX="36.0" layoutY="40.0" prefHeight="35.0" prefWidth="326.0" text="Hend" textFill="WHITE">
+            <Label fx:id="userName" layoutX="32.0" layoutY="19.0" prefHeight="35.0" prefWidth="326.0" text="Hend" textFill="WHITE">
                <font>
-                  <Font size="23.0" />
+                  <Font name="Arial Bold Italic" size="31.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="bottomBar" styleClass="chatBar" GridPane.rowIndex="2">
+      <AnchorPane fx:id="bottomBar" maxHeight="-Infinity" prefHeight="80.0" prefWidth="674.0" styleClass="chatBar" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <children>
             <FontIcon fx:id="filesButton" iconColor="WHITE" iconLiteral="fas-paperclip" iconSize="25" layoutX="13.0" layoutY="58.99999847412109" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="37.12499847412109">
                <cursor>

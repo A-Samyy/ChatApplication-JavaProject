@@ -3,33 +3,34 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<HBox fx:id="chatMessage" alignment="TOP_RIGHT" minHeight="50.0" prefWidth="269.0" style="-fx-background-color: #2f2a57; -fx-background-radius: 10px 10px 10px 0px;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.MessageController">
+
+<HBox maxHeight="1.7976931348623157E308" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.MessageController">
    <children>
-      <Label fx:id="messageBox" accessibleRole="TEXT_AREA" alignment="TOP_RIGHT" contentDisplay="RIGHT" prefWidth="176.0" style="-fx-background-color: transparent; -fx-background-radius: 20 20 20 20; -fx-text-fill: white; -fx-font-size: 15px;" text="jsadkjsndjnakjdnajksdnasdsadsadasdjdn" wrapText="true" HBox.hgrow="ALWAYS">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-         <HBox.margin>
-            <Insets top="35.0" />
-         </HBox.margin>
-      </Label>
-      <VBox prefHeight="98.0" prefWidth="88.0">
+      <VBox alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" prefWidth="234.0" style="-fx-background-color: #2f2a57; -fx-background-radius: 10px 10px 10px 0px;">
          <children>
-            <Pane prefHeight="109.0" prefWidth="95.0">
-               <children>
-                  <Label fx:id="userName" accessibleRole="TEXT_AREA" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="-160.0" layoutY="5.0" prefHeight="21.0" prefWidth="224.0" style="-fx-text-fill: white; -fx-font-size: 15px;" text="Abdelrahman Samy" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding></Label>
-               </children>
-            </Pane>
+            <Label fx:id="userName" accessibleRole="TEXT_AREA" alignment="TOP_RIGHT" contentDisplay="BOTTOM" nodeOrientation="LEFT_TO_RIGHT" prefHeight="26.0" prefWidth="214.0" text="ghh" textAlignment="RIGHT" textFill="WHITE" wrapText="true">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="Arial Bold Italic" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="15.0" right="15.0" top="15.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="messageBox" accessibleRole="TEXT_AREA" alignment="TOP_LEFT" contentDisplay="RIGHT" maxHeight="1.7976931348623157E308" prefWidth="309.0" style="-fx-background-color: transparent; -fx-background-radius: 20 20 20 20; -fx-text-fill: white; -fx-font-size: 15px;" text="htghy" textAlignment="RIGHT" wrapText="true" VBox.vgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Label>
          </children>
       </VBox>
    </children>
-   <padding>
-      <Insets bottom="-2.0" left="5.0" />
-   </padding>
 </HBox>

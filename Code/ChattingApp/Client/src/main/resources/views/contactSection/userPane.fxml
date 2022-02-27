@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<Pane onMouseClicked="#OnOpenGroupChat" prefHeight="63.0" prefWidth="236.0" stylesheets="@contacts.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.GroupListController">
+
+<AnchorPane onMouseClicked="#OnOpenGroupChat" prefHeight="60.0" prefWidth="314.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.GroupListController">
    <children>
-      <Label fx:id="groupName" alignment="CENTER" layoutX="20.0" layoutY="11.0" prefHeight="40.0" prefWidth="191.0" text="User Name" textFill="WHITE">
+      <Label fx:id="groupName" prefHeight="40.0" prefWidth="191.0" style="-fx-background-color: #2f2a57;" text="User Name" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="Arial Bold" size="19.0" />
          </font>
+         <padding>
+            <Insets left="15.0" />
+         </padding>
       </Label>
    </children>
-   <cursor>
-      <Cursor fx:constant="HAND" />
-   </cursor>
-</Pane>
+</AnchorPane>

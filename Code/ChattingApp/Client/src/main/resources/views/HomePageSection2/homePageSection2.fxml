@@ -20,18 +20,18 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="144.80001983642578" minHeight="10.0" prefHeight="98.93333740234375" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="86.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="671.2000038146973" minHeight="10.0" prefHeight="621.1332885742188" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="671.2000038146973" minHeight="10.0" prefHeight="48.06671142578125" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
       <AnchorPane fx:id="topBar" prefHeight="200.0" prefWidth="200.0" styleClass="chatBar">
          <children>
             <Circle fx:id="profilePicture" fill="WHITE" layoutX="88.0" layoutY="45.0" radius="33.0" stroke="#2f2a57" strokeType="INSIDE" />
             <Circle fx:id="status" fill="#15ac45" layoutX="114.0" layoutY="65.0" radius="8.0" stroke="#2f2a57" strokeType="INSIDE" />
-            <Label fx:id="userName" layoutX="141.0" layoutY="18.0" prefHeight="35.0" prefWidth="326.0" text="Hend" textFill="WHITE">
+            <Label fx:id="userName" layoutX="146.0" layoutY="27.0" prefHeight="35.0" prefWidth="326.0" text="Hend" textFill="WHITE">
                <font>
-                  <Font size="23.0" />
+                  <Font name="Arial Bold Italic" size="31.0" />
                </font>
             </Label>
          </children>

@@ -103,13 +103,14 @@ public class LoginController1 implements Initializable {
 //        stageCoordinator.switchToWelcomScreen();
 //    }
 
+
+    @FXML
+    void OnWelcomeAction(MouseEvent event) {
+        stageCoordinator.switchToWelcomScreen();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
-
         phoneNumberTextField.textProperty().bindBidirectional(userModel.phoneNumberProperty());
-
-
     }
 }

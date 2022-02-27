@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane fx:id="chatBox" prefHeight="46.0" prefWidth="200.0" stylesheets="@chatSectionStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.ContactController">
+<AnchorPane fx:id="chatBox" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="60.0" prefWidth="200.0" stylesheets="@chatSectionStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.ContactController">
    <children>
-      <HBox onMouseClicked="#OpenChatOnClick" prefHeight="62.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox onMouseClicked="#OpenChatOnClick" prefHeight="62.0" prefWidth="200.0" style="-fx-border-radius: 20 20 20 20;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <AnchorPane prefHeight="45.0" prefWidth="34.0">
                <children>
