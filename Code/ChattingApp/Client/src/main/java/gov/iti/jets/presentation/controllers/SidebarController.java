@@ -152,13 +152,13 @@ public class SidebarController implements Initializable {
 
                 }
             }
-            if(!ClientFileRequestImpl.fileRequestDtos.isEmpty()){
-                for(FileRequestDto fileRequestDto : ClientFileRequestImpl.fileRequestDtos){
-                    System.out.println(fileRequestDto);
-                    SettingAreaVbox.getChildren().add(stageCoordinator.loadFileRequest(fileRequestDto.getFileName(),fileRequestDto));
-
-                }
-            }
+//            if(!ClientFileRequestImpl.fileRequestDtos.isEmpty()){
+//                for(FileRequestDto fileRequestDto : ClientFileRequestImpl.fileRequestDtos){
+//                    System.out.println(fileRequestDto);
+//                    SettingAreaVbox.getChildren().add(stageCoordinator.loadFileRequest(fileRequestDto.getFileName(),fileRequestDto));
+//
+//                }
+//            }
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -199,8 +199,6 @@ public class SidebarController implements Initializable {
                 chattingSectionVbox.getChildren().add(stageCoordinator.loadContacts(contactDto));
             }
         }
-
-
 
 
     }
