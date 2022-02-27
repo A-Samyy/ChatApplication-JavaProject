@@ -18,8 +18,6 @@ public class ChatBotService {
             bot = factory.create(ChatterBotType.PANDORABOTS, "b0dafd24ee35a477");
             ChatterBotSession botSession = bot.createSession();
             reply = botSession.think(msg);
-            System.out.println("bot> " + reply);
-
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -9,14 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.sql.DataSource;
-
 import gov.iti.jets.presistance.dtos.MessageDto;
 import gov.iti.jets.presistance.util.Connector;
 
 public class MessageDao {
 
-//    private DataSource ds = null;
     private Connection conn = null;
     private Statement statement = null;
     private PreparedStatement preparedStatement = null;
@@ -36,43 +33,18 @@ public class MessageDao {
             preparedStatement = conn.prepareStatement(sql);
             injectUser(MessageDto);
             int affectedRows = preparedStatement.executeUpdate();
-            if (affectedRows > 0) {
-                return true;
-            } else
-                return false;
+            return affectedRows > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
-/// is this method important ?? 
-    public boolean updateMessageDto(MessageDto MessageDto, int id) {
-        try {
-            String sql = "UPDATE chatting_app.message SET MESSAGE_ID= ?,CONTENT = ?,FILE = ? WHERE MESSAGE_ID="
-                    + id;
-            preparedStatement = conn.prepareStatement(sql);
-            injectUser(MessageDto);
-            int affectedRows = preparedStatement.executeUpdate();
-            if (affectedRows > 0) {
-                return true;
-            } else
-                return false;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-
-    }
-
     public boolean deleteMessageDtoById(int id) {
         try {
             String sql = "DELETE FROM chatting_app.message WHERE MESSAGE_ID =" + id;
             preparedStatement = conn.prepareStatement(sql);
             int affectedRows = preparedStatement.executeUpdate();
-            if (affectedRows > 0) {
-                return true;
-            } else
-                return false;
+            return affectedRows > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -84,9 +56,7 @@ public class MessageDao {
             String sql = "select * from chatting_app.message where MESSAGE_ID=" + id;
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet.next()) {
-                MessageDto MessageDto = new MessageDto();
-                MessageDto = extractUser(resultSet);
-                return MessageDto;
+                return extractUser(resultSet);
             } else
                 return null;
         } catch (SQLException e) {

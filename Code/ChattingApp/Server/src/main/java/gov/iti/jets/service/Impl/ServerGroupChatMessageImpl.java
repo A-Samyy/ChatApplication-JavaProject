@@ -34,8 +34,7 @@ public class ServerGroupChatMessageImpl extends UnicastRemoteObject implements S
                         }
                     }
                 } catch (Exception e) {
-                    System.out.println(userId + " user is offline");
-                    e.printStackTrace();
+                     e.printStackTrace();
                 }
             }
             return true;

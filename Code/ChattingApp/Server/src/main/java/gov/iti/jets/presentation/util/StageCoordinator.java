@@ -36,7 +36,6 @@ public class StageCoordinator {
        Scene loginScene = sceneMap.get("loginScene");
        if(loginScene == null){
            try {
-               //change Path
                Parent root  = FXMLLoader.load(getClass().getResource("/views/loginView/loginView.fxml"));
                root.getStylesheets().add(getClass().getResource("/views/loginView/loginStyle.css").toString());
                loginScene = new Scene(root);
@@ -51,7 +50,6 @@ public class StageCoordinator {
        Scene homePageScene = sceneMap.get("homePageScene");
        if(homePageScene == null){
            try {
-               //change Path
                Parent root  = FXMLLoader.load(getClass().getResource("/views/homeView/homePage.fxml"));
                root.getStylesheets().add(getClass().getResource("/views/homeView/homePageStyle.css").toString());
                homePageScene = new Scene(root);
@@ -66,7 +64,6 @@ public class StageCoordinator {
        Node addUserNode = nodeMap.get("AddUser");
        if(addUserNode == null){
            try {
-               //change Path
                Parent root  = FXMLLoader.load(getClass().getResource("/views/addView/addView.fxml"));
                addUserNode = root;
                nodeMap.put("AddUser", root);
@@ -79,14 +76,9 @@ public class StageCoordinator {
 
 
     public HBox loadMessage(MessageAnnounceDto messageAnnounceDto) {
-
-
         try {
-
-            // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/message/messageView.fxml"));
-            FXMLLoader loader = new FXMLLoader();
+       FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/views/messageView/messageView.fxml"));
-
             HBox message = loader.load();
             MessageServerController messageController = (MessageServerController) loader.getController();
             Platform.runLater(new Runnable() {
@@ -97,7 +89,7 @@ public class StageCoordinator {
             });
             return message;
         } catch (Exception e) {
-            System.out.println("File Not Found Exception");
+            e.printStackTrace();
         }
         return null;
 

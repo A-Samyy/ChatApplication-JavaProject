@@ -11,7 +11,7 @@ public enum Status {
 //    @Positive
     final int number;
     Status(int number){
-        ValidationMaker.getInstance().validate(this);
+     //   ValidationMaker.getInstance().validate(this);
         this.number=number;
     }
     public static Status getStatusFromNumber(int num) {

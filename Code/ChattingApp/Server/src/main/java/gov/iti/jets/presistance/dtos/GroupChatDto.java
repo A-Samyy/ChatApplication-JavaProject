@@ -8,15 +8,15 @@ import jakarta.validation.constraints.Positive;
 import java.util.List;
 
 public class GroupChatDto {
-//    @Positive(message = "Id can't be Negative")
+    @Positive(message = "Id can't be Negative")
     int  groupId ;
-//    @NotNull
-//    @NotEmpty (message = "group name can't be empty")
+    @NotNull
+    @NotEmpty (message = "group name can't be empty")
     String groupName;
-    List<Integer> usersId;
+    List<@Positive Integer> usersId;
 
     public GroupChatDto() {
-        //ValidationMaker.getInstance().validate(this);
+      //  ValidationMaker.getInstance().validate(this);
     }
 
     public List<Integer> getUsersId() {

@@ -4,9 +4,6 @@ import gov.iti.jets.common.dtos.GroupDto;
 import gov.iti.jets.common.interfaces.GroupListInt;
 import gov.iti.jets.presistance.daos.GroupChatDao;
 import gov.iti.jets.presistance.daos.GroupChatUsersDao;
-import gov.iti.jets.presistance.daos.UserDao;
-import gov.iti.jets.presistance.dtos.GroupChatDto;
-
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -21,9 +18,8 @@ public class GroupListImpl extends UnicastRemoteObject implements GroupListInt {
 
     @Override
     public List<GroupDto> getListGroup(int id) throws RemoteException {
-        List<Integer> listOfGroupId = new ArrayList<>();
+        List<Integer> listOfGroupId = groupChatUsersDao.getAllGroupsIdforUser(id);
         List<GroupDto> listOfGroup = new ArrayList<>();
-        listOfGroupId = groupChatUsersDao.getAllGroupsIdforUser(id);
         for (Integer idOfUser : listOfGroupId) {
             GroupDto groupDto = new GroupDto();
             groupDto.setId(idOfUser);

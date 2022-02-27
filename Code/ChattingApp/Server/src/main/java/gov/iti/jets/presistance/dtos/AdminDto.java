@@ -1,22 +1,20 @@
 package gov.iti.jets.presistance.dtos;
 
-import gov.iti.jets.common.hibernate.*;
+import gov.iti.jets.common.hibernate.ValidationMaker;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-
 import java.io.Serializable;
 
 
 public class AdminDto implements Serializable {
     private static final long serialVersionUID = 1420672609912364060L;
-//    @Positive(message = "Id can't be Negative")
+    @Positive
     private int adminID;
-//    @NotEmpty(message = "name can't be empty")
-//    @NotNull
+    @NotNull
     private String adminName;
-//    @NotNull
-//    @Positive(message = "password can't be Negative")
+    @NotNull
+    @Positive
     private String password;
 
 

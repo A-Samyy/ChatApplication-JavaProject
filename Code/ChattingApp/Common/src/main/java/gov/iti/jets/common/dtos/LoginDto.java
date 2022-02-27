@@ -1,7 +1,6 @@
 package gov.iti.jets.common.dtos;
 
 import gov.iti.jets.common.hibernate.ValidationMaker;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -9,22 +8,21 @@ import java.io.Serializable;
 
 public class LoginDto implements Serializable {
     private static final long serialVersionUID = 1420672609912367060L;
-    @NotNull(message = "phone number is required")
-    @Size(min = 5,max = 11,message = "uncorrected phone number")
-    @NotEmpty(message = "phone can't be empty")
+    @NotNull
+    @Size(min = 11,max = 11)
     private String phoneNumber ;
-    @NotNull(message = "password is required")
-    @Size(min = 6,max=20,message = "invalid password")
+    @NotNull
+    @Size(min = 4,max=20)
     private String password;
 
     public LoginDto(String phoneNumber){
-        ValidationMaker.getInstance().validate(this);
+      //  ValidationMaker.getInstance().validate(this);
 
         this.phoneNumber=phoneNumber;
     }
     public  LoginDto(String phoneNumber , String password){
         this(phoneNumber);
-        ValidationMaker.getInstance().validate(this);
+        //    ValidationMaker.getInstance().validate(this);
 
         this.password=password;
     }

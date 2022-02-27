@@ -1,6 +1,5 @@
 package gov.iti.jets.common.dtos;
 
-import gov.iti.jets.common.hibernate.ValidationMaker;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -10,10 +9,9 @@ import java.util.List;
 
 public class ClientGroupChatDto implements Serializable {
     private static final long serialVersionUID = 1427672609912564060L;
-//    @Positive(message = "Id can't be negative")
+    @Positive
     int  groupId ;
-//    @NotNull(message = "group name can't be empty")
-//    @NotEmpty(message = "group name can't be empty")
+    @NotNull
     String groupName;
     List<String> usersId;
 

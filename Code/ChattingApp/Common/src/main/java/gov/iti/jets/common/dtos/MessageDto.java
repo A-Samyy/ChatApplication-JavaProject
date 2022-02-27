@@ -9,18 +9,18 @@ import java.io.Serializable;
 
 public class MessageDto implements Serializable {
     private static final long serialVersionUID = 1420672609912364060L;
-//    @NotNull(message = "message can't be empty")
+    @NotNull
     private String messageContent;
-//    @NotNull(message = "user name must be defined")
+    @NotNull
     private String userName;
-//    @Negative(message = "Id shouldn't be negative number")
+    @Negative
     private int userId;
-//    @Positive
+    @Positive
 
     private int friendId;
 
     public MessageDto(){
-        //ValidationMaker.getInstance().validate(this);
+       // ValidationMaker.getInstance().validate(this);
     }
 
     public int getUserId() {

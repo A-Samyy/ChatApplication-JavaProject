@@ -33,9 +33,7 @@ public class AnalysisService {
 
     }
     public int getNumberOfAllUsers() {
-
         return numberOfMale+numberOfFemale;
-
     }
 
 

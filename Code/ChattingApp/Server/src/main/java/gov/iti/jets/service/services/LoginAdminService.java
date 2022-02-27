@@ -7,7 +7,6 @@ public class LoginAdminService {
     AdminDao adminDao = new AdminDao();
     boolean checkId;
     boolean checkPassword;
-
     public LoginAdminService() {
     }
 
@@ -15,14 +14,8 @@ public class LoginAdminService {
         checkId = checkId(adminDto.getAdminID());
         if (checkId) {
             checkPassword = checkPassword(adminDto);
-            if (checkPassword) {
-                return true;
-            } else {
-                System.out.println("Wrong Password");
-                return false;
-            }
+            return checkPassword;
         } else {
-            System.out.println("wrong ID");
             return false;
         }
     }

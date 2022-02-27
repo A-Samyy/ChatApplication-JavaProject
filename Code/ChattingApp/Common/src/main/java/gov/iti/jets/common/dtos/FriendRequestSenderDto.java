@@ -9,12 +9,11 @@ import java.io.Serializable;
 
 public class FriendRequestSenderDto implements Serializable {
     private static final long serialVersionUID = 1427672600912364061L;
-//    @Positive
+    @Positive
     private int userId;
-//    @Positive
+    @Positive
     private int senderId;
-//    @NotNull
-//    @NotEmpty
+    @NotNull
     private String senderName;
 
 
@@ -27,7 +26,7 @@ public class FriendRequestSenderDto implements Serializable {
     }
 
     public FriendRequestSenderDto() {
-        ValidationMaker.getInstance().validate(this);
+        //ValidationMaker.getInstance().validate(this);
     }
 
     public int getSenderId() {

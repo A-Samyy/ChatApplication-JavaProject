@@ -9,13 +9,12 @@ import java.io.Serializable;
 public class MessageAnnounceDto implements Serializable {
 
     private static final long serialVersionUID = 1420672609912367055L;
-//    @NotEmpty
-//    @NotNull
+ //   @NotNull
     private String messageContent="" ;
-//    @NotEmpty
+  //  @NotEmpty
     private final String sender ="Admin";
     public MessageAnnounceDto(){
-        //ValidationMaker.getInstance().validate(this);
+//        ValidationMaker.getInstance().validate(this);
     }
 
     public String getMessageContent() {
@@ -24,8 +23,7 @@ public class MessageAnnounceDto implements Serializable {
 
     public void setMessageContent(String messageContent) {
         this.messageContent = messageContent;
-        System.out.println("messageContent in get Message common"+messageContent);
-    }
+     }
 
     public String getMessageSender(){
         return this.sender;

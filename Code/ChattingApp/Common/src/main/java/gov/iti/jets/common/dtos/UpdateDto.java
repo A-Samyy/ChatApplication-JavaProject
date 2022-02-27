@@ -8,26 +8,27 @@ import java.util.Date;
 
 public class UpdateDto implements Serializable {
     private static final long serialVersionUID = 1420672669912364060L;
-//    @Positive
+    @Positive
     private int Id;
-//    @NotEmpty
-//    @NotNull
+    @NotEmpty
+    @NotNull
     private String password;
-//    @Size(min = 11,max = 11)
-//    @NotNull
+    @Size(min = 11,max = 11)
+    @NotNull
     private String phoneNumber;
-//    @NotNull
+    @NotNull
     private String name;
-//    @Email
+    @Email
     private String email;
-//    @NotNull
+
     private String picture;
-//    @NotNull
+
+
     private String bio;
-//    @NotNull
     private String status;
 
     public UpdateDto() {
+
         //ValidationMaker.getInstance().validate(this);
     }
 
