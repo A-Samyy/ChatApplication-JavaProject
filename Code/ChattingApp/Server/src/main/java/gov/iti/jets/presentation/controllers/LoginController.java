@@ -7,7 +7,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,15 +25,31 @@ public class LoginController implements Initializable {
     private TextField AdminIDTextField;
 
     @FXML
-    private TextField AdminPasswordTextField;
+    private PasswordField AdminPasswordTextField;
+
+    @FXML
+    private GridPane grid;
+
+    @FXML
+    private Button loginButton;
+
+    @FXML
+    private AnchorPane loginPaneContent;
+
+    @FXML
+    private Label phoneNumberError;
+
+    @FXML
+    private Label welcome;
+
+
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 
     }
 
-    @FXML
-    private Button loginButton;
+
 
     @FXML
     void OnLoginAction(ActionEvent event) {

@@ -16,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import org.controlsfx.control.ToggleSwitch;
 
 import java.net.URL;
 import java.rmi.RemoteException;
@@ -28,6 +29,11 @@ public class HomePageController implements Initializable {
     MessageAnnounceDto messageAnnounceDto=new MessageAnnounceDto();
     ServerMessageAnnounceImpl serverMessageAnnounce= new ServerMessageAnnounceImpl();
     private ObservableList<HBox> messageObservableList;
+    int onlineUsers=serverMessageAnnounce.onlinUsers();
+
+
+    @FXML
+    private Label onOffLabel;
     @FXML
     private AnchorPane content;
     @FXML
@@ -49,21 +55,36 @@ public class HomePageController implements Initializable {
     @FXML
     private TextField messageTextField;
 
+    @FXML
+    private ToggleSwitch toggleButton;
+
     public HomePageController() throws RemoteException {
     }
 
-    @FXML
-    void onCloseConnectionMouseClick(MouseEvent event) {
-        serverControlService.closeConnection();
-    }
-    @FXML
-    void onOpenConnectionMouseClick(MouseEvent event) {
-        serverControlService.openConnection();
-    }
+
+
+
+
+
+
+
+
+//    @FXML
+//    void sendAction(MouseEvent event) throws RemoteException {
+//        messageAnnounceDto.setMessageContent(messageTextField.getText());
+//
+//        messageObservableList.add(stageCoordinator.loadMessage(messageAnnounceDto));
+//        listView.setItems(messageObservableList);
+//
+//        serverMessageAnnounce.getMessageAnnounceDto(this.messageAnnounceDto);
+//
+//        messageTextField.setText("");
+//
+//    }
 
 
     @FXML
-    void sendAction(MouseEvent event) throws RemoteException {
+    void sendAction(MouseEvent event) {
         messageAnnounceDto.setMessageContent(messageTextField.getText());
 
         messageObservableList.add(stageCoordinator.loadMessage(messageAnnounceDto));
@@ -72,14 +93,41 @@ public class HomePageController implements Initializable {
         serverMessageAnnounce.getMessageAnnounceDto(this.messageAnnounceDto);
 
         messageTextField.setText("");
-
     }
+
+
+
+
+
 
 
 
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+
+
+        toggleButton.selectedProperty().addListener((observable,oldValue,newValue)->{
+
+            if(newValue)
+            {
+                serverControlService.openConnection();
+                onOffLabel.setText("ON");
+            }else{
+                serverControlService.closeConnection();
+                onOffLabel.setText("OFF");
+            }
+
+
+        });
+
+
+
+
+
+
+
+
 
         listView.setCellFactory(messageListView -> new MessageServerListViewCell());
         messageObservableList = FXCollections.observableArrayList();
@@ -90,12 +138,12 @@ public class HomePageController implements Initializable {
         );
         genderChart.setData(genderTypeList);
         genderChart.setTitle("Users_Gender");
-//        ObservableList<PieChart.Data> sattusList= FXCollections.observableArrayList(
-//                new PieChart.Data("Number of Females",analysisService.getNumberOfFemaleUsers()),
-//                new PieChart.Data("Number of Males",analysisService.getNumberOfMaleUsers())
-//        );
-//        statusChart.setData(genderTypeList);
-
+        ObservableList<PieChart.Data> statusList= FXCollections.observableArrayList(
+                new PieChart.Data("Number of onlineUsers",onlineUsers),
+                new PieChart.Data("Number of offlineUsers",analysisService.getNumberOfAllUsers()-onlineUsers)
+        );
+        statusChart.setData(statusList);
+        statusChart.setTitle("Online and Offline users");
 
 
 

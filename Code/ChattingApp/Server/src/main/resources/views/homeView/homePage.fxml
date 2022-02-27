@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
@@ -15,52 +14,78 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.ToggleSwitch?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="621.0" stylesheets="@homePageStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.HomePageController">
+
+<GridPane prefHeight="800.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.HomePageController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="363.8000122070313" minWidth="10.0" prefWidth="296.1999755859375" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.8000244140625" minWidth="10.0" prefWidth="328.8000244140625" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.5999755859375" minWidth="10.0" prefWidth="205.5999755859375" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
-      <HBox layoutX="158.0" layoutY="118.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane maxWidth="-Infinity" prefHeight="483.0" prefWidth="288.0" style="-fx-background-color: WHITE;">
          <children>
-            <AnchorPane maxWidth="-Infinity" prefWidth="300.0" style="-fx-background-color: WHITE;">
-               <children>
-                  <TabPane fx:id="tabPane" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" stylesheets="@homePageStyle.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
-                    <tabs>
-                      <Tab fx:id="userAdd" text="Add User">
-                           <content>
-                              <AnchorPane fx:id="content" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="300.0" />
-                           </content>
-                        </Tab>
-                    </tabs>
-                  </TabPane>
-                  <GridPane alignment="CENTER_RIGHT">
-                    <columnConstraints>
-                      <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="300.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="75.0" valignment="CENTER" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#onCloseConnectionMouseClick" text="Close Connection" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="167.0" />
-                           </GridPane.margin>
-                        </Button>
-                        <Label prefHeight="31.0" prefWidth="143.0" text="WELCOME ADMIN" GridPane.halignment="CENTER">
+            <TabPane fx:id="tabPane" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" stylesheets="@homePageStyle.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
+              <tabs>
+                <Tab fx:id="userAdd">
+                     <content>
+                        <AnchorPane fx:id="content" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="574.0" prefWidth="300.0" />
+                     </content>
+                     <graphic>
+                        <Label text="add user" textFill="WHITE">
                            <font>
-                              <Font size="17.0" />
+                              <Font name="Arial Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" onMouseClicked="#onOpenConnectionMouseClick" text="Open Connection" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="18.0" />
-                           </GridPane.margin>
-                        </Button>
-                     </children>
-                  </GridPane>
+                     </graphic>
+                  </Tab>
+              </tabs>
+            </TabPane>
+            <GridPane alignment="CENTER_RIGHT" style="-fx-background-color: #1e1836;">
+              <columnConstraints>
+                <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="300.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="75.0" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="31.0" prefWidth="203.0" text="WELCOME ADMIN" textFill="WHITE" GridPane.halignment="CENTER">
+                     <font>
+                        <Font name="Arial" size="21.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets top="19.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <ToggleSwitch fx:id="toggleButton" alignment="TOP_RIGHT" prefHeight="39.0" prefWidth="58.0" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="70.0" />
+                     </GridPane.margin>
+                  </ToggleSwitch>
+                  <Label fx:id="onOffLabel" text="OFF" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="25.0" />
+                     </GridPane.margin>
+                  </Label>
                </children>
-            </AnchorPane>
-            <VBox style="-fx-background-color: #400080;" HBox.hgrow="ALWAYS">
+            </GridPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="938.0" prefWidth="330.0" GridPane.columnIndex="1">
+         <children>
+            <VBox style="-fx-background-color: #400080;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <GridPane prefHeight="574.0" prefWidth="46.0">
                     <columnConstraints>
@@ -71,7 +96,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <PieChart fx:id="genderChart" style="-fx-background-color: black;" />
+                        <PieChart fx:id="genderChart" prefHeight="246.0" prefWidth="262.0" style="-fx-background-color: black;" />
                         <PieChart fx:id="statusChart" prefHeight="201.0" prefWidth="200.0" style="-fx-background-color: blue;" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
@@ -88,7 +113,11 @@
                   </GridPane>
                </children>
             </VBox>
-            <VBox alignment="CENTER" maxWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: WHITE;" HBox.hgrow="ALWAYS">
+         </children>
+      </AnchorPane>
+      <AnchorPane GridPane.columnIndex="2">
+         <children>
+            <VBox alignment="CENTER" maxWidth="-Infinity" style="-fx-background-color: WHITE;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <GridPane prefHeight="252.0" prefWidth="276.0" style="-fx-background-color: BLACK;">
                      <columnConstraints>
@@ -103,6 +132,7 @@
                               <Font size="19.0" />
                            </font>
                         </Label>
+                        <HBox prefHeight="100.0" prefWidth="200.0" />
                      </children>
                   </GridPane>
                   <GridPane prefHeight="428.0" prefWidth="276.0">
@@ -140,6 +170,6 @@
                </children>
             </VBox>
          </children>
-      </HBox>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</GridPane>
