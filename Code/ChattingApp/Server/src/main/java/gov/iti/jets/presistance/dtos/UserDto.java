@@ -44,7 +44,7 @@ public class UserDto implements Serializable {
     private Status status;
     
     public UserDto() {
-        ValidationMaker.getInstance().validate(this);
+       // ValidationMaker.getInstance().validate(this);
     }
     
     public int getUserID() {
@@ -116,7 +116,6 @@ public class UserDto implements Serializable {
         return status.number;
     }
     public void setStatus(Status status) {
-        System.out.println("insideUsedDTO "+status);
         this.status = status;
     }
 

@@ -2,7 +2,6 @@ package gov.iti.jets.service.Impl;
 
 import gov.iti.jets.common.dtos.LoginDto;
 import gov.iti.jets.common.dtos.UserHomePageDto;
-
 import gov.iti.jets.common.interfaces.LoginInt;
 import gov.iti.jets.presistance.daos.UserDao;
 import gov.iti.jets.presistance.dtos.Status;
@@ -59,7 +58,6 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
         userHomePageDtoDto.setEmail(userDto.getEmail());
         userHomePageDtoDto.setCountry(userDto.getCountry());
         userHomePageDtoDto.setBio(userDto.getBio());
-        //
         java.util.Date date;
         if (userDto.getDateOfBirth() == null) {
             date = null;
@@ -74,10 +72,8 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //satuts
         userDto.setStatus(Status.ACTIVE);
-        System.out.println("see status"+userDto.getStatus().name());
-        userHomePageDtoDto.setStatus(userDto.getStatus().name());
+         userHomePageDtoDto.setStatus(userDto.getStatus().name());
         userDao.updateUserDto(userDto);
         return userHomePageDtoDto;
     }
@@ -86,7 +82,6 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
         String imageString = null;
 
         if (!imgPath.isEmpty()) {
-//            System.out.println("error gded"+imgPath);
             FileInputStream stream = new FileInputStream(imgPath);
             byte[] imageData = stream.readAllBytes();
             imageString = Base64.getEncoder().encodeToString(imageData);

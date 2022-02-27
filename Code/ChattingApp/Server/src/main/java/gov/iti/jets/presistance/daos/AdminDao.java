@@ -1,16 +1,12 @@
 package gov.iti.jets.presistance.daos;
 
 import gov.iti.jets.presistance.dtos.AdminDto;
-import gov.iti.jets.presistance.dtos.Status;
-import gov.iti.jets.presistance.dtos.UserDto;
 import gov.iti.jets.presistance.util.Connector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AdminDao {
     private Connection conn = null;
@@ -194,14 +190,4 @@ public class AdminDao {
             }
         }
     }
-
-    private java.sql.Date convertUtilToSql(java.util.Date uDate) {
-        if (uDate != null) {
-            java.sql.Date sDate = new java.sql.Date(uDate.getTime());
-            return sDate;
-        } else
-            return null;
-    }
-
-
 }

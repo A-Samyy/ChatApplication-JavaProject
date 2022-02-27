@@ -14,7 +14,6 @@ public class FriendRequestSenderDto implements Serializable {
     @Positive
     private int senderId;
     @NotNull
-    @NotEmpty
     private String senderName;
 
 
@@ -27,7 +26,7 @@ public class FriendRequestSenderDto implements Serializable {
     }
 
     public FriendRequestSenderDto() {
-        ValidationMaker.getInstance().validate(this);
+        //ValidationMaker.getInstance().validate(this);
     }
 
     public int getSenderId() {

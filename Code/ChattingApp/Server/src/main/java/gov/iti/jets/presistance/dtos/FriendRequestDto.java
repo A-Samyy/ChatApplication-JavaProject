@@ -10,7 +10,7 @@ public class FriendRequestDto {
     int friendId;
 
     public FriendRequestDto() {
-        ValidationMaker.getInstance().validate(this);
+        //ValidationMaker.getInstance().validate(this);
     }
 
     public int getUserId() {

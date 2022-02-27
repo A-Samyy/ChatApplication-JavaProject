@@ -19,22 +19,23 @@ public class UserHomePageDto implements Serializable {
     private String password;
     @NotNull
     private String name;
-    @NotNull
+
     private String gender;
     @Email
     private String email;
     private Date dateOfBirth;
-    @NotNull
+
     private String picture;
-    @NotNull
+
     private String country;
-    @NotNull
+
     private String bio;
-    @NotNull
+
     private String status;
 
     public UserHomePageDto() {
-        ValidationMaker.getInstance().validate(this);
+        //
+        // ValidationMaker.getInstance().validate(this);
     }
 
     public String getStatus() {

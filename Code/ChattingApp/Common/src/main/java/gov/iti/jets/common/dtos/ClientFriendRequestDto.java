@@ -1,7 +1,6 @@
 package gov.iti.jets.common.dtos;
 
 import gov.iti.jets.common.hibernate.ValidationMaker;
-import jakarta.validation.constraints.NegativeOrZero;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
@@ -11,15 +10,14 @@ import java.io.Serializable;
 public class ClientFriendRequestDto implements Serializable {
     private static final long serialVersionUID = 1427672600912364060L;
 
-   @Positive(message = "id must be positive number")
-
+   @Positive
     private int UserId;
-    @NotNull(message = "phone number is required")
-    @Size(min = 11,max = 11,message = "uncorrected phone number")
+    @NotNull
+    @Size(min = 11,max = 11)
     private String friendPhoneNumber;
 
     public ClientFriendRequestDto() {
-        ValidationMaker.getInstance().validate(this);
+      //  ValidationMaker.getInstance().validate(this);
     }
 
     public int getUserId() {

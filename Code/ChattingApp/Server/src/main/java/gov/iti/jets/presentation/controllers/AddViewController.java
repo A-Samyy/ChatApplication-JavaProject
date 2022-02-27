@@ -40,11 +40,9 @@ public class AddViewController implements Initializable {
 
     @FXML
     void z(MouseDragEvent event) {
-
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 }

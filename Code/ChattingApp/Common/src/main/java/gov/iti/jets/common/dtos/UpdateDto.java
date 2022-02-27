@@ -20,15 +20,16 @@ public class UpdateDto implements Serializable {
     private String name;
     @Email
     private String email;
-    @NotNull
+
     private String picture;
-    @NotNull
+
+
     private String bio;
-    @NotNull
     private String status;
 
     public UpdateDto() {
-        ValidationMaker.getInstance().validate(this);
+
+        //ValidationMaker.getInstance().validate(this);
     }
 
     public String getPhoneNumber() {

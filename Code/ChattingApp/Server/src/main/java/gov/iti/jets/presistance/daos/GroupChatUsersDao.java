@@ -1,9 +1,7 @@
 package gov.iti.jets.presistance.daos;
 
 import gov.iti.jets.presistance.dtos.GroupChatDto;
-import gov.iti.jets.presistance.dtos.UserDto;
 import gov.iti.jets.presistance.util.Connector;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,7 +23,6 @@ public class GroupChatUsersDao {
         boolean check = isGroupExist(groupChatDto);
         if (!check) {
             try {
-                System.out.println("before inserting"+check);
                 String sql = "insert into chatting_app.group_chat_users(group_id,user_id) values(?, ?)";
                 return injectContact(groupChatDto, sql);
             } catch (Exception e) {
@@ -41,8 +38,7 @@ public class GroupChatUsersDao {
             conn = connector.getConnection();
             String sql = "Select group_id from chatting_app.group_chat_users where group_chat_id=" + groupChatDto.getGroupId();
             preparedStatement = conn.prepareStatement(sql);
-            boolean check= preparedStatement.executeQuery().next();
-            System.out.println("is group exist"+check);
+            boolean check = preparedStatement.executeQuery().next();
             return check;
         } catch (SQLException e) {
             return false;
@@ -96,6 +92,7 @@ public class GroupChatUsersDao {
             }
         }
     }
+
     public List<Integer> getAllUsersIdFromGroupId(int groupId) {
         try {
             conn = connector.getConnection();
@@ -123,10 +120,8 @@ public class GroupChatUsersDao {
 
     private boolean injectContact(GroupChatDto groupChatDto, String sql) {
         try {
-            System.out.println("inject method");
             int affectedRows = 0;
             for (int userId : groupChatDto.getUsersId()) {
-                System.out.println(" " + userId);
                 preparedStatement = conn.prepareStatement(sql);
                 preparedStatement.setInt(1, groupChatDto.getGroupId());
                 preparedStatement.setInt(2, userId);

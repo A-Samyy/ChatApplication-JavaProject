@@ -4,8 +4,6 @@ import java.io.*;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.sql.Connection;
-import javax.sql.DataSource;
-import com.mysql.cj.jdbc.MysqlDataSource;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -18,8 +16,6 @@ public class Connector {
         try {
             fis = new FileInputStream("db.properties");
             prop.load(fis);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

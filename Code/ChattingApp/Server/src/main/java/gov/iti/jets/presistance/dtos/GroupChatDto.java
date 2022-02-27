@@ -16,7 +16,7 @@ public class GroupChatDto {
     List<@Positive Integer> usersId;
 
     public GroupChatDto() {
-        ValidationMaker.getInstance().validate(this);
+      //  ValidationMaker.getInstance().validate(this);
     }
 
     public List<Integer> getUsersId() {

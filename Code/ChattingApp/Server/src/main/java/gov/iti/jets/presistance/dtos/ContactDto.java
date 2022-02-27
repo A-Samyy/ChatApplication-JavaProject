@@ -15,13 +15,7 @@ public class ContactDto {
     String type;
 
     public ContactDto() {
-        ValidationMaker.getInstance().validate(this);
-    }
-
-    public ContactDto(int userId, int friendId, String type) {
-        this.userId = userId;
-        this.friendId = friendId;
-        this.type = type;
+        //ValidationMaker.getInstance().validate(this);
     }
 
     public void setUserId(int userId) {

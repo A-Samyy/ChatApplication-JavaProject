@@ -25,9 +25,7 @@ public class GroupChatDao {
             conn = connector.getConnection();
             check = insertingGroupName(groupChatDto);
             groupChatDto.setGroupId(getTheLastGroupID());
-            System.out.println("before adding groupchatUser for group id = "+getTheLastGroupID());
-            cheak2 = groupChatUsersDao.addGroupChatUsersTable(groupChatDto);
-            System.out.println(cheak2);
+           cheak2 = groupChatUsersDao.addGroupChatUsersTable(groupChatDto);
             return check && cheak2;
         } catch (Exception e) {
             e.printStackTrace();
@@ -55,16 +53,13 @@ public class GroupChatDao {
             preparedStatement = conn.prepareStatement(sql);
             ResultSet resultSet= preparedStatement.executeQuery();
             resultSet.next();
-            int id =resultSet.getInt(1);
-            System.out.println(id);
-            return id;
+            return resultSet.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return 0;
     }
 
-    // The only method that uses this method is in the GroupChatUsers to delete the dependency first
     public boolean deleteGroupChat(GroupChatDto groupChatDto) {
         try {
             conn = connector.getConnection();

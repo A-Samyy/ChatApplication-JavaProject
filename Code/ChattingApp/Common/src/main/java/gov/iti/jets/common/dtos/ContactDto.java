@@ -15,13 +15,11 @@ public class ContactDto implements Serializable {
     private int id;
     @NotEmpty
     private String friendName;
-    @NotNull
     private String Status;
-    @NotNull
     private String picture;
 
     public ContactDto() {
-        ValidationMaker.getInstance().validate(this);
+        //ValidationMaker.getInstance().validate(this);
     }
 
     public int getId() {
