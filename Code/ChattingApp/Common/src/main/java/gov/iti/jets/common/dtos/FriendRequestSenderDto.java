@@ -26,7 +26,6 @@ public class FriendRequestSenderDto implements Serializable {
     }
 
     public FriendRequestSenderDto() {
-        //ValidationMaker.getInstance().validate(this);
     }
 
     public int getSenderId() {

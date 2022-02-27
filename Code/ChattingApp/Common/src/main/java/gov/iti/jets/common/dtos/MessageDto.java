@@ -20,7 +20,6 @@ public class MessageDto implements Serializable {
     private int friendId;
 
     public MessageDto(){
-       // ValidationMaker.getInstance().validate(this);
     }
 
     public int getUserId() {

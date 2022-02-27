@@ -28,8 +28,6 @@ public class UpdateDto implements Serializable {
     private String status;
 
     public UpdateDto() {
-
-        //ValidationMaker.getInstance().validate(this);
     }
 
     public String getPhoneNumber() {

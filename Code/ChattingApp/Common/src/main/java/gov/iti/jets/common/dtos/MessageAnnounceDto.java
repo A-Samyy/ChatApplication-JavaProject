@@ -14,7 +14,6 @@ public class MessageAnnounceDto implements Serializable {
   //  @NotEmpty
     private final String sender ="Admin";
     public MessageAnnounceDto(){
-//        ValidationMaker.getInstance().validate(this);
     }
 
     public String getMessageContent() {

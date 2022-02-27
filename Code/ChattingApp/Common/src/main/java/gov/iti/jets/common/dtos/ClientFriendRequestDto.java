@@ -17,7 +17,7 @@ public class ClientFriendRequestDto implements Serializable {
     private String friendPhoneNumber;
 
     public ClientFriendRequestDto() {
-      //  ValidationMaker.getInstance().validate(this);
+
     }
 
     public int getUserId() {

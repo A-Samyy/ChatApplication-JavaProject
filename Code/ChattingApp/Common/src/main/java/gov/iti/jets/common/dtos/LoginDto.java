@@ -22,8 +22,6 @@ public class LoginDto implements Serializable {
     }
     public  LoginDto(String phoneNumber , String password){
         this(phoneNumber);
-        //    ValidationMaker.getInstance().validate(this);
-
         this.password=password;
     }
 

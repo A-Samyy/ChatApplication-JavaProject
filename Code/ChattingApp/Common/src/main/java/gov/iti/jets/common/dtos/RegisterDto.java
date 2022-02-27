@@ -27,8 +27,6 @@ public class RegisterDto implements Serializable {
     private String bio;
 
     public RegisterDto() {
-
-        //ValidationMaker.getInstance().validate(this);
     }
 
     public String getPhoneNumber() {

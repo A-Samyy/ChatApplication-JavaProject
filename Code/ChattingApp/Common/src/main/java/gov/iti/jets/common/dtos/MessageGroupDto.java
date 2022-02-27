@@ -16,7 +16,6 @@ public class MessageGroupDto implements Serializable {
     private int groupId ;
     private String senderName;
     public MessageGroupDto(){
-        //ValidationMaker.getInstance().validate(this);
     }
 
     public String getSenderName() {

@@ -15,7 +15,6 @@ public class GroupDto implements Serializable {
     private String groupName;
 
     public GroupDto() {
-      //  ValidationMaker.getInstance().validate(this);
     }
 
     public int getId() {

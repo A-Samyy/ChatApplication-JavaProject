@@ -70,10 +70,7 @@ public class LoginController1 implements Initializable {
 
         if ((userId > -1)){
             stageCoordinator.switchToPasswordScreen();
-        }else {
-            System.out.println("Please register Or youPass is invalid");
         }
-
         validationSupport.setValidationDecorator(new StyleClassValidationDecoration());
 
         validationSupport.setValidationDecorator(new CompoundValidationDecoration(

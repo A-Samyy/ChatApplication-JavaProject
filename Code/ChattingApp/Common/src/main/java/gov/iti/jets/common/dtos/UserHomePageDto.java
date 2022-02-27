@@ -19,7 +19,6 @@ public class UserHomePageDto implements Serializable {
     private String password;
     @NotNull
     private String name;
-
     private String gender;
     @Email
     private String email;
@@ -34,9 +33,7 @@ public class UserHomePageDto implements Serializable {
     private String status;
 
     public UserHomePageDto() {
-        //
-        // ValidationMaker.getInstance().validate(this);
-    }
+     }
 
     public String getStatus() {
         return status;

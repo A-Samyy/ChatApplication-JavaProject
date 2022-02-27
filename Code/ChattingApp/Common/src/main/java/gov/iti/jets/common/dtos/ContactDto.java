@@ -19,8 +19,7 @@ public class ContactDto implements Serializable {
     private String picture;
 
     public ContactDto() {
-        //ValidationMaker.getInstance().validate(this);
-    }
+       }
 
     public int getId() {
         return id;
