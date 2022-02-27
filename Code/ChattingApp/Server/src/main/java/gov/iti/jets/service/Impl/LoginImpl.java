@@ -15,7 +15,6 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Base64;
 
 public class LoginImpl extends UnicastRemoteObject implements LoginInt {
-
     UserDao userDao = new UserDao();
     private int userID;
 
@@ -24,19 +23,28 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
 
     @Override
     public int isPhoneNumberExist(LoginDto loginDto) throws RemoteException {
+
+
         if (ServerControlService.flag) {
-            this.userID = userDao.getUserIdByPhoneNumber(loginDto.getPhoneNumber());
-            return this.userID;
+            int userid = userDao.getUserIdByPhoneNumber(loginDto.getPhoneNumber());
+            if (!ServerGroupChatMessageImpl.clients.containsKey(userid)) {
+                this.userID=userid;
+                return this.userID;
+            }
+           else
+                return -1;
         }
         return -1;
     }
 
     @Override
     public String isPasswordValid() throws RemoteException {
+
         if (ServerControlService.flag) {
             return userDao.getUserPasswordById(this.userID);
         }
         return "stopped";
+
     }
 
     @Override
@@ -73,7 +81,7 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
             e.printStackTrace();
         }
         userDto.setStatus(Status.ACTIVE);
-         userHomePageDtoDto.setStatus(userDto.getStatus().name());
+        userHomePageDtoDto.setStatus(userDto.getStatus().name());
         userDao.updateUserDto(userDto);
         return userHomePageDtoDto;
     }

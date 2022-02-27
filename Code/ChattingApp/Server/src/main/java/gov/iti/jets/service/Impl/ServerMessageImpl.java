@@ -13,6 +13,7 @@ import java.util.Map;
 
 public class ServerMessageImpl extends UnicastRemoteObject implements ServerMessageInt {
     Map<Integer, ClientMesseageInt> clients = new HashMap<>();
+
     ChatBotService chatBotService = new ChatBotService();
     public ServerMessageImpl() throws RemoteException {
         super();
@@ -35,6 +36,7 @@ public class ServerMessageImpl extends UnicastRemoteObject implements ServerMess
             return false;
         }
     }
+
 
     @Override
     public boolean register(ClientMesseageInt clientMesseageInt, int userId) throws RemoteException {
