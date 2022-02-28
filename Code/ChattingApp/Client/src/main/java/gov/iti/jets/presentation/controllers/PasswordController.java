@@ -35,7 +35,7 @@ public class PasswordController implements Initializable {
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
     LoginService loginService = new LoginService();
-    RememberMeServices rememberMeServices ;
+    RememberMeServices rememberMeServices = RememberMeServices.getInstance() ;
     RMIRegister rmiRegister = RMIRegister.getInstance();
     ClientAnnounceMessageInt clientAnnounceMessageInt ;
     Preferences userInfo = Preferences.userNodeForPackage(getClass());
@@ -77,6 +77,8 @@ public class PasswordController implements Initializable {
                 loginService.getdata();
                 MessageService.getInstance();
                 stageCoordinator.switchToGHomePageScreen();
+//                rememberMeServices.setKey("userId");
+                rememberMeServices.setValue(LoginService.getId());
                 passwordTextField.setText("");
             } else {
             }

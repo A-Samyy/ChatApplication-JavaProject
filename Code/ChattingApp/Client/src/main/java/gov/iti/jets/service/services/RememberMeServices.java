@@ -3,21 +3,34 @@ package gov.iti.jets.service.services;
 import java.util.prefs.Preferences;
 
 public class RememberMeServices {
+    private static RememberMeServices rememberMeServices = new RememberMeServices();
     private Preferences userInfo = Preferences.userNodeForPackage(getClass());
-    private String key ;
+    private final String key ="userId";
     private int value;
 
-    public RememberMeServices() {
+    private RememberMeServices() {
+    }
+    public static RememberMeServices getInstance() {
+        return rememberMeServices;
     }
 
-    public RememberMeServices(String key , int value){
-        this.key=key;
-        this.value=value;
-        userInfo.putInt(this.key , this.value);
+    public int getUserInfoValue() {
+        return userInfo.getInt(this.key, 0);
     }
 
-    public int getUserIDValue(){
-        return userInfo.getInt(this.key , 0);
+    public String getKey() {
+        return key;
+    }
+
+public void removeUserInfo(){
+        this.userInfo.remove(this.key);
+}
+
+
+
+    public void setValue(int value) {
+        this.value = value;
+        userInfo.putInt(this.key, this.value);
     }
 
     public Preferences getUserInfo() {
@@ -26,21 +39,5 @@ public class RememberMeServices {
 
     public void setUserInfo(Preferences userInfo) {
         this.userInfo = userInfo;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
     }
 }
