@@ -8,6 +8,7 @@ public class FileRequestDto implements Serializable {
     private int senderId ;
     private int receiverId;
     private String fileName;
+    private String filePath;
 
 
     public String getFilePath() {
@@ -18,7 +19,6 @@ public class FileRequestDto implements Serializable {
         this.filePath = filePath;
     }
 
-    private String filePath;
 
     public FileRequestDto(){
     }
@@ -53,6 +53,7 @@ public class FileRequestDto implements Serializable {
                 "senderId=" + senderId +
                 ", receiverId=" + receiverId +
                 ", fileName='" + fileName + '\'' +
+                ", filePath='" + filePath + '\'' +
                 '}';
     }
 }

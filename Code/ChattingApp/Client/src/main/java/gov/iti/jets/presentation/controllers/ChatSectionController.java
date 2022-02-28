@@ -1,6 +1,9 @@
 package gov.iti.jets.presentation.controllers;
 
+import gov.iti.jets.common.dtos.FileRequestDto;
 import gov.iti.jets.common.dtos.MessageDto;
+import gov.iti.jets.common.interfaces.ServerFileRequestInt;
+import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
@@ -27,6 +30,8 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import org.kordamp.ikonli.javafx.FontIcon;
+
+import java.io.File;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.*;
@@ -40,6 +45,9 @@ public class ChatSectionController implements Initializable {
     MessageDao messageDao=new MessageDao(messageDto);
     UserModel userModel = modelFactory.getUserModel();
     MessageService messageService = MessageService.getInstance();
+    RMIRegister rmiRegister = RMIRegister.getInstance();
+    ServerFileRequestInt serverFileRequestInt = rmiRegister.serverFileRequestService();
+
     private ObservableList<HBox> messageObservableList;
     private Boolean messageReceived=false;
     @FXML
@@ -70,6 +78,7 @@ public class ChatSectionController implements Initializable {
     private AnchorPane topBar;
 
 
+
     public ChatSectionController() throws RemoteException {
     }
 
@@ -79,7 +88,20 @@ public class ChatSectionController implements Initializable {
 
     @FXML
     void onAddAttachmentMouseClicked(MouseEvent event) {
-        FileChooser fileChooser= new FileChooser();
+        FileChooser openFileChooser = new FileChooser();
+        File file = openFileChooser.showOpenDialog(null);
+        FileRequestDto fileRequestDto = new FileRequestDto();
+        if(file != null){
+            fileRequestDto.setFileName(file.getName());
+            fileRequestDto.setSenderId(LoginService.getId());
+            fileRequestDto.setFilePath(file.getPath());
+            fileRequestDto.setReceiverId(friendId);
+            try {
+                System.out.println(serverFileRequestInt.getNewRequest(fileRequestDto));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
     }
     @FXML
     void onTypingEnter(KeyEvent event) {

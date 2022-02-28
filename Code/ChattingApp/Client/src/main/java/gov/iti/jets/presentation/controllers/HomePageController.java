@@ -23,7 +23,6 @@ public class HomePageController implements Initializable {
     UserModel userModel = modelFactory.getUserModel();
     RMIRegister rmiRegister = RMIRegister.getInstance();
     ServerGroupChatMessageInt serverGroupChatMessage = rmiRegister.groupChatMessageService();
-    ServerFileRequestInt serverFileRequestInt = rmiRegister.serverFileRequestService();
     ClientFileRequestInt clientFileRequestInt;
 
     {
@@ -45,18 +44,5 @@ public class HomePageController implements Initializable {
         stageCoordinator.setHomepage(gridPane);
         gridPane.add(stageCoordinator.loadSidebar(), 0, 0);
         gridPane.add(stageCoordinator.loadDefault(), 1, 0);
-
-        if(LoginService.getId()==4){
-            fileRequestDto.setFileName("new.pdf");
-            fileRequestDto.setFilePath("README.md");
-            fileRequestDto.setSenderId(LoginService.getId());
-            fileRequestDto.setReceiverId(2);
-            try {
-                System.out.println(serverFileRequestInt.getNewRequest(this.fileRequestDto));
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        }
-
     }
 }

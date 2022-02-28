@@ -6,8 +6,11 @@ import gov.iti.jets.common.interfaces.ServerFileRequestInt;
 import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.service.services.FileTransferService;
 import gov.iti.jets.service.services.LoginService;
+import javafx.stage.FileChooser;
 
-import java.io.IOException;
+import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -19,6 +22,8 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
     private ServerFileRequestInt serverFileRequestInt = rmiRegister.serverFileRequestService();
     private FileRequestDto fileRequestDto=new FileRequestDto();
     FileTransferService fileTransferService = new FileTransferService();
+    private static DataOutputStream dataOutputStream = null;
+    private static DataInputStream dataInputStream = null;
     boolean outsideRequestResponse;
     public static List<FileRequestDto> fileRequestDtos = new ArrayList<>();
 
@@ -32,7 +37,17 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
     public boolean receiveMyRequest(FileRequestDto fileRequestDto) throws RemoteException {
         try {
             System.out.println("FileTransferService to send the file last stop before sending file");
-            //FileTransferService.sendFile(fileRequestDto.getFilePath());
+            try(Socket socket = new Socket("localhost",8877)) {
+                dataInputStream = new DataInputStream(socket.getInputStream());
+                dataOutputStream = new DataOutputStream(socket.getOutputStream());
+                System.out.println("sending file ");
+                sendFile(fileRequestDto.getFilePath());
+                System.out.println("File sended");
+                dataInputStream.close();
+                dataInputStream.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,14 +72,58 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
     }
 
     public boolean sendResponseRequest(FileRequestDto fileRequestDto) {
+        //   FileChooser openFileChooser = new FileChooser();
+        //   File file = openFileChooser.showSaveDialog(null);
         // //ONlY on accepting request from controller
+        fileRequestDtos.remove(fileRequestDto);
         try {
-            fileRequestDtos.remove(fileRequestDto);
-            //FileTransferService.receiveFile(fileRequestDto.getFileName());
+            new Thread(() -> {
+                try(ServerSocket serverSocket = new ServerSocket(8877)){
+                    System.out.println("listening to port:5000");
+                    Socket clientSocket = serverSocket.accept();
+                    System.out.println(clientSocket+" connected.");
+                    dataInputStream = new DataInputStream(clientSocket.getInputStream());
+                    dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
+                    receiveFile(fileRequestDto.getFileName());
+                    dataInputStream.close();
+                    dataOutputStream.close();
+                    clientSocket.close();
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }).start();
             serverFileRequestInt.acceptingFileRequest(fileRequestDto);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public static void sendFile(String path) throws Exception{
+        int bytes = 0;
+        File file = new File(path);
+        FileInputStream fileInputStream = new FileInputStream(file);
+        // send file size
+        dataOutputStream.writeLong(file.length());
+        // break file into chunks
+        byte[] buffer = new byte[4*1024];
+        while ((bytes=fileInputStream.read(buffer))!=-1){
+            dataOutputStream.write(buffer,0,bytes);
+            dataOutputStream.flush();
+        }
+        fileInputStream.close();
+    }
+
+    public static void receiveFile(String fileName) throws IOException {
+        int bytes = 0;
+        FileOutputStream fileOutputStream = new FileOutputStream(fileName);
+
+        long size = dataInputStream.readLong();     // read file size
+        byte[] buffer = new byte[4*1024];
+        while (size > 0 && (bytes = dataInputStream.read(buffer, 0, (int)Math.min(buffer.length, size))) != -1) {
+            fileOutputStream.write(buffer,0,bytes);
+            size -= bytes;      // read upto file size
+        }
+        fileOutputStream.close();
     }
 }
