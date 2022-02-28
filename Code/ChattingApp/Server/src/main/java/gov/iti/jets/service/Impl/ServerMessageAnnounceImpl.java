@@ -13,9 +13,9 @@ import java.util.List;
 import java.util.Map;
 
 public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements ServerMessageAnnouncetInt {
-
+    static int index = 0;
     private List<ClientAnnounceMessageInt> clientAnnounceMessageIntList = new ArrayList<>();
-    private static MessageAnnounceDto messageAnnounceDto=new MessageAnnounceDto();
+    private static List<String> listMessageAnnounceDto= new ArrayList<>();
 
 
     public ServerMessageAnnounceImpl() throws RemoteException {
@@ -24,17 +24,21 @@ public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements Se
     }
 
     public  void getMessageAnnounceDto(MessageAnnounceDto messageAnnounceDto){
+        System.out.println("messageDto in get yarab "+messageAnnounceDto.getMessageContent());
+        listMessageAnnounceDto.add(messageAnnounceDto.getMessageContent());
+        for(String messageAnnounceDto1 :listMessageAnnounceDto){
+            System.out.println("messageDto in get"+messageAnnounceDto1);
 
-        this.messageAnnounceDto=messageAnnounceDto;
-        System.out.println("messageDto in get"+messageAnnounceDto.getMessageContent());
+        }
+        index++;
     }
 
     @Override
     public boolean getMessage() throws RemoteException {
-        if(messageAnnounceDto.getMessageContent()==null){
+        if(listMessageAnnounceDto.isEmpty()){
             return false;
         }else{
-            sendMessage(messageAnnounceDto);
+            sendMessage(listMessageAnnounceDto);
             return true;
         }
 
@@ -50,11 +54,11 @@ public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements Se
     public boolean unRegister(ClientAnnounceMessageInt clientAnnounceMessageInt) throws RemoteException {
         return false;
     }
-    public boolean sendMessage(MessageAnnounceDto messageAnnounceDto){
-
+    public boolean sendMessage(List<String> messageAnnounceDto){
+                System.out.println(clientAnnounceMessageIntList.size());
             for(ClientAnnounceMessageInt client : clientAnnounceMessageIntList){
 
-                    System.out.println("messageContent in get Message Impl"+ messageAnnounceDto.getMessageContent());
+//                    System.out.println("messageContent in get Message Impl "+ messageAnnounceDto.getMessageContent());
                 try {
 
                     client.reciveMessage(messageAnnounceDto);

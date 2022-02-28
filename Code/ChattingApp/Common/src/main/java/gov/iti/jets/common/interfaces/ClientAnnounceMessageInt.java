@@ -8,7 +8,8 @@ import gov.iti.jets.common.dtos.MessageGroupDto;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
 
 public interface ClientAnnounceMessageInt extends Remote {
-    public void reciveMessage(MessageAnnounceDto messageAnnounceDto) throws RemoteException;
+    public void reciveMessage(List<String> messageAnnounceDto) throws RemoteException;
 }

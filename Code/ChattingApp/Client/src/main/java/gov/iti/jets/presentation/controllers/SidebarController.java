@@ -150,16 +150,19 @@ public class SidebarController implements Initializable {
     void getNotification(){
         SettingAreaVbox.getChildren().clear();
         try {
+            System.out.println(serverMessageAnnouncetInt.getMessage());
+            if(serverMessageAnnouncetInt.getMessage()){
+                SettingAreaVbox.getChildren().add(stageCoordinator.loadAdminMessageNotification());
+            }
+            System.out.println(!friendRequestService.getFriendRequestsNotifcation().isEmpty());
             if(!friendRequestService.getFriendRequestsNotifcation().isEmpty()){
                 for(FriendRequestSenderDto friendRequestSenderDto : friendRequestService.getFriendRequestsNotifcation()){
-                    System.out.println(friendRequestSenderDto);
+
                     SettingAreaVbox.getChildren().add(stageCoordinator.loadFriendRequest(friendRequestSenderDto.getSenderName(),friendRequestSenderDto));
 
                 }
             }
-            if(serverMessageAnnouncetInt.getMessage()){
-               SettingAreaVbox.getChildren().add(stageCoordinator.loadAdminMessageNotification());
-            }
+
 
 
         } catch (RemoteException e) {

@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -19,9 +20,13 @@ public class MessageAdminController implements Initializable {
 
     @FXML
     void onMessageAdminClicked(MouseEvent event) {
-        List<String> messagesFromAdmin = ClientAnnounceImpl.messagesFromAdmin;
-        stageCoordinator.loadAdminMessageContainer(messagesFromAdmin);
-//        ClientAnnounceImpl.messagesFromAdmin.clear();
+
+        try {
+            stageCoordinator.loadAdminMessageContainer(ClientAnnounceImpl.messagesFromAdmin);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

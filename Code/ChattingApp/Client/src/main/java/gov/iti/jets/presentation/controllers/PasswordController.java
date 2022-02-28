@@ -75,6 +75,7 @@ public class PasswordController implements Initializable {
                 loginService.getdata();
                 MessageService.getInstance();
                 stageCoordinator.switchToGHomePageScreen();
+                passwordTextField.setText("");
             } else {
                 System.out.println("Password is not Correct");
             }

@@ -1,5 +1,7 @@
 package gov.iti.jets.presentation.controllers;
 
+import gov.iti.jets.service.impl.ClientAnnounceImpl;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
@@ -24,5 +26,10 @@ public class AdminMessageContainerController implements Initializable {
         for (String message:messagesFromAdmin) {
             adminMessageListView.getItems().add(message);
         }
+    }
+    public void shutdown() {
+        System.out.println("Stop");
+        ClientAnnounceImpl.messagesFromAdmin.clear();
+        adminMessageListView.getItems().clear();
     }
 }

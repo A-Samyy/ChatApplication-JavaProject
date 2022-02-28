@@ -25,11 +25,11 @@ public class ClientAnnounceImpl extends UnicastRemoteObject implements ClientAnn
     }
 
     @Override
-    public void reciveMessage(MessageAnnounceDto messageAnnounceDto) throws RemoteException {
-//        System.out.println(messageAnnounceDto.toString());
-        messagesFromAdmin.add(messageAnnounceDto.getMessageContent());
-        for (String message:messagesFromAdmin ) {
-            System.out.println("message="+message);
+    public void reciveMessage(List<String> messageAnnounceDto) throws RemoteException {
+        for (String message:messageAnnounceDto ) {
+                    System.out.println(message);
+
+            messagesFromAdmin.add( message);
         }
 
     }

@@ -28,7 +28,7 @@ public class RMICreateRegister {
 //            try{
 //                registry = LocateRegistry.getRegistry(7008);
 //            }catch(Exception e){
-                registry = LocateRegistry.getRegistry(7001);
+                registry = LocateRegistry.getRegistry(7002);
 //            }
 
             registry.rebind("RegisterService",register);

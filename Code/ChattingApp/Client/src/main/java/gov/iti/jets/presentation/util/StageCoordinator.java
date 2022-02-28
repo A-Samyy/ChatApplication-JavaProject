@@ -346,17 +346,21 @@ public class StageCoordinator {
         addNewContact.show();
     }
 
-    public void loadAdminMessageContainer(List<String> messagesFromAdmin) {
+    public void loadAdminMessageContainer(List<String> messagesFromAdmin) throws IOException {
         System.out.println(messagesFromAdmin.size());
         Stage addAdminMessageContainer = new Stage();
+        AdminMessageContainerController adminMessageController ;
+        FXMLLoader loader = new FXMLLoader();
         Parent addAdminMessage = null;
         try {
 
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/views/AdminMessageNotification/adminMessages.fxml"));
 
+            loader.setLocation(getClass().getResource("/views/AdminMessageNotification/adminMessages.fxml"));
+        } catch (Exception e) {
+            System.out.println("File Not Found Exception");
+        }
             addAdminMessage = loader.load();
-            AdminMessageContainerController adminMessageController = ( AdminMessageContainerController) loader.getController();
+            adminMessageController = ( AdminMessageContainerController) loader.getController();
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
@@ -364,12 +368,14 @@ public class StageCoordinator {
                     adminMessageController.displayMessage(messagesFromAdmin);
                 }
             });
-        } catch (Exception e) {
-            System.out.println("File Not Found Exception");
-        }
+
         Scene scene = new Scene(addAdminMessage);
         addAdminMessageContainer.setScene(scene);
         addAdminMessageContainer.setTitle("Add New Contact");
+        addAdminMessageContainer.setTitle("Add New Contact");
+        addAdminMessageContainer.setOnHidden(e -> {
+            adminMessageController.shutdown();
+        });
         addAdminMessageContainer.show();
     }
 

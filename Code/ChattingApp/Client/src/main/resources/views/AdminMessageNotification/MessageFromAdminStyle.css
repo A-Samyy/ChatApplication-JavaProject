@@ -1,10 +1,10 @@
-.root{
-    -fx-background-color: #1e1836; 
+//.root{
+ //   -fx-background-color:  #2f2a57; 
    
-}
+//}
 
 
 
-#adminMessage :hover{
--fx-text-fill:#2f2a57;
-}
+//#adminMessage :hover{
+//-fx-text-fill:#2f2a57;
+//}

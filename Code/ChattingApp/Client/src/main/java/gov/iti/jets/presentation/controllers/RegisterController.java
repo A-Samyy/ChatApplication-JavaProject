@@ -275,13 +275,6 @@ public class RegisterController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         validationSupport.setErrorDecorationEnabled(true);
         addCountryChoiceBox();
-        phoneNumberTextField.textProperty().bindBidirectional(userModel.phoneNumberProperty());
-        fullNameTextField.textProperty().bindBidirectional(userModel.userNameProperty());
-        emailTextField.textProperty().bindBidirectional(userModel.emailProperty());
-        passwordTextField.textProperty().bindBidirectional(userModel.passwordProperty());
-        bioTextArea.textProperty().bindBidirectional(userModel.bioProperty());
-        //country
-        countryChoiceBox.valueProperty().bindBidirectional(userModel.countryProperty());
         passwordTextField.setText("");
         confirmPasswordTextField.setText("");
     }

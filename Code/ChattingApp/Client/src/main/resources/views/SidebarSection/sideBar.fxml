@@ -200,7 +200,11 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <VBox fx:id="SettingAreaVbox" prefHeight="407.0" prefWidth="349.0" AnchorPane.bottomAnchor="-18.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="-18.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <content>
+                              <VBox fx:id="SettingAreaVbox" prefHeight="407.0" prefWidth="349.0" spacing="3.0" />
+                           </content>
+                        </ScrollPane>
                      </children>
                   </AnchorPane>
                </content>
