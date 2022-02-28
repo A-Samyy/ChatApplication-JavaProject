@@ -43,6 +43,8 @@ public class SidebarController implements Initializable {
     FriendRequestService friendRequestService = new FriendRequestService();
     GroupListService groupListService = new GroupListService();
     ServerMessageAnnouncetInt serverMessageAnnouncetInt = rmiRegister.serverMessageAnnouncetInt();
+    LogoutService logoutService =new LogoutService();
+
     @FXML
     private Tab Contacts;
 
@@ -106,6 +108,7 @@ public class SidebarController implements Initializable {
 
     @FXML
     void logoutOnMouseClick(MouseEvent event) {
+        logoutService.logout();
         stageCoordinator.switchToLoginScreen();
     }
 

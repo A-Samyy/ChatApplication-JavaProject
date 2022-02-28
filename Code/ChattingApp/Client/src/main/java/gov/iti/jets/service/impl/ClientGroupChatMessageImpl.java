@@ -17,27 +17,33 @@ import java.util.Map;
 
 public class ClientGroupChatMessageImpl extends UnicastRemoteObject implements ClientGroupChatMessageInt {
 
-    private RMIRegister rmiRegister=RMIRegister.getInstance();
+    private RMIRegister rmiRegister = RMIRegister.getInstance();
     private ServerGroupChatMessageInt serverGroupChatMessageInt;
     static public List<MessageGroupDto> groupMessages = new ArrayList<>();
     static public Map<Integer, List<MessageGroupDto>> mapForGroup = new HashMap<>();
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
+    static ClientGroupChatMessageImpl clientGroupChatMessage;
+
+    public static ClientGroupChatMessageImpl getClientGroupChatMessage() {
+        return clientGroupChatMessage;
+    }
 
     public ClientGroupChatMessageImpl() throws RemoteException {
         super();
-        serverGroupChatMessageInt=rmiRegister.groupChatMessageService();
+        serverGroupChatMessageInt = rmiRegister.groupChatMessageService();
         serverGroupChatMessageInt.register(this, LoginService.getId());
+        clientGroupChatMessage=this;
     }
 
     @Override
     public boolean receiveGroupChatMessage(MessageGroupDto messageGroupDto) throws RemoteException {
         groupMessages.add(messageGroupDto);
-        mapForGroup.put(messageGroupDto.getGroupId(),groupMessages);
-        if(stageCoordinator.getGroupChatSectionController().get(messageGroupDto.getGroupId()) != null){
+        mapForGroup.put(messageGroupDto.getGroupId(), groupMessages);
+        if (stageCoordinator.getGroupChatSectionController().get(messageGroupDto.getGroupId()) != null) {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    stageCoordinator.getGroupChatSectionController().get(messageGroupDto.getGroupId()).displayGroupMessage(messageGroupDto.getGroupId(),groupMessages);
+                    stageCoordinator.getGroupChatSectionController().get(messageGroupDto.getGroupId()).displayGroupMessage(messageGroupDto.getGroupId(), groupMessages);
 
                 }
             });
