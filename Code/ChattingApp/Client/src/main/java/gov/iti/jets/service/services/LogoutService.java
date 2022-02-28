@@ -31,8 +31,6 @@ public class LogoutService {
             serverMessageAnnouncetInt.unRegister(ClientAnnounceImpl.getClientAnnounce());
             serverGroupChatMessageInt.unregister(ClientGroupChatMessageImpl.getClientGroupChatMessage(),userId);
             serverFileRequestInt.unRegister(ClientFileRequestImpl.getClientFileRequest(), userId);
-            messageService.list.clear();
-            messageService.list1.clear();
             messageService.getClient().removeMe();
         } catch (RemoteException e) {
             e.printStackTrace();

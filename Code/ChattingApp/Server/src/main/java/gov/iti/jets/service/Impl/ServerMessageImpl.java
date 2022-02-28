@@ -27,6 +27,7 @@ public class ServerMessageImpl extends UnicastRemoteObject implements ServerMess
                 sendMessage(messageDto);
                 return true;
             } else {
+                System.out.println(messageDto.getFriendId()+" exist ? "+ clients.containsKey(messageDto.getFriendId()));
                 MessageDto messageBot = new MessageDto();
                 messageBot.setFriendId(messageDto.getUserId());
                 messageBot.setUserName("Mr.ChatBot");
@@ -42,13 +43,18 @@ public class ServerMessageImpl extends UnicastRemoteObject implements ServerMess
 
     @Override
     public boolean register(ClientMesseageInt clientMesseageInt, int userId) throws RemoteException {
-        clients.put(userId, clientMesseageInt);
-        return clients.containsKey(userId);
+        if(!clients.containsKey(userId)) {
+            clients.put(userId, clientMesseageInt);
+            return clients.containsKey(userId);
+        }return false;
     }
 
     @Override
     public boolean unRegister(ClientMesseageInt clientMesseageInt, int userId) throws RemoteException {
-        return clients.remove(userId, clientMesseageInt);
+        if (clients.containsKey(userId)) {
+            return clients.remove(userId, clientMesseageInt);
+        }
+        return false;
     }
 
     private boolean sendChatBotMessage(MessageDto messageBot) {

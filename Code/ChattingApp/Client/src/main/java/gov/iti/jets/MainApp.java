@@ -23,8 +23,8 @@ public class MainApp extends Application {
 
     @Override
     public void stop() throws Exception {
-        MessageService messageService = MessageService.getInstance();
-        messageService.getClient().removeMe();
+//        MessageService messageService = MessageService.getInstance();
+//        messageService.getClient().removeMe();
         LogoutService logoutService =new LogoutService();
         logoutService.logout();
         super.stop();

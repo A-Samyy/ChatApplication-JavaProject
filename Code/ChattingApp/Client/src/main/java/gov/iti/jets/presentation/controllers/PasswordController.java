@@ -1,10 +1,15 @@
 package gov.iti.jets.presentation.controllers;
 
 import gov.iti.jets.common.interfaces.ClientAnnounceMessageInt;
+import gov.iti.jets.common.interfaces.ClientFileRequestInt;
 import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
+import gov.iti.jets.service.impl.ClientAnnounceImpl;
+import gov.iti.jets.service.impl.ClientFileRequestImpl;
+import gov.iti.jets.service.impl.ClientGroupChatMessageImpl;
+import gov.iti.jets.service.impl.ClientMessageImpl;
 import gov.iti.jets.service.services.LoginService;
 import gov.iti.jets.service.services.MessageService;
 import javafx.event.ActionEvent;
@@ -34,9 +39,11 @@ public class PasswordController implements Initializable {
     UserModel userModel = modelFactory.getUserModel();
     LoginService loginService = new LoginService();
     RMIRegister rmiRegister = RMIRegister.getInstance();
-    ClientAnnounceMessageInt clientAnnounceMessageInt ;
     ValidationSupport validationSupport=new ValidationSupport();
-
+    ClientAnnounceMessageInt clientAnnounceMessageInt ;
+    ClientMessageImpl clientMessage ;
+    ClientGroupChatMessageImpl clientGroupChatMessageInt;
+    ClientFileRequestInt clientFileRequestInt;
     @FXML
     private FontIcon backArrow;
 
@@ -71,7 +78,7 @@ public class PasswordController implements Initializable {
         if(!loginService.getPassword().equals("stopped")) {
             if (userPassword.equals(userPass)) {
                 loginService.getdata();
-                MessageService.getInstance();
+                registerme();
                 stageCoordinator.switchToGHomePageScreen();
                 passwordTextField.setText("");
             } else {
@@ -89,7 +96,17 @@ public class PasswordController implements Initializable {
 
 
     }
-
+private void registerme(){
+    try {
+        clientFileRequestInt = new ClientFileRequestImpl();
+        clientAnnounceMessageInt = new ClientAnnounceImpl();
+        clientMessage = new ClientMessageImpl();
+        MessageService.getInstance().setClient(clientMessage);
+        clientGroupChatMessageInt = new ClientGroupChatMessageImpl();
+    } catch (RemoteException e) {
+        e.printStackTrace();
+    }
+}
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
