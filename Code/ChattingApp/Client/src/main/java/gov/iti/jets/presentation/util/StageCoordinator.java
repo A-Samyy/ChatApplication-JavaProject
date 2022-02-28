@@ -220,6 +220,28 @@ public class StageCoordinator {
         addNewGroup.show();
     }
 
+    public void loadProgressBar() {
+        Stage progressBarStage= new Stage();
+        Pane progessBarPane = null;
+        try {
+            progessBarPane = FXMLLoader.load(getClass().getResource("/views/progressBar/progressBar.fxml"));
+        } catch (Exception e) {
+        }
+        Scene scene = new Scene(progessBarPane);
+        progressBarStage.setScene(scene);
+        progressBarStage.setTitle("File transfer progress");
+        progressBarStage.show();
+    }
+
+
+
+
+
+
+
+
+
+
     public Node loadSidebar() {
         Node sidebar = null;
         try {
