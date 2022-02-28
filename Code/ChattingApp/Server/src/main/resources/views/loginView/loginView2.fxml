@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -23,12 +25,12 @@
          <children>
             <AnchorPane fx:id="loginPaneContent" prefWidth="372.0">
                <children>
-                  <Label fx:id="welcome" layoutX="51.0" layoutY="55.0" prefHeight="31.0" prefWidth="246.0" text="WELCOME ADMIN " textFill="#400080" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="53.0">
+                  <Label fx:id="welcome" layoutX="68.0" layoutY="72.0" prefHeight="31.0" prefWidth="246.0" text="WELCOME ADMIN " textFill="#400080" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="36.0">
                      <font>
                         <Font name="Arial Bold" size="30.0" />
                      </font>
                   </Label>
-                  <Button fx:id="loginButton" layoutX="81.0" layoutY="250.0" mnemonicParsing="false" onAction="#OnLoginAction" prefHeight="42.0" prefWidth="214.0" text="Login" textFill="WHITE" AnchorPane.leftAnchor="81.0" AnchorPane.rightAnchor="81.39999999999998">
+                  <Button fx:id="loginButton" layoutX="83.0" layoutY="248.0" mnemonicParsing="false" onAction="#OnLoginAction" prefHeight="42.0" prefWidth="214.0" text="Login" textFill="WHITE" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="79.39999999999998">
                      <font>
                         <Font name="System Bold" size="19.0" />
                      </font>
@@ -37,16 +39,21 @@
                      </cursor>
                   </Button>
                   <Label fx:id="phoneNumberError" layoutX="40.0" layoutY="207.0" prefHeight="17.0" prefWidth="178.0" textAlignment="CENTER" textFill="#ea0000" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="158.4" />
-                  <TextField fx:id="AdminIDTextField" layoutX="38.0" layoutY="115.0" prefHeight="43.0" prefWidth="273.0" promptText="Enter Name">
+                  <TextField fx:id="AdminIDTextField" layoutX="53.0" layoutY="116.0" prefHeight="43.0" prefWidth="273.0" promptText="Enter Name">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </TextField>
-                  <PasswordField fx:id="AdminPasswordTextField" layoutX="40.0" layoutY="185.0" prefHeight="43.0" prefWidth="274.0" promptText="EnterPassword" styleClass="numfield">
+                  <PasswordField fx:id="AdminPasswordTextField" layoutX="52.0" layoutY="185.0" prefHeight="43.0" prefWidth="274.0" promptText="EnterPassword" styleClass="numfield">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </PasswordField>
+                  <ImageView fitHeight="62.0" fitWidth="74.0" layoutX="148.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="148.0" AnchorPane.rightAnchor="153.2">
+                     <image>
+                        <Image url="@cat.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>

@@ -4,7 +4,7 @@
   }
  
  #sideBar{
- 
+   
      -fx-background-color: #2f2a57;
  }
  
@@ -12,7 +12,7 @@
  
         -fx-background-color: rgba(39, 40, 119, 0.103);  
         -fx-background-radius: 50px;
-     -fx-text-fill:white ;
+     -fx-text-fill:#ffffff ;
  }
  
  .chatBar{
@@ -40,7 +40,7 @@
  }
  
  .text-field {
-   -fx-background-radius: 50px 0px 0px 50px;
+   -fx-background-radius: 50px ;
  }
  
  #tabPane{

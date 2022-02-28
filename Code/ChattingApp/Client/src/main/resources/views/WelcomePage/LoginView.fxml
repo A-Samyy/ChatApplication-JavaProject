@@ -4,14 +4,19 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="706.0" stylesheets="@loginStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.WelcomeController">
    <children>
       <AnchorPane fx:id="loginContent" layoutX="-7.0" prefHeight="482.0" prefWidth="715.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="195.0" layoutY="-19.0" prefHeight="521.0" prefWidth="400.0" text="With our app your friends are closer than you think!! " textOverrun="CENTER_ELLIPSIS" wrapText="true" AnchorPane.bottomAnchor="-20.0" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="-19.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="195.0" layoutY="329.0" prefHeight="32.0" prefWidth="319.0" text=" Join Us NOW!!" textOverrun="CENTER_ELLIPSIS" wrapText="true" AnchorPane.bottomAnchor="121.0" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="201.0" AnchorPane.topAnchor="329.0">
                <font>
                   <Font name="Andalus" size="12.0" />
                </font>
@@ -19,19 +24,11 @@
                   <Insets left="20.0" right="20.0" />
                </padding>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="292.0" prefHeight="54.0" prefWidth="400.0" text=" So Join Us NOW!!" textOverrun="CENTER_ELLIPSIS" wrapText="true" AnchorPane.bottomAnchor="135.60000000000002" AnchorPane.leftAnchor="132.0" AnchorPane.rightAnchor="183.0" AnchorPane.topAnchor="292.0">
-               <font>
-                  <Font name="Andalus" size="12.0" />
-               </font>
-               <padding>
-                  <Insets left="20.0" right="20.0" />
-               </padding>
-            </Label>
-            <Button fx:id="loginButton" layoutX="249.99999999999997" layoutY="370.0" mnemonicParsing="false" onAction="#OnLoginAction" prefHeight="54.0" prefWidth="214.0" text="LOGIN" AnchorPane.bottomAnchor="57.60000000000002" AnchorPane.rightAnchor="250.60000000000002">
+            <Button fx:id="loginButton" layoutX="249.99999999999997" layoutY="378.0" mnemonicParsing="false" onAction="#OnLoginAction" prefHeight="54.0" prefWidth="214.0" text="LOGIN" AnchorPane.bottomAnchor="49.60000000000002" AnchorPane.rightAnchor="250.60000000000002">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Label fx:id="createbutton" layoutX="284.0" layoutY="437.0" onMouseClicked="#OnRegestrationAction" prefHeight="32.0" prefWidth="148.0" text="Create Account?" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="283.0">
+            <Label fx:id="createbutton" layoutX="284.0" layoutY="442.0" onMouseClicked="#OnRegestrationAction" prefHeight="32.0" prefWidth="148.0" text="Create Account?" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="283.0">
                <padding>
                   <Insets bottom="10.0" />
                </padding>
@@ -39,6 +36,21 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
+            <GridPane layoutX="2.0" layoutY="41.0" prefHeight="368.0" prefWidth="721.0" AnchorPane.bottomAnchor="73.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="-8.0" AnchorPane.topAnchor="41.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="384.0" fitWidth="236.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="@catWelcome.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </GridPane>
          </children>
       </AnchorPane>
    </children>

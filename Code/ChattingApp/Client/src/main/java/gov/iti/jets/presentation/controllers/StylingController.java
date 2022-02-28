@@ -79,6 +79,7 @@ public class StylingController implements Initializable {
         COLOR = colorCss+color;
         messageStyleModel.setStyle(COLOR+";"+FAMILY+";"+STYLE+";"+SIZE);
         sampleField.setStyle(COLOR+";"+FAMILY+";"+STYLE+";"+SIZE);
+        fontColorField.setText(fontColor.getValue().toString());
     }
 
     @FXML
@@ -88,7 +89,7 @@ public class StylingController implements Initializable {
         FAMILY = familyCss+family;
         messageStyleModel.setStyle(COLOR+";"+FAMILY+";"+STYLE+";"+SIZE);
         sampleField.setStyle(COLOR+";"+FAMILY+";"+STYLE+";"+SIZE);
-
+       fontFamilyField.setText(fontFamily.getValue());
     }
 
     @FXML
@@ -98,6 +99,7 @@ public class StylingController implements Initializable {
         SIZE = sizeCss+size;
         messageStyleModel.setStyle(COLOR+";"+FAMILY+";"+STYLE+";"+SIZE);
         sampleField.setStyle(COLOR+";"+FAMILY+";"+STYLE+";"+SIZE);
+        fontSizeField.setText(fontSize.getValue().toString());
     }
 
     @FXML
@@ -107,6 +109,7 @@ public class StylingController implements Initializable {
         STYLE = styleCss+style;
         messageStyleModel.setStyle(COLOR+";"+FAMILY+";"+STYLE+";"+SIZE);
         sampleField.setStyle(COLOR+";"+FAMILY+";"+STYLE+";"+SIZE);
+        fontStyleField.setText(fontStyle.getValue());
     }
 
     @Override
@@ -117,5 +120,10 @@ public class StylingController implements Initializable {
         fontSize.setItems(sizeFont);
         fontStyle.setItems(styleFont);
         fontFamily.setItems(familyFont);
+
+
+
+
+
     }
 }

@@ -53,9 +53,12 @@ public class ChatSectionController implements Initializable {
     private ObservableList<HBox> messageObservableList;
     private Boolean messageReceived=false;
     private String textFieldColor;
+    Tooltip fileTip = new Tooltip("Send File");
+    Tooltip styleTip= new Tooltip("change Message Style");
 
-    @FXML
-    private ColorPicker colorPicker;
+
+
+
     @FXML
     private AnchorPane bottomBar;
 
@@ -83,7 +86,11 @@ public class ChatSectionController implements Initializable {
     @FXML
     private AnchorPane topBar;
 
+    @FXML
+    private FontIcon styleButton;
 
+    @FXML
+    private Label changeStyleLabel;
 
     public ChatSectionController() throws RemoteException {
     }
@@ -110,15 +117,10 @@ public class ChatSectionController implements Initializable {
         }
     }
 
-    @FXML
-    void onColorChange(ActionEvent event) {
-        messageTextField.setStyle("-fx-text-fill:#"+colorPicker.getValue().toString().substring(2));
-        System.out.println("color:"+"-fx-text-fill:#"+colorPicker.getValue().toString().substring(2));
-        textFieldColor="-fx-text-fill:#"+colorPicker.getValue().toString().substring(2);
-    }
+
 
     @FXML
-    void OnChangingStyle(ActionEvent event) {
+    void OnChangingStyle(MouseEvent event) {
         StylingController stylingController = stageCoordinator.loadStyling();
 
         messageTextField.setStyle(messageStyleModel.getStyle());
@@ -206,6 +208,10 @@ public class ChatSectionController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         messageTextField.styleProperty().bindBidirectional(messageStyleModel.styleProperty());
         chatContainer.setCellFactory(messageListView -> new MessageListViewCell());
+        Tooltip.install(filesButton, fileTip);
+        Tooltip.install(changeStyleLabel, styleTip);
+        fileTip.setStyle("-fx-background-color: #2f2a57af; -fx-font-size: 14px;-fx-text-fill:#ffffff ;");
+        styleTip.setStyle("-fx-background-color: #2f2a57af; -fx-font-size: 14px;-fx-text-fill:#ffffff ;");
     }
 
     private class MessageListViewCell extends ListCell<MessageDto> {
