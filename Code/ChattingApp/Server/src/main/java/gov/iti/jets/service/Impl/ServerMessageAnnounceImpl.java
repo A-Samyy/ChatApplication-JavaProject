@@ -50,7 +50,8 @@ public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements Se
     }
     @Override
     public boolean unRegister(ClientAnnounceMessageInt clientAnnounceMessageInt) throws RemoteException {
-        return false;
+        return  clientAnnounceMessageIntList.remove(clientAnnounceMessageInt);
+
     }
     public boolean sendMessage(List<String> messageAnnounceDto){
                 System.out.println(clientAnnounceMessageIntList.size());

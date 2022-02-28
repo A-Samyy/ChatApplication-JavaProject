@@ -2,6 +2,7 @@ package gov.iti.jets;
 
 import gov.iti.jets.networking.FileServer;
 import gov.iti.jets.presentation.util.StageCoordinator;
+import gov.iti.jets.service.services.LogoutService;
 import gov.iti.jets.service.services.MessageService;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -24,6 +25,8 @@ public class MainApp extends Application {
     public void stop() throws Exception {
         MessageService messageService = MessageService.getInstance();
         messageService.getClient().removeMe();
+        LogoutService logoutService =new LogoutService();
+        logoutService.logout();
         super.stop();
         System.exit(0);
 

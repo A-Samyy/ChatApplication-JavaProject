@@ -26,11 +26,19 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
     private static DataInputStream dataInputStream = null;
     boolean outsideRequestResponse;
     public static List<FileRequestDto> fileRequestDtos = new ArrayList<>();
+    static ClientFileRequestImpl clientFileRequest;
+
+    public static ClientFileRequestImpl getClientFileRequest() {
+        return clientFileRequest;
+    }
+
+
 
 
     public ClientFileRequestImpl() throws RemoteException {
         super();
         serverFileRequestInt.register(this, LoginService.getId());
+        clientFileRequest=this;
     }
 
     @Override
