@@ -42,7 +42,6 @@ public class PasswordController implements Initializable {
     LoginService loginService = new LoginService();
     RememberMeServices rememberMeServices = RememberMeServices.getInstance() ;
     RMIRegister rmiRegister = RMIRegister.getInstance();
-    ClientAnnounceMessageInt clientAnnounceMessageInt ;
     Preferences userInfo = Preferences.userNodeForPackage(getClass());
     ValidationSupport validationSupport=new ValidationSupport();
     ClientAnnounceMessageInt clientAnnounceMessageInt ;

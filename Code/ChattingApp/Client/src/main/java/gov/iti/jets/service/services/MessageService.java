@@ -26,6 +26,8 @@ public class MessageService {
     private MessageService() {
     }
     public ClientMessageImpl getClient(){
+        System.out.println("get Client");
+        System.out.println(clientMessage==null);
         return this.clientMessage;
     }
     public void setClient(ClientMessageImpl client){

@@ -22,6 +22,7 @@ public class LogoutService {
     private ServerMessageInt serverMessageInt = rmiRegister.messageService();
     MessageService messageService = MessageService.getInstance();
     private int userId = LoginService.getId();
+    RememberMeServices rememberMeServices=RememberMeServices.getInstance();
     public LogoutService() {
     }
 
@@ -32,6 +33,7 @@ public class LogoutService {
             serverGroupChatMessageInt.unregister(ClientGroupChatMessageImpl.getClientGroupChatMessage(),userId);
             serverFileRequestInt.unRegister(ClientFileRequestImpl.getClientFileRequest(), userId);
             messageService.getClient().removeMe();
+            rememberMeServices.removeUserInfo();
         } catch (RemoteException e) {
             e.printStackTrace();
         }

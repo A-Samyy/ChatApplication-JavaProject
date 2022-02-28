@@ -112,7 +112,9 @@ public class SidebarController implements Initializable {
 
     @FXML
     void logoutOnMouseClick(MouseEvent event) {
+        System.out.println(" logout 1");
         logoutService.logout();
+        System.out.println(" logout 2");
         stageCoordinator.switchToLoginScreen();
     }
 

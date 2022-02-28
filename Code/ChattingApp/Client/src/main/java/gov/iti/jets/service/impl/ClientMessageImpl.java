@@ -74,10 +74,15 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
         }
     }
 
-    public void removeMe() throws RemoteException {
+    public void removeMe() {
+        System.out.println(" remove me 1");
         UpdateUserInt updateUserInt = rmiRegister.updateUserService();
-        updateUserInt.updateUser(mapperToUpdateDto(LoginService.userHomePageDtoToSend));
-      //  serverMessageInt.unRegister(this, LoginService.getId());
+        System.out.println(" remove me 2");
+        try {
+            updateUserInt.updateUser(mapperToUpdateDto(LoginService.userHomePageDtoToSend));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     UpdateDto mapperToUpdateDto(UserHomePageDto userHomePageDto) {

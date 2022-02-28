@@ -86,8 +86,9 @@ public class StageCoordinator {
     }
 
     public void switchToLoginScreen() {
-        Parent loginParent = parentMap.get("loginParent");
+        Parent loginParent = null; // parentMap.get("loginParent");
         try {
+            System.out.println("in switch to logout");
             Parent root = FXMLLoader.load(getClass().getResource("/views/LoginSection1/LoginView2.fxml"));
             loginParent = root;
 
@@ -119,7 +120,8 @@ public class StageCoordinator {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        primaryStage.getScene().setRoot(homePageParent);
+//        primaryStage.getScene().setRoot(homePageParent);
+        primaryStage.setScene(new Scene(homePageParent));
     }
 
     public void switchToProfileScreen() {
