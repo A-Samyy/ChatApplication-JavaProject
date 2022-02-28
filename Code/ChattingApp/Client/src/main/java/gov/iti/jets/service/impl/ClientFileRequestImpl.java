@@ -97,6 +97,7 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
         fileRequestDtos.remove(fileRequestDto);
         try {
             FileChooser openFileChooser = new FileChooser();
+            openFileChooser.setInitialFileName(fileRequestDto.getFileName());
             File file = openFileChooser.showSaveDialog(null);
             System.out.println(file.getPath());
             stageCoordinator.loadProgressBar();
