@@ -8,14 +8,6 @@ import javafx.scene.input.MouseEvent;
 
 public class SettingsController {
     private StageCoordinator stageCoordinator = StageCoordinator.getInstance();
-    @FXML
-    void helpOnMouseClicked(MouseEvent event) {
-        stageCoordinator.loadhelp();
-    }
 
-    @FXML
-    void themeOnMouseClicked(MouseEvent event) {
-        stageCoordinator.loadTheme();
-    }
 
 }

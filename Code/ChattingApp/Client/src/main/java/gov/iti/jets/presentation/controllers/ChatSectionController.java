@@ -4,6 +4,7 @@ import gov.iti.jets.common.dtos.FileRequestDto;
 import gov.iti.jets.common.dtos.MessageDto;
 import gov.iti.jets.common.interfaces.ServerFileRequestInt;
 import gov.iti.jets.networking.RMIRegister;
+import gov.iti.jets.presentation.models.MessageStyleModel;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
@@ -48,7 +49,7 @@ public class ChatSectionController implements Initializable {
     MessageService messageService = MessageService.getInstance();
     RMIRegister rmiRegister = RMIRegister.getInstance();
     ServerFileRequestInt serverFileRequestInt = rmiRegister.serverFileRequestService();
-
+    MessageStyleModel messageStyleModel = modelFactory.getMessageStyleModel();
     private ObservableList<HBox> messageObservableList;
     private Boolean messageReceived=false;
     private String textFieldColor;
@@ -113,9 +114,15 @@ public class ChatSectionController implements Initializable {
     void onColorChange(ActionEvent event) {
         messageTextField.setStyle("-fx-text-fill:#"+colorPicker.getValue().toString().substring(2));
         System.out.println("color:"+"-fx-text-fill:#"+colorPicker.getValue().toString().substring(2));
-        textFieldColor="#"+colorPicker.getValue().toString().substring(2);
+        textFieldColor="-fx-text-fill:#"+colorPicker.getValue().toString().substring(2);
     }
 
+    @FXML
+    void OnChangingStyle(ActionEvent event) {
+        StylingController stylingController = stageCoordinator.loadStyling();
+
+        messageTextField.setStyle(messageStyleModel.getStyle());
+    }
 
 
     @FXML
@@ -145,7 +152,7 @@ public class ChatSectionController implements Initializable {
 
     @FXML
     void sendButtonClicked(MouseEvent event) throws RemoteException {
-        messageDao.setMessageColor(textFieldColor);
+        messageDao.setMessageColor(messageStyleModel.getStyle());
         messageDao.setMessage(messageTextField.getText());
         messageTextField.setText("");
         messageDao.setUserName(userModel.getUserName());
@@ -156,6 +163,7 @@ public class ChatSectionController implements Initializable {
         createMessage();
 
     }
+
 
 
 
@@ -196,7 +204,7 @@ public class ChatSectionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        messageTextField.styleProperty().bindBidirectional(messageStyleModel.styleProperty());
         chatContainer.setCellFactory(messageListView -> new MessageListViewCell());
     }
 

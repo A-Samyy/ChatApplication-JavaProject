@@ -30,6 +30,7 @@ public class MessageDao {
     public void setMessageColor(String color){
         messageDto.setColor(color);
     }
+    public String getMessageColor(){return messageDto.getColor();}
     public MessageDto getMessageDto() {
         return this.messageDto;
     }

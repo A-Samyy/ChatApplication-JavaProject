@@ -29,12 +29,13 @@ public class MessageController implements Initializable {
 
     }
 
-    public  void displayMessage(String message ,String name){
+    public  void displayMessage(String message ,String name , String color){
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 userName.setText(name);
                 messageBox.setText(message);
+                messageBox.setStyle(color);
             }
         });
 

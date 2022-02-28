@@ -373,8 +373,6 @@ public class StageCoordinator {
         FXMLLoader loader = new FXMLLoader();
         Parent addAdminMessage = null;
         try {
-
-
             loader.setLocation(getClass().getResource("/views/AdminMessageNotification/adminMessages.fxml"));
         } catch (Exception e) {
         }
@@ -412,31 +410,24 @@ public class StageCoordinator {
         return settings;
     }
 
-    public void loadhelp() {
-        Stage helpStage = new Stage();
-        Pane help = null;
+
+    public StylingController loadStyling() {
+        Stage stylingStage = new Stage();
+        Pane styling = null;
+        FXMLLoader loader = new FXMLLoader();
+
         try {
-            help = FXMLLoader.load(getClass().getResource("/views/settings/helpPane.fxml"));
+            loader.setLocation(getClass().getResource("/views/style/styleView.fxml"));
+            styling = loader.load();
         } catch (Exception e) {
         }
-        Scene scene = new Scene(help);
-        helpStage.setScene(scene);
-        helpStage.setTitle("Help Me");
-        helpStage.show();
-    }
+        StylingController stylingController= ( StylingController) loader.getController();
 
-    public void loadTheme() {
-        Stage themeStage = new Stage();
-        Pane theme = null;
-        try {
-            theme = FXMLLoader.load(getClass().getResource("/views/settings/editTheme.fxml"));
-        } catch (Exception e) {
-        }
-        Scene scene = new Scene(theme);
-        themeStage.setScene(scene);
-        themeStage.setTitle("Choose Theme");
-        themeStage.show();
-
+        Scene scene = new Scene(styling);
+        stylingStage.setScene(scene);
+        stylingStage.setTitle("Choose Style");
+        stylingStage.show();
+        return stylingController;
     }
 
      public HBox loadMessage( MessageDao messageDao , int flag) {
@@ -452,10 +443,10 @@ public class StageCoordinator {
                  @Override
                  public void run() {
                      if(flag == 0 ){
-                         messageController.displayMessage(messageDao.getMessageContent(), messageDao.getMessageUserName());
+                         messageController.displayMessage(messageDao.getMessageContent(), messageDao.getMessageUserName() , messageDao.getMessageColor());
 
                      }else{
-                         messageController.displayMessage(messageDao.getMessageGroupContent(), messageDao.getMessageGroupSenderName());
+                         messageController.displayMessage(messageDao.getMessageGroupContent(), messageDao.getMessageGroupSenderName() , messageDao.getMessageColor());
 
                      }
                  }
