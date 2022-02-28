@@ -9,6 +9,6 @@ public interface ServerGroupChatMessageInt extends Remote {
 
     public boolean sendGroupChatMessage(MessageGroupDto messageGroupDto) throws RemoteException;
     public boolean register(ClientGroupChatMessageInt clientGroupChatMessageInt , int userId)throws RemoteException;
-    public boolean unregister(ClientGroupChatMessageInt clientGroupChatMessageInt)throws RemoteException;
+    public boolean unregister(ClientGroupChatMessageInt clientGroupChatMessageInt,int userid)throws RemoteException;
 
     }

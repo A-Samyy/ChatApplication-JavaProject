@@ -56,8 +56,8 @@ public class ServerGroupChatMessageImpl extends UnicastRemoteObject implements S
     }
 
     @Override
-    public boolean unregister(ClientGroupChatMessageInt clientGroupChatMessageInt) throws RemoteException {
-        return false;
+    public boolean unregister(ClientGroupChatMessageInt clientGroupChatMessageInt,int userId) throws RemoteException {
+        return clients.remove(userId,clientGroupChatMessageInt);
     }
 
 

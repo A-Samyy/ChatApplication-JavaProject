@@ -15,9 +15,11 @@ public class ServerMessageImpl extends UnicastRemoteObject implements ServerMess
     Map<Integer, ClientMesseageInt> clients = new HashMap<>();
 
     ChatBotService chatBotService = new ChatBotService();
+
     public ServerMessageImpl() throws RemoteException {
         super();
     }
+
     @Override
     public boolean getMesssage(MessageDto messageDto) throws RemoteException {
         if (ServerControlService.flag) {
