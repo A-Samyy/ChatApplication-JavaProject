@@ -19,6 +19,16 @@ public class MessageDto implements Serializable {
 
     private int friendId;
 
+    private String color;
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
     public MessageDto(){
     }
 

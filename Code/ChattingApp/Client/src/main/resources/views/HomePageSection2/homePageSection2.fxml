@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuItem?>
@@ -65,6 +66,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </FontIcon>
+            <ColorPicker fx:id="colorPicker" layoutX="368.0" layoutY="74.0" onAction="#onColorChange" />
          </children>
       </AnchorPane>
       <ListView fx:id="chatContainer" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />

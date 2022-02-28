@@ -14,6 +14,7 @@ import gov.iti.jets.service.services.LoginService;
 import gov.iti.jets.service.services.MessageService;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.NodeOrientation;
@@ -50,6 +51,10 @@ public class ChatSectionController implements Initializable {
 
     private ObservableList<HBox> messageObservableList;
     private Boolean messageReceived=false;
+    private String textFieldColor;
+
+    @FXML
+    private ColorPicker colorPicker;
     @FXML
     private AnchorPane bottomBar;
 
@@ -103,6 +108,16 @@ public class ChatSectionController implements Initializable {
             }
         }
     }
+
+    @FXML
+    void onColorChange(ActionEvent event) {
+        messageTextField.setStyle("-fx-text-fill:#"+colorPicker.getValue().toString().substring(2));
+        System.out.println("color:"+"-fx-text-fill:#"+colorPicker.getValue().toString().substring(2));
+        textFieldColor="#"+colorPicker.getValue().toString().substring(2);
+    }
+
+
+
     @FXML
     void onTypingEnter(KeyEvent event) {
 
@@ -130,6 +145,7 @@ public class ChatSectionController implements Initializable {
 
     @FXML
     void sendButtonClicked(MouseEvent event) throws RemoteException {
+        messageDao.setMessageColor(textFieldColor);
         messageDao.setMessage(messageTextField.getText());
         messageTextField.setText("");
         messageDao.setUserName(userModel.getUserName());
@@ -140,6 +156,11 @@ public class ChatSectionController implements Initializable {
         createMessage();
 
     }
+
+
+
+
+
 
     void getUserStatus(String statusCond){
         if(statusCond.equals("ACTIVE")){
@@ -175,6 +196,7 @@ public class ChatSectionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         chatContainer.setCellFactory(messageListView -> new MessageListViewCell());
     }
 

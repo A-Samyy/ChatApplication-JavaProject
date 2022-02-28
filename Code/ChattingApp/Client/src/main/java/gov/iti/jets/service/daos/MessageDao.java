@@ -23,10 +23,13 @@ public class MessageDao {
     public void setUserName(String userName){
         messageDto.setUserName(userName);
     }
+
     public void setUserID(){
         messageDto.setUserId(LoginService.getId());
     }
-
+    public void setMessageColor(String color){
+        messageDto.setColor(color);
+    }
     public MessageDto getMessageDto() {
         return this.messageDto;
     }
