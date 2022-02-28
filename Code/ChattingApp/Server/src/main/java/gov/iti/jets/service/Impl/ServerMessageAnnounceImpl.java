@@ -2,7 +2,6 @@ package gov.iti.jets.service.Impl;
 
 import gov.iti.jets.common.dtos.MessageAnnounceDto;
 import gov.iti.jets.common.interfaces.ClientAnnounceMessageInt;
-import gov.iti.jets.common.interfaces.ClientMesseageInt;
 import gov.iti.jets.common.interfaces.ServerMessageAnnouncetInt;
 
 import java.rmi.RemoteException;

@@ -72,11 +72,12 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
     }
 
     public boolean sendResponseRequest(FileRequestDto fileRequestDto) {
-        //   FileChooser openFileChooser = new FileChooser();
-        //   File file = openFileChooser.showSaveDialog(null);
         // //ONlY on accepting request from controller
         fileRequestDtos.remove(fileRequestDto);
         try {
+            FileChooser openFileChooser = new FileChooser();
+            File file = openFileChooser.showSaveDialog(null);
+            System.out.println(file.getPath());
             new Thread(() -> {
                 try(ServerSocket serverSocket = new ServerSocket(8877)){
                     System.out.println("listening to port:5000");
@@ -84,7 +85,7 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
                     System.out.println(clientSocket+" connected.");
                     dataInputStream = new DataInputStream(clientSocket.getInputStream());
                     dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
-                    receiveFile(fileRequestDto.getFileName());
+                    receiveFile(file.getPath()+" "+fileRequestDto.getFileName());
                     dataInputStream.close();
                     dataOutputStream.close();
                     clientSocket.close();
