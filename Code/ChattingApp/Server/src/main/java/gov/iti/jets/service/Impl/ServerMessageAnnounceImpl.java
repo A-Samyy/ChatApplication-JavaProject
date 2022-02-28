@@ -2,20 +2,17 @@ package gov.iti.jets.service.Impl;
 
 import gov.iti.jets.common.dtos.MessageAnnounceDto;
 import gov.iti.jets.common.interfaces.ClientAnnounceMessageInt;
-import gov.iti.jets.common.interfaces.ClientMesseageInt;
 import gov.iti.jets.common.interfaces.ServerMessageAnnouncetInt;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements ServerMessageAnnouncetInt {
 
-    private List<ClientAnnounceMessageInt> clientAnnounceMessageIntList = new ArrayList<>();
-    private static List<String> listMessageAnnounceDto= new ArrayList<>();
+    private final List<ClientAnnounceMessageInt> clientAnnounceMessageIntList = new ArrayList<>();
+    private final static List<String> listMessageAnnounceDto= new ArrayList<>();
 
 
     public ServerMessageAnnounceImpl() throws RemoteException {
@@ -28,7 +25,6 @@ public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements Se
         listMessageAnnounceDto.add(messageAnnounceDto.getMessageContent());
         for(String messageAnnounceDto1 :listMessageAnnounceDto){
             System.out.println("messageDto in get"+messageAnnounceDto1);
-
         }
     }
 
@@ -40,7 +36,6 @@ public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements Se
             sendMessage(listMessageAnnounceDto);
             return true;
         }
-
     }
 
     @Override
@@ -50,24 +45,26 @@ public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements Se
     }
     @Override
     public boolean unRegister(ClientAnnounceMessageInt clientAnnounceMessageInt) throws RemoteException {
-        return false;
+        return  clientAnnounceMessageIntList.remove(clientAnnounceMessageInt);
+
     }
+
+    @Override
+    public void removeList() throws RemoteException {
+        listMessageAnnounceDto.clear();
+    }
+
     public boolean sendMessage(List<String> messageAnnounceDto){
                 System.out.println(clientAnnounceMessageIntList.size());
             for(ClientAnnounceMessageInt client : clientAnnounceMessageIntList){
-
-//                    System.out.println("messageContent in get Message Impl "+ messageAnnounceDto.getMessageContent());
                 try {
-
                     client.reciveMessage(messageAnnounceDto);
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
-
             }
         return true ;
     }
-
     public int onlinUsers() {
         return clientAnnounceMessageIntList.size();
     }

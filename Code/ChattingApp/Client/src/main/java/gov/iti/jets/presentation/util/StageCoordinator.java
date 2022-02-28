@@ -13,6 +13,8 @@ import java.util.*;
 
 import gov.iti.jets.presentation.controllers.MessageController;
 import gov.iti.jets.service.daos.MessageDao;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -34,7 +36,7 @@ public class StageCoordinator {
     private GroupSectionController groupSectionController;
 
 
-    private final Map<String, Scene> sceneMap = new HashMap<>();
+    private final Map<String, Parent> parentMap = new HashMap<>();
     private final Map<String, Node> nodeMap = new HashMap<>();
     private final Map<Integer, Node> chatSectionMap = new HashMap<>();
     private final Map<Integer, ChatSectionController> chatSectionControllerMap = new HashMap<>();
@@ -74,85 +76,82 @@ public class StageCoordinator {
     }
 
     public void switchToWelcomScreen() {
-        Scene welcomScene = sceneMap.get("welcomScene");
-        if (welcomScene == null) {
+        Parent welcomeParent = parentMap.get("welcomeParent");
+        if (welcomeParent == null) {
             try {
-                // change Path
                 Parent root = FXMLLoader.load(getClass().getResource("/views/WelcomePage/LoginView.fxml"));
-                welcomScene = new Scene(root);
-                sceneMap.put("welcomScene", welcomScene);
+                welcomeParent = root;
+                parentMap.put("welcomeParent", root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        primaryStage.setScene(welcomScene);
+//        Win_primary.getScene()
+        primaryStage.setScene(new Scene(welcomeParent));
     }
 
     public void switchToLoginScreen() {
-        Scene loginScene = sceneMap.get("loginScene");
-        if (loginScene == null) {
+        Parent loginParent = parentMap.get("loginParent");
+        if (loginParent == null) {
             try {
-                // change Path
                 Parent root = FXMLLoader.load(getClass().getResource("/views/LoginSection1/LoginView2.fxml"));
-                loginScene = new Scene(root);
-                sceneMap.put("loginScene", loginScene);
+                loginParent = root;
+                parentMap.put("loginParent", root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        primaryStage.setScene(loginScene);
+        primaryStage.getScene().setRoot(loginParent);
     }
 
     public void switchToPasswordScreen() {
-        Scene passwordScene = sceneMap.get("passwordScene");
-        if (passwordScene == null) {
+        Parent passwordParent = parentMap.get("passwordParent");
+        if (passwordParent == null) {
             try {
-                // change Path
                 Parent root = FXMLLoader.load(getClass().getResource("/views/passwordsection/passwordView.fxml"));
-                passwordScene = new Scene(root);
-                sceneMap.put("passwordScene", passwordScene);
+                passwordParent = root;
+                parentMap.put("passwordScene", root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        primaryStage.setScene(passwordScene);
+        primaryStage.getScene().setRoot(passwordParent);
     }
 
     public void switchToGHomePageScreen() {
-        Scene homePageScene = null;
+        Parent homePageParent = null;
         try {
-            GridPane root = FXMLLoader.load(getClass().getResource("/views/HomePageStructure/homePage.fxml"));
-            homePageScene = new Scene(root);
+            Parent root = FXMLLoader.load(getClass().getResource("/views/HomePageStructure/homePage.fxml"));
+            homePageParent = root;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        primaryStage.setScene(homePageScene);
+        primaryStage.getScene().setRoot(homePageParent);
     }
 
     public void switchToProfileScreen() {
-        Scene profileScene = null;
+        Parent profileParent = null;
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/views/profile/editProfileSection.fxml"));
-            profileScene = new Scene(root);
+            profileParent = root;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        primaryStage.setScene(profileScene);
+        primaryStage.getScene().setRoot(profileParent);
     }
 
     public void switchToRegistrationScreen() {
-        Scene registrationScene = sceneMap.get("registrationScene");
-        if (registrationScene == null) {
+        Parent registrationParent = parentMap.get("registrationParent");
+        if (registrationParent == null) {
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/views/RegisterSection/RegisterView.fxml"));
-                registrationScene = new Scene(root);
-
-                sceneMap.put("registrationScene", registrationScene);
+                registrationParent = root;
+                parentMap.put("registrationParent", root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        primaryStage.setScene(registrationScene);
+        primaryStage.getScene().setRoot(registrationParent);
     }
 
     public Node loadContacts(ContactDto contactDto) {
@@ -219,6 +218,28 @@ public class StageCoordinator {
         addNewGroup.setTitle("Add New Group");
         addNewGroup.show();
     }
+
+    public void loadProgressBar() {
+        Stage progressBarStage= new Stage();
+        Pane progessBarPane = null;
+        try {
+            progessBarPane = FXMLLoader.load(getClass().getResource("/views/progressBar/progressBar.fxml"));
+        } catch (Exception e) {
+        }
+        Scene scene = new Scene(progessBarPane);
+        progressBarStage.setScene(scene);
+        progressBarStage.setTitle("File transfer progress");
+        progressBarStage.show();
+    }
+
+
+
+
+
+
+
+
+
 
     public Node loadSidebar() {
         Node sidebar = null;

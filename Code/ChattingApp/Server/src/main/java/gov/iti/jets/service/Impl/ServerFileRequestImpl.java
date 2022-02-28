@@ -58,8 +58,6 @@ public class ServerFileRequestImpl extends UnicastRemoteObject implements Server
 
     @Override
     public boolean unRegister(ClientFileRequestInt clientFileRequestInt , int userId) throws RemoteException {
-        if(clients.remove(userId,clientFileRequestInt))
-            return true;
-        return false;
+        return clients.remove(userId, clientFileRequestInt);
     }
 }

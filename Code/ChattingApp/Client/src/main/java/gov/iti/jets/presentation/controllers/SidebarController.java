@@ -9,10 +9,15 @@ import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.impl.ClientFileRequestImpl;
 import gov.iti.jets.service.services.*;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -22,7 +27,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.control.*;
 
 import java.net.URL;
 import java.rmi.RemoteException;
@@ -31,10 +35,10 @@ import java.util.ResourceBundle;
 import java.util.TreeMap;
 
 public class SidebarController implements Initializable {
-    static public Map<Integer , ObservableList<MessageDto>> observableListMap = new TreeMap<>();
-    static public Map<Integer , ObservableList<MessageGroupDto>> observableListMapForGroup = new TreeMap<>();
-    ObservableList list ;
-    ObservableList grouplist ;
+    static public Map<Integer, ObservableList<MessageDto>> observableListMap = new TreeMap<>();
+    static public Map<Integer, ObservableList<MessageGroupDto>> observableListMapForGroup = new TreeMap<>();
+    ObservableList list;
+    ObservableList grouplist;
     RMIRegister rmiRegister = RMIRegister.getInstance();
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     private final ModelFactory modelFactory = ModelFactory.getInstance();
@@ -43,6 +47,8 @@ public class SidebarController implements Initializable {
     FriendRequestService friendRequestService = new FriendRequestService();
     GroupListService groupListService = new GroupListService();
     ServerMessageAnnouncetInt serverMessageAnnouncetInt = rmiRegister.serverMessageAnnouncetInt();
+    LogoutService logoutService = new LogoutService();
+
     @FXML
     private Tab Contacts;
 
@@ -98,6 +104,7 @@ public class SidebarController implements Initializable {
     public SidebarController() throws RemoteException {
 
     }
+
     @FXML
     void OnAddingGroup(MouseEvent event) {
         stageCoordinator.loadAddGroup();
@@ -106,66 +113,73 @@ public class SidebarController implements Initializable {
 
     @FXML
     void logoutOnMouseClick(MouseEvent event) {
+        if (!list.isEmpty()) {
+            list.clear();
+        }
+        if (grouplist!=null) {
+            grouplist.clear();
+        }
+        observableListMap.clear();
+        observableListMapForGroup.clear();
+        logoutService.logout();
         stageCoordinator.switchToLoginScreen();
     }
 
     @FXML
     void OnChangingTab(MouseEvent event) {
-        if(tabPane.getSelectionModel().getSelectedIndex()==0){
+        if (tabPane.getSelectionModel().getSelectedIndex() == 0) {
             getContact();
-        }else if(tabPane.getSelectionModel().getSelectedIndex()==1){
+        } else if (tabPane.getSelectionModel().getSelectedIndex() == 1) {
             getGroup();
-        }else if(tabPane.getSelectionModel().getSelectedIndex()==2){
+        } else if (tabPane.getSelectionModel().getSelectedIndex() == 2) {
             getNotification();
         }
     }
-    void getContact(){
+
+    void getContact() {
         chattingSectionVbox.getChildren().clear();
-        if(!contactListService.getListOfContact((LoginService.getId())).isEmpty()){
+        if (!contactListService.getListOfContact((LoginService.getId())).isEmpty()) {
             for (ContactDto contactDto : contactListService.getListOfContact(LoginService.getId())) {
                 list = FXCollections.observableArrayList();
-                observableListMap.put(contactDto.getId(),list);
+                observableListMap.put(contactDto.getId(), list);
                 chattingSectionVbox.getChildren().add(stageCoordinator.loadContacts(contactDto));
             }
         }
     }
-    void getGroup(){
+
+    void getGroup() {
         chattingGroupAreaVbox.getChildren().clear();
-        if(!groupListService.getListOfGroup(LoginService.getId()).isEmpty()){
+        if (!groupListService.getListOfGroup(LoginService.getId()).isEmpty()) {
             for (GroupDto groupDto : groupListService.getListOfGroup(LoginService.getId())) {
                 grouplist = FXCollections.observableArrayList();
-                observableListMapForGroup.put(groupDto.getId(),grouplist);
+                observableListMapForGroup.put(groupDto.getId(), grouplist);
                 chattingGroupAreaVbox.getChildren().add(stageCoordinator.loadGroups(groupDto));
             }
         }
     }
-    void getNotification(){
+
+    void getNotification() {
         SettingAreaVbox.getChildren().clear();
         try {
-            System.out.println(serverMessageAnnouncetInt.getMessage());
-            if(serverMessageAnnouncetInt.getMessage()){
+            if (serverMessageAnnouncetInt.getMessage()) {
                 SettingAreaVbox.getChildren().add(stageCoordinator.loadAdminMessageNotification());
             }
-            System.out.println(!friendRequestService.getFriendRequestsNotifcation().isEmpty());
-            if(!friendRequestService.getFriendRequestsNotifcation().isEmpty()){
-                for(FriendRequestSenderDto friendRequestSenderDto : friendRequestService.getFriendRequestsNotifcation()){
-                    SettingAreaVbox.getChildren().add(stageCoordinator.loadFriendRequest(friendRequestSenderDto.getSenderName(),friendRequestSenderDto));
-
+            if (!friendRequestService.getFriendRequestsNotifcation().isEmpty()) {
+                for (FriendRequestSenderDto friendRequestSenderDto : friendRequestService.getFriendRequestsNotifcation()) {
+                    SettingAreaVbox.getChildren().add(stageCoordinator.loadFriendRequest(friendRequestSenderDto.getSenderName(), friendRequestSenderDto));
                 }
             }
-            if(!ClientFileRequestImpl.fileRequestDtos.isEmpty()){
-                for(FileRequestDto fileRequestDto : ClientFileRequestImpl.fileRequestDtos){
+            if (!ClientFileRequestImpl.fileRequestDtos.isEmpty()) {
+                for (FileRequestDto fileRequestDto : ClientFileRequestImpl.fileRequestDtos) {
                     System.out.println(fileRequestDto);
-                    SettingAreaVbox.getChildren().add(stageCoordinator.loadFileRequest(fileRequestDto.getFileName(),fileRequestDto));
+                    SettingAreaVbox.getChildren().add(stageCoordinator.loadFileRequest(fileRequestDto.getFileName(), fileRequestDto));
                 }
             }
-
-
-
         } catch (RemoteException e) {
             e.printStackTrace();
         }
     }
+
     @FXML
     void OnAddingContact(MouseEvent event) {
         stageCoordinator.loadAddContact();
@@ -184,29 +198,29 @@ public class SidebarController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        ;
         img = new ImageView();
         img.imageProperty().bindBidirectional(userModel.imageProperty());
         profilePic.setFill(new ImagePattern(img.getImage()));
         getUserStatus(userModel.getStatus());
         bio.textProperty().bindBidirectional(userModel.bioProperty());
         userName.textProperty().bindBidirectional(userModel.userNameProperty());
-        if(!contactListService.getListOfContact((LoginService.getId())).isEmpty()){
+        if (!contactListService.getListOfContact((LoginService.getId())).isEmpty()) {
             for (ContactDto contactDto : contactListService.getListOfContact(LoginService.getId())) {
                 list = FXCollections.observableArrayList();
-                observableListMap.put(contactDto.getId(),list);
+                observableListMap.put(contactDto.getId(), list);
                 chattingSectionVbox.getChildren().add(stageCoordinator.loadContacts(contactDto));
             }
         }
     }
-    void getUserStatus(String statusCond){
-        if(statusCond.equals("ACTIVE")){
+
+    void getUserStatus(String statusCond) {
+        if (statusCond.equals("ACTIVE")) {
             status.setFill(Color.GREEN);
-        }else if(statusCond.equals("DoNotDisturb")){
+        } else if (statusCond.equals("DoNotDisturb")) {
             status.setFill(Color.YELLOW);
-        }else if(statusCond.equals("AWAY")){
+        } else if (statusCond.equals("AWAY")) {
             status.setFill(Color.RED);
-        }else if(statusCond.equals("OFFLINE")){
+        } else if (statusCond.equals("OFFLINE")) {
             status.setFill(Color.GRAY);
         }
     }

@@ -13,20 +13,29 @@ import java.util.List;
 public class ClientAnnounceImpl extends UnicastRemoteObject implements ClientAnnounceMessageInt {
 
 
-    RMIRegister rmiRegister=RMIRegister.getInstance();
+    RMIRegister rmiRegister = RMIRegister.getInstance();
     ServerMessageAnnouncetInt serverMessageAnnouncetInt;
-    public static List<String> messagesFromAdmin=new ArrayList<>();
+    public static List<String> messagesFromAdmin = new ArrayList<>();
+    static ClientAnnounceImpl clientAnnounce;
+
+    public static ClientAnnounceImpl getClientAnnounce() {
+        return clientAnnounce;
+    }
 
     public ClientAnnounceImpl() throws RemoteException {
         super();
-       serverMessageAnnouncetInt=rmiRegister.serverMessageAnnouncetInt();
+        serverMessageAnnouncetInt = rmiRegister.serverMessageAnnouncetInt();
         serverMessageAnnouncetInt.register(this);
+        clientAnnounce=this;
     }
 
     @Override
     public void reciveMessage(List<String> messageAnnounceDto) throws RemoteException {
+        int count = 0;
         for (String message:messageAnnounceDto ) {
+            System.out.println((message+" a7san "+count));
             messagesFromAdmin.add( message);
+            count++;
         }
 
     }

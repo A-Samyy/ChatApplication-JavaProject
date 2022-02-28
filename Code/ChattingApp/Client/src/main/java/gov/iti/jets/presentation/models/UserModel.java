@@ -18,6 +18,7 @@ public class UserModel{
     private final StringProperty status = new SimpleStringProperty();
     private final StringProperty date = new SimpleStringProperty();
     private final ObjectProperty<Image> image = new SimpleObjectProperty<>();
+
     public String getUserName() {
         return userName.get();
     }
