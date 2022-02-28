@@ -31,8 +31,11 @@ public class ClientAnnounceImpl extends UnicastRemoteObject implements ClientAnn
 
     @Override
     public void reciveMessage(List<String> messageAnnounceDto) throws RemoteException {
+        int count = 0;
         for (String message:messageAnnounceDto ) {
+            System.out.println((message+" a7san "+count));
             messagesFromAdmin.add( message);
+            count++;
         }
 
     }

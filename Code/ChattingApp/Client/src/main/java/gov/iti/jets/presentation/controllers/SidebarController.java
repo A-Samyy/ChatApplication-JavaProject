@@ -9,6 +9,7 @@ import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.impl.ClientFileRequestImpl;
 import gov.iti.jets.service.services.*;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -160,15 +161,12 @@ public class SidebarController implements Initializable {
     void getNotification() {
         SettingAreaVbox.getChildren().clear();
         try {
-            System.out.println(serverMessageAnnouncetInt.getMessage());
             if (serverMessageAnnouncetInt.getMessage()) {
                 SettingAreaVbox.getChildren().add(stageCoordinator.loadAdminMessageNotification());
             }
-            System.out.println(!friendRequestService.getFriendRequestsNotifcation().isEmpty());
             if (!friendRequestService.getFriendRequestsNotifcation().isEmpty()) {
                 for (FriendRequestSenderDto friendRequestSenderDto : friendRequestService.getFriendRequestsNotifcation()) {
                     SettingAreaVbox.getChildren().add(stageCoordinator.loadFriendRequest(friendRequestSenderDto.getSenderName(), friendRequestSenderDto));
-
                 }
             }
             if (!ClientFileRequestImpl.fileRequestDtos.isEmpty()) {
@@ -177,8 +175,6 @@ public class SidebarController implements Initializable {
                     SettingAreaVbox.getChildren().add(stageCoordinator.loadFileRequest(fileRequestDto.getFileName(), fileRequestDto));
                 }
             }
-
-
         } catch (RemoteException e) {
             e.printStackTrace();
         }
