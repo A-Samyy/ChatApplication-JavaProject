@@ -19,7 +19,6 @@ public class UpdateUserService {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        System.out.println("toseethe flag"+flag);
-        return flag;
+         return flag;
     }
 }

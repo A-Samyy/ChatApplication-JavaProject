@@ -47,7 +47,6 @@ public class LoginService {
             e.printStackTrace();
         }
         userHomePageDtoToSend = userHomePageDto;
-        System.out.println("test"+userHomePageDtoToSend.getBio());
         userModel.setPhoneNumber(userHomePageDto.getPhoneNumber());
         userModel.setUserName(userHomePageDto.getName());
         userModel.setGender(userHomePageDto.getGender());

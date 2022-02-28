@@ -1,6 +1,7 @@
 package gov.iti.jets.presentation.util;
 
 import gov.iti.jets.common.dtos.ContactDto;
+import gov.iti.jets.common.dtos.FileRequestDto;
 import gov.iti.jets.common.dtos.FriendRequestSenderDto;
 import gov.iti.jets.common.dtos.GroupDto;
 import gov.iti.jets.presentation.controllers.*;
@@ -12,7 +13,6 @@ import java.util.*;
 
 import gov.iti.jets.presentation.controllers.MessageController;
 import gov.iti.jets.service.daos.MessageDao;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -20,15 +20,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -129,7 +123,6 @@ public class StageCoordinator {
         try {
             GridPane root = FXMLLoader.load(getClass().getResource("/views/HomePageStructure/homePage.fxml"));
             homePageScene = new Scene(root);
-//            sceneMap.put("homePageScene", homePageScene);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -141,7 +134,6 @@ public class StageCoordinator {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/views/profile/editProfileSection.fxml"));
             profileScene = new Scene(root);
-//            sceneMap.put("homePageScene", homePageScene);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -152,7 +144,6 @@ public class StageCoordinator {
         Scene registrationScene = sceneMap.get("registrationScene");
         if (registrationScene == null) {
             try {
-                // change Path
                 Parent root = FXMLLoader.load(getClass().getResource("/views/RegisterSection/RegisterView.fxml"));
                 registrationScene = new Scene(root);
 
@@ -201,7 +192,6 @@ public class StageCoordinator {
                 @Override
                 public void run() {
                     try {
-                        System.out.println((groupDto));
                         groupListController.displayGroup(groupDto);
 
                     } catch (Exception e) {
@@ -223,7 +213,6 @@ public class StageCoordinator {
         try {
             addGroup = FXMLLoader.load(getClass().getResource("/views/contactSection/addGroup.fxml"));
         } catch (Exception e) {
-            System.out.println("File Not Found Exception");
         }
         Scene scene = new Scene(addGroup);
         addNewGroup.setScene(scene);
@@ -279,7 +268,6 @@ public class StageCoordinator {
             @Override
             public void run() {
                 chatSectionControllerMap.get(id).display(name,pic,status , id);
-//                chatSectionControllerMap.get(id).displayMessage(id);
             }
         });
 
@@ -303,9 +291,7 @@ public class StageCoordinator {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                System.out.println( "stage"+groupDto.getGroupName());
                 groupSectionControllerMap.get(groupDto.getId()).displayGroup(groupDto);
-//                chatSectionControllerMap.get(id).displayMessage(id);
             }
         });
 
@@ -323,7 +309,6 @@ public class StageCoordinator {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/views/contactSection/friendReq.fxml"));
-//            friendReq = FXMLLoader.load(getClass().getResource("/views/contactSection/friendReq.fxml"));
             friendReq = loader.load();
             FriendRequestController friendRequestCont= loader.getController();
             friendRequestCont.dispalyFriendReq(name , friendRequestSenderDto);
@@ -332,13 +317,27 @@ public class StageCoordinator {
         }
         return friendReq;
     }
+
+    public Node loadFileRequest(String name, FileRequestDto fileRequestDto){
+        Node fileReq = null;
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/views/contactSection/fileRequest.fxml"));
+//            friendReq = FXMLLoader.load(getClass().getResource("/views/contactSection/friendReq.fxml"));
+            fileReq = loader.load();
+           FileRequestController fileRequestController= loader.getController();
+            fileRequestController.dispalyFileReq(fileRequestDto);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return fileReq;
+    }
     public void loadAddContact() {
         Stage addNewContact = new Stage();
         Pane addContact = null;
         try {
             addContact = FXMLLoader.load(getClass().getResource("/views/contactSection/addContact.fxml"));
         } catch (Exception e) {
-            System.out.println("File Not Found Exception");
         }
         Scene scene = new Scene(addContact);
         addNewContact.setScene(scene);
@@ -357,7 +356,6 @@ public class StageCoordinator {
 
             loader.setLocation(getClass().getResource("/views/AdminMessageNotification/adminMessages.fxml"));
         } catch (Exception e) {
-            System.out.println("File Not Found Exception");
         }
             addAdminMessage = loader.load();
             adminMessageController = ( AdminMessageContainerController) loader.getController();
@@ -399,7 +397,6 @@ public class StageCoordinator {
         try {
             help = FXMLLoader.load(getClass().getResource("/views/settings/helpPane.fxml"));
         } catch (Exception e) {
-            System.out.println("File Not Found Exception");
         }
         Scene scene = new Scene(help);
         helpStage.setScene(scene);
@@ -413,7 +410,6 @@ public class StageCoordinator {
         try {
             theme = FXMLLoader.load(getClass().getResource("/views/settings/editTheme.fxml"));
         } catch (Exception e) {
-            System.out.println("File Not Found Exception");
         }
         Scene scene = new Scene(theme);
         themeStage.setScene(scene);
@@ -422,37 +418,11 @@ public class StageCoordinator {
 
     }
 
-
-    // public Pane loadUserPane(){
-    // try {
-    // Pane userPane =
-    // FXMLLoader.load(getClass().getResource("/views/contactSection/userPane.fxml"));
-    // return userPane;
-    // }catch(Exception e){
-    // System.out.println("File Not Found Exception");
-    // }
-
-    // return null ;
-    // }
-
-    // public VBox loadMessage(){
-    // try {
-    // VBox message =
-    // FXMLLoader.load(getClass().getResource("/views/message/messageView.fxml"));
-    // return message;
-    // }catch(Exception e){
-    // System.out.println("File Not Found Exception");
-    // }
-    // return null ;
-    // }
-
      public HBox loadMessage( MessageDao messageDao , int flag) {
 
 
          try {
-
-            // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/message/messageView.fxml"));
-             FXMLLoader loader = new FXMLLoader();
+            FXMLLoader loader = new FXMLLoader();
              loader.setLocation(getClass().getResource("/views/message/messageView.fxml"));
 
              HBox message = loader.load();
@@ -471,7 +441,6 @@ public class StageCoordinator {
              });
              return message;
          } catch (Exception e) {
-             System.out.println("File Not Found Exception");
          }
          return null;
 

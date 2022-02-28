@@ -7,22 +7,15 @@ import javafx.beans.property.StringProperty;
 import javafx.scene.image.Image;
 
 public class ContactModel {
-  //  private final StringProperty userName = new SimpleStringProperty();
     String userName2 ;
     private final  StringProperty status = new SimpleStringProperty();
     private final ObjectProperty<Image> picture = new SimpleObjectProperty<>();
 
     public String getUserName() {
 
-        return userName2; //userName.get();
+        return userName2;
     }
-
-//    public StringProperty userNameProperty() {
-//        return userName;
-//    }
-
     public void setUserName(String userName) {
-    //    this.userName.set(userName);
         this.userName2=userName;
     }
 

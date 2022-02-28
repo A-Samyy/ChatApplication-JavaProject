@@ -18,7 +18,6 @@ import java.util.List;
 public class FriendRequestImpl extends UnicastRemoteObject implements FriendRequestInt {
     FriendRequestDao friendRequestDao = new FriendRequestDao();
     UserDao userDao = new UserDao();
-
     public FriendRequestImpl() throws RemoteException {
     }
 
@@ -31,16 +30,9 @@ public class FriendRequestImpl extends UnicastRemoteObject implements FriendRequ
             if (!areTheyalreadyFriends(friendRequestDto)) {// Check if they are already friends from the contacts table before trying to add them
                 int i = friendRequestDao.addFriendRequestDto(friendRequestDto);
                 if (i == 1) {
-                    System.out.println("Request is added");
                     return true;
                 }
-                if (i == 0) {
-                    System.out.println("they tried to add each other and they are friends now");
-                    return true;
-                } else {
-                    System.out.println("nothing happened");
-                    return false;
-                }
+                return i == 0;
             } else
                 return false;
         } else
@@ -53,8 +45,7 @@ public class FriendRequestImpl extends UnicastRemoteObject implements FriendRequ
 
     @Override
     public List<FriendRequestSenderDto> getFriendRequest(int userId) throws RemoteException {
-        List<FriendRequestDto> friendRequestDtoList = new ArrayList<>();
-        friendRequestDtoList = friendRequestDao.getAllFriendRequestsForUser(userId);
+        List<FriendRequestDto> friendRequestDtoList = friendRequestDao.getAllFriendRequestsForUser(userId);
         return mapperToFriendRequestSenderDto(friendRequestDtoList);
     }
 

@@ -1,18 +1,29 @@
 package gov.iti.jets.common.dtos;
 
+import gov.iti.jets.common.hibernate.ValidationMaker;
+import jakarta.validation.constraints.*;
+
 import java.io.Serializable;
 import java.util.Date;
 
 public class RegisterDto implements Serializable {
     private static final long serialVersionUID = 1420672669912364060L;
+    @NotNull
+    @Size(min = 11,max = 11)
     private String phoneNumber;
+    @NotNull
     private String password;
+    @NotNull
     private String name;
     private String gender;
+    @Email
     private String email;
     private Date dateOfBirth;
+
     private String picture;
+
     private String country;
+
     private String bio;
 
     public RegisterDto() {

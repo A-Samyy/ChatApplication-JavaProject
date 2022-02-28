@@ -1,12 +1,17 @@
 package gov.iti.jets.common.dtos;
 
+import gov.iti.jets.common.hibernate.ValidationMaker;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 import java.io.Serializable;
 
 public class GroupDto implements Serializable {
     private static final long serialVersionUID = 1427372609914364060L;
 
-
+    @Positive
     private int id;
+    @NotNull
     private String groupName;
 
     public GroupDto() {

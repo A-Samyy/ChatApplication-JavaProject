@@ -4,7 +4,6 @@ import gov.iti.jets.common.dtos.MessageAnnounceDto;
 import gov.iti.jets.common.interfaces.ClientAnnounceMessageInt;
 import gov.iti.jets.common.interfaces.ServerMessageAnnouncetInt;
 import gov.iti.jets.networking.RMIRegister;
-import gov.iti.jets.service.services.LoginService;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -21,14 +20,12 @@ public class ClientAnnounceImpl extends UnicastRemoteObject implements ClientAnn
     public ClientAnnounceImpl() throws RemoteException {
         super();
        serverMessageAnnouncetInt=rmiRegister.serverMessageAnnouncetInt();
-        System.out.println("registerd : "+serverMessageAnnouncetInt.register(this));
+        serverMessageAnnouncetInt.register(this);
     }
 
     @Override
     public void reciveMessage(List<String> messageAnnounceDto) throws RemoteException {
         for (String message:messageAnnounceDto ) {
-                    System.out.println(message);
-
             messagesFromAdmin.add( message);
         }
 

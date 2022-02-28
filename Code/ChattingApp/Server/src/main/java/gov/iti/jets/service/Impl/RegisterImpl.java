@@ -16,10 +16,7 @@ import java.util.Base64;
 
 public class RegisterImpl extends UnicastRemoteObject implements RegisterInt {
     UserDao userDao = new UserDao();
-    static int i = 0;
-
     public RegisterImpl() throws RemoteException {
-
     }
     @Override
     public Boolean addUser(RegisterDto registerDTO) throws RemoteException {
@@ -31,12 +28,6 @@ public class RegisterImpl extends UnicastRemoteObject implements RegisterInt {
             return false;
         }
     }
-//    @Override
-//    public Boolean addUser(RegisterDto registerDTO) throws RemoteException {
-//        UserDto userDto = mapper(registerDTO);
-//        return userDao.addUserDto(userDto);
-//    }
-
     public String decodeImage(String image,String phone_number) throws Exception {
 
         String savePath ;
@@ -74,6 +65,4 @@ public class RegisterImpl extends UnicastRemoteObject implements RegisterInt {
         userDto.setStatus(Status.OFFLINE);
         return userDto;
     }
-
-
 }

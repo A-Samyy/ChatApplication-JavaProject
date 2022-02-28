@@ -1,7 +1,9 @@
 package gov.iti.jets.presentation.controllers;
 
-import gov.iti.jets.common.dtos.ContactDto;
+import gov.iti.jets.common.dtos.FileRequestDto;
 import gov.iti.jets.common.dtos.MessageDto;
+import gov.iti.jets.common.interfaces.ServerFileRequestInt;
+import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
@@ -11,7 +13,6 @@ import gov.iti.jets.service.services.ContactListService;
 import gov.iti.jets.service.services.LoginService;
 import gov.iti.jets.service.services.MessageService;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,14 +28,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import org.controlsfx.validation.ValidationSupport;
+import javafx.stage.FileChooser;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-import javax.xml.validation.Validator;
+import java.io.File;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.*;
-import java.util.Map;
 
 public class ChatSectionController implements Initializable {
 
@@ -45,6 +45,9 @@ public class ChatSectionController implements Initializable {
     MessageDao messageDao=new MessageDao(messageDto);
     UserModel userModel = modelFactory.getUserModel();
     MessageService messageService = MessageService.getInstance();
+    RMIRegister rmiRegister = RMIRegister.getInstance();
+    ServerFileRequestInt serverFileRequestInt = rmiRegister.serverFileRequestService();
+
     private ObservableList<HBox> messageObservableList;
     private Boolean messageReceived=false;
     @FXML
@@ -75,6 +78,7 @@ public class ChatSectionController implements Initializable {
     private AnchorPane topBar;
 
 
+
     public ChatSectionController() throws RemoteException {
     }
 
@@ -82,6 +86,23 @@ public class ChatSectionController implements Initializable {
     private Label userName;
     int friendId;
 
+    @FXML
+    void onAddAttachmentMouseClicked(MouseEvent event) {
+        FileChooser openFileChooser = new FileChooser();
+        File file = openFileChooser.showOpenDialog(null);
+        FileRequestDto fileRequestDto = new FileRequestDto();
+        if(file != null){
+            fileRequestDto.setFileName(file.getName());
+            fileRequestDto.setSenderId(LoginService.getId());
+            fileRequestDto.setFilePath(file.getPath());
+            fileRequestDto.setReceiverId(friendId);
+            try {
+                System.out.println(serverFileRequestInt.getNewRequest(fileRequestDto));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     @FXML
     void onTypingEnter(KeyEvent event) {
 
@@ -167,7 +188,7 @@ public class ChatSectionController implements Initializable {
         @Override
         protected void updateItem(MessageDto item, boolean empty) {
             super.updateItem(item, empty);
-            if (item != null && !empty) { // <== test for null item and empty parameter
+            if (item != null && !empty) {
                 if(LoginService.getId() == item.getUserId()){
                     messageCellContainer.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
                     HBox hbox = stageCoordinator.loadMessage(new MessageDao(item) , 0);

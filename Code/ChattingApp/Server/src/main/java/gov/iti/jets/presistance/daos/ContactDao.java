@@ -71,7 +71,7 @@ public class ContactDao {
             conn = connector.getConnection();
             String sql = "DELETE FROM chatting_app.contacts WHERE (user_id=" + contactDto.getUserId() + "&& friend_id=" + contactDto.getFriendId() + ") || (user_id =" + contactDto.getFriendId() + " &&friend_id=" + contactDto.getUserId() + ");";
             preparedStatement = conn.prepareStatement(sql);
-            return  preparedStatement.executeUpdate()> 0;
+            return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -110,12 +110,13 @@ public class ContactDao {
             }
         }
     }
-    private List<UserDto> mappingListofIdToListofUserDto(List<Integer> friendsIds){
+
+    private List<UserDto> mappingListofIdToListofUserDto(List<Integer> friendsIds) {
         UserDao userDao = new UserDao();
-        UserDto userDto = new UserDto();
+
         List<UserDto> userDtoList = new ArrayList<>();
         for (int id : friendsIds) {
-            userDto = new UserDto();
+            UserDto userDto = new UserDto();
             userDto = userDao.getUserDtoById(id);
             userDtoList.add(userDto);
         }

@@ -1,19 +1,14 @@
 package gov.iti.jets.presentation.controllers;
-
-import gov.iti.jets.common.dtos.MessageAnnounceDto;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.TextFlow;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MessageServerController implements Initializable {
-
-
     @FXML
     private HBox chatMessage;
 
@@ -33,7 +28,6 @@ public class MessageServerController implements Initializable {
             public void run() {
                 messageBox.setText(message);
                 userName.setText(name);
-
             }
         });
 

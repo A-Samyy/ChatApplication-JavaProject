@@ -59,10 +59,6 @@ public class LoginController implements Initializable {
         if(check){
             stageCoordinator.switchToGHomePageScreen();
         }
-        else {
-            System.out.println("wrong login");
-        }
-
     }
 
 

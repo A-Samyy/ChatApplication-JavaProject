@@ -17,6 +17,8 @@ module Server {
     requires org.slf4j;
     requires org.slf4j.jul;
     requires chatter.bot.api;
+    requires jakarta.validation;
     exports gov.iti.jets.presentation.controllers;
     exports gov.iti.jets;
+    opens gov.iti.jets.presistance.dtos to org.hibernate.validator;
 }

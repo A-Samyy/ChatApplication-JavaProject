@@ -1,15 +1,26 @@
 package gov.iti.jets.common.dtos;
 
+import gov.iti.jets.common.hibernate.ValidationMaker;
+import jakarta.validation.constraints.Negative;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 import java.io.Serializable;
 
 public class MessageDto implements Serializable {
     private static final long serialVersionUID = 1420672609912364060L;
+    @NotNull
     private String messageContent;
+    @NotNull
     private String userName;
+    @Negative
     private int userId;
+    @Positive
+
     private int friendId;
 
-
+    public MessageDto(){
+    }
 
     public int getUserId() {
         return userId;

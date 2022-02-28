@@ -2,7 +2,6 @@ package gov.iti.jets.service.Impl;
 
 import gov.iti.jets.common.dtos.LoginDto;
 import gov.iti.jets.common.dtos.UserHomePageDto;
-
 import gov.iti.jets.common.interfaces.LoginInt;
 import gov.iti.jets.presistance.daos.UserDao;
 import gov.iti.jets.presistance.dtos.Status;
@@ -16,7 +15,6 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Base64;
 
 public class LoginImpl extends UnicastRemoteObject implements LoginInt {
-
     UserDao userDao = new UserDao();
     private int userID;
 
@@ -25,19 +23,28 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
 
     @Override
     public int isPhoneNumberExist(LoginDto loginDto) throws RemoteException {
+
+
         if (ServerControlService.flag) {
-            this.userID = userDao.getUserIdByPhoneNumber(loginDto.getPhoneNumber());
-            return this.userID;
+            int userid = userDao.getUserIdByPhoneNumber(loginDto.getPhoneNumber());
+            if (!ServerGroupChatMessageImpl.clients.containsKey(userid)) {
+                this.userID=userid;
+                return this.userID;
+            }
+           else
+                return -1;
         }
         return -1;
     }
 
     @Override
     public String isPasswordValid() throws RemoteException {
+
         if (ServerControlService.flag) {
             return userDao.getUserPasswordById(this.userID);
         }
         return "stopped";
+
     }
 
     @Override
@@ -59,7 +66,6 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
         userHomePageDtoDto.setEmail(userDto.getEmail());
         userHomePageDtoDto.setCountry(userDto.getCountry());
         userHomePageDtoDto.setBio(userDto.getBio());
-        //
         java.util.Date date;
         if (userDto.getDateOfBirth() == null) {
             date = null;
@@ -74,9 +80,7 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //satuts
         userDto.setStatus(Status.ACTIVE);
-        System.out.println("see status"+userDto.getStatus().name());
         userHomePageDtoDto.setStatus(userDto.getStatus().name());
         userDao.updateUserDto(userDto);
         return userHomePageDtoDto;
@@ -86,7 +90,6 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
         String imageString = null;
 
         if (!imgPath.isEmpty()) {
-//            System.out.println("error gded"+imgPath);
             FileInputStream stream = new FileInputStream(imgPath);
             byte[] imageData = stream.readAllBytes();
             imageString = Base64.getEncoder().encodeToString(imageData);

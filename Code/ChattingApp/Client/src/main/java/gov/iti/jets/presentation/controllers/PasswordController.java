@@ -5,7 +5,6 @@ import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
-import gov.iti.jets.service.impl.ClientAnnounceImpl;
 import gov.iti.jets.service.services.LoginService;
 import gov.iti.jets.service.services.MessageService;
 import javafx.event.ActionEvent;
@@ -14,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -77,7 +75,6 @@ public class PasswordController implements Initializable {
                 stageCoordinator.switchToGHomePageScreen();
                 passwordTextField.setText("");
             } else {
-                System.out.println("Password is not Correct");
             }
             validationSupport.setValidationDecorator(new StyleClassValidationDecoration());
 
@@ -88,7 +85,6 @@ public class PasswordController implements Initializable {
                     "Password is required",
                     Severity.WARNING));
         }else {
-            System.out.println("the system is stopped");
         }
 
 

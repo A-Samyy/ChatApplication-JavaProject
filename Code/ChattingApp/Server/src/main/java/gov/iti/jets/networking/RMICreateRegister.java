@@ -20,16 +20,12 @@ public class RMICreateRegister {
             FriendRequestInt friendRequestInt= new FriendRequestImpl();
             ServerMessageAnnouncetInt serverMessageAnnouncetInt = new ServerMessageAnnounceImpl();
             ServerGroupChatMessageInt serverGroupChatMessageInt =new ServerGroupChatMessageImpl();
-//            Registry registry = LocateRegistry.getRegistry(3334);
+            ServerFileRequestInt serverFileRequesInt= new ServerFileRequestImpl();
             AddGroupChatInt addGroupChatInt= new AddGroupChatImpl();
             GroupListInt groupListInt = new GroupListImpl();
             UpdateUserInt updateUserInt = new UpdateUserImpl();
             Registry registry;
-//            try{
-//                registry = LocateRegistry.getRegistry(7008);
-//            }catch(Exception e){
-                registry = LocateRegistry.getRegistry(7002);
-//            }
+                registry = LocateRegistry.getRegistry(4444);
 
             registry.rebind("RegisterService",register);
             registry.rebind("loginService",loginService);
@@ -41,6 +37,7 @@ public class RMICreateRegister {
             registry.rebind("AddGroupChatService", addGroupChatInt);
             registry.rebind("GroupListService",groupListInt);
             registry.rebind("updateUserService",updateUserInt);
+            registry.rebind("serverfileservice",serverFileRequesInt);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

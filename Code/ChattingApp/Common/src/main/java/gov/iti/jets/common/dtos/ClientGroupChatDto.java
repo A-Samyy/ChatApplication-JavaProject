@@ -1,11 +1,17 @@
 package gov.iti.jets.common.dtos;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 import java.io.Serializable;
 import java.util.List;
 
 public class ClientGroupChatDto implements Serializable {
     private static final long serialVersionUID = 1427672609912564060L;
+    @Positive
     int  groupId ;
+    @NotNull
     String groupName;
     List<String> usersId;
 

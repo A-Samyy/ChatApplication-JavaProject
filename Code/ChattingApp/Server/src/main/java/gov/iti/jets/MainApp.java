@@ -13,10 +13,6 @@ import java.rmi.RemoteException;
 public class MainApp extends Application {
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     public static void main(String[] arg) throws RemoteException {
-//        Connector connector= Connector.getInstance();
-//        connector.getConnection();
- //       System.out.println("after connection");
-        //Marwa merging
         RMICreateRegister rmiCreateRegister= RMICreateRegister.getInstance();
         Application.launch(arg);
     }
@@ -28,10 +24,8 @@ public class MainApp extends Application {
     }
     @Override
     public void start(Stage primaryStage){
-
         stageCoordinator.initStage(primaryStage);
         stageCoordinator.switchToLoginScreen();
         primaryStage.show();
-
     }
 }

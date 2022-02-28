@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements ServerMessageAnnouncetInt {
-    static int index = 0;
+
     private List<ClientAnnounceMessageInt> clientAnnounceMessageIntList = new ArrayList<>();
     private static List<String> listMessageAnnounceDto= new ArrayList<>();
 
@@ -30,7 +30,6 @@ public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements Se
             System.out.println("messageDto in get"+messageAnnounceDto1);
 
         }
-        index++;
     }
 
     @Override
@@ -49,7 +48,6 @@ public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements Se
         clientAnnounceMessageIntList.add(clientAnnounceMessageInt);
         return true;
     }
-
     @Override
     public boolean unRegister(ClientAnnounceMessageInt clientAnnounceMessageInt) throws RemoteException {
         return false;
@@ -69,12 +67,8 @@ public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements Se
             }
         return true ;
     }
-    /*
-    public void retMessage(MessageAnnounceDto messageAnnounceDto){
-        this.messageAnnounceDto1=messageAnnounceDto;
-    }
-    */
-    public int onlinUsers(){
+
+    public int onlinUsers() {
         return clientAnnounceMessageIntList.size();
     }
 }

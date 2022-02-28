@@ -1,7 +1,6 @@
 package gov.iti.jets.presentation.controllers;
 
 import gov.iti.jets.common.dtos.GroupDto;
-import gov.iti.jets.common.dtos.MessageDto;
 import gov.iti.jets.common.dtos.MessageGroupDto;
 import gov.iti.jets.common.interfaces.ServerGroupChatMessageInt;
 import gov.iti.jets.networking.RMIRegister;
@@ -69,7 +68,6 @@ public class GroupSectionController implements Initializable {
 
     public  void displayGroup(GroupDto groupDto) {
         this.groupDto = groupDto;
-        System.out.println(groupDto.getGroupName());
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -85,7 +83,6 @@ public class GroupSectionController implements Initializable {
         messageGroupDto.setSenderId(LoginService.getId());
         messageGroupDto.setMessageContent(messageTextField.getText());
         messageGroupDto.setSenderName(userModel.getUserName());
-        System.out.println(messageGroupDto.toString());
         messageTextField.setText("");
         try {
             serverGroupChatMessage.sendGroupChatMessage(messageGroupDto);
@@ -105,7 +102,6 @@ public class GroupSectionController implements Initializable {
     public  void displayGroupMessage(int groupId , List<MessageGroupDto> messages) {
         ObservableList list;
         if(ClientGroupChatMessageImpl.mapForGroup.get(groupId) != null){
-            //sidebar
                 list = SidebarController.observableListMapForGroup.get(groupId);
             for (MessageGroupDto messageGroupDto: ClientGroupChatMessageImpl.mapForGroup.get(groupId)) {
                 list.add(messageGroupDto);
@@ -132,7 +128,7 @@ public class GroupSectionController implements Initializable {
         @Override
         protected void updateItem(MessageGroupDto item, boolean empty) {
             super.updateItem(item, empty);
-            if (item != null && !empty) { // <== test for null item and empty parameter
+            if (item != null && !empty) {
                 if(LoginService.getId() == item.getSenderId()){
                     messageCellContainer.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
                     HBox hbox = stageCoordinator.loadMessage(new MessageDao(item),1);

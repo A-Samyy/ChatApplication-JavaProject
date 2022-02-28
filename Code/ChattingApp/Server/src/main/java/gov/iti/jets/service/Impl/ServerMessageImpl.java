@@ -1,9 +1,8 @@
 package gov.iti.jets.service.Impl;
 
-import gov.iti.jets.common.interfaces.ClientGroupChatMessageInt;
+import gov.iti.jets.common.dtos.MessageDto;
 import gov.iti.jets.common.interfaces.ClientMesseageInt;
 import gov.iti.jets.common.interfaces.ServerMessageInt;
-import gov.iti.jets.common.dtos.MessageDto;
 import gov.iti.jets.service.services.ChatBotService;
 import gov.iti.jets.service.services.ServerControlService;
 
@@ -12,23 +11,20 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ServerMessageImpl extends UnicastRemoteObject implements  ServerMessageInt{
+public class ServerMessageImpl extends UnicastRemoteObject implements ServerMessageInt {
+    Map<Integer, ClientMesseageInt> clients = new HashMap<>();
 
-    Map<Integer,ClientMesseageInt> clients =new HashMap<>();
-ChatBotService chatBotService =new ChatBotService();
+    ChatBotService chatBotService = new ChatBotService();
     public ServerMessageImpl() throws RemoteException {
         super();
     }
-
     @Override
     public boolean getMesssage(MessageDto messageDto) throws RemoteException {
-        System.out.println("mwgd?"+clients.containsKey(messageDto.getFriendId()));
-        if(ServerControlService.flag) {
+        if (ServerControlService.flag) {
             if (clients.containsKey(messageDto.getFriendId())) {
-                System.out.println("friendId " + messageDto.getFriendId());
                 sendMessage(messageDto);
                 return true;
-            }else {
+            } else {
                 MessageDto messageBot = new MessageDto();
                 messageBot.setFriendId(messageDto.getUserId());
                 messageBot.setUserName("Mr.ChatBot");
@@ -36,45 +32,34 @@ ChatBotService chatBotService =new ChatBotService();
                 messageBot.setMessageContent(chatBotService.chatBotReply(messageDto.getMessageContent()));
                 return sendChatBotMessage(messageBot);
             }
-
-        }
-        else{
-            System.out.println("system is offline");
+        } else {
             return false;
         }
-
     }
-
 
 
     @Override
-    public boolean register(ClientMesseageInt clientMesseageInt ,int userId) throws RemoteException {
-        clients.put(userId,clientMesseageInt);
-        if(clients.containsKey(userId)){
-            System.out.println("regestred");
-            return true;
-        }
-        return false;
+    public boolean register(ClientMesseageInt clientMesseageInt, int userId) throws RemoteException {
+        clients.put(userId, clientMesseageInt);
+        return clients.containsKey(userId);
     }
 
     @Override
-    public boolean unRegister(ClientMesseageInt clientMesseageInt ,int userId) throws RemoteException {
-        if(clients.remove(userId,clientMesseageInt))
-            return true;
-        return false;
+    public boolean unRegister(ClientMesseageInt clientMesseageInt, int userId) throws RemoteException {
+        return clients.remove(userId, clientMesseageInt);
     }
+
     private boolean sendChatBotMessage(MessageDto messageBot) {
         try {
-            System.out.println("dakhlt feh sendChatBotMessage = "+messageBot.getMessageContent());
             clients.get(messageBot.getFriendId()).reciveMessage(messageBot);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
         return false;
     }
-    public boolean sendMessage(MessageDto messageDto){
+
+    public boolean sendMessage(MessageDto messageDto) {
         try {
-            System.out.println("dakhlt feh el heta ely byndahg feha el reciev"+messageDto.getFriendId());
             clients.get(messageDto.getFriendId()).reciveMessage(messageDto);
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -82,7 +67,7 @@ ChatBotService chatBotService =new ChatBotService();
         return false;
     }
 
-    public Map<Integer, ClientMesseageInt> clientsOnline(){
+    public Map<Integer, ClientMesseageInt> clientsOnline() {
         return this.clients;
     }
 }

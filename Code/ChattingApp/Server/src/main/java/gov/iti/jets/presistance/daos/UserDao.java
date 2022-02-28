@@ -15,12 +15,11 @@ public class UserDao {
     private Connection conn = null;
     private PreparedStatement preparedStatement = null;
     Connector connector = Connector.getInstance();
-
     public UserDao() {
     }
 
 
-    public boolean addUserDto(UserDto userDto) { // Email was not tested
+    public boolean addUserDto(UserDto userDto) {
         boolean check1 = checkUserByPhoneNumber(userDto.getPhoneNumber());
         boolean check2 = checkUserbyMail(userDto.getEmail());
         if (!check1 && !check2) {
@@ -42,7 +41,6 @@ public class UserDao {
         } else
             return false;
     }
-
     private boolean checkUserbyMail(String email) {
         try {
             conn = connector.getConnection();
@@ -66,7 +64,6 @@ public class UserDao {
     public boolean updateUserDto(UserDto userDto) {
         try {
             conn = connector.getConnection();
-//            int id = getUserIdByPhoneNumber(userDto.getPhoneNumber());
             String sql = "UPDATE chatting_app.user SET PHONE_NUMBER= ?,USER_NAME = ?,PASSWORD = ? ,GENDER = ? ,EMAIL = ? ,Picture = ? ,COUNTRY = ?,Bio = ? ,STATUS=? ,DateOfBirth=? WHERE User_ID="
                     + userDto.getUserID();
             return injectUser(userDto, sql);

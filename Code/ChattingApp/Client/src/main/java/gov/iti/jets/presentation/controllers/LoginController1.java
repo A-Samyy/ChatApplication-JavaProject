@@ -5,11 +5,9 @@ import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
-import gov.iti.jets.common.interfaces.ClientAnnounceMessageInt;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
-import gov.iti.jets.service.impl.ClientAnnounceImpl;
 import gov.iti.jets.service.services.LoginService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -69,17 +67,10 @@ public class LoginController1 implements Initializable {
     void OnLoginAction(ActionEvent event) throws RemoteException{
 
         int userId = loginService.getUserId(userModel.getPhoneNumber());
-//        String userPass = loginService.getPassword();
-//
-//        System.out.println(userPass);
-//        String pass = "951357";
 
         if ((userId > -1)){
             stageCoordinator.switchToPasswordScreen();
-        }else {
-            System.out.println("Please register Or youPass is invalid");
         }
-
         validationSupport.setValidationDecorator(new StyleClassValidationDecoration());
 
         validationSupport.setValidationDecorator(new CompoundValidationDecoration(
@@ -98,10 +89,6 @@ public class LoginController1 implements Initializable {
     void OnRegestrationAction(MouseEvent ev1ent) {
         stageCoordinator.switchToRegistrationScreen();
     }
-//    @FXML
-//    void ToWelcom(MouseEvent event) {
-//        stageCoordinator.switchToWelcomScreen();
-//    }
 
 
     @FXML

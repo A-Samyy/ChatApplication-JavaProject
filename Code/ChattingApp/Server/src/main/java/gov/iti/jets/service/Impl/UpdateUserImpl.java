@@ -19,7 +19,6 @@ public class UpdateUserImpl extends UnicastRemoteObject implements UpdateUserInt
 
     @Override
     public Boolean updateUser(UpdateDto updateDto) throws RemoteException {
-        System.out.println(updateDto.toString());
         UserDto  userDto = userDao.getUserDtoById(updateDto.getId());
         userDto.setBio(updateDto.getBio());
         userDto.setEmail(updateDto.getEmail());
@@ -36,21 +35,24 @@ public class UpdateUserImpl extends UnicastRemoteObject implements UpdateUserInt
             userDto.setPassword(updateDto.getPassword());
 
         }
-        System.out.println(Status.getStatusFromNumber(getStatusNumber(updateDto.getStatus())));
         userDto.setStatus(Status.getStatusFromNumber(getStatusNumber(updateDto.getStatus())));
-        System.out.println("UserDTO OnServer"+userDto);
         return userDao.updateUserDto(userDto);
     }
     int getStatusNumber(String status){
         int number = 0;
-        if (status.equals("Active")){
-            number = 1;
-        }else if(status.equals("Busy")){
-            number = 2;
-        }else if(status.equals("Away")){
-            number = 3;
-        }else if(status.equals("Offline")){
-            number = 4;
+        switch (status) {
+            case "Active":
+                number = 1;
+                break;
+            case "Busy":
+                number = 2;
+                break;
+            case "Away":
+                number = 3;
+                break;
+            case "Offline":
+                number = 4;
+                break;
         }
         return number;
     }
