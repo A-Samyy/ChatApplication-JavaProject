@@ -16,7 +16,12 @@ import java.util.Map;
 public class ServerGroupChatMessageImpl extends UnicastRemoteObject implements ServerGroupChatMessageInt {
 
     GroupChatUsersDao groupChatUsersDao = new GroupChatUsersDao();
-    Map<Integer, ClientGroupChatMessageInt> clients = new HashMap<>();
+
+    public Map<Integer, ClientGroupChatMessageInt> getClients() {
+        return clients;
+    }
+
+    static Map<Integer, ClientGroupChatMessageInt> clients = new HashMap<>();
     List<Integer> userIds = new ArrayList<>();
 
     public ServerGroupChatMessageImpl() throws RemoteException {
