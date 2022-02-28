@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class ServerFileRequestImpl extends UnicastRemoteObject implements ServerFileRequestInt {
 
-    Map<Integer, ClientFileRequestInt> clients =new HashMap<>();
+    Map<Integer, ClientFileRequestInt> clients = new HashMap<>();
 
 
     public ServerFileRequestImpl() throws RemoteException {
@@ -22,16 +22,15 @@ public class ServerFileRequestImpl extends UnicastRemoteObject implements Server
 
     @Override
     public boolean getNewRequest(FileRequestDto fileRequestDto) throws RemoteException {
-        if(ServerControlService.flag) {
+        if (ServerControlService.flag) {
             if (clients.containsKey(fileRequestDto.getReceiverId())) {
                 return sendNewRequest(fileRequestDto);
             }
             return false;
+        } else {
+            return false;
         }
-        else{
-             return false;
-        }
-     }
+    }
 
     private boolean sendNewRequest(FileRequestDto fileRequestDto) {
         try {
@@ -48,18 +47,19 @@ public class ServerFileRequestImpl extends UnicastRemoteObject implements Server
     }
 
     @Override
-    public boolean register(ClientFileRequestInt clientFileRequestInt,int userId) throws RemoteException {
-        clients.put(userId,clientFileRequestInt);
-        if(clients.containsKey(userId)){
-             return true;
+    public boolean register(ClientFileRequestInt clientFileRequestInt, int userId) throws RemoteException {
+        clients.put(userId, clientFileRequestInt);
+        if (clients.containsKey(userId)) {
+            return true;
         }
         return false;
     }
 
     @Override
-    public boolean unRegister(ClientFileRequestInt clientFileRequestInt , int userId) throws RemoteException {
-        if(clients.remove(userId,clientFileRequestInt))
-            return true;
+    public boolean unRegister(ClientFileRequestInt clientFileRequestInt, int userId) throws RemoteException {
+        if (clients.containsKey(userId)) {
+            return clients.remove(userId, clientFileRequestInt);
+        }
         return false;
     }
 }

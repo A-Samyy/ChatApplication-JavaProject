@@ -29,7 +29,7 @@ public class ServerGroupChatMessageImpl extends UnicastRemoteObject implements S
 
     @Override
     public boolean sendGroupChatMessage(MessageGroupDto messageGroupDto) throws RemoteException {
-        if(ServerControlService.flag) {
+        if (ServerControlService.flag) {
             userIds = groupChatUsersDao.getAllUsersIdFromGroupId(messageGroupDto.getGroupId());
             for (int userId : userIds) {
                 try {
@@ -39,29 +39,31 @@ public class ServerGroupChatMessageImpl extends UnicastRemoteObject implements S
                         }
                     }
                 } catch (Exception e) {
-                     e.printStackTrace();
+                    e.printStackTrace();
                 }
             }
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 
     @Override
     public boolean register(ClientGroupChatMessageInt clientGroupChatMessageInt, int userId) throws RemoteException {
-            clients.put(userId, clientGroupChatMessageInt);
-        return true;
+        clients.put(userId, clientGroupChatMessageInt);
+        return clients.containsKey(userId);
     }
 
     @Override
-    public boolean unregister(ClientGroupChatMessageInt clientGroupChatMessageInt) throws RemoteException {
+    public boolean unregister(ClientGroupChatMessageInt clientGroupChatMessageInt, int userId) throws RemoteException {
+        if (clients.containsKey(userId)) {
+            return clients.remove(userId, clientGroupChatMessageInt);
+        }
         return false;
     }
 
 
-    private void sendMessage(MessageGroupDto messageGroupDto ,int userID) {
+    private void sendMessage(MessageGroupDto messageGroupDto, int userID) {
         try {
             clients.get(userID).receiveGroupChatMessage(messageGroupDto);
         } catch (RemoteException e) {

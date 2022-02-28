@@ -5,25 +5,23 @@ import gov.iti.jets.common.dtos.FileRequestDto;
 import gov.iti.jets.common.dtos.FriendRequestSenderDto;
 import gov.iti.jets.common.dtos.GroupDto;
 import gov.iti.jets.presentation.controllers.*;
-
-import javafx.application.Platform;
-import java.io.File;
-import java.io.IOException;
-import java.util.*;
-
-import gov.iti.jets.presentation.controllers.MessageController;
 import gov.iti.jets.service.daos.MessageDao;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class StageCoordinator {
@@ -34,7 +32,7 @@ public class StageCoordinator {
     private GroupSectionController groupSectionController;
 
 
-    private final Map<String, Scene> sceneMap = new HashMap<>();
+    private final Map<String, Parent> parentMap = new HashMap<>();
     private final Map<String, Node> nodeMap = new HashMap<>();
     private final Map<Integer, Node> chatSectionMap = new HashMap<>();
     private final Map<Integer, ChatSectionController> chatSectionControllerMap = new HashMap<>();
@@ -74,85 +72,79 @@ public class StageCoordinator {
     }
 
     public void switchToWelcomScreen() {
-        Scene welcomScene = sceneMap.get("welcomScene");
-        if (welcomScene == null) {
+        Parent welcomeParent = parentMap.get("welcomeParent");
+        if (welcomeParent == null) {
             try {
-                // change Path
                 Parent root = FXMLLoader.load(getClass().getResource("/views/WelcomePage/LoginView.fxml"));
-                welcomScene = new Scene(root);
-                sceneMap.put("welcomScene", welcomScene);
+                welcomeParent = root;
+                parentMap.put("welcomeParent", root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        primaryStage.setScene(welcomScene);
+        primaryStage.setScene(new Scene(welcomeParent));
     }
 
     public void switchToLoginScreen() {
-        Scene loginScene = sceneMap.get("loginScene");
-        if (loginScene == null) {
-            try {
-                // change Path
-                Parent root = FXMLLoader.load(getClass().getResource("/views/LoginSection1/LoginView2.fxml"));
-                loginScene = new Scene(root);
-                sceneMap.put("loginScene", loginScene);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        Parent loginParent = parentMap.get("loginParent");
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/views/LoginSection1/LoginView2.fxml"));
+            loginParent = root;
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        primaryStage.setScene(loginScene);
+        primaryStage.getScene().setRoot(loginParent);
     }
 
     public void switchToPasswordScreen() {
-        Scene passwordScene = sceneMap.get("passwordScene");
-        if (passwordScene == null) {
+        Parent passwordParent = parentMap.get("passwordParent");
+        if (passwordParent == null) {
             try {
-                // change Path
                 Parent root = FXMLLoader.load(getClass().getResource("/views/passwordsection/passwordView.fxml"));
-                passwordScene = new Scene(root);
-                sceneMap.put("passwordScene", passwordScene);
+                passwordParent = root;
+                parentMap.put("passwordScene", root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        primaryStage.setScene(passwordScene);
+        primaryStage.getScene().setRoot(passwordParent);
     }
 
     public void switchToGHomePageScreen() {
-        Scene homePageScene = null;
+        Parent homePageParent = null;
         try {
-            GridPane root = FXMLLoader.load(getClass().getResource("/views/HomePageStructure/homePage.fxml"));
-            homePageScene = new Scene(root);
+            Parent root = FXMLLoader.load(getClass().getResource("/views/HomePageStructure/homePage.fxml"));
+            homePageParent = root;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        primaryStage.setScene(homePageScene);
+        primaryStage.getScene().setRoot(homePageParent);
     }
 
     public void switchToProfileScreen() {
-        Scene profileScene = null;
+        Parent profileParent = null;
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/views/profile/editProfileSection.fxml"));
-            profileScene = new Scene(root);
+            profileParent = root;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        primaryStage.setScene(profileScene);
+        primaryStage.getScene().setRoot(profileParent);
     }
 
     public void switchToRegistrationScreen() {
-        Scene registrationScene = sceneMap.get("registrationScene");
-        if (registrationScene == null) {
+        Parent registrationParent = parentMap.get("registrationParent");
+        if (registrationParent == null) {
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/views/RegisterSection/RegisterView.fxml"));
-                registrationScene = new Scene(root);
-
-                sceneMap.put("registrationScene", registrationScene);
+                registrationParent = root;
+                parentMap.put("registrationParent", root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        primaryStage.setScene(registrationScene);
+        primaryStage.getScene().setRoot(registrationParent);
     }
 
     public Node loadContacts(ContactDto contactDto) {
@@ -161,7 +153,7 @@ public class StageCoordinator {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/views/chattingSection/chatSection.fxml"));
             contactList = loader.load();
-            ContactController contactController =loader.getController();
+            ContactController contactController = loader.getController();
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
@@ -187,7 +179,7 @@ public class StageCoordinator {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/views/contactSection/userPane.fxml"));
             grouplist = loader.load();
-            GroupListController groupListController =loader.getController();
+            GroupListController groupListController = loader.getController();
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
@@ -252,7 +244,7 @@ public class StageCoordinator {
         return sidebar;
     }
 
-    public Node loadDefault(){
+    public Node loadDefault() {
         Node defaultbar = null;
         try {
             defaultbar = FXMLLoader.load(getClass().getResource("/views/HomePageSection1/defaultHomeScreen1.fxml"));
@@ -262,7 +254,7 @@ public class StageCoordinator {
         return defaultbar;
     }
 
-    public Node loadAdminMessageNotification(){
+    public Node loadAdminMessageNotification() {
         Node adminNotification = null;
         try {
             adminNotification = FXMLLoader.load(getClass().getResource("/views/AdminMessageNotification/adminMessageNotification.fxml"));
@@ -272,9 +264,9 @@ public class StageCoordinator {
         return adminNotification;
     }
 
-    public Node loadChatSection(String name, Image pic , String status , int id){
+    public Node loadChatSection(String name, Image pic, String status, int id) {
         Node chatSection = chatSectionMap.get(id);
-        if(chatSection == null){
+        if (chatSection == null) {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/views/HomePageSection2/homePageSection2.fxml"));
             try {
@@ -283,22 +275,22 @@ public class StageCoordinator {
                 e.printStackTrace();
             }
             chatSectionController = loader.getController();
-            chatSectionMap.put(id,chatSection);
-            chatSectionControllerMap.put(id,chatSectionController);
+            chatSectionMap.put(id, chatSection);
+            chatSectionControllerMap.put(id, chatSectionController);
         }
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                chatSectionControllerMap.get(id).display(name,pic,status , id);
+                chatSectionControllerMap.get(id).display(name, pic, status, id);
             }
         });
 
         return chatSection;
     }
 
-    public Node loadChatSectionForGroup(GroupDto groupDto){
+    public Node loadChatSectionForGroup(GroupDto groupDto) {
         Node groupSection = groupSectionMap.get(groupDto.getId());
-        if(groupSection == null){
+        if (groupSection == null) {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/views/HomePageSection2/groupChatSection.fxml"));
             try {
@@ -307,8 +299,8 @@ public class StageCoordinator {
                 e.printStackTrace();
             }
             groupSectionController = loader.getController();
-            groupSectionMap.put(groupDto.getId(),groupSection);
-            groupSectionControllerMap.put(groupDto.getId(),groupSectionController);
+            groupSectionMap.put(groupDto.getId(), groupSection);
+            groupSectionControllerMap.put(groupDto.getId(), groupSectionController);
         }
         Platform.runLater(new Runnable() {
             @Override
@@ -319,41 +311,44 @@ public class StageCoordinator {
 
         return groupSection;
     }
-    public Map<Integer,ChatSectionController> getChatSectionController(){
+
+    public Map<Integer, ChatSectionController> getChatSectionController() {
         return chatSectionControllerMap;
     }
-    public Map<Integer,GroupSectionController> getGroupChatSectionController(){
+
+    public Map<Integer, GroupSectionController> getGroupChatSectionController() {
         return groupSectionControllerMap;
     }
 
-    public Node loadFriendRequest(String name, FriendRequestSenderDto friendRequestSenderDto){
+    public Node loadFriendRequest(String name, FriendRequestSenderDto friendRequestSenderDto) {
         Node friendReq = null;
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/views/contactSection/friendReq.fxml"));
             friendReq = loader.load();
-            FriendRequestController friendRequestCont= loader.getController();
-            friendRequestCont.dispalyFriendReq(name , friendRequestSenderDto);
+            FriendRequestController friendRequestCont = loader.getController();
+            friendRequestCont.dispalyFriendReq(name, friendRequestSenderDto);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return friendReq;
     }
 
-    public Node loadFileRequest(String name, FileRequestDto fileRequestDto){
+    public Node loadFileRequest(String name, FileRequestDto fileRequestDto) {
         Node fileReq = null;
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/views/contactSection/fileRequest.fxml"));
 //            friendReq = FXMLLoader.load(getClass().getResource("/views/contactSection/friendReq.fxml"));
             fileReq = loader.load();
-           FileRequestController fileRequestController= loader.getController();
+            FileRequestController fileRequestController = loader.getController();
             fileRequestController.dispalyFileReq(fileRequestDto);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return fileReq;
     }
+
     public void loadAddContact() {
         Stage addNewContact = new Stage();
         Pane addContact = null;
@@ -370,7 +365,7 @@ public class StageCoordinator {
     public void loadAdminMessageContainer(List<String> messagesFromAdmin) throws IOException {
         System.out.println(messagesFromAdmin.size());
         Stage addAdminMessageContainer = new Stage();
-        AdminMessageContainerController adminMessageController ;
+        AdminMessageContainerController adminMessageController;
         FXMLLoader loader = new FXMLLoader();
         Parent addAdminMessage = null;
         try {
@@ -379,15 +374,15 @@ public class StageCoordinator {
             loader.setLocation(getClass().getResource("/views/AdminMessageNotification/adminMessages.fxml"));
         } catch (Exception e) {
         }
-            addAdminMessage = loader.load();
-            adminMessageController = ( AdminMessageContainerController) loader.getController();
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("imhere");
-                    adminMessageController.displayMessage(messagesFromAdmin);
-                }
-            });
+        addAdminMessage = loader.load();
+        adminMessageController = (AdminMessageContainerController) loader.getController();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("imhere");
+                adminMessageController.displayMessage(messagesFromAdmin);
+            }
+        });
 
         Scene scene = new Scene(addAdminMessage);
         addAdminMessageContainer.setScene(scene);
@@ -440,30 +435,31 @@ public class StageCoordinator {
 
     }
 
-     public HBox loadMessage( MessageDao messageDao , int flag) {
+    public HBox loadMessage(MessageDao messageDao, int flag) {
 
 
-         try {
+        try {
             FXMLLoader loader = new FXMLLoader();
-             loader.setLocation(getClass().getResource("/views/message/messageView.fxml"));
+            loader.setLocation(getClass().getResource("/views/message/messageView.fxml"));
 
-             HBox message = loader.load();
-             MessageController messageController = (MessageController) loader.getController();
-             Platform.runLater(new Runnable() {
-                 @Override
-                 public void run() {
-                     if(flag == 0 ){
-                         messageController.displayMessage(messageDao.getMessageContent(), messageDao.getMessageUserName());
+            HBox message = loader.load();
+            MessageController messageController = (MessageController) loader.getController();
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    if (flag == 0) {
+                        messageController.displayMessage(messageDao.getMessageContent(), messageDao.getMessageUserName());
 
-                     }else{
-                         messageController.displayMessage(messageDao.getMessageGroupContent(), messageDao.getMessageGroupSenderName());
+                    } else {
+                        messageController.displayMessage(messageDao.getMessageGroupContent(), messageDao.getMessageGroupSenderName());
 
-                     }
-                 }
-             });
-             return message;
-         } catch (Exception e) {
-         }
-         return null;
+                    }
+                }
+            });
+            return message;
+        } catch (Exception e) {
+        }
+        return null;
 
-     }}
+    }
+}

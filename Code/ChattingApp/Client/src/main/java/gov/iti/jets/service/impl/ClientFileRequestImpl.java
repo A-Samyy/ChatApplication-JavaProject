@@ -34,11 +34,19 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
     private ModelFactory modelFactory=ModelFactory.getInstance();
     private FileCounterModel fileCounterModel =modelFactory.getFileCounterModel();
     public static List<FileRequestDto> fileRequestDtos = new ArrayList<>();
+    static ClientFileRequestImpl clientFileRequest;
+
+    public static ClientFileRequestImpl getClientFileRequest() {
+        return clientFileRequest;
+    }
+
+
 
 
     public ClientFileRequestImpl() throws RemoteException {
         super();
         serverFileRequestInt.register(this, LoginService.getId());
+        clientFileRequest=this;
     }
 
     @Override

@@ -33,9 +33,13 @@ public class MainApp extends Application {
 
     @Override
     public void stop() throws Exception {
-        MessageService messageService = MessageService.getInstance();
-        messageService.getClient().removeMe();
-    //    rememberMeServices.removeUserInfo();
+//        MessageService messageService = MessageService.getInstance();
+//        messageService.getClient().removeMe();
+        LogoutService logoutService =new LogoutService();
+        logoutService.logout();
+//        MessageService messageService = MessageService.getInstance();
+//        messageService.getClient().removeMe();
+//    //    rememberMeServices.removeUserInfo();
         super.stop();
         System.exit(0);
 

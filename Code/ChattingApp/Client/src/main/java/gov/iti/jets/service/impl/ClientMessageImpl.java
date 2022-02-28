@@ -10,10 +10,10 @@ import gov.iti.jets.common.interfaces.UpdateUserInt;
 import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.daos.MessageDao;
-
 import gov.iti.jets.service.services.LoginService;
 import gov.iti.jets.service.services.MessageService;
 import javafx.application.Platform;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -23,26 +23,33 @@ import java.util.Map;
 
 public class ClientMessageImpl extends UnicastRemoteObject implements ClientMesseageInt {
 
-    RMIRegister rmiRegister=RMIRegister.getInstance();
+    RMIRegister rmiRegister = RMIRegister.getInstance();
     public ServerMessageInt serverMessageInt;
     static public Map<Integer, List<MessageDao>> map = new HashMap<>();
     static public List<MessageDao> list = new ArrayList<>();
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     MessageService messageService = MessageService.getInstance();
 
-    MessageDao messageDao ;
+    public static ClientMessageImpl getClientMessage() {
+        return clientMessage;
+    }
+
+    static ClientMessageImpl clientMessage;
+    MessageDao messageDao;
+
     public ClientMessageImpl() throws RemoteException {
         super();
-        serverMessageInt=rmiRegister.messageService();
-        serverMessageInt.register(this,LoginService.getId());
+        serverMessageInt = rmiRegister.messageService();
+        serverMessageInt.register(this, LoginService.getId());
+        clientMessage= this;
     }
 
     @Override
     public String reciveMessage(MessageDto messageDto) throws RemoteException {
         messageDao = new MessageDao(messageDto);
         list.add(messageDao);
-        map.put(messageDto.getUserId(),list);
-        if(stageCoordinator.getChatSectionController().get(messageDto.getUserId()) != null){
+        map.put(messageDto.getUserId(), list);
+        if (stageCoordinator.getChatSectionController().get(messageDto.getUserId()) != null) {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
@@ -55,24 +62,25 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
     }
 
     @Override
-    public void reciveGroupMessage(MessageGroupDto messageGroupDto , int receivedUserId) throws RemoteException {
-       }
+    public void reciveGroupMessage(MessageGroupDto messageGroupDto, int receivedUserId) throws RemoteException {
+    }
 
 
-    public void sendMessage(MessageDto messageDto){
+    public void sendMessage(MessageDto messageDto) {
         try {
             serverMessageInt.getMesssage(messageDto);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
     }
+
     public void removeMe() throws RemoteException {
-        UpdateUserInt updateUserInt= rmiRegister.updateUserService();
+        UpdateUserInt updateUserInt = rmiRegister.updateUserService();
         updateUserInt.updateUser(mapperToUpdateDto(LoginService.userHomePageDtoToSend));
-        serverMessageInt.unRegister(this,LoginService.getId());
+      //  serverMessageInt.unRegister(this, LoginService.getId());
     }
 
-    UpdateDto mapperToUpdateDto(UserHomePageDto userHomePageDto){
+    UpdateDto mapperToUpdateDto(UserHomePageDto userHomePageDto) {
         UpdateDto updateDto = new UpdateDto();
         updateDto.setPhoneNumber(userHomePageDto.getPhoneNumber());
         updateDto.setPicture(userHomePageDto.getPicture());
@@ -82,6 +90,6 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
         updateDto.setPassword(userHomePageDto.getPassword());
         updateDto.setId(LoginService.getId());
         updateDto.setStatus("Offline");
-        return  updateDto;
+        return updateDto;
     }
 }

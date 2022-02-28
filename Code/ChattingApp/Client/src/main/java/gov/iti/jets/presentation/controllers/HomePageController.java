@@ -19,22 +19,8 @@ import java.util.ResourceBundle;
 public class HomePageController implements Initializable {
     private final StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     private final ModelFactory modelFactory = ModelFactory.getInstance();
-    private FileRequestDto fileRequestDto = new FileRequestDto();
     UserModel userModel = modelFactory.getUserModel();
     RMIRegister rmiRegister = RMIRegister.getInstance();
-    ServerGroupChatMessageInt serverGroupChatMessage = rmiRegister.groupChatMessageService();
-    ClientFileRequestInt clientFileRequestInt;
-
-    {
-        try {
-            clientFileRequestInt = new ClientFileRequestImpl();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
-
-    ClientGroupChatMessageInt clientGroupChatMessageInt ;
-    ClientAnnounceMessageInt clientAnnounceMessageInt;
 
     @FXML
     public GridPane gridPane;
