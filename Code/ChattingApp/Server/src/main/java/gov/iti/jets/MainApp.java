@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import java.rmi.RemoteException;
 
 public class MainApp extends Application {
+    Connector connector= Connector.getInstance();
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     public static void main(String[] arg) throws RemoteException {
         RMICreateRegister rmiCreateRegister= RMICreateRegister.getInstance();
@@ -19,7 +20,6 @@ public class MainApp extends Application {
     @Override
     public void stop() throws Exception {
         super.stop();
-        Connector connector= Connector.getInstance();
         connector.endConnection();
     }
     @Override
