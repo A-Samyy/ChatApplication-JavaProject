@@ -7,6 +7,7 @@ import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.services.LoginService;
 import gov.iti.jets.service.services.MessageService;
+import gov.iti.jets.service.services.RememberMeServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,14 +28,17 @@ import org.kordamp.ikonli.javafx.FontIcon;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 public class PasswordController implements Initializable {
     private final StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     private final ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
     LoginService loginService = new LoginService();
+    RememberMeServices rememberMeServices ;
     RMIRegister rmiRegister = RMIRegister.getInstance();
     ClientAnnounceMessageInt clientAnnounceMessageInt ;
+    Preferences userInfo = Preferences.userNodeForPackage(getClass());
     ValidationSupport validationSupport=new ValidationSupport();
 
     @FXML
@@ -94,6 +98,7 @@ public class PasswordController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         passwordTextField.setText("");
+        System.out.println("from password page "+userInfo.get("phone number","no phone number"));
 
     }
 }

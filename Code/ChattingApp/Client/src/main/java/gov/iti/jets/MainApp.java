@@ -6,6 +6,8 @@ import gov.iti.jets.service.services.MessageService;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import java.util.prefs.Preferences;
+
 public class MainApp extends Application {
     private StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     public static void main(String[] args){
@@ -17,7 +19,6 @@ public class MainApp extends Application {
         stageCoordinator.initStage(primaryStage);
         stageCoordinator.switchToWelcomScreen();
         primaryStage.show();
-        //new FileServer().start();
     }
 
     @Override

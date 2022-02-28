@@ -7,6 +7,7 @@ module Client {
     requires java.rmi;
     requires CommonModule;
     requires javafx.web;
+    requires java.prefs;
     opens gov.iti.jets.presentation.controllers to javafx.fxml;
     exports gov.iti.jets;
 }
