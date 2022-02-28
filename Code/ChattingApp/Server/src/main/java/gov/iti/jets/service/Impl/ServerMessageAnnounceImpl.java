@@ -40,13 +40,13 @@ public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements Se
 
     @Override
     public boolean register(ClientAnnounceMessageInt clientAnnounceMessageInt) throws RemoteException {
-        clientAnnounceMessageIntList.add(clientAnnounceMessageInt);
-        return true;
+        return clientAnnounceMessageIntList.add(clientAnnounceMessageInt);
     }
     @Override
     public boolean unRegister(ClientAnnounceMessageInt clientAnnounceMessageInt) throws RemoteException {
-        return  clientAnnounceMessageIntList.remove(clientAnnounceMessageInt);
-
+        if (clientAnnounceMessageIntList.contains(clientAnnounceMessageInt)) {
+            return clientAnnounceMessageIntList.remove(clientAnnounceMessageInt);
+        }return false;
     }
 
     @Override

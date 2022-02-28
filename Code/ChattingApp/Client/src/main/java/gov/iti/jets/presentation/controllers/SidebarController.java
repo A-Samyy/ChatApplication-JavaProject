@@ -113,15 +113,9 @@ public class SidebarController implements Initializable {
 
     @FXML
     void logoutOnMouseClick(MouseEvent event) {
-        if (!list.isEmpty()) {
-            list.clear();
-        }
-        if (grouplist!=null) {
-            grouplist.clear();
-        }
-        observableListMap.clear();
-        observableListMapForGroup.clear();
+        System.out.println(" logout 1");
         logoutService.logout();
+        System.out.println(" logout 2");
         stageCoordinator.switchToLoginScreen();
     }
 

@@ -3,6 +3,7 @@ package gov.iti.jets.presentation.controllers;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 import java.util.regex.Pattern;
 
 import gov.iti.jets.presentation.models.UserModel;
@@ -70,6 +71,7 @@ public class LoginController1 implements Initializable {
 
         if ((userId > -1)){
             stageCoordinator.switchToPasswordScreen();
+           // userInfo.put("phone number",userModel.getPhoneNumber());
         }
         validationSupport.setValidationDecorator(new StyleClassValidationDecoration());
 
@@ -99,5 +101,6 @@ public class LoginController1 implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         phoneNumberTextField.textProperty().bindBidirectional(userModel.phoneNumberProperty());
+        //System.out.println("phone number from prefrence "+userInfo.get("phone number" , "no phone number"));
     }
 }

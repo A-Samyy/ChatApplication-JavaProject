@@ -5,27 +5,24 @@ import gov.iti.jets.common.dtos.FileRequestDto;
 import gov.iti.jets.common.dtos.FriendRequestSenderDto;
 import gov.iti.jets.common.dtos.GroupDto;
 import gov.iti.jets.presentation.controllers.*;
-
-import javafx.application.Platform;
-import java.io.File;
-import java.io.IOException;
-import java.util.*;
-
-import gov.iti.jets.presentation.controllers.MessageController;
 import gov.iti.jets.service.daos.MessageDao;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class StageCoordinator {
@@ -91,15 +88,14 @@ public class StageCoordinator {
     }
 
     public void switchToLoginScreen() {
-        Parent loginParent = parentMap.get("loginParent");
-        if (loginParent == null) {
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource("/views/LoginSection1/LoginView2.fxml"));
-                loginParent = root;
-                parentMap.put("loginParent", root);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        Parent loginParent = null; // parentMap.get("loginParent");
+        try {
+            System.out.println("in switch to logout");
+            Parent root = FXMLLoader.load(getClass().getResource("/views/LoginSection1/LoginView2.fxml"));
+            loginParent = root;
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         primaryStage.getScene().setRoot(loginParent);
     }
@@ -126,7 +122,8 @@ public class StageCoordinator {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        primaryStage.getScene().setRoot(homePageParent);
+//        primaryStage.getScene().setRoot(homePageParent);
+        primaryStage.setScene(new Scene(homePageParent));
     }
 
     public void switchToProfileScreen() {
@@ -160,7 +157,7 @@ public class StageCoordinator {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/views/chattingSection/chatSection.fxml"));
             contactList = loader.load();
-            ContactController contactController =loader.getController();
+            ContactController contactController = loader.getController();
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
@@ -186,7 +183,7 @@ public class StageCoordinator {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/views/contactSection/userPane.fxml"));
             grouplist = loader.load();
-            GroupListController groupListController =loader.getController();
+            GroupListController groupListController = loader.getController();
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
@@ -251,7 +248,7 @@ public class StageCoordinator {
         return sidebar;
     }
 
-    public Node loadDefault(){
+    public Node loadDefault() {
         Node defaultbar = null;
         try {
             defaultbar = FXMLLoader.load(getClass().getResource("/views/HomePageSection1/defaultHomeScreen1.fxml"));
@@ -261,7 +258,7 @@ public class StageCoordinator {
         return defaultbar;
     }
 
-    public Node loadAdminMessageNotification(){
+    public Node loadAdminMessageNotification() {
         Node adminNotification = null;
         try {
             adminNotification = FXMLLoader.load(getClass().getResource("/views/AdminMessageNotification/adminMessageNotification.fxml"));
@@ -271,9 +268,9 @@ public class StageCoordinator {
         return adminNotification;
     }
 
-    public Node loadChatSection(String name, Image pic , String status , int id){
+    public Node loadChatSection(String name, Image pic, String status, int id) {
         Node chatSection = chatSectionMap.get(id);
-        if(chatSection == null){
+        if (chatSection == null) {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/views/HomePageSection2/homePageSection2.fxml"));
             try {
@@ -288,16 +285,16 @@ public class StageCoordinator {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                chatSectionControllerMap.get(id).display(name,pic,status , id);
+                chatSectionControllerMap.get(id).display(name, pic, status, id);
             }
         });
 
         return chatSection;
     }
 
-    public Node loadChatSectionForGroup(GroupDto groupDto){
+    public Node loadChatSectionForGroup(GroupDto groupDto) {
         Node groupSection = groupSectionMap.get(groupDto.getId());
-        if(groupSection == null){
+        if (groupSection == null) {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/views/HomePageSection2/groupChatSection.fxml"));
             try {
@@ -306,8 +303,8 @@ public class StageCoordinator {
                 e.printStackTrace();
             }
             groupSectionController = loader.getController();
-            groupSectionMap.put(groupDto.getId(),groupSection);
-            groupSectionControllerMap.put(groupDto.getId(),groupSectionController);
+            groupSectionMap.put(groupDto.getId(), groupSection);
+            groupSectionControllerMap.put(groupDto.getId(), groupSectionController);
         }
         Platform.runLater(new Runnable() {
             @Override
@@ -353,6 +350,7 @@ public class StageCoordinator {
         }
         return fileReq;
     }
+
     public void loadAddContact() {
         Stage addNewContact = new Stage();
         Pane addContact = null;
@@ -373,18 +371,20 @@ public class StageCoordinator {
         FXMLLoader loader = new FXMLLoader();
         Parent addAdminMessage = null;
         try {
+
+
             loader.setLocation(getClass().getResource("/views/AdminMessageNotification/adminMessages.fxml"));
         } catch (Exception e) {
         }
-            addAdminMessage = loader.load();
-            adminMessageController = ( AdminMessageContainerController) loader.getController();
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("imhere");
-                    adminMessageController.displayMessage(messagesFromAdmin);
-                }
-            });
+        addAdminMessage = loader.load();
+        adminMessageController = (AdminMessageContainerController) loader.getController();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("imhere");
+                adminMessageController.displayMessage(messagesFromAdmin);
+            }
+        });
 
         Scene scene = new Scene(addAdminMessage);
         addAdminMessageContainer.setScene(scene);
@@ -448,12 +448,13 @@ public class StageCoordinator {
                      }else{
                          messageController.displayMessage(messageDao.getMessageGroupContent(), messageDao.getMessageGroupSenderName() , messageDao.getMessageColor());
 
-                     }
-                 }
-             });
-             return message;
-         } catch (Exception e) {
-         }
-         return null;
+                    }
+                }
+            });
+            return message;
+        } catch (Exception e) {
+        }
+        return null;
 
-     }}
+    }
+}

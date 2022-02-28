@@ -18,14 +18,18 @@ public class LoginService {
     private static int userId;
 
     private final ModelFactory modelFactory = ModelFactory.getInstance();
+
     UserModel userModel = modelFactory.getUserModel();
     RMIRegister rmiRegister = RMIRegister.getInstance();
     LoginInt loginInt =rmiRegister.loginService();
     LoginDto loginDto = null;
     static public UserHomePageDto userHomePageDtoToSend = new UserHomePageDto();
 
-    public LoginService() {
+    public static void setUserId(int userId) {
+        LoginService.userId = userId;
+    }
 
+    public LoginService() {
     }
 
     public int getUserId(String phoneNumber) throws RemoteException {
