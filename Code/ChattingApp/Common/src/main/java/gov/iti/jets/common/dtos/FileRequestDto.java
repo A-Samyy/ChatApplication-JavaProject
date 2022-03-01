@@ -9,6 +9,7 @@ public class FileRequestDto implements Serializable {
     private int receiverId;
     private String fileName;
     private String filePath;
+    private String host ;
 
 
     public String getFilePath() {
@@ -21,6 +22,14 @@ public class FileRequestDto implements Serializable {
 
 
     public FileRequestDto(){
+    }
+
+    public String getHost() {
+        return host;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
     }
 
     public void setSenderId(int senderId) {
@@ -54,6 +63,7 @@ public class FileRequestDto implements Serializable {
                 ", receiverId=" + receiverId +
                 ", fileName='" + fileName + '\'' +
                 ", filePath='" + filePath + '\'' +
+                ", host='" + host + '\'' +
                 '}';
     }
 }
