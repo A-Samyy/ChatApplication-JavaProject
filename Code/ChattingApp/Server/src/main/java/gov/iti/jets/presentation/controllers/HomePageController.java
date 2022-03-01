@@ -185,6 +185,8 @@ public class HomePageController implements Initializable {
             userDto.setName(userNameTextField.getText());
             userDto.setEmail(emailTextField.getText());
             userDto.setPassword(passwordTextField.getText());
+            userDto.setGender("Female");
+            userDto.setStatus(Status.OFFLINE);
             userDto.setPicture("src/main/resources/clientPictures/user.png");
             userDto.setStatus(Status.ACTIVE);
             addUserService.addUser(userDto);

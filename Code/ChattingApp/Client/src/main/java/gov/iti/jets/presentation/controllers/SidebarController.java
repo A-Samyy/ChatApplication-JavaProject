@@ -7,6 +7,7 @@ import gov.iti.jets.presentation.models.ContactModel;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
+import gov.iti.jets.service.impl.ClientAnnounceImpl;
 import gov.iti.jets.service.impl.ClientFileRequestImpl;
 import gov.iti.jets.service.services.*;
 import javafx.application.Platform;
@@ -97,7 +98,7 @@ public class SidebarController implements Initializable {
     @FXML
     private Label userName;
 
-
+    boolean flag = true;
     ImageView img;
     ContactModel contactModel;
 

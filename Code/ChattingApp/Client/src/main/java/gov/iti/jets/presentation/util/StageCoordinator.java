@@ -391,7 +391,7 @@ public class StageCoordinator {
         addNewContact.show();
     }
 
-    public void loadAdminMessageContainer(List<String> messagesFromAdmin) throws IOException {
+    public void loadAdminMessageContainer(Map<Integer,List<String>> messagesFromAdmin) throws IOException {
         Stage addAdminMessageContainer= stageMap.get("addAdminMessageContainer");
         if(addAdminMessageContainer == null){
             addAdminMessageContainer = new Stage();

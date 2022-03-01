@@ -22,7 +22,7 @@ public class MessageAdminController implements Initializable {
     void onMessageAdminClicked(MouseEvent event) {
 
         try {
-            stageCoordinator.loadAdminMessageContainer(ClientAnnounceImpl.messagesFromAdmin);
+            stageCoordinator.loadAdminMessageContainer(ClientAnnounceImpl.mapMessageFromAdmin);
         } catch (IOException e) {
             e.printStackTrace();
         }
