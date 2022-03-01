@@ -48,9 +48,9 @@ public class ServerFileRequestImpl extends UnicastRemoteObject implements Server
 
     @Override
     public boolean register(ClientFileRequestInt clientFileRequestInt, int userId) throws RemoteException {
-        clients.put(userId, clientFileRequestInt);
-        if (clients.containsKey(userId)) {
-            return true;
+        if (!clients.containsKey(userId)) {
+            clients.put(userId, clientFileRequestInt);
+            return clients.containsKey(userId);
         }
         return false;
     }

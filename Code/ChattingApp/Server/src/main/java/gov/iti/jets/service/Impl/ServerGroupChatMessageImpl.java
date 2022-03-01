@@ -50,8 +50,10 @@ public class ServerGroupChatMessageImpl extends UnicastRemoteObject implements S
 
     @Override
     public boolean register(ClientGroupChatMessageInt clientGroupChatMessageInt, int userId) throws RemoteException {
-        clients.put(userId, clientGroupChatMessageInt);
-        return clients.containsKey(userId);
+       if(!clients.containsKey(userId)) {
+           clients.put(userId, clientGroupChatMessageInt);
+           return clients.containsKey(userId);
+       }return false;
     }
 
     @Override
