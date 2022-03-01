@@ -8,6 +8,8 @@ import gov.iti.jets.service.services.RememberMeServices;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import java.net.InetAddress;
+
 public class MainApp extends Application {
     private StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     RememberMeServices rememberMeServices = RememberMeServices.getInstance();
@@ -18,18 +20,24 @@ public class MainApp extends Application {
         Application.launch(args);
     }
 
+//    @Override
+//    public void init() throws Exception {
+//        super.init();
+////        System.setProperty("java.rmi.server.hostname", "10.145.5.210");
+//    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         stageCoordinator.initStage(primaryStage);
         if (rememberMeServices.getUserInfoValue() == 0) {
             stageCoordinator.switchToWelcomScreen();
         }
-//        else {
-//            loginService.setUserId(rememberMeServices.getUserInfoValue());
-//            loginService.getdata();
-//            rememberMeServices.registerme();
-//            stageCoordinator.switchToGHomePageScreen();
-//        }
+        else {
+            loginService.setUserId(rememberMeServices.getUserInfoValue());
+            loginService.getdata();
+            rememberMeServices.registerme();
+            stageCoordinator.switchToGHomePageScreen();
+        }
         primaryStage.show();
     }
 

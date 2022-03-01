@@ -21,9 +21,10 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.net.*;
+import java.util.*;
+
+import static java.lang.System.out;
 
 public class StageCoordinator {
     private static final StageCoordinator stageCoordinator = new StageCoordinator();
@@ -32,6 +33,22 @@ public class StageCoordinator {
     private ChatSectionController chatSectionController;
     private GroupSectionController groupSectionController;
 
+    public static void main(String args[]) throws SocketException, UnknownHostException {
+
+//        out.println(InetAddress.getLocalHost());
+//        out.println(Inet4Address.getLocalHost());
+
+/*        Enumeration<NetworkInterface> nets = NetworkInterface.getNetworkInterfaces();
+        for (NetworkInterface netint : Collections.list(nets)){
+            out.printf("Display name: %s\n", netint.getDisplayName());
+            out.printf("Name: %s\n", netint.getName());
+            Enumeration<InetAddress> inetAddresses = netint.getInetAddresses();
+            for (InetAddress inetAddress : Collections.list(inetAddresses)) {
+                out.printf("InetAddress: %s\n", inetAddress);
+            }
+            out.printf("\n");
+        }*/
+    }
 
     private final Map<String, Parent> parentMap = new HashMap<>();
     private final Map<String, Stage> stageMap = new HashMap<>();
@@ -92,7 +109,7 @@ public class StageCoordinator {
     public void switchToLoginScreen() {
         Parent loginParent = null; // parentMap.get("loginParent");
         try {
-            System.out.println("in switch to logout");
+            out.println("in switch to logout");
             Parent root = FXMLLoader.load(getClass().getResource("/views/LoginSection1/LoginView2.fxml"));
             loginParent = root;
 
@@ -402,7 +419,7 @@ public class StageCoordinator {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                System.out.println("imhere");
+                out.println("imhere");
                 adminMessageController.displayMessage(messagesFromAdmin);
             }
         });
