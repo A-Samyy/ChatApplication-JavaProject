@@ -61,7 +61,7 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
     public boolean receiveMyRequest(FileRequestDto fileRequestDto) throws RemoteException {
         try {
             System.out.println("FileTransferService to send the file last stop before sending file");
-            try(Socket socket = new Socket("localhost",8877)) {
+            try(Socket socket = new Socket(fileRequestDto.getHost(),9797)) {
                 dataInputStream = new DataInputStream(socket.getInputStream());
                 dataOutputStream = new DataOutputStream(socket.getOutputStream());
                 System.out.println("sending file ");
@@ -112,7 +112,7 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
             stageCoordinator.loadProgressBar();
 
             new Thread(() -> {
-                try(ServerSocket serverSocket = new ServerSocket(8877)){
+                try(ServerSocket serverSocket = new ServerSocket(9797)){
                     System.out.println("listening to port:5000");
                     Socket clientSocket = serverSocket.accept();
                     System.out.println(clientSocket+" connected.");

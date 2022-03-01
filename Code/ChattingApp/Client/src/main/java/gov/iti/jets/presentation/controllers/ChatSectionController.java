@@ -34,7 +34,9 @@ import javafx.stage.FileChooser;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.File;
+import java.net.InetAddress;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 import java.util.*;
 
@@ -100,7 +102,7 @@ public class ChatSectionController implements Initializable {
     int friendId;
 
     @FXML
-    void onAddAttachmentMouseClicked(MouseEvent event) {
+    void onAddAttachmentMouseClicked(MouseEvent event) throws UnknownHostException {
         FileChooser openFileChooser = new FileChooser();
         File file = openFileChooser.showOpenDialog(null);
         FileRequestDto fileRequestDto = new FileRequestDto();
@@ -109,6 +111,7 @@ public class ChatSectionController implements Initializable {
             fileRequestDto.setSenderId(LoginService.getId());
             fileRequestDto.setFilePath(file.getPath());
             fileRequestDto.setReceiverId(friendId);
+           // fileRequestDto.setHost(InetAddress.getLocalHost().getHostAddress());
             try {
                 System.out.println(serverFileRequestInt.getNewRequest(fileRequestDto));
             } catch (RemoteException e) {

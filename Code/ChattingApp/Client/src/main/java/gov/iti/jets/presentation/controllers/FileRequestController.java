@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 
 public class FileRequestController {
@@ -18,8 +20,11 @@ public class FileRequestController {
     void OnAccept(MouseEvent event) {
         try {
             ClientFileRequestImpl clientFileRequest = new ClientFileRequestImpl();
+            fileRequestDto.setHost(InetAddress.getLocalHost().getHostAddress());
             clientFileRequest.sendResponseRequest(fileRequestDto);
         } catch (RemoteException e) {
+            e.printStackTrace();
+        } catch (UnknownHostException e) {
             e.printStackTrace();
         }
     }
