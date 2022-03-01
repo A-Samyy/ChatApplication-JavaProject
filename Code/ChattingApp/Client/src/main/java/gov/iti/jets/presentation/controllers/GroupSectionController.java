@@ -4,6 +4,7 @@ import gov.iti.jets.common.dtos.GroupDto;
 import gov.iti.jets.common.dtos.MessageGroupDto;
 import gov.iti.jets.common.interfaces.ServerGroupChatMessageInt;
 import gov.iti.jets.networking.RMIRegister;
+import gov.iti.jets.presentation.models.MessageStyleModel;
 import gov.iti.jets.presentation.models.UserModel;
 import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
@@ -34,6 +35,7 @@ public class GroupSectionController implements Initializable {
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     ModelFactory modelFactory = ModelFactory.getInstance();
     UserModel userModel = modelFactory.getUserModel();
+    MessageStyleModel messageStyleModel = modelFactory.getMessageStyleModel();
 
     @FXML
     private AnchorPane bottomBar;
@@ -75,10 +77,18 @@ public class GroupSectionController implements Initializable {
             }
         });
     }
+    @FXML
+    void OnChangingStyle(MouseEvent event) {
+        StylingController stylingController = stageCoordinator.loadStyling();
+
+        messageTextField.setStyle(messageStyleModel.getStyle());
+    }
 
     @FXML
     void sendButtonClicked(MouseEvent event) {
         messageGroupDto = new MessageGroupDto();
+//        messageDao.setMessageColor(messageStyleModel.getStyle());
+        messageGroupDto.setMessageStyle(messageStyleModel.getStyle());
         messageGroupDto.setGroupId(groupDto.getId());
         messageGroupDto.setSenderId(LoginService.getId());
         messageGroupDto.setMessageContent(messageTextField.getText());
@@ -116,6 +126,8 @@ public class GroupSectionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         chatContainer.setCellFactory(messageListView -> new MessageListViewCell());
+        messageTextField.styleProperty().bindBidirectional(messageStyleModel.styleProperty());
+
     }
 
     private class MessageListViewCell extends ListCell<MessageGroupDto> {

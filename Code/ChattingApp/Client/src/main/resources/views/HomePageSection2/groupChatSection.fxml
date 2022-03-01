@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.web.HTMLEditor?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <GridPane prefHeight="821.0" prefWidth="674.0" style="-fx-background-color: #1e1836;" stylesheets="@homePage2Style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.GroupSectionController">
@@ -21,19 +20,50 @@
    <rowConstraints>
       <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="86.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="671.2000038146973" minHeight="10.0" prefHeight="668.0000030517579" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
       <AnchorPane fx:id="topBar" prefHeight="200.0" prefWidth="200.0" styleClass="chatBar">
          <children>
-            <Label fx:id="userName" layoutX="32.0" layoutY="19.0" prefHeight="35.0" prefWidth="326.0" text="Hend" textFill="WHITE">
-               <font>
-                  <Font name="Arial Bold Italic" size="31.0" />
-               </font>
-            </Label>
+            <GridPane layoutX="32.0" layoutY="19.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="124.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label fx:id="userName" prefHeight="35.0" prefWidth="326.0" text="Hend" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="Arial Bold Italic" size="31.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Group GridPane.columnIndex="1">
+                     <children>
+                        <FontIcon fx:id="styleButton" iconColor="WHITE" iconLiteral="fas-paint-brush" iconSize="25" layoutX="44.0" layoutY="1.0" onMouseClicked="#OnChangingStyle" text="">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </FontIcon>
+                        <Label fx:id="changeStyleLabel" onMouseClicked="#OnChangingStyle" prefHeight="26.0" prefWidth="113.0" text="Style Message" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
+                     </children>
+                  </Group>
+               </children>
+            </GridPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="bottomBar" maxHeight="-Infinity" prefHeight="80.0" prefWidth="674.0" styleClass="chatBar" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+      <AnchorPane fx:id="bottomBar" maxHeight="-Infinity" prefHeight="78.0" prefWidth="674.0" styleClass="chatBar" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <children>
             <FontIcon fx:id="filesButton" iconColor="WHITE" iconLiteral="fas-paperclip" iconSize="25" layoutX="13.0" layoutY="58.99999847412109" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="37.12499847412109">
                <cursor>
@@ -45,18 +75,6 @@
                   <Font size="16.0" />
                </font>
             </TextField>
-            <SplitMenuButton fx:id="htmlEditor" layoutX="518.5999755859375" layoutY="32.20000076293945" mnemonicParsing="false" prefHeight="35.0" prefWidth="112.0" style="-fx-background-color: white;" text="Font Style" textFill="#2f2a57" AnchorPane.bottomAnchor="45.39999923706054" AnchorPane.rightAnchor="43.80002441406248" AnchorPane.topAnchor="32.20000076293945">
-               <items>
-                  <MenuItem mnemonicParsing="false">
-                     <graphic>
-                        <HTMLEditor htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" prefHeight="200.0" prefWidth="506.0" />
-                     </graphic>
-                  </MenuItem>
-               </items>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </SplitMenuButton>
             <FontIcon fx:id="sendButton" iconColor="WHITE" iconLiteral="fab-telegram-plane" iconSize="25" layoutX="640.4250000000001" layoutY="58.99999847412109" onMouseClicked="#sendButtonClicked" AnchorPane.bottomAnchor="51.4750015258789" AnchorPane.rightAnchor="12.099999999999909" AnchorPane.topAnchor="37.12499847412109">
                <cursor>
                   <Cursor fx:constant="HAND" />

@@ -34,6 +34,8 @@ public class StageCoordinator {
 
 
     private final Map<String, Parent> parentMap = new HashMap<>();
+    private final Map<String, Stage> stageMap = new HashMap<>();
+
     private final Map<String, Node> nodeMap = new HashMap<>();
     private final Map<Integer, Node> chatSectionMap = new HashMap<>();
     private final Map<Integer, ChatSectionController> chatSectionControllerMap = new HashMap<>();
@@ -122,8 +124,12 @@ public class StageCoordinator {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        primaryStage.getScene().setRoot(homePageParent);
-        primaryStage.setScene(new Scene(homePageParent));
+        if(primaryStage.getScene() == null){
+            primaryStage.setScene(new Scene(homePageParent));
+        }
+        else{
+            primaryStage.getScene().setRoot(homePageParent);
+        }
     }
 
     public void switchToProfileScreen() {
@@ -204,7 +210,11 @@ public class StageCoordinator {
     }
 
     public void loadAddGroup() {
-        Stage addNewGroup = new Stage();
+        Stage addNewGroup = stageMap.get("addGroup");
+        if(addNewGroup == null){
+            addNewGroup = new Stage();
+            stageMap.put("addGroup",addNewGroup);
+        }
         Pane addGroup = null;
         try {
             addGroup = FXMLLoader.load(getClass().getResource("/views/contactSection/addGroup.fxml"));
@@ -217,7 +227,11 @@ public class StageCoordinator {
     }
 
     public void loadProgressBar() {
-        Stage progressBarStage= new Stage();
+        Stage progressBarStage= stageMap.get("progressbar");
+        if(progressBarStage == null){
+            progressBarStage = new Stage();
+            stageMap.put("progressbar",progressBarStage);
+        }
         Pane progessBarPane = null;
         try {
             progessBarPane = FXMLLoader.load(getClass().getResource("/views/progressBar/progressBar.fxml"));
@@ -352,7 +366,11 @@ public class StageCoordinator {
     }
 
     public void loadAddContact() {
-        Stage addNewContact = new Stage();
+        Stage addNewContact= stageMap.get("addContact");
+        if(addNewContact == null){
+            addNewContact = new Stage();
+            stageMap.put("addContact",addNewContact);
+        }
         Pane addContact = null;
         try {
             addContact = FXMLLoader.load(getClass().getResource("/views/contactSection/addContact.fxml"));
@@ -365,8 +383,11 @@ public class StageCoordinator {
     }
 
     public void loadAdminMessageContainer(List<String> messagesFromAdmin) throws IOException {
-        System.out.println(messagesFromAdmin.size());
-        Stage addAdminMessageContainer = new Stage();
+        Stage addAdminMessageContainer= stageMap.get("addAdminMessageContainer");
+        if(addAdminMessageContainer == null){
+            addAdminMessageContainer = new Stage();
+            stageMap.put("addAdminMessageContainer",addAdminMessageContainer);
+        }
         AdminMessageContainerController adminMessageController ;
         FXMLLoader loader = new FXMLLoader();
         Parent addAdminMessage = null;
@@ -412,7 +433,11 @@ public class StageCoordinator {
 
 
     public StylingController loadStyling() {
-        Stage stylingStage = new Stage();
+        Stage stylingStage= stageMap.get("stylingStage");
+        if(stylingStage == null){
+            stylingStage = new Stage();
+            stageMap.put("stylingStage",stylingStage);
+        }
         Pane styling = null;
         FXMLLoader loader = new FXMLLoader();
 
@@ -446,7 +471,7 @@ public class StageCoordinator {
                          messageController.displayMessage(messageDao.getMessageContent(), messageDao.getMessageUserName() , messageDao.getMessageColor());
 
                      }else{
-                         messageController.displayMessage(messageDao.getMessageGroupContent(), messageDao.getMessageGroupSenderName() , messageDao.getMessageColor());
+                         messageController.displayMessage(messageDao.getMessageGroupContent(), messageDao.getMessageGroupSenderName() , messageDao.getMessageGroupStyle());
 
                     }
                 }

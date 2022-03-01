@@ -48,9 +48,9 @@ public class StylingController implements Initializable {
     private Label fontStyleField;
 
 
-    String color = "ffffff";
+    String color = "000000";
     String family = "Arial";
-    Integer size = 17;
+    Integer size = 20;
     String style = "Normal";
     String familyCss = "-fx-font-family: ";
     String styleCss = "-fx-font-weight: ";

@@ -134,10 +134,6 @@ public class ChatSectionController implements Initializable {
     ImageView imageView = new ImageView();
 
     public  void display(String name, Image image, String status,int id) {
-//        if(observableListMap.get(id) == null){
-//            list = FXCollections.observableArrayList();
-//            observableListMap.put(id,list);
-//        }
         this.friendId = id;
         Platform.runLater(new Runnable() {
             @Override

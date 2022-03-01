@@ -60,4 +60,7 @@ public class MessageDao {
     public String getMessageGroupSenderName(){
         return messageGroupDto.getSenderName();
     }
+    public String getMessageGroupStyle(){
+        return messageGroupDto.getMessageStyle();
+    }
 }

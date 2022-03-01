@@ -15,9 +15,19 @@ public class MessageGroupDto implements Serializable {
     @Positive
     private int groupId ;
     private String senderName;
+    private String messageStyle;
+
+
     public MessageGroupDto(){
     }
 
+    public String getMessageStyle() {
+        return messageStyle;
+    }
+
+    public void setMessageStyle(String messageStyle) {
+        this.messageStyle = messageStyle;
+    }
     public String getSenderName() {
         return senderName;
     }
