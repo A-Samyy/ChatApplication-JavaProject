@@ -12,11 +12,12 @@ import java.rmi.registry.Registry;
 public class RMIRegister {
     private static RMIRegister rmiRegister = new RMIRegister();
     Registry registry;
-    String host = "localhost";
+    //    String host = "localhost";
+    String host = "10.145.5.197";
 
     private RMIRegister() {
         try {
-            registry = LocateRegistry.getRegistry(host, 7077);
+            registry = LocateRegistry.getRegistry(host, 3000);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -156,14 +157,15 @@ public class RMIRegister {
         return addGroupChatInt;
     }
 
-    public ServerFileRequestInt serverFileRequestService(){
-        ServerFileRequestInt serverFileRequesInt =null;
-        try{
-            serverFileRequesInt =(ServerFileRequestInt) registry.lookup("serverfileservice");
-        }catch (RemoteException e){
+    public ServerFileRequestInt serverFileRequestService() {
+        ServerFileRequestInt serverFileRequesInt = null;
+        try {
+            serverFileRequesInt = (ServerFileRequestInt) registry.lookup("serverfileservice");
+        } catch (RemoteException e) {
             e.printStackTrace();
-        }catch (NotBoundException e) {
+        } catch (NotBoundException e) {
             e.printStackTrace();
-        }return serverFileRequesInt;
+        }
+        return serverFileRequesInt;
     }
 }

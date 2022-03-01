@@ -41,13 +41,13 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
         super();
     }
     public void registerMessageInt() {
-        try {
-            serverMessageInt = rmiRegister.messageService();
-            serverMessageInt.register(this, LoginService.getId());
+//        try {
+//            serverMessageInt = rmiRegister.messageService();
+//            serverMessageInt.register(this, LoginService.getId());
             clientMessage= this;
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+//        } catch (RemoteException e) {
+//            e.printStackTrace();
+//        }
     }
     @Override
     public String reciveMessage(MessageDto messageDto) throws RemoteException {

@@ -112,8 +112,13 @@ private void registerme(){
         clientAnnounceMessageInt = new ClientAnnounceImpl();
         clientAnnounceMessageInt.registerAnnouncetInt();
 
-        clientMessage = new ClientMessageImpl();
-        clientMessage.registerMessageInt();
+//        clientMessage = new ;
+//        clientMessage.registerMessageInt();
+        try {
+             rmiRegister.messageService().register(new ClientMessageImpl(), LoginService.getId());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         MessageService.getInstance().setClient(clientMessage);
 
         clientGroupChatMessageInt = new ClientGroupChatMessageImpl();
