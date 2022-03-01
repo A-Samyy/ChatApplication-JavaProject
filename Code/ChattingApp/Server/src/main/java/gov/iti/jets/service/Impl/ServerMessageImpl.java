@@ -44,6 +44,8 @@ public class ServerMessageImpl extends UnicastRemoteObject implements ServerMess
     @Override
     public boolean register(ClientMesseageInt clientMesseageInt, int userId) throws RemoteException {
         if(!clients.containsKey(userId)) {
+            System.out.println(clients.containsKey(userId));
+            System.out.println(userId);
             clients.put(userId, clientMesseageInt);
             return clients.containsKey(userId);
         }return false;

@@ -23,12 +23,12 @@ import java.util.Map;
 
 public class ClientMessageImpl extends UnicastRemoteObject implements ClientMesseageInt {
 
-    RMIRegister rmiRegister = RMIRegister.getInstance();
-    public ServerMessageInt serverMessageInt;
-    static public Map<Integer, List<MessageDao>> map = new HashMap<>();
-    static public List<MessageDao> list = new ArrayList<>();
-    StageCoordinator stageCoordinator = StageCoordinator.getInstance();
-    MessageService messageService = MessageService.getInstance();
+    transient RMIRegister rmiRegister = RMIRegister.getInstance();
+    transient public ServerMessageInt serverMessageInt;
+    transient static public Map<Integer, List<MessageDao>> map = new HashMap<>();
+    transient static public List<MessageDao> list = new ArrayList<>();
+    transient StageCoordinator stageCoordinator = StageCoordinator.getInstance();
+    transient MessageService messageService = MessageService.getInstance();
 
     public static ClientMessageImpl getClientMessage() {
         return clientMessage;

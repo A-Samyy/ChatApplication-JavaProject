@@ -13,10 +13,10 @@ import java.util.List;
 public class ClientAnnounceImpl extends UnicastRemoteObject implements ClientAnnounceMessageInt {
 
 
-    RMIRegister rmiRegister = RMIRegister.getInstance();
-    ServerMessageAnnouncetInt serverMessageAnnouncetInt;
-    public static List<String> messagesFromAdmin = new ArrayList<>();
-    static ClientAnnounceImpl clientAnnounce;
+    transient   RMIRegister rmiRegister = RMIRegister.getInstance();
+    transient   ServerMessageAnnouncetInt serverMessageAnnouncetInt;
+    transient   public static List<String> messagesFromAdmin = new ArrayList<>();
+    transient   static ClientAnnounceImpl clientAnnounce;
 
     public static ClientAnnounceImpl getClientAnnounce() {
         return clientAnnounce;

@@ -17,12 +17,12 @@ import java.util.Map;
 
 public class ClientGroupChatMessageImpl extends UnicastRemoteObject implements ClientGroupChatMessageInt {
 
-    private RMIRegister rmiRegister = RMIRegister.getInstance();
-    private ServerGroupChatMessageInt serverGroupChatMessageInt;
-    static public List<MessageGroupDto> groupMessages = new ArrayList<>();
-    static public Map<Integer, List<MessageGroupDto>> mapForGroup = new HashMap<>();
-    StageCoordinator stageCoordinator = StageCoordinator.getInstance();
-    static ClientGroupChatMessageImpl clientGroupChatMessage;
+    transient private RMIRegister rmiRegister = RMIRegister.getInstance();
+    transient  private ServerGroupChatMessageInt serverGroupChatMessageInt;
+    transient  static public List<MessageGroupDto> groupMessages = new ArrayList<>();
+    transient  static public Map<Integer, List<MessageGroupDto>> mapForGroup = new HashMap<>();
+    transient   StageCoordinator stageCoordinator = StageCoordinator.getInstance();
+    transient   static ClientGroupChatMessageImpl clientGroupChatMessage;
 
     public static ClientGroupChatMessageImpl getClientGroupChatMessage() {
         return clientGroupChatMessage;
