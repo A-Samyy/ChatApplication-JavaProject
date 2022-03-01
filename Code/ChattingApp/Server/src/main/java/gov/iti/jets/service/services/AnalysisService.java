@@ -16,9 +16,11 @@ public class AnalysisService {
     int numberOfFemale;
 
 
-    public List<UserDto> getAllUsers() {
 
-        return userDao.getAllUser();
+
+    public int getAllUsers() {
+
+        return userDao.getAllUser().size();
 
     }
      public int getNumberOfFemaleUsers(){
@@ -32,9 +34,10 @@ public class AnalysisService {
         return numberOfMale;
 
     }
-    public int getNumberOfAllUsers() {
-        return numberOfMale+numberOfFemale;
-    }
+
+
+
+
 
 
 }

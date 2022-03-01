@@ -43,20 +43,16 @@ public class ProgressBarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        fileCounterModel.setNumber(0.0);
-        progressIndicator.progressProperty().bindBidirectional(fileCounterModel.numberProperty());
-        new Thread(new Runnable() {
 
-            @Override
-            public void run() {
+        progressIndicator.progressProperty().bindBidirectional(fileCounterModel.numberProperty());
+
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
 
-
                         System.out.println("progress");
                         System.out.println("progress="+progressIndicator.getProgress());
-                        if (fileCounterModel.getNumber()==1.0){
+                        if (progressIndicator.getProgress()==1.0){
                             doneIcon.setOpacity(1);
                             fileReceivedLabel.setOpacity(1);
                             doneButton.setDisable(false);
@@ -65,16 +61,16 @@ public class ProgressBarController implements Initializable {
 
                     }
                 });
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
-
-
-        }).start();
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//
+//
+//        }).start();
 
 
         }

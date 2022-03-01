@@ -4,7 +4,9 @@ import gov.iti.jets.common.dtos.MessageAnnounceDto;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.presistance.dtos.Status;
 import gov.iti.jets.presistance.dtos.UserDto;
+import gov.iti.jets.service.Impl.LoginImpl;
 import gov.iti.jets.service.Impl.ServerMessageAnnounceImpl;
+import gov.iti.jets.service.Impl.ServerMessageImpl;
 import gov.iti.jets.service.services.AddUserService;
 import gov.iti.jets.service.services.AnalysisService;
 import gov.iti.jets.service.services.ServerControlService;
@@ -27,6 +29,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.text.NumberFormat;
 import java.util.ResourceBundle;
 
 public class HomePageController implements Initializable {
@@ -35,8 +38,10 @@ public class HomePageController implements Initializable {
     AnalysisService analysisService = AnalysisService.getInstance();
     MessageAnnounceDto messageAnnounceDto=new MessageAnnounceDto();
     ServerMessageAnnounceImpl serverMessageAnnounce= new ServerMessageAnnounceImpl();
+   // NumberFormat numberFormat = NumberFormat.getNumberInstance();
+    LoginImpl loginImpl=new LoginImpl();
     private ObservableList<HBox> messageObservableList;
-    int onlineUsers=serverMessageAnnounce.onlinUsers();
+
     AddUserService addUserService = new AddUserService();
 
     @FXML
@@ -95,7 +100,7 @@ public class HomePageController implements Initializable {
 
     @FXML
     void onGetActiveUsers(MouseEvent event) {
-        statusChart();
+        statusChart(loginImpl.getCounter());
 
     }
 
@@ -107,6 +112,7 @@ public class HomePageController implements Initializable {
 
     @FXML
     void onGetNumberOfUsers(MouseEvent event) {
+
         getNumberOfUsers();
     }
 
@@ -126,7 +132,7 @@ public class HomePageController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-
+       // numberFormat.setMaximumFractionDigits(0);
         toggleButton.selectedProperty().addListener((observable,oldValue,newValue)->{
 
             if(newValue)
@@ -143,7 +149,7 @@ public class HomePageController implements Initializable {
         });
 
         genderChart();
-        statusChart();
+        statusChart(loginImpl.getCounter());
         getNumberOfUsers();
 
 
@@ -155,7 +161,8 @@ public class HomePageController implements Initializable {
     }
 
     private void getNumberOfUsers() {
-        usersNumber.setText(String.valueOf(analysisService.getNumberOfAllUsers()));
+
+        usersNumber.setText(String.valueOf(analysisService.getAllUsers()));
     }
 
 
@@ -165,16 +172,31 @@ public class HomePageController implements Initializable {
                 new PieChart.Data("Number of Females", analysisService.getNumberOfFemaleUsers()),
                 new PieChart.Data("Number of Males", analysisService.getNumberOfMaleUsers())
         );
+
+
         genderChart.setData(genderTypeList);
+        genderChart.getData().forEach(data->{
+            Double number =data.getPieValue();
+            //numberFormat.format()
+            Tooltip toolTip =new Tooltip( number.toString());
+            Tooltip.install(data.getNode(), toolTip);
+            toolTip.setStyle("-fx-background-color: #2f2a57af; -fx-font-size: 14px;-fx-text-fill:#ffffff ;");
+        });
 
     }
-    private void statusChart(){
+    private void statusChart(int onlineUsers){
         ObservableList<PieChart.Data> statusList= FXCollections.observableArrayList(
                 new PieChart.Data("Number of onlineUsers",onlineUsers),
-                new PieChart.Data("Number of offlineUsers",analysisService.getNumberOfAllUsers()-onlineUsers)
+                new PieChart.Data("Number of offlineUsers",analysisService.getAllUsers()-onlineUsers)
         );
         statusChart.setData(statusList);
-
+        statusChart.getData().forEach(data->{
+            Double number =data.getPieValue();
+            //numberFormat.format()
+            Tooltip toolTip =new Tooltip( number.toString());
+            Tooltip.install(data.getNode(), toolTip);
+            toolTip.setStyle("-fx-background-color: #2f2a57af; -fx-font-size: 14px;-fx-text-fill:#ffffff ;");
+        });
     }
 
     @FXML

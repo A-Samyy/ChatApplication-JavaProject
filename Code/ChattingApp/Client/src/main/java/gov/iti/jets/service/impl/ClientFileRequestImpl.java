@@ -99,9 +99,12 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
             FileChooser openFileChooser = new FileChooser();
             File file = openFileChooser.showSaveDialog(null);
             System.out.println(file.getPath());
-//            fileCounterModel.setNumber(0.0);
+
             System.out.println("fileCounterModel:"+fileCounterModel.getNumber());
-            stageCoordinator.loadProgressBar();
+
+//                    stageCoordinator.loadProgressBar();
+
+
 
             new Thread(() -> {
                 try(ServerSocket serverSocket = new ServerSocket(8877)){
@@ -124,6 +127,7 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
                     e.printStackTrace();
                 }
             }).start();
+            stageCoordinator.loadProgressBar();
             serverFileRequestInt.acceptingFileRequest(fileRequestDto);
         } catch (IOException e) {
             e.printStackTrace();
@@ -142,7 +146,7 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
         // send file size
         dataOutputStream.writeLong(file.length());
         // break file into chunks
-        byte[] buffer = new byte[4*1024];
+        byte[] buffer = new byte[500*1024];
         while ((bytes=fileInputStream.read(buffer))!=-1){
 
             dataOutputStream.write(buffer,0,bytes);
@@ -157,29 +161,14 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
         FileOutputStream fileOutputStream = new FileOutputStream(fileName);
 
         long size = dataInputStream.readLong();     // read file size
-        byte[] buffer = new byte[4*1024];
-//        fileCounterModel.setNumber(0.0);
+        byte[] buffer = new byte[500*1024];
+
         System.out.println("fileCounterModel:before while"+fileCounterModel.getNumber());
         while (size > 0 && (bytes = dataInputStream.read(buffer, 0, (int)Math.min(buffer.length, size))) != -1) {
-            fileOutputStream.write(buffer,0,bytes);
+            fileOutputStream.write(buffer, 0, bytes);
             size -= bytes;      // read upto file size
 
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                   System.out.println("fileCounterModel:before if"+fileCounterModel.getNumber());
-                    if(fileCounterModel.getNumber()==(Double)0.9){
-                        fileCounterModel.setNumber(0.0);
-                        System.out.println("fileCounterModel:after if"+fileCounterModel.getNumber());
-                    }
-                    fileCounterModel.setNumber(fileCounterModel.getNumber()+0.1);
-                }
-            });
-
-
-
         }
-
         fileCounterModel.setNumber(1.0);
         System.out.println("fileCounterModel:after while"+fileCounterModel.getNumber());
         fileOutputStream.close();
