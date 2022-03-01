@@ -39,12 +39,12 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
 
     public ClientMessageImpl() throws RemoteException {
         super();
+        clientMessage= this;
     }
     public void registerMessageInt() {
 //        try {
 //            serverMessageInt = rmiRegister.messageService();
 //            serverMessageInt.register(this, LoginService.getId());
-            clientMessage= this;
 //        } catch (RemoteException e) {
 //            e.printStackTrace();
 //        }
