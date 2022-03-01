@@ -104,7 +104,12 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
 
 //                    stageCoordinator.loadProgressBar();
 
-
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    stageCoordinator.loadProgressBar();
+                }
+            });
 
             new Thread(() -> {
                 try(ServerSocket serverSocket = new ServerSocket(8877)){
@@ -117,7 +122,7 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
 
 
                     receiveFile(file.getPath()+" "+fileRequestDto.getFileName());
-
+                    fileCounterModel.setNumber(1.0);
 
 
                     dataInputStream.close();
@@ -127,7 +132,7 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
                     e.printStackTrace();
                 }
             }).start();
-            stageCoordinator.loadProgressBar();
+
             serverFileRequestInt.acceptingFileRequest(fileRequestDto);
         } catch (IOException e) {
             e.printStackTrace();
@@ -168,8 +173,9 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
             fileOutputStream.write(buffer, 0, bytes);
             size -= bytes;      // read upto file size
 
+
         }
-        fileCounterModel.setNumber(1.0);
+//        fileCounterModel.setNumber(1.0);
         System.out.println("fileCounterModel:after while"+fileCounterModel.getNumber());
         fileOutputStream.close();
     }
