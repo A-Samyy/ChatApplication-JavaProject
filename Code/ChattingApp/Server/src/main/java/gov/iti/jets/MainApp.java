@@ -26,6 +26,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage){
         stageCoordinator.initStage(primaryStage);
         stageCoordinator.switchToLoginScreen();
+        primaryStage.setTitle("KAT app");
         primaryStage.show();
     }
 }

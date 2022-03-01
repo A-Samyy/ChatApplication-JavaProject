@@ -21,7 +21,7 @@ public class ProgressBarController implements Initializable {
 
     private ModelFactory modelFactory=ModelFactory.getInstance();
     private FileCounterModel fileCounterModel =modelFactory.getFileCounterModel();
-    ClientFileRequestImpl clientFileRequestImpl=new ClientFileRequestImpl();
+
     @FXML
     private FontIcon doneIcon;
 
@@ -34,8 +34,6 @@ public class ProgressBarController implements Initializable {
     @FXML
     private ProgressIndicator progressIndicator;
 
-    public ProgressBarController() throws RemoteException {
-    }
 
     @FXML
     void OnAddNewGroupClicked(MouseEvent event) {
@@ -45,7 +43,8 @@ public class ProgressBarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
+        fileCounterModel.setNumber(0.0);
+        progressIndicator.progressProperty().bindBidirectional(fileCounterModel.numberProperty());
         new Thread(new Runnable() {
 
 
@@ -54,14 +53,16 @@ public class ProgressBarController implements Initializable {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        progressIndicator.progressProperty().bindBidirectional(fileCounterModel.numberProperty());
+
 
                         System.out.println("progress");
-
-
+                        System.out.println("progress="+progressIndicator.getProgress());
+                        if (progressIndicator.getProgress()==1.0){
                             doneIcon.setOpacity(1);
                             fileReceivedLabel.setOpacity(1);
-                        doneButton.setDisable(false);
+                            doneButton.setDisable(false);
+                        }
+
 
                     }
                 });

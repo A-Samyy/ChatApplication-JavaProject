@@ -99,6 +99,8 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
             FileChooser openFileChooser = new FileChooser();
             File file = openFileChooser.showSaveDialog(null);
             System.out.println(file.getPath());
+//            fileCounterModel.setNumber(0.0);
+            System.out.println("fileCounterModel:"+fileCounterModel.getNumber());
             stageCoordinator.loadProgressBar();
 
             new Thread(() -> {
@@ -156,7 +158,8 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
 
         long size = dataInputStream.readLong();     // read file size
         byte[] buffer = new byte[4*1024];
-        fileCounterModel.setNumber(0.0);
+//        fileCounterModel.setNumber(0.0);
+        System.out.println("fileCounterModel:before while"+fileCounterModel.getNumber());
         while (size > 0 && (bytes = dataInputStream.read(buffer, 0, (int)Math.min(buffer.length, size))) != -1) {
             fileOutputStream.write(buffer,0,bytes);
             size -= bytes;      // read upto file size
@@ -164,14 +167,21 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
+                   System.out.println("fileCounterModel:before if"+fileCounterModel.getNumber());
+                    if(fileCounterModel.getNumber()==(Double)0.9){
+                        fileCounterModel.setNumber(0.0);
+                        System.out.println("fileCounterModel:after if"+fileCounterModel.getNumber());
+                    }
                     fileCounterModel.setNumber(fileCounterModel.getNumber()+0.1);
                 }
             });
 
 
+
         }
 
-
+        fileCounterModel.setNumber(1.0);
+        System.out.println("fileCounterModel:after while"+fileCounterModel.getNumber());
         fileOutputStream.close();
     }
 }

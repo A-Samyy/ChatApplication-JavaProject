@@ -21,14 +21,16 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         stageCoordinator.initStage(primaryStage);
-        if (rememberMeServices.getUserInfoValue() == 0) {
-            stageCoordinator.switchToWelcomScreen();
-        } else {
-            loginService.setUserId(rememberMeServices.getUserInfoValue());
-            loginService.getdata();
-            rememberMeServices.registerme();
-            stageCoordinator.switchToGHomePageScreen();
-        }
+//        if (rememberMeServices.getUserInfoValue() == 0) {
+//
+//        } else {
+//            loginService.setUserId(rememberMeServices.getUserInfoValue());
+//            loginService.getdata();
+//            rememberMeServices.registerme();
+//            stageCoordinator.switchToGHomePageScreen();
+//        }
+        stageCoordinator.switchToWelcomScreen();
+        primaryStage.setTitle("KAT app");
         primaryStage.show();
     }
 

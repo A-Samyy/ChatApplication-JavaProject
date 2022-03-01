@@ -34,4 +34,19 @@
     -fx-font-size:18px;
 }
 
+#aboutButton{
+    -fx-font-weight:bold;
+    -fx-font-size:14px;
+}
 
+#enterIPButton{
+    -fx-font-weight:bold;
+    -fx-font-size:14px;
+}
+
+.text-field{
+    
+    -fx-border-radius:100px;
+    -fx-background-radius:100px;
+   
+    }

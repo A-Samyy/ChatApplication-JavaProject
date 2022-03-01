@@ -2,7 +2,10 @@ package gov.iti.jets.presentation.controllers;
 
 import gov.iti.jets.common.dtos.MessageAnnounceDto;
 import gov.iti.jets.presentation.util.StageCoordinator;
+import gov.iti.jets.presistance.dtos.Status;
+import gov.iti.jets.presistance.dtos.UserDto;
 import gov.iti.jets.service.Impl.ServerMessageAnnounceImpl;
+import gov.iti.jets.service.services.AddUserService;
 import gov.iti.jets.service.services.AnalysisService;
 import gov.iti.jets.service.services.ServerControlService;
 import javafx.collections.FXCollections;
@@ -20,6 +23,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import org.controlsfx.control.ToggleSwitch;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
 import java.rmi.RemoteException;
@@ -33,6 +37,16 @@ public class HomePageController implements Initializable {
     ServerMessageAnnounceImpl serverMessageAnnounce= new ServerMessageAnnounceImpl();
     private ObservableList<HBox> messageObservableList;
     int onlineUsers=serverMessageAnnounce.onlinUsers();
+    AddUserService addUserService = new AddUserService();
+
+    @FXML
+    private FontIcon addUser;
+
+    @FXML
+    private TextField phoneNumberTextField;
+
+    @FXML
+    private TextField userNameTextField;
 
     @FXML
     private GridPane chartsBigGrid;
@@ -67,6 +81,12 @@ public class HomePageController implements Initializable {
 
     @FXML
     private ToggleSwitch toggleButton;
+
+    @FXML
+    private TextField emailTextField;
+
+    @FXML
+    private TextField passwordTextField;
 
     public HomePageController() throws RemoteException {
     }
@@ -130,12 +150,7 @@ public class HomePageController implements Initializable {
         listView.setCellFactory(messageListView -> new MessageServerListViewCell());
         messageObservableList = FXCollections.observableArrayList();
 
-        Node child= stageCoordinator.loadAddUser();
-        content.getChildren().add(child);
-        content.setTopAnchor(child, 0.0);
-        AnchorPane.setLeftAnchor(child, 0.0);
-        AnchorPane.setRightAnchor(child, 0.0);
-        AnchorPane.setBottomAnchor(child, 0.0);
+
 
     }
 
@@ -162,7 +177,24 @@ public class HomePageController implements Initializable {
 
     }
 
+    @FXML
+    void onAddUserMouseClicked(MouseEvent event) {
+        UserDto userDto = new UserDto();
 
+            userDto.setPhoneNumber(phoneNumberTextField.getText());
+            userDto.setName(userNameTextField.getText());
+            userDto.setEmail(emailTextField.getText());
+            userDto.setPassword(passwordTextField.getText());
+            userDto.setPicture("src/main/resources/clientPictures/user.png");
+            userDto.setStatus(Status.ACTIVE);
+            addUserService.addUser(userDto);
+            phoneNumberTextField.setText("");
+            userNameTextField.setText("");
+            emailTextField.setText("");
+            passwordTextField.setText("");
+
+
+    }
 
 
 

@@ -154,15 +154,18 @@ public class ChatSectionController implements Initializable {
 
     @FXML
     void sendButtonClicked(MouseEvent event) throws RemoteException {
-        messageDao.setMessageColor(messageStyleModel.getStyle());
-        messageDao.setMessage(messageTextField.getText());
-        messageTextField.setText("");
-        messageDao.setUserName(userModel.getUserName());
-        messageDao.setUserID();
-        messageDao.getMessageDto().setFriendId(friendId);
-        messageService.sendMessageDto(messageDao.getMessageDto());
+        if(!messageTextField.equals("")){
+            messageDao.setMessageColor(messageStyleModel.getStyle());
+            messageDao.setMessage(messageTextField.getText());
+            messageTextField.setText("");
+            messageDao.setUserName(userModel.getUserName());
+            messageDao.setUserID();
+            messageDao.getMessageDto().setFriendId(friendId);
+            messageService.sendMessageDto(messageDao.getMessageDto());
 
-        createMessage();
+            createMessage();
+        }
+
 
     }
 
