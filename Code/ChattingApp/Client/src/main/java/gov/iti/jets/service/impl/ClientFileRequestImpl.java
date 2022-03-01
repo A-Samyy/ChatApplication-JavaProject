@@ -65,12 +65,8 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
                 dataInputStream = new DataInputStream(socket.getInputStream());
                 dataOutputStream = new DataOutputStream(socket.getOutputStream());
                 System.out.println("sending file ");
-
-
+                System.out.print(fileRequestDto.toString());
                 sendFile(fileRequestDto.getFilePath());
-
-
-
                 System.out.println("File sended");
                 dataInputStream.close();
                 dataInputStream.close();
@@ -105,6 +101,7 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
         fileRequestDtos.remove(fileRequestDto);
         try {
             FileChooser openFileChooser = new FileChooser();
+            openFileChooser.setInitialFileName(fileRequestDto.getFileName());
             File file = openFileChooser.showSaveDialog(null);
             System.out.println(file.getPath());
 //            fileCounterModel.setNumber(0.0);
