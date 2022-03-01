@@ -23,12 +23,13 @@ public class MainApp extends Application {
         stageCoordinator.initStage(primaryStage);
         if (rememberMeServices.getUserInfoValue() == 0) {
             stageCoordinator.switchToWelcomScreen();
-        } else {
-            loginService.setUserId(rememberMeServices.getUserInfoValue());
-            loginService.getdata();
-            rememberMeServices.registerme();
-            stageCoordinator.switchToGHomePageScreen();
         }
+//        else {
+//            loginService.setUserId(rememberMeServices.getUserInfoValue());
+//            loginService.getdata();
+//            rememberMeServices.registerme();
+//            stageCoordinator.switchToGHomePageScreen();
+//        }
         primaryStage.show();
     }
 

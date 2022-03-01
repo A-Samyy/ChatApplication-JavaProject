@@ -44,10 +44,7 @@ public class PasswordController implements Initializable {
     RMIRegister rmiRegister = RMIRegister.getInstance();
     Preferences userInfo = Preferences.userNodeForPackage(getClass());
     ValidationSupport validationSupport=new ValidationSupport();
-    ClientAnnounceMessageInt clientAnnounceMessageInt ;
-    ClientMessageImpl clientMessage ;
-    ClientGroupChatMessageImpl clientGroupChatMessageInt;
-    ClientFileRequestInt clientFileRequestInt;
+
     @FXML
     private FontIcon backArrow;
 
@@ -84,8 +81,8 @@ public class PasswordController implements Initializable {
                 loginService.getdata();
                 registerme();
                 stageCoordinator.switchToGHomePageScreen();
-//                rememberMeServices.setKey("userId");
-                rememberMeServices.setValue(LoginService.getId());
+       //       rememberMeServices.setKey("userId");
+        //        rememberMeServices.setValue(LoginService.getId());
                 passwordTextField.setText("");
             } else {
             }
@@ -104,11 +101,24 @@ public class PasswordController implements Initializable {
     }
 private void registerme(){
     try {
-        clientFileRequestInt = new ClientFileRequestImpl();
+        ClientAnnounceImpl clientAnnounceMessageInt  = new ClientAnnounceImpl();
+        ClientMessageImpl clientMessage =new ClientMessageImpl() ;
+        ClientGroupChatMessageImpl clientGroupChatMessageInt= new ClientGroupChatMessageImpl();
+        ClientFileRequestImpl clientFileRequestInt =new ClientFileRequestImpl();
+
+        clientFileRequestInt.registerFileRequestInt();
+        clientFileRequestInt.registerFileRequestInt();
+
         clientAnnounceMessageInt = new ClientAnnounceImpl();
+        clientAnnounceMessageInt.registerAnnouncetInt();
+
         clientMessage = new ClientMessageImpl();
+        clientMessage.registerMessageInt();
         MessageService.getInstance().setClient(clientMessage);
+
         clientGroupChatMessageInt = new ClientGroupChatMessageImpl();
+        clientGroupChatMessageInt.registerGroupChatMessageInt();
+
     } catch (RemoteException e) {
         e.printStackTrace();
     }

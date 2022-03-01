@@ -19,7 +19,6 @@ public class ServerFileRequestImpl extends UnicastRemoteObject implements Server
     public ServerFileRequestImpl() throws RemoteException {
     }
 
-
     @Override
     public boolean getNewRequest(FileRequestDto fileRequestDto) throws RemoteException {
         if (ServerControlService.flag) {

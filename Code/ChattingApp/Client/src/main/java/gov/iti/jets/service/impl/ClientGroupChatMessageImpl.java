@@ -30,11 +30,18 @@ public class ClientGroupChatMessageImpl extends UnicastRemoteObject implements C
 
     public ClientGroupChatMessageImpl() throws RemoteException {
         super();
-        serverGroupChatMessageInt = rmiRegister.groupChatMessageService();
-        serverGroupChatMessageInt.register(this, LoginService.getId());
-        clientGroupChatMessage=this;
+
     }
 
+    public void registerGroupChatMessageInt() {
+        try {
+            serverGroupChatMessageInt = rmiRegister.groupChatMessageService();
+            serverGroupChatMessageInt.register(this, LoginService.getId());
+            clientGroupChatMessage=this;
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public boolean receiveGroupChatMessage(MessageGroupDto messageGroupDto) throws RemoteException {
         groupMessages.add(messageGroupDto);

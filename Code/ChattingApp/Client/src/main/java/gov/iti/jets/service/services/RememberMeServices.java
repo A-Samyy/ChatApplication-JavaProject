@@ -13,15 +13,12 @@ import java.util.prefs.Preferences;
 public class RememberMeServices {
     private static RememberMeServices rememberMeServices = new RememberMeServices();
     private Preferences userInfo = Preferences.userNodeForPackage(getClass());
-    private final String key ="userId";
-    ClientAnnounceMessageInt clientAnnounceMessageInt ;
-    ClientMessageImpl clientMessage ;
-    ClientGroupChatMessageImpl clientGroupChatMessageInt;
-    ClientFileRequestInt clientFileRequestInt;
+    private final String key = "userId";
     private int value;
 
     private RememberMeServices() {
     }
+
     public static RememberMeServices getInstance() {
         return rememberMeServices;
     }
@@ -34,10 +31,9 @@ public class RememberMeServices {
         return key;
     }
 
-public void removeUserInfo(){
+    public void removeUserInfo() {
         this.userInfo.remove(this.key);
-}
-
+    }
 
 
     public void setValue(int value) {
@@ -54,15 +50,26 @@ public void removeUserInfo(){
     }
 
 
-
-
-    public void registerme(){
+    public void registerme() {
         try {
-            clientFileRequestInt = new ClientFileRequestImpl();
+            ClientAnnounceImpl clientAnnounceMessageInt  = new ClientAnnounceImpl();
+            ClientMessageImpl clientMessage =new ClientMessageImpl() ;
+            ClientGroupChatMessageImpl clientGroupChatMessageInt= new ClientGroupChatMessageImpl();
+            ClientFileRequestImpl clientFileRequestInt =new ClientFileRequestImpl();
+
+            clientFileRequestInt.registerFileRequestInt();
+            clientFileRequestInt.registerFileRequestInt();
+
             clientAnnounceMessageInt = new ClientAnnounceImpl();
+            clientAnnounceMessageInt.registerAnnouncetInt();
+
             clientMessage = new ClientMessageImpl();
+            clientMessage.registerMessageInt();
             MessageService.getInstance().setClient(clientMessage);
+
             clientGroupChatMessageInt = new ClientGroupChatMessageImpl();
+            clientGroupChatMessageInt.registerGroupChatMessageInt();
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }
