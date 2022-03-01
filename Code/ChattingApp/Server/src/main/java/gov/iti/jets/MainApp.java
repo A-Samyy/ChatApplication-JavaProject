@@ -6,6 +6,7 @@ import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.presistance.util.Connector;
 import gov.iti.jets.service.Impl.ServerGroupChatMessageImpl;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 import java.rmi.RemoteException;
@@ -27,6 +28,8 @@ public class MainApp extends Application {
         stageCoordinator.initStage(primaryStage);
         stageCoordinator.switchToLoginScreen();
         primaryStage.setTitle("KAT app");
+        primaryStage.setOnCloseRequest(e-> Platform.exit());
+
         primaryStage.show();
     }
 }

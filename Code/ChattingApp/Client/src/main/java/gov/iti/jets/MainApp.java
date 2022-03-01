@@ -6,6 +6,7 @@ import gov.iti.jets.service.services.LogoutService;
 import gov.iti.jets.service.services.MessageService;
 import gov.iti.jets.service.services.RememberMeServices;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
@@ -31,6 +32,7 @@ public class MainApp extends Application {
 //        }
         stageCoordinator.switchToWelcomScreen();
         primaryStage.setTitle("KAT app");
+        primaryStage.setOnCloseRequest(e-> Platform.exit());
         primaryStage.show();
     }
 
