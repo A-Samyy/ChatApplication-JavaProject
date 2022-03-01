@@ -24,7 +24,6 @@ public class ServerMessageImpl extends UnicastRemoteObject implements ServerMess
     public boolean getMesssage(MessageDto messageDto) throws RemoteException {
         if (ServerControlService.flag) {
             if (clients.containsKey(messageDto.getFriendId())) {
-                System.out.println(messageDto);
                 sendMessage(messageDto);
                 return true;
             } else {
@@ -45,8 +44,7 @@ public class ServerMessageImpl extends UnicastRemoteObject implements ServerMess
     @Override
     public boolean register(ClientMesseageInt clientMesseageInt, int userId) throws RemoteException {
         if(!clients.containsKey(userId)) {
-            System.out.println(!clients.containsKey(userId));
-
+            System.out.println(clients.containsKey(userId));
             System.out.println(userId);
             clients.put(userId, clientMesseageInt);
             return clients.containsKey(userId);
@@ -72,10 +70,7 @@ public class ServerMessageImpl extends UnicastRemoteObject implements ServerMess
 
     public boolean sendMessage(MessageDto messageDto) {
         try {
-            System.out.println(messageDto);
-            System.out.println(clients.get(messageDto.getFriendId()));
             clients.get(messageDto.getFriendId()).reciveMessage(messageDto);
-            System.out.println("after trying to send");
         } catch (RemoteException e) {
             e.printStackTrace();
         }
