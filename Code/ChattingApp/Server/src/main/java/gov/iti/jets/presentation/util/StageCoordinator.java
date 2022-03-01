@@ -61,19 +61,7 @@ public class StageCoordinator {
        }
        primaryStage.getScene().setRoot(homePageRoot);
    }
-   public Node loadAddUser(){
-       Node addUserNode = nodeMap.get("AddUser");
-       if(addUserNode == null){
-           try {
-               Parent root  = FXMLLoader.load(getClass().getResource("/views/addView/addView.fxml"));
-               addUserNode = root;
-               nodeMap.put("AddUser", root);
-           } catch (IOException e) {
-               e.printStackTrace();
-           }
-       }
-       return addUserNode;
-   }
+
 
 
     public HBox loadMessage(MessageAnnounceDto messageAnnounceDto) {

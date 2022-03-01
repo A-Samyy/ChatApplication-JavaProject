@@ -261,14 +261,6 @@ public class StageCoordinator {
     }
 
 
-
-
-
-
-
-
-
-
     public Node loadSidebar() {
         Node sidebar = null;
         try {
@@ -431,6 +423,7 @@ public class StageCoordinator {
         addAdminMessageContainer.setOnHidden(e -> {
             adminMessageController.shutdown();
         });
+        addAdminMessageContainer.setTitle("Admin Messages");
         addAdminMessageContainer.show();
     }
 
