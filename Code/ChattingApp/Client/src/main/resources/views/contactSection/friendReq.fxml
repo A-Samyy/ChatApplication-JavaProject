@@ -9,8 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-
-<AnchorPane prefHeight="60.0" prefWidth="358.0" style="-fx-background-color: #2f2a57;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.FriendRequestController">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="60.0" prefWidth="358.0" style="-fx-background-color: #2f2a57;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.FriendRequestController">
    <children>
       <GridPane layoutY="-35.0" prefHeight="60.0" prefWidth="349.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
