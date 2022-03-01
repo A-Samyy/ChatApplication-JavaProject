@@ -47,7 +47,6 @@ public class ProgressBarController implements Initializable {
         progressIndicator.progressProperty().bindBidirectional(fileCounterModel.numberProperty());
         new Thread(new Runnable() {
 
-
             @Override
             public void run() {
                 Platform.runLater(new Runnable() {
@@ -57,7 +56,7 @@ public class ProgressBarController implements Initializable {
 
                         System.out.println("progress");
                         System.out.println("progress="+progressIndicator.getProgress());
-                        if (progressIndicator.getProgress()==1.0){
+                        if (fileCounterModel.getNumber()==1.0){
                             doneIcon.setOpacity(1);
                             fileReceivedLabel.setOpacity(1);
                             doneButton.setDisable(false);
@@ -78,5 +77,5 @@ public class ProgressBarController implements Initializable {
         }).start();
 
 
-    }
+        }
 }
