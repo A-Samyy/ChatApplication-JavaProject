@@ -23,7 +23,7 @@ public class Connector {
         config.setUsername(prop.getProperty("MYSQL_DB_USERNAME"));
         config.setPassword(prop.getProperty("MYSQL_DB_PASSWORD"));
         dataSource = new HikariDataSource(config);
-        dataSource.setMaximumPoolSize(100);
+        dataSource.setMaximumPoolSize(200);
 
     }
         private static Connector connector = new Connector();
