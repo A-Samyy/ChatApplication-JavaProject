@@ -67,6 +67,7 @@ public class ServerGroupChatMessageImpl extends UnicastRemoteObject implements S
 
     private void sendMessage(MessageGroupDto messageGroupDto, int userID) {
         try {
+            System.out.println(userID);
             clients.get(userID).receiveGroupChatMessage(messageGroupDto);
         } catch (RemoteException e) {
             e.printStackTrace();

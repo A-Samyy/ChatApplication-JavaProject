@@ -146,11 +146,9 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
         // break file into chunks
         byte[] buffer = new byte[4 * 1024];
         while ((bytes = fileInputStream.read(buffer)) != -1) {
-
             dataOutputStream.write(buffer, 0, bytes);
             dataOutputStream.flush();
         }
-
         fileInputStream.close();
     }
 
