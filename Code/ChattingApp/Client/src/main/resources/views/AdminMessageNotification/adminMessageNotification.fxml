@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="adminMessage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onMessageAdminClicked" prefHeight="61.0" prefWidth="349.0" style="-fx-background-color: #2f2a57;" stylesheets="@MessageFromAdminStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.MessageAdminController">
+<AnchorPane fx:id="adminMessage" maxHeight="-Infinity" minHeight="-Infinity" onMouseClicked="#onMessageAdminClicked" prefHeight="60.0" prefWidth="349.0" style="-fx-background-color: #2f2a57;" stylesheets="@MessageFromAdminStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.MessageAdminController">
    <children>
       <Label layoutX="31.0" layoutY="19.0" prefHeight="22.0" prefWidth="172.0" text="Message from Admin" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>

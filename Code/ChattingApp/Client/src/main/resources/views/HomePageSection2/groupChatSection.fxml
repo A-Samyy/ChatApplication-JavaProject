@@ -65,17 +65,17 @@
       </AnchorPane>
       <AnchorPane fx:id="bottomBar" maxHeight="-Infinity" prefHeight="78.0" prefWidth="674.0" styleClass="chatBar" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <children>
-            <FontIcon fx:id="filesButton" iconColor="WHITE" iconLiteral="fas-paperclip" iconSize="25" layoutX="13.0" layoutY="58.99999847412109" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="37.12499847412109">
+            <FontIcon fx:id="filesButton" iconColor="WHITE" iconLiteral="fas-paperclip" iconSize="25" layoutX="14.0" layoutY="71.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="49.125">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </FontIcon>
-            <TextField fx:id="messageTextField" layoutX="48.0" layoutY="32.0" onKeyPressed="#onTypingEnter" prefHeight="37.0" prefWidth="581.0" promptText="Write a message" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="32.0">
+            <TextField fx:id="messageTextField" layoutX="46.0" layoutY="44.0" onKeyPressed="#onTypingEnter" prefHeight="37.0" prefWidth="581.0" promptText="Write a message" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="44.0">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
-            <FontIcon fx:id="sendButton" iconColor="WHITE" iconLiteral="fab-telegram-plane" iconSize="25" layoutX="640.4250000000001" layoutY="58.99999847412109" onMouseClicked="#sendButtonClicked" AnchorPane.bottomAnchor="51.4750015258789" AnchorPane.rightAnchor="12.099999999999909" AnchorPane.topAnchor="37.12499847412109">
+            <FontIcon fx:id="sendButton" iconColor="WHITE" iconLiteral="fab-telegram-plane" iconSize="25" layoutX="638.0" layoutY="71.0" onMouseClicked="#sendButtonClicked" AnchorPane.bottomAnchor="39.474999999999994" AnchorPane.rightAnchor="14.524999999999977" AnchorPane.topAnchor="49.125">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

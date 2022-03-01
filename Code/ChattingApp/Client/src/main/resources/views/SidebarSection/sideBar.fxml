@@ -24,7 +24,7 @@
    <rowConstraints>
       <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="86.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="480.80000305175787" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" valignment="CENTER" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" valignment="CENTER" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
       <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">

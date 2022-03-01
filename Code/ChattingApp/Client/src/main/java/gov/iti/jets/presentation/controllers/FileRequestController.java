@@ -26,6 +26,7 @@ public class FileRequestController {
 
     @FXML
     void OnReject(MouseEvent event) {
+        System.out.println("heyy");
         ClientFileRequestImpl.fileRequestDtos.remove(fileRequestDto);
     }
 
