@@ -8,6 +8,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 public interface GroupListInt extends Remote {
+    static final long serialVersionUID = 1420672609912364068L;
     List<GroupDto> getListGroup (int id) throws RemoteException;
 
 }

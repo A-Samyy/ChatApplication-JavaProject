@@ -10,5 +10,6 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 public interface AddGroupChatInt extends Remote {
+    static final long serialVersionUID = 1420672609912364061L;
     Boolean  addGroupChat(ClientGroupChatDto clientGroupChatDto) throws RemoteException;
 }
