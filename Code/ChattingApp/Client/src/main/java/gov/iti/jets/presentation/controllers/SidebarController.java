@@ -50,7 +50,6 @@ public class SidebarController implements Initializable {
     GroupListService groupListService = new GroupListService();
     ServerMessageAnnouncetInt serverMessageAnnouncetInt = rmiRegister.serverMessageAnnouncetInt();
     LogoutService logoutService = new LogoutService();
-    LoginInt loginInt =rmiRegister.loginService();
     @FXML
     private Tab Contacts;
 
@@ -119,7 +118,7 @@ public class SidebarController implements Initializable {
         logoutService.logout();
         System.out.println(" logout 2");
         stageCoordinator.switchToLoginScreen();
-        loginInt.setLoginCounter();
+
 
 
     }

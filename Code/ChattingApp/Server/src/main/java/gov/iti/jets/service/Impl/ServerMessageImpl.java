@@ -14,7 +14,7 @@ import java.util.Map;
 public class ServerMessageImpl extends UnicastRemoteObject implements ServerMessageInt {
 
     Map<Integer, ClientMesseageInt> clients = new HashMap<>();
-
+    LoginImpl login =new LoginImpl();
     ChatBotService chatBotService = new ChatBotService();
 
     public ServerMessageImpl() throws RemoteException {
@@ -57,6 +57,7 @@ public class ServerMessageImpl extends UnicastRemoteObject implements ServerMess
     @Override
     public boolean unRegister(ClientMesseageInt clientMesseageInt, int userId) throws RemoteException {
         if (clients.containsKey(userId)) {
+            login.setLoginCounter();
             return clients.remove(userId, clientMesseageInt);
         }
         return false;
