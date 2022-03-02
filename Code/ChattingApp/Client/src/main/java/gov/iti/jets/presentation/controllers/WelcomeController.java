@@ -76,11 +76,11 @@ public class WelcomeController implements Initializable {
             LoginService loginService = new LoginService();
             if (rememberMeServices.getUserInfoValue() == 0) {
 //                stageCoordinator.switchToWelcomScreen();
-                loginService.setUserId(rememberMeServices.getUserInfoValue());
+   //             loginService.setUserId(rememberMeServices.getUserInfoValue());
             }
             else {
                 loginService.setUserId(rememberMeServices.getUserInfoValue());
-                if(!RMIRegister.flag){
+        //        if(!RMIRegister.flag){
 //                    loginService.setUserId(rememberMeServices.getUserInfoValue());
                     try {
                         loginService.getdata();
@@ -89,10 +89,10 @@ public class WelcomeController implements Initializable {
                     }
                     rememberMeServices.registerme();
                     stageCoordinator.switchToGHomePageScreen();
-                }else {
-                    serverValidation.setText("Please Enter valid IP");
-                    serverValidation.setStyle("-fx-text-fill: #FF0000");
-                }
+//                }else {
+//                    serverValidation.setText("Please Enter valid IP");
+//                    serverValidation.setStyle("-fx-text-fill: #FF0000");
+//                }
 
             }
             enterIPTextField.clear();
