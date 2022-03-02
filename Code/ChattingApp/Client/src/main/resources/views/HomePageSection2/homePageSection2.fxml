@@ -31,11 +31,11 @@
                   <Font name="Arial Bold Italic" size="31.0" />
                </font>
             </Label>
-            <FontIcon fx:id="styleButton" iconColor="WHITE" iconLiteral="fas-paint-brush" iconSize="25" layoutX="590.0" layoutY="47.0" onMouseClicked="#OnChangingStyle">
+            <FontIcon fx:id="styleButton" iconColor="WHITE" iconLiteral="fas-paint-brush" iconSize="25" layoutX="590.0" layoutY="47.0" onMouseClicked="#OnChangingStyle" AnchorPane.rightAnchor="59.39999999999998" AnchorPane.topAnchor="25.125">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></FontIcon>
-            <Label fx:id="changeStyleLabel" layoutX="547.0" layoutY="51.0" onMouseClicked="#OnChangingStyle" prefHeight="26.0" prefWidth="113.0" text="Style Message" textFill="WHITE">
+            <Label fx:id="changeStyleLabel" layoutX="547.0" layoutY="51.0" onMouseClicked="#OnChangingStyle" prefHeight="26.0" prefWidth="113.0" text="Style Message" textFill="WHITE" AnchorPane.bottomAnchor="9.000000000000007" AnchorPane.rightAnchor="13.799999999999983">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
