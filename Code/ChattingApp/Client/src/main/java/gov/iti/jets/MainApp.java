@@ -31,14 +31,14 @@ public class MainApp extends Application {
     }
 
     @Override
-    public void stop()  {
+    public void stop() throws Exception {
 
-        try {
+        super.stop();
+        if(LoginService.getId()!=0){
             messageService.getClient().removeMe();
-            super.stop();
-        } catch (Exception e) {
-//            e.printStackTrace();
+
         }
+
         System.exit(0);
 
 

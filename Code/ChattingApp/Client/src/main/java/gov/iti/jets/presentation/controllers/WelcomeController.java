@@ -60,6 +60,13 @@ public class WelcomeController implements Initializable {
         stageCoordinator.switchToRegistrationScreen();
     }
 
+
+
+    @FXML
+    void onAbout(MouseEvent event) {
+        stageCoordinator.loadAbout();
+    }
+
     @FXML
     void OnEnterStaticIp(KeyEvent event) {
         if(event.getCode() == KeyCode.ENTER){

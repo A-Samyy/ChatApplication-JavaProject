@@ -65,6 +65,15 @@
                   </Label>
                </children>
             </GridPane>
+            <TextField fx:id="enterIPTextField" layoutX="36.0" layoutY="2.0" prefHeight="26.0" prefWidth="108.0" promptText="enter Ip" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" />
+            <Label fx:id="aboutButton" layoutX="640.0" layoutY="14.0" onMouseClicked="#onAbout" text="About" AnchorPane.rightAnchor="39.8" AnchorPane.topAnchor="14.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Label>
+            <FontIcon fx:id="aboutIcon" iconColor="WHITE" iconLiteral="fas-question-circle" iconSize="16" layoutX="681.0" layoutY="29.0" onMouseClicked="#onAbout" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="13.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></FontIcon>
             <TextField fx:id="enterIPTextField" layoutX="36.0" layoutY="2.0" onKeyPressed="#OnEnterStaticIp" prefHeight="26.0" prefWidth="108.0" promptText="enter Ip" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" />
             <Label fx:id="aboutButton" layoutX="640.0" layoutY="14.0" text="About" AnchorPane.rightAnchor="39.8" AnchorPane.topAnchor="14.0" />
             <FontIcon fx:id="aboutIcon" iconColor="WHITE" iconLiteral="fas-question-circle" iconSize="16" layoutX="681.0" layoutY="29.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="13.0" />
