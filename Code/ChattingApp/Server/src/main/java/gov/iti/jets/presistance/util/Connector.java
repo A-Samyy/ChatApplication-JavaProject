@@ -30,7 +30,7 @@ public class Connector {
         config.setUsername("root");
         config.setPassword("rootpassword");
         dataSource = new HikariDataSource(config);
-        dataSource.setMaximumPoolSize(100);
+        dataSource.setMaximumPoolSize(200);
 
     }
         private static Connector connector = new Connector();

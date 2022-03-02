@@ -12,15 +12,12 @@ import java.rmi.registry.Registry;
 public class RMIRegister {
     private static RMIRegister rmiRegister = new RMIRegister();
     Registry registry;
-        String host = "localhost";
-  //  String host = "10.145.5.197";
+    //    String host = "localhost";
+    String host ;
+    static public boolean flag;
 
     private RMIRegister() {
-        try {
-            registry = LocateRegistry.getRegistry(host, 3334);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+
     }
 
     public String getHost() {
@@ -28,7 +25,16 @@ public class RMIRegister {
     }
 
     public void setHost(String host) {
-        this.host = host;
+        boolean flag = true;
+        if(host.isEmpty()){
+            host = "localhost";
+        }
+        try {
+            System.out.println(host);
+            registry = LocateRegistry.getRegistry(host, 2001);
+        } catch (RemoteException e) {
+            e.getMessage();
+        }
     }
 
     public static RMIRegister getInstance() {
@@ -53,9 +59,14 @@ public class RMIRegister {
         try {
             loginInt = (LoginInt) registry.lookup("loginService");
         } catch (NotBoundException | AccessException e) {
-            e.printStackTrace();
+//            System.out.println("heteeeeeeeeee");
+
+//            e.printStackTrace();
         } catch (RemoteException e) {
-            e.printStackTrace();
+            flag = true;
+//            System.out.println("eee2");
+
+//            e.printStackTrace();
         }
         return loginInt;
     }

@@ -17,7 +17,7 @@ import java.util.Base64;
 public class LoginImpl extends UnicastRemoteObject implements LoginInt {
     UserDao userDao = new UserDao();
     private int userID;
-
+    private static int counter=0;
     public LoginImpl() throws RemoteException {
     }
 
@@ -41,6 +41,7 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
     public String isPasswordValid() throws RemoteException {
 
         if (ServerControlService.flag) {
+            counter+=1;
             return userDao.getUserPasswordById(this.userID);
         }
         return "stopped";
@@ -97,5 +98,18 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
 
         }
         return imageString;
+    }
+
+    public int getCounter(){
+        return counter;
+    }
+//    @Override
+//    public void setCounter(int number) throws RemoteException{
+//        this.counter-=number;}
+
+    @Override
+    public void setLoginCounter() throws RemoteException{
+        counter-=1;
+
     }
 }

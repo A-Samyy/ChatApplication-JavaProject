@@ -81,7 +81,7 @@ public class PasswordController implements Initializable {
                 loginService.getdata();
                 registerme();
                 stageCoordinator.switchToGHomePageScreen();
-        //        rememberMeServices.setValue(LoginService.getId());
+//                rememberMeServices.setValue(LoginService.getId());
                 passwordTextField.setText("");
             } else {
             }
@@ -102,7 +102,7 @@ private void registerme(){
     try {
         ClientAnnounceImpl clientAnnounceMessageInt  = new ClientAnnounceImpl();
         ClientMessageImpl clientMessage =new ClientMessageImpl() ;
-        ClientGroupChatMessageImpl clientGroupChatMessageInt= new ClientGroupChatMessageImpl();
+       // ClientGroupChatMessageImpl clientGroupChatMessageInt= new ClientGroupChatMessageImpl();
         ClientFileRequestImpl clientFileRequestInt =new ClientFileRequestImpl();
 
         clientFileRequestInt.registerFileRequestInt();
@@ -115,8 +115,8 @@ private void registerme(){
         clientMessage.registerMessageInt();
         MessageService.getInstance().setClient(clientMessage);
 
-        clientGroupChatMessageInt = new ClientGroupChatMessageImpl();
-        clientGroupChatMessageInt.registerGroupChatMessageInt();
+//        clientGroupChatMessageInt = new ClientGroupChatMessageImpl();
+//        clientGroupChatMessageInt.registerGroupChatMessageInt();
 
     } catch (RemoteException e) {
         e.printStackTrace();
