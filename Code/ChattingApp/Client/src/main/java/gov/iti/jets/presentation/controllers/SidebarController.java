@@ -1,6 +1,7 @@
 package gov.iti.jets.presentation.controllers;
 
 import gov.iti.jets.common.dtos.*;
+import gov.iti.jets.common.interfaces.LoginInt;
 import gov.iti.jets.common.interfaces.ServerMessageAnnouncetInt;
 import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.presentation.models.ContactModel;
@@ -48,7 +49,7 @@ public class SidebarController implements Initializable {
     GroupListService groupListService = new GroupListService();
     ServerMessageAnnouncetInt serverMessageAnnouncetInt = rmiRegister.serverMessageAnnouncetInt();
     LogoutService logoutService = new LogoutService();
-
+    LoginInt loginInt =rmiRegister.loginService();
     @FXML
     private Tab Contacts;
 
@@ -112,11 +113,14 @@ public class SidebarController implements Initializable {
 
 
     @FXML
-    void logoutOnMouseClick(MouseEvent event) {
+    void logoutOnMouseClick(MouseEvent event) throws RemoteException {
         System.out.println(" logout 1");
         logoutService.logout();
         System.out.println(" logout 2");
         stageCoordinator.switchToLoginScreen();
+        loginInt.setLoginCounter();
+
+
     }
 
     @FXML

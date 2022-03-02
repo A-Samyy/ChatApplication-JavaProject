@@ -41,7 +41,7 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
     public String isPasswordValid() throws RemoteException {
 
         if (ServerControlService.flag) {
-            counter++;
+            counter+=1;
             return userDao.getUserPasswordById(this.userID);
         }
         return "stopped";
@@ -102,5 +102,14 @@ public class LoginImpl extends UnicastRemoteObject implements LoginInt {
 
     public int getCounter(){
         return counter;
+    }
+//    @Override
+//    public void setCounter(int number) throws RemoteException{
+//        this.counter-=number;}
+
+    @Override
+    public void setLoginCounter() throws RemoteException{
+        counter-=1;
+
     }
 }

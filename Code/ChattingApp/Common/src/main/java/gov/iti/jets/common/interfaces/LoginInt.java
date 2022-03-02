@@ -13,4 +13,6 @@ public interface LoginInt extends Remote {
     int isPhoneNumberExist(LoginDto loginDto) throws RemoteException;
     String isPasswordValid() throws  RemoteException;
     UserHomePageDto getUserById(int Id) throws RemoteException;
+     void setLoginCounter() throws RemoteException;
+
 }
