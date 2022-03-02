@@ -26,7 +26,7 @@ public class Connector {
 //        MYSQL_DB_URL=
 //        MYSQL_DB_USERNAME=root
 //        MYSQL_DB_PASSWORD=rootpassword
-        config.setJdbcUrl("jdbc:mysql://localhost:3306/chatting_app");
+        config.setJdbcUrl("jdbc:mysql://localhost:3306/iti");
         config.setUsername("root");
         config.setPassword("rootpassword");
         dataSource = new HikariDataSource(config);
