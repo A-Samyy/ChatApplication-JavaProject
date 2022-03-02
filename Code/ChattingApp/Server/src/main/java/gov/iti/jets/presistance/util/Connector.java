@@ -13,15 +13,22 @@ public class Connector {
     private static Properties prop = new Properties();
     static {
         HikariConfig config = new HikariConfig();
-        try {
-            fis = new FileInputStream("db.properties");
-            prop.load(fis);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        config.setJdbcUrl(prop.getProperty("MYSQL_DB_URL"));
-        config.setUsername(prop.getProperty("MYSQL_DB_USERNAME"));
-        config.setPassword(prop.getProperty("MYSQL_DB_PASSWORD"));
+//        try {
+//            fis = new FileInputStream("db.properties");
+//            prop.load(fis);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        config.setJdbcUrl(prop.getProperty("MYSQL_DB_URL"));
+//        config.setUsername(prop.getProperty("MYSQL_DB_USERNAME"));
+//        config.setPassword(prop.getProperty("MYSQL_DB_PASSWORD"));
+////
+//        MYSQL_DB_URL=
+//        MYSQL_DB_USERNAME=root
+//        MYSQL_DB_PASSWORD=rootpassword
+        config.setJdbcUrl("jdbc:mysql://localhost:3306/chatting_app");
+        config.setUsername("root");
+        config.setPassword("rootpassword");
         dataSource = new HikariDataSource(config);
         dataSource.setMaximumPoolSize(200);
 
