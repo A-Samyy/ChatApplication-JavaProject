@@ -14,8 +14,6 @@ import java.net.InetAddress;
 public class MainApp extends Application {
     private StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     RememberMeServices rememberMeServices = RememberMeServices.getInstance();
-    LoginService loginService = new LoginService();
-    MessageService messageService=MessageService.getInstance();
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -24,34 +22,29 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         stageCoordinator.initStage(primaryStage);
-//        if (rememberMeServices.getUserInfoValue() == 0) {
-//
-//        } else {
-//            loginService.setUserId(rememberMeServices.getUserInfoValue());
-//            loginService.getdata();
-//            rememberMeServices.registerme();
-//            stageCoordinator.switchToGHomePageScreen();
-//        }
-//        stageCoordinator.switchToWelcomScreen();
-        primaryStage.setTitle("KAT app");
-        primaryStage.setOnCloseRequest(e-> Platform.exit());
+
+
         if (rememberMeServices.getUserInfoValue() == 0) {
             stageCoordinator.switchToWelcomScreen();
         }
         else {
+            LoginService loginService = new LoginService();
             loginService.setUserId(rememberMeServices.getUserInfoValue());
             loginService.getdata();
             rememberMeServices.registerme();
             stageCoordinator.switchToGHomePageScreen();
         }
+
+        primaryStage.setTitle("KAT app");
+        primaryStage.setOnCloseRequest(e-> Platform.exit());
         primaryStage.show();
     }
 
     @Override
     public void stop() throws Exception {
+        MessageService messageService=MessageService.getInstance();
         messageService.getClient().removeMe();
         super.stop();
         System.exit(0);
-
     }
 }
