@@ -122,11 +122,22 @@ public class GroupSectionController implements Initializable {
         }
     }
 
+    private void registerGroup() throws RemoteException {
+        ClientGroupChatMessageImpl clientGroupChatMessageInt= new ClientGroupChatMessageImpl();
+        clientGroupChatMessageInt = new ClientGroupChatMessageImpl();
+        clientGroupChatMessageInt.registerGroupChatMessageInt();
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         chatContainer.setCellFactory(messageListView -> new MessageListViewCell());
         messageTextField.styleProperty().bindBidirectional(messageStyleModel.styleProperty());
+        try {
+            registerGroup();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
 
     }
 
