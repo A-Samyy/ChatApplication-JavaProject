@@ -19,6 +19,7 @@ public class UpdateUserImpl extends UnicastRemoteObject implements UpdateUserInt
 
     @Override
     public Boolean updateUser(UpdateDto updateDto) throws RemoteException {
+        System.out.println(updateDto.toString());
         UserDto  userDto = userDao.getUserDtoById(updateDto.getId());
         userDto.setBio(updateDto.getBio());
         userDto.setEmail(updateDto.getEmail());
@@ -36,6 +37,7 @@ public class UpdateUserImpl extends UnicastRemoteObject implements UpdateUserInt
 
         }
         userDto.setStatus(Status.getStatusFromNumber(getStatusNumber(updateDto.getStatus())));
+        System.out.println(userDto.toString());
         return userDao.updateUserDto(userDto);
     }
     int getStatusNumber(String status){

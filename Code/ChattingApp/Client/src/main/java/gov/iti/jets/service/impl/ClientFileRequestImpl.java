@@ -27,9 +27,9 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
     private ServerFileRequestInt serverFileRequestInt = rmiRegister.serverFileRequestService();
     private FileRequestDto fileRequestDto=new FileRequestDto();
     FileTransferService fileTransferService = new FileTransferService();
-    transient private static DataOutputStream dataOutputStream = null;
-    transient private static DataInputStream dataInputStream = null;
-    transient boolean outsideRequestResponse;
+    private static DataOutputStream dataOutputStream = null;
+    private static DataInputStream dataInputStream = null;
+    boolean outsideRequestResponse;
 
     private ModelFactory modelFactory=ModelFactory.getInstance();
     private FileCounterModel fileCounterModel =modelFactory.getFileCounterModel();
@@ -146,9 +146,11 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
         // break file into chunks
         byte[] buffer = new byte[4 * 1024];
         while ((bytes = fileInputStream.read(buffer)) != -1) {
+
             dataOutputStream.write(buffer, 0, bytes);
             dataOutputStream.flush();
         }
+
         fileInputStream.close();
     }
 

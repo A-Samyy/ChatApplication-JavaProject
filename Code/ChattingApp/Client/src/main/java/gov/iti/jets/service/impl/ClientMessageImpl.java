@@ -8,6 +8,8 @@ import gov.iti.jets.common.interfaces.ClientMesseageInt;
 import gov.iti.jets.common.interfaces.ServerMessageInt;
 import gov.iti.jets.common.interfaces.UpdateUserInt;
 import gov.iti.jets.networking.RMIRegister;
+import gov.iti.jets.presentation.models.UserModel;
+import gov.iti.jets.presentation.util.ModelFactory;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import gov.iti.jets.service.daos.MessageDao;
 import gov.iti.jets.service.services.LoginService;
@@ -28,6 +30,8 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
     transient static public Map<Integer, List<MessageDao>> map = new HashMap<>();
     transient static public List<MessageDao> list = new ArrayList<>();
     transient StageCoordinator stageCoordinator = StageCoordinator.getInstance();
+    transient ModelFactory modelFactory = ModelFactory.getInstance();
+    UserModel userModel = modelFactory.getUserModel();
     transient MessageService messageService = MessageService.getInstance();
 
     public static ClientMessageImpl getClientMessage() {
@@ -92,12 +96,12 @@ public class ClientMessageImpl extends UnicastRemoteObject implements ClientMess
 
     UpdateDto mapperToUpdateDto(UserHomePageDto userHomePageDto) {
         UpdateDto updateDto = new UpdateDto();
-        updateDto.setPhoneNumber(userHomePageDto.getPhoneNumber());
-        updateDto.setPicture(userHomePageDto.getPicture());
-        updateDto.setEmail(userHomePageDto.getEmail());
-        updateDto.setName(userHomePageDto.getName());
-        updateDto.setBio(userHomePageDto.getBio());
-        updateDto.setPassword(userHomePageDto.getPassword());
+        updateDto.setPhoneNumber(userModel.getPhoneNumber());
+        updateDto.setPicture(userModel.getImagePath());
+        updateDto.setEmail(userModel.getEmail());
+        updateDto.setName(userModel.getUserName());
+        updateDto.setBio(userModel.getBio());
+        updateDto.setPassword(userModel.getPassword());
         updateDto.setId(LoginService.getId());
         updateDto.setStatus("Offline");
         return updateDto;

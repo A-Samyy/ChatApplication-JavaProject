@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ServerMessageImpl extends UnicastRemoteObject implements ServerMessageInt {
+
     Map<Integer, ClientMesseageInt> clients = new HashMap<>();
 
     ChatBotService chatBotService = new ChatBotService();
@@ -83,5 +84,10 @@ public class ServerMessageImpl extends UnicastRemoteObject implements ServerMess
 
     public Map<Integer, ClientMesseageInt> clientsOnline() {
         return this.clients;
+    }
+
+    public int getOnlineUsers(){
+        System.out.println("inServerMessageImpl:"+clients.size());
+        return clients.size();
     }
 }

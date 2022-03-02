@@ -68,7 +68,5 @@ public class ServerMessageAnnounceImpl extends UnicastRemoteObject implements Se
             }
         return true ;
     }
-    public int onlinUsers() {
-        return clientAnnounceMessageIntList.size();
-    }
+
 }

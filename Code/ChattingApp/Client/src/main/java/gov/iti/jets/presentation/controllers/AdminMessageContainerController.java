@@ -37,10 +37,10 @@ public class AdminMessageContainerController implements Initializable {
         System.out.println("Stop");
         ClientAnnounceImpl.mapMessageFromAdmin.get(LoginService.getId()).clear();
         adminMessageListView.getItems().clear();
-        try {
-            serverMessageAnnouncetInt.removeList();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            serverMessageAnnouncetInt.removeList();
+//        } catch (RemoteException e) {
+//            e.printStackTrace();
+//        }
     }
 }
