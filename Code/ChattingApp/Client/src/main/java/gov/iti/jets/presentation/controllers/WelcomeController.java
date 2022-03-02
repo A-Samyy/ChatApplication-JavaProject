@@ -1,5 +1,6 @@
 package gov.iti.jets.presentation.controllers;
 
+import gov.iti.jets.networking.RMIRegister;
 import gov.iti.jets.presentation.util.StageCoordinator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -18,6 +20,7 @@ import java.util.ResourceBundle;
 public class WelcomeController implements Initializable {
     StageCoordinator stageCoordinator = StageCoordinator.getInstance();
     Tooltip aboutTip= new Tooltip("about the app");
+    RMIRegister rmiRegister = RMIRegister.getInstance();
     @FXML
     private FontIcon aboutIcon;
 
@@ -49,6 +52,11 @@ public class WelcomeController implements Initializable {
         stageCoordinator.switchToRegistrationScreen();
     }
 
+    @FXML
+    void OnEnterStaticIp(KeyEvent event) {
+        rmiRegister.setHost(enterIPTextField.getText());
+
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Tooltip.install(aboutIcon, aboutTip);
