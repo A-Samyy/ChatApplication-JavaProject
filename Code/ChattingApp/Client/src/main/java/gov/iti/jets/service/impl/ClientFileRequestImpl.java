@@ -49,6 +49,15 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
         clientFileRequest=this;
     }
 
+    public void registerFileRequestInt() {
+        try {
+            serverFileRequestInt = rmiRegister.serverFileRequestService();
+            serverFileRequestInt.register(this,LoginService.getId());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public boolean receiveMyRequest(FileRequestDto fileRequestDto) throws RemoteException {
         try {
@@ -97,6 +106,7 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
         fileRequestDtos.remove(fileRequestDto);
         try {
             FileChooser openFileChooser = new FileChooser();
+            openFileChooser.setInitialFileName(fileRequestDto.getFileName());
             File file = openFileChooser.showSaveDialog(null);
             System.out.println(file.getPath());
 

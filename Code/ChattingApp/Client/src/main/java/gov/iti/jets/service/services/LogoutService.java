@@ -34,6 +34,7 @@ public class LogoutService {
             serverFileRequestInt.unRegister(ClientFileRequestImpl.getClientFileRequest(), userId);
             messageService.getClient().removeMe();
             rememberMeServices.removeUserInfo();
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }
