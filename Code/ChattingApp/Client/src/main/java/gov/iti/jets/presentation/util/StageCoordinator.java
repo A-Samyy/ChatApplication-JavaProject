@@ -216,6 +216,19 @@ public class StageCoordinator {
         addNewGroup.show();
     }
 
+    public void loadAbout() {
+        Stage aboutStage = new Stage();
+        AnchorPane aboutPane = null;
+        try {
+            aboutPane = FXMLLoader.load(getClass().getResource("/views/about/about.fxml"));
+        } catch (Exception e) {
+        }
+        Scene scene = new Scene(aboutPane);
+        aboutStage.setScene(scene);
+        aboutStage.setTitle("KAT app");
+        aboutStage.show();
+    }
+
     public void loadProgressBar() {
         Stage progressBarStage= new Stage();
         Pane progessBarPane = null;

@@ -49,6 +49,13 @@ public class WelcomeController implements Initializable {
         stageCoordinator.switchToRegistrationScreen();
     }
 
+
+
+    @FXML
+    void onAbout(MouseEvent event) {
+        stageCoordinator.loadAbout();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Tooltip.install(aboutIcon, aboutTip);

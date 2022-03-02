@@ -38,8 +38,13 @@ public class MainApp extends Application {
 
     @Override
     public void stop() throws Exception {
-        messageService.getClient().removeMe();
+
         super.stop();
+        if(LoginService.getId()!=0){
+            messageService.getClient().removeMe();
+
+        }
+
         System.exit(0);
 
     }
