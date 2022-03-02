@@ -27,9 +27,9 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
     private ServerFileRequestInt serverFileRequestInt = rmiRegister.serverFileRequestService();
     private FileRequestDto fileRequestDto=new FileRequestDto();
     FileTransferService fileTransferService = new FileTransferService();
-    transient private static DataOutputStream dataOutputStream = null;
-    transient private static DataInputStream dataInputStream = null;
-    transient boolean outsideRequestResponse;
+    private static DataOutputStream dataOutputStream = null;
+    private static DataInputStream dataInputStream = null;
+    boolean outsideRequestResponse;
 
     private ModelFactory modelFactory=ModelFactory.getInstance();
     private FileCounterModel fileCounterModel =modelFactory.getFileCounterModel();
@@ -45,28 +45,24 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
 
     public ClientFileRequestImpl() throws RemoteException {
         super();
-    }
-
-
-    public void registerFileRequestInt() {
-        try {
-            serverFileRequestInt.register(this, LoginService.getId());
-            clientFileRequest = this;
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        serverFileRequestInt.register(this, LoginService.getId());
+        clientFileRequest=this;
     }
 
     @Override
     public boolean receiveMyRequest(FileRequestDto fileRequestDto) throws RemoteException {
         try {
             System.out.println("FileTransferService to send the file last stop before sending file");
-            try(Socket socket = new Socket(fileRequestDto.getHost(),9797)) {
+            try(Socket socket = new Socket("localhost",8877)) {
                 dataInputStream = new DataInputStream(socket.getInputStream());
                 dataOutputStream = new DataOutputStream(socket.getOutputStream());
                 System.out.println("sending file ");
-                System.out.print(fileRequestDto.toString());
+
+
                 sendFile(fileRequestDto.getFilePath());
+
+
+
                 System.out.println("File sended");
                 dataInputStream.close();
                 dataInputStream.close();
@@ -101,15 +97,22 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
         fileRequestDtos.remove(fileRequestDto);
         try {
             FileChooser openFileChooser = new FileChooser();
-            openFileChooser.setInitialFileName(fileRequestDto.getFileName());
             File file = openFileChooser.showSaveDialog(null);
             System.out.println(file.getPath());
-//            fileCounterModel.setNumber(0.0);
+
             System.out.println("fileCounterModel:"+fileCounterModel.getNumber());
-            stageCoordinator.loadProgressBar();
+
+//                    stageCoordinator.loadProgressBar();
+
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    stageCoordinator.loadProgressBar();
+                }
+            });
 
             new Thread(() -> {
-                try(ServerSocket serverSocket = new ServerSocket(9797)){
+                try(ServerSocket serverSocket = new ServerSocket(8877)){
                     System.out.println("listening to port:5000");
                     Socket clientSocket = serverSocket.accept();
                     System.out.println(clientSocket+" connected.");
@@ -119,7 +122,7 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
 
 
                     receiveFile(file.getPath()+" "+fileRequestDto.getFileName());
-
+                    fileCounterModel.setNumber(1.0);
 
 
                     dataInputStream.close();
@@ -129,6 +132,7 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
                     e.printStackTrace();
                 }
             }).start();
+
             serverFileRequestInt.acceptingFileRequest(fileRequestDto);
         } catch (IOException e) {
             e.printStackTrace();
@@ -137,17 +141,20 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
     }
 
 
-    public void sendFile(String path) throws Exception {
+
+
+
+    public  void sendFile(String path) throws Exception{
         int bytes = 0;
         File file = new File(path);
         FileInputStream fileInputStream = new FileInputStream(file);
         // send file size
         dataOutputStream.writeLong(file.length());
         // break file into chunks
-        byte[] buffer = new byte[4 * 1024];
-        while ((bytes = fileInputStream.read(buffer)) != -1) {
+        byte[] buffer = new byte[500*1024];
+        while ((bytes=fileInputStream.read(buffer))!=-1){
 
-            dataOutputStream.write(buffer, 0, bytes);
+            dataOutputStream.write(buffer,0,bytes);
             dataOutputStream.flush();
         }
 
@@ -159,29 +166,17 @@ public class ClientFileRequestImpl extends UnicastRemoteObject implements Client
         FileOutputStream fileOutputStream = new FileOutputStream(fileName);
 
         long size = dataInputStream.readLong();     // read file size
-        byte[] buffer = new byte[4*1024];
-//        fileCounterModel.setNumber(0.0);
+        byte[] buffer = new byte[500*1024];
+
         System.out.println("fileCounterModel:before while"+fileCounterModel.getNumber());
         while (size > 0 && (bytes = dataInputStream.read(buffer, 0, (int)Math.min(buffer.length, size))) != -1) {
-            fileOutputStream.write(buffer,0,bytes);
+            fileOutputStream.write(buffer, 0, bytes);
             size -= bytes;      // read upto file size
-
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                   System.out.println("fileCounterModel:before if"+fileCounterModel.getNumber());
-                    if(fileCounterModel.getNumber()==(Double)0.9){
-                        fileCounterModel.setNumber(0.0);
-                        System.out.println("fileCounterModel:after if"+fileCounterModel.getNumber());
-                    }
-                    fileCounterModel.setNumber(fileCounterModel.getNumber()+0.1);
-                }
-            });
 
 
         }
-
-
+//        fileCounterModel.setNumber(1.0);
+        System.out.println("fileCounterModel:after while"+fileCounterModel.getNumber());
         fileOutputStream.close();
     }
 }
