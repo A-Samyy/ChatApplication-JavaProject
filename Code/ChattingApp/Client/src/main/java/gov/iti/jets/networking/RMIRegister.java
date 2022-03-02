@@ -12,12 +12,12 @@ import java.rmi.registry.Registry;
 public class RMIRegister {
     private static RMIRegister rmiRegister = new RMIRegister();
     Registry registry;
-    //    String host = "localhost";
-    String host = "10.145.5.197";
+        String host = "localhost";
+  //  String host = "10.145.5.197";
 
     private RMIRegister() {
         try {
-            registry = LocateRegistry.getRegistry("10.145.5.210", 2000);
+            registry = LocateRegistry.getRegistry(host, 3334);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

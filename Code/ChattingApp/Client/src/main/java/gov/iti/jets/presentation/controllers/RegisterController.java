@@ -199,15 +199,16 @@ public class RegisterController implements Initializable {
             }
         }
         registerDto = new RegisterDto();
-        registerDto.setPhoneNumber(userModel.getPhoneNumber());
-        registerDto.setName(userModel.getUserName());
-        registerDto.setEmail(userModel.getEmail());
-        registerDto.setPassword(userModel.getPassword());
-        registerDto.setCountry(userModel.getCountry());
-        registerDto.setBio(userModel.getBio());
+        registerDto.setPhoneNumber(phoneNumberTextField.getText());
+        registerDto.setName(fullNameTextField.getText());
+        registerDto.setEmail(emailTextField.getText());
+        registerDto.setPassword(passwordTextField.getText());
+        registerDto.setCountry(countryChoiceBox.getValue());
+        registerDto.setBio(bioTextArea.getText());
         registerDto.setPicture(userModel.getImagePath());
         registerDto.setGender(userModel.getGender());
         registerDto.setDateOfBirth(dateToDto);
+        System.out.println(registerDto);
         try {
             isRegistered = registerService.registUser(registerDto);
 
@@ -217,52 +218,53 @@ public class RegisterController implements Initializable {
             e.getMessage();
         }
 
-        validationSupport.setValidationDecorator(new StyleClassValidationDecoration());
-
-        validationSupport.setValidationDecorator(new CompoundValidationDecoration(
-                new GraphicValidationDecoration(),
-                new StyleClassValidationDecoration()));
-
-
-        validationSupport.registerValidator(fullNameTextField, Validator.createRegexValidator(
-                "Enter a valid Name that contains only characters",
-                Pattern.compile("^\\p{Alpha}+$"), Severity.ERROR));
-
-        validationSupport.registerValidator(phoneNumberTextField, Validator.createRegexValidator(
-                "Enter only numbers",
-                Pattern.compile("^[0-9]+$"), Severity.ERROR));
-
-
-
-        validationSupport.registerValidator(passwordTextField, Validator.createRegexValidator(
-                "This password is weak!",
-                Pattern.compile("^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[@#$%^&+=])(?=\\S+$).{8,}$"), Severity.ERROR));
-        if(!passwordTextField.getText().equals(confirmPasswordTextField.getText())){
-            confirmPasswordTextField.setStyle(" -fx-border-color: rgb(245, 43, 43);\n" +
-                    "-fx-border-width: 2;");
-            confirmPasswordError.setText("password is not the same");
-        } else {
-        confirmPasswordTextField.setStyle(" -fx-border-radius:5px;\n" +
-                "    -fx-border-width:0.5px;\n" +
-                "    -fx-text-fill:#1e1836 ;\n" +
-                "    -fx-font-weight\t:normal;\n" +
-                "    -fx-border-color: #1e1836;");
-            confirmPasswordError.setText("");
-        }
+//        validationSupport.setValidationDecorator(new StyleClassValidationDecoration());
+//
+//        validationSupport.setValidationDecorator(new CompoundValidationDecoration(
+//                new GraphicValidationDecoration(),
+//                new StyleClassValidationDecoration()));
+//
+//
+//        validationSupport.registerValidator(fullNameTextField, Validator.createRegexValidator(
+//                "Enter a valid Name that contains only characters",
+//                Pattern.compile("^\\p{Alpha}+$"), Severity.ERROR));
+//
+//        validationSupport.registerValidator(phoneNumberTextField, Validator.createRegexValidator(
+//                "Enter only numbers",
+//                Pattern.compile("^[0-9]+$"), Severity.ERROR));
+//
 
 
-        validationSupport.registerValidator(emailTextField, Validator.createRegexValidator(
-                "Enter a valid email format",
-                Pattern.compile("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b"), Severity.ERROR));
+//        validationSupport.registerValidator(passwordTextField, Validator.createRegexValidator(
+//                "This password is weak!",
+//                Pattern.compile("^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[@#$%^&+=])(?=\\S+$).{8,}$"), Severity.ERROR));
+//        if(!passwordTextField.getText().equals(confirmPasswordTextField.getText())){
+//            confirmPasswordTextField.setStyle(" -fx-border-color: rgb(245, 43, 43);\n" +
+//                    "-fx-border-width: 2;");
+//            confirmPasswordError.setText("password is not the same");
+//        } else {
+//        confirmPasswordTextField.setStyle(" -fx-border-radius:5px;\n" +
+//                "    -fx-border-width:0.5px;\n" +
+//                "    -fx-text-fill:#1e1836 ;\n" +
+//                "    -fx-font-weight\t:normal;\n" +
+//                "    -fx-border-color: #1e1836;");
+//            confirmPasswordError.setText("");
+//        }
 
-        validationSupport.registerValidator(countryChoiceBox,Validator.createEmptyValidator("You have to choose a country"));
-
-    }
+//
+//        validationSupport.registerValidator(emailTextField, Validator.createRegexValidator(
+//                "Enter a valid email format",
+//                Pattern.compile("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b"), Severity.ERROR));
+//
+//        validationSupport.registerValidator(countryChoiceBox,Validator.createEmptyValidator("You have to choose a country"));
+//
+   }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         validationSupport.setErrorDecorationEnabled(true);
         addCountryChoiceBox();
+        phoneNumberTextField.setText(" 16545");
         passwordTextField.setText("");
         confirmPasswordTextField.setText("");
     }
