@@ -31,7 +31,7 @@ public class RMIRegister {
         }
         try {
             System.out.println(host);
-            registry = LocateRegistry.getRegistry(host, 2001);
+            registry = LocateRegistry.getRegistry(host, 3331);
         } catch (RemoteException e) {
             e.getMessage();
         }

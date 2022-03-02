@@ -10,7 +10,7 @@
    <children>
       <VBox alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" prefWidth="234.0" style="-fx-border-color: #2f2a57; -fx-border-radius: 20px 20px 20px 0px;">
          <children>
-            <Label fx:id="userName" accessibleRole="TEXT_AREA" alignment="TOP_RIGHT" contentDisplay="BOTTOM" nodeOrientation="LEFT_TO_RIGHT" prefHeight="26.0" prefWidth="214.0" text="ghh" textAlignment="RIGHT" textFill="#2f2a57" wrapText="true">
+            <Label fx:id="userName" accessibleRole="TEXT_AREA" alignment="TOP_RIGHT" contentDisplay="BOTTOM" prefHeight="26.0" prefWidth="214.0" text="ghh" textAlignment="RIGHT" textFill="#2f2a57" wrapText="true">
                <padding>
                   <Insets left="10.0" />
                </padding>

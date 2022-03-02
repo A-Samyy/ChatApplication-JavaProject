@@ -25,7 +25,7 @@ public class RMICreateRegister {
             GroupListInt groupListInt = new GroupListImpl();
             UpdateUserInt updateUserInt = new UpdateUserImpl();
             Registry registry;
-                registry = LocateRegistry.getRegistry(2001);
+                registry = LocateRegistry.createRegistry(3331);
 
             registry.rebind("RegisterService",register);
             registry.rebind("loginService",loginService);
