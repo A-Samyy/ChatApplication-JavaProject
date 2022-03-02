@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
@@ -14,75 +12,52 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<GridPane prefHeight="829.0" prefWidth="674.0" style="-fx-background-color: #1e1836;" stylesheets="@homePage2Style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.ChatSectionController">
+<GridPane prefHeight="821.0" prefWidth="674.0" style="-fx-background-color: #1e1836;" stylesheets="@homePage2Style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.ChatSectionController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="86.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="671.2000038146973" minHeight="10.0" prefHeight="621.1332885742188" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
       <AnchorPane fx:id="topBar" prefHeight="200.0" prefWidth="200.0" styleClass="chatBar">
          <children>
-            <GridPane layoutX="55.0" layoutY="12.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="124.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Group>
-                     <children>
-                        <Circle fx:id="profilePicture" fill="WHITE" radius="33.0" stroke="#2f2a57" strokeType="INSIDE" />
-                        <Circle fx:id="status" fill="#15ac45" layoutX="25.0" layoutY="19.0" radius="8.0" stroke="#2f2a57" strokeType="INSIDE" />
-                        <Label fx:id="userName" layoutX="69.0" layoutY="-18.0" prefHeight="35.0" prefWidth="326.0" text="Hend" textFill="WHITE" wrapText="true">
-                           <font>
-                              <Font name="Arial Bold Italic" size="31.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <GridPane.margin>
-                        <Insets left="10.0" />
-                     </GridPane.margin>
-                  </Group>
-                  <Group GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                     <children>
-                        <FontIcon fx:id="styleButton" iconColor="WHITE" iconLiteral="fas-paint-brush" iconSize="25" layoutX="44.0" layoutY="1.0" onMouseClicked="#OnChangingStyle" text="">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </FontIcon>
-                        <Label fx:id="changeStyleLabel" onMouseClicked="#OnChangingStyle" prefHeight="26.0" prefWidth="113.0" text="Style Message" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                     </children>
-                  </Group>
-               </children>
-            </GridPane>
+            <Circle fx:id="profilePicture" fill="WHITE" layoutX="88.0" layoutY="45.0" radius="33.0" stroke="#2f2a57" strokeType="INSIDE" />
+            <Circle fx:id="status" fill="#15ac45" layoutX="114.0" layoutY="65.0" radius="8.0" stroke="#2f2a57" strokeType="INSIDE" />
+            <Label fx:id="userName" layoutX="146.0" layoutY="27.0" prefHeight="35.0" prefWidth="326.0" text="Hend" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold Italic" size="31.0" />
+               </font>
+            </Label>
+            <FontIcon fx:id="styleButton" iconColor="WHITE" iconLiteral="fas-paint-brush" iconSize="25" layoutX="590.0" layoutY="47.0" onMouseClicked="#OnChangingStyle" AnchorPane.rightAnchor="59.39999999999998" AnchorPane.topAnchor="25.125">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></FontIcon>
+            <Label fx:id="changeStyleLabel" layoutX="547.0" layoutY="51.0" onMouseClicked="#OnChangingStyle" prefHeight="26.0" prefWidth="113.0" text="Style Message" textFill="WHITE" AnchorPane.bottomAnchor="9.000000000000007" AnchorPane.rightAnchor="13.799999999999983">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="bottomBar" styleClass="chatBar" GridPane.rowIndex="2">
          <children>
-            <FontIcon fx:id="filesButton" iconColor="WHITE" iconLiteral="fas-paperclip" iconSize="25" layoutX="14.0" layoutY="67.0" onMouseClicked="#onAddAttachmentMouseClicked" text="" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="44.0">
+            <FontIcon fx:id="filesButton" iconColor="WHITE" iconLiteral="fas-paperclip" iconSize="25" layoutX="14.0" layoutY="77.0" onMouseClicked="#onAddAttachmentMouseClicked" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="55.125">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </FontIcon>
-            <TextField fx:id="messageTextField" layoutX="46.0" layoutY="36.0" onKeyPressed="#onTypingEnter" prefHeight="37.0" prefWidth="581.0" promptText="Write a message" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="36.0">
+            <TextField fx:id="messageTextField" layoutX="46.0" layoutY="50.0" onKeyPressed="#onTypingEnter" prefHeight="37.0" prefWidth="581.0" promptText="Write a message" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="50.0">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
-            <FontIcon fx:id="sendButton" iconColor="WHITE" iconLiteral="fab-telegram-plane" iconSize="25" layoutX="638.0" layoutY="64.0" onMouseClicked="#sendButtonClicked" AnchorPane.bottomAnchor="46.474999999999994" AnchorPane.rightAnchor="14.524999999999977" AnchorPane.topAnchor="42.125">
+            <FontIcon fx:id="sendButton" iconColor="WHITE" iconLiteral="fab-telegram-plane" iconSize="25" layoutX="638.0" layoutY="76.0" onMouseClicked="#sendButtonClicked" AnchorPane.bottomAnchor="34.474999999999994" AnchorPane.rightAnchor="14.524999999999977" AnchorPane.topAnchor="54.125">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
