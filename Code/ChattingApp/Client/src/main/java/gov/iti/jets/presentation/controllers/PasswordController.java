@@ -81,7 +81,7 @@ public class PasswordController implements Initializable {
                 loginService.getdata();
                 registerme();
                 stageCoordinator.switchToGHomePageScreen();
-        //        rememberMeServices.setValue(LoginService.getId());
+//                rememberMeServices.setValue(LoginService.getId());
                 passwordTextField.setText("");
             } else {
             }

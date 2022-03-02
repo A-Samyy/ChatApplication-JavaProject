@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="706.0" stylesheets="@loginStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.WelcomeController">
    <children>
-      <AnchorPane fx:id="loginContent" layoutX="-7.0" prefHeight="482.0" prefWidth="715.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="loginContent" layoutX="-7.0" prefHeight="482.0" prefWidth="715.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-7.0" AnchorPane.topAnchor="0.0">
          <children>
             <GridPane layoutX="-25.0" layoutY="112.0" prefHeight="371.0" prefWidth="762.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-25.0" AnchorPane.rightAnchor="-22.0" AnchorPane.topAnchor="112.0">
                <columnConstraints>
@@ -65,10 +65,15 @@
                   </Label>
                </children>
             </GridPane>
-            <TextField fx:id="enterIPTextField" layoutX="36.0" layoutY="2.0" prefHeight="26.0" prefWidth="108.0" promptText="enter Ip" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" />
+            <TextField fx:id="enterIPTextField" layoutX="36.0" layoutY="2.0" onKeyPressed="#OnEnterStaticIp" prefHeight="26.0" prefWidth="108.0" promptText="enter Ip" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" />
             <Label fx:id="aboutButton" layoutX="640.0" layoutY="14.0" text="About" AnchorPane.rightAnchor="39.8" AnchorPane.topAnchor="14.0" />
             <FontIcon fx:id="aboutIcon" iconColor="WHITE" iconLiteral="fas-question-circle" iconSize="16" layoutX="681.0" layoutY="29.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="13.0" />
             <Label fx:id="enterIPButton" layoutX="53.0" layoutY="6.0" text="Enter IP" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="35.0" />
+            <Label fx:id="serverValidation" contentDisplay="CENTER" layoutX="246.0" layoutY="30.0" prefHeight="66.0" prefWidth="223.0" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true" AnchorPane.rightAnchor="246.00000000000006" AnchorPane.topAnchor="30.0">
+               <font>
+                  <Font name="Arial" size="34.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
