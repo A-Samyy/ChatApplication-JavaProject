@@ -63,7 +63,7 @@ public class UpdateUserImpl extends UnicastRemoteObject implements UpdateUserInt
         String savePath ;
         if(image != null){
             byte[] data = Base64.getDecoder().decode(image.getBytes(StandardCharsets.UTF_8));
-            savePath = "src/main/resources/clientPictures/user" + phone_number + ".jpg";
+            savePath = System.getProperty("user.dir") + "/" + phone_number + ".jpg";
             FileOutputStream fileOutputStream = new FileOutputStream(savePath);
             fileOutputStream.write(data);
             fileOutputStream.close();
