@@ -1,0 +1,22 @@
+.root{
+    -fx-background-color:  #2f2a57;
+}
+
+.progress-indicator:indeterminate > .spinner {
+    /** Applying to undo styling from .spinner, reported in RT-37965 */
+  -fx-fill:#efecff;
+    /* originally was */
+    /*-fx-background-color: transparent;*/
+    -fx-background-insets: 0;
+    -fx-background-radius: 10;
+}
+
+#doneButton{
+    -fx-border-radius:100px;
+    -fx-background-color: transparent;
+    -fx-border-color:white;
+    -fx-border-width:5px;
+    -fx-text-fill:white;
+    -fx-font-weight:bold;
+    -fx-font-size:15px;
+    }

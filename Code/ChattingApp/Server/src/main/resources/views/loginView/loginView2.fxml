@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="706.0" stylesheets="@loginStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.LoginController">
+   <children>
+      <GridPane fx:id="grid" alignment="CENTER" layoutX="-61.0" layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="830.0" AnchorPane.bottomAnchor="-77.0" AnchorPane.leftAnchor="-61.0" AnchorPane.rightAnchor="-63.0" AnchorPane.topAnchor="0.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="350.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="350.0" prefHeight="350.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <AnchorPane fx:id="loginPaneContent" prefWidth="372.0">
+               <children>
+                  <Label fx:id="welcome" layoutX="68.0" layoutY="72.0" prefHeight="31.0" prefWidth="246.0" text="WELCOME ADMIN " textFill="#400080" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="36.0">
+                     <font>
+                        <Font name="Arial Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="loginButton" layoutX="83.0" layoutY="248.0" mnemonicParsing="false" onAction="#OnLoginAction" prefHeight="42.0" prefWidth="214.0" text="Login" textFill="WHITE" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="79.39999999999998">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label fx:id="phoneNumberError" layoutX="40.0" layoutY="207.0" prefHeight="17.0" prefWidth="178.0" textAlignment="CENTER" textFill="#ea0000" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="158.4" />
+                  <TextField fx:id="AdminIDTextField" layoutX="53.0" layoutY="116.0" prefHeight="43.0" prefWidth="273.0" promptText="Enter Name">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField fx:id="AdminPasswordTextField" layoutX="52.0" layoutY="185.0" prefHeight="43.0" prefWidth="274.0" promptText="EnterPassword" styleClass="numfield">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </PasswordField>
+                  <ImageView fitHeight="62.0" fitWidth="74.0" layoutX="148.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="148.0" AnchorPane.rightAnchor="153.2">
+                     <image>
+                        <Image url="@cat.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

@@ -1,19 +1,65 @@
 package gov.iti.jets.presentation.controllers;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-
-
+import gov.iti.jets.common.dtos.MessageAnnounceDto;
 import gov.iti.jets.presentation.util.StageCoordinator;
+import gov.iti.jets.presistance.dtos.Status;
+import gov.iti.jets.presistance.dtos.UserDto;
+import gov.iti.jets.service.Impl.LoginImpl;
+import gov.iti.jets.service.Impl.ServerMessageAnnounceImpl;
+import gov.iti.jets.service.Impl.ServerMessageImpl;
+import gov.iti.jets.service.services.AddUserService;
+import gov.iti.jets.service.services.AnalysisService;
+import gov.iti.jets.service.services.ServerControlService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.geometry.Insets;
+import javafx.geometry.NodeOrientation;
+import javafx.scene.Node;
+import javafx.scene.chart.PieChart;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import org.controlsfx.control.ToggleSwitch;
+import org.kordamp.ikonli.javafx.FontIcon;
 
-public class HomePageController implements Initializable{
+import java.net.URL;
+import java.rmi.RemoteException;
+import java.text.NumberFormat;
+import java.util.ResourceBundle;
+
+public class HomePageController implements Initializable {
     private final StageCoordinator stageCoordinator = StageCoordinator.getInstance();
+    ServerControlService serverControlService = ServerControlService.getInstance();
+    AnalysisService analysisService = AnalysisService.getInstance();
+    MessageAnnounceDto messageAnnounceDto=new MessageAnnounceDto();
+    ServerMessageAnnounceImpl serverMessageAnnounce= new ServerMessageAnnounceImpl();
+   // NumberFormat numberFormat = NumberFormat.getNumberInstance();
+    LoginImpl loginImpl=new LoginImpl();
+    private ObservableList<HBox> messageObservableList;
+
+    AddUserService addUserService = new AddUserService();
+
+    @FXML
+    private FontIcon addUser;
+
+    @FXML
+    private TextField phoneNumberTextField;
+
+    @FXML
+    private TextField userNameTextField;
+
+    @FXML
+    private GridPane chartsBigGrid;
+
+    @FXML
+    private GridPane chartsGrid;
+    @FXML
+    private Label onOffLabel;
     @FXML
     private AnchorPane content;
     @FXML
@@ -21,19 +67,183 @@ public class HomePageController implements Initializable{
     @FXML
     private Tab userAdd;
 
+    @FXML
+    private PieChart genderChart;
+
+    @FXML
+    private GridPane numberOfUsers;
+
+    @FXML
+    private Label usersNumber;
+
+    @FXML
+    private PieChart statusChart;
+
+    @FXML
+    private ListView<HBox> listView;
+    @FXML
+    private TextField messageTextField;
+
+    @FXML
+    private ToggleSwitch toggleButton;
+
+    @FXML
+    private TextField emailTextField;
+
+    @FXML
+    private TextField passwordTextField;
+
+    public HomePageController() throws RemoteException {
+    }
+
+
+
+    @FXML
+    void onGetActiveUsers(MouseEvent event) {
+        statusChart(loginImpl.getCounter());
+
+    }
+
+    @FXML
+    void onGetGender(MouseEvent event) {
+        genderChart();
+
+    }
+
+    @FXML
+    void onGetNumberOfUsers(MouseEvent event) {
+
+        getNumberOfUsers();
+    }
+
+
+    @FXML
+    void sendAction(MouseEvent event) {
+        messageAnnounceDto.setMessageContent(messageTextField.getText());
+
+        messageObservableList.add(stageCoordinator.loadMessage(messageAnnounceDto));
+        listView.setItems(messageObservableList);
+
+        serverMessageAnnounce.getMessageAnnounceDto(this.messageAnnounceDto);
+
+        messageTextField.setText("");
+    }
 
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-      
-        // ( (AnchorPane)userAdd.getContent()).getChildren().add(stageCoordinator.loadAddUser());
-        content.getChildren().add(stageCoordinator.loadAddUser());
-           
+       // numberFormat.setMaximumFractionDigits(0);
+        toggleButton.selectedProperty().addListener((observable,oldValue,newValue)->{
+
+            if(newValue)
+            {
+                serverControlService.openConnection();
+
+                onOffLabel.setText("ON");
+            }else{
+                serverControlService.closeConnection();
+
+                onOffLabel.setText("OFF");
+            }
+
+        });
+
+        genderChart();
+        statusChart(loginImpl.getCounter());
+        getNumberOfUsers();
+
+
+        listView.setCellFactory(messageListView -> new MessageServerListViewCell());
+        messageObservableList = FXCollections.observableArrayList();
+
+
+
     }
 
-    
+    private void getNumberOfUsers() {
 
-    
-    
+        usersNumber.setText(String.valueOf(analysisService.getAllUsers()));
+    }
+
+
+    private void genderChart() {
+
+        ObservableList<PieChart.Data> genderTypeList = FXCollections.observableArrayList(
+                new PieChart.Data("Number of Females", analysisService.getNumberOfFemaleUsers()),
+                new PieChart.Data("Number of Males", analysisService.getNumberOfMaleUsers())
+        );
+
+
+        genderChart.setData(genderTypeList);
+        genderChart.getData().forEach(data->{
+            Double number =data.getPieValue();
+            //numberFormat.format()
+            Tooltip toolTip =new Tooltip( number.toString());
+            Tooltip.install(data.getNode(), toolTip);
+            toolTip.setStyle("-fx-background-color: #2f2a57af; -fx-font-size: 14px;-fx-text-fill:#ffffff ;");
+        });
+
+    }
+    private void statusChart(int onlineUsers){
+        ObservableList<PieChart.Data> statusList= FXCollections.observableArrayList(
+                new PieChart.Data("Number of onlineUsers",onlineUsers),
+                new PieChart.Data("Number of offlineUsers",analysisService.getAllUsers()-onlineUsers)
+        );
+        statusChart.setData(statusList);
+        statusChart.getData().forEach(data->{
+            Double number =data.getPieValue();
+            //numberFormat.format()
+            Tooltip toolTip =new Tooltip( number.toString());
+            Tooltip.install(data.getNode(), toolTip);
+            toolTip.setStyle("-fx-background-color: #2f2a57af; -fx-font-size: 14px;-fx-text-fill:#ffffff ;");
+        });
+    }
+
+    @FXML
+    void onAddUserMouseClicked(MouseEvent event) {
+        UserDto userDto = new UserDto();
+
+            userDto.setPhoneNumber(phoneNumberTextField.getText());
+            userDto.setName(userNameTextField.getText());
+            userDto.setEmail(emailTextField.getText());
+            userDto.setPassword(passwordTextField.getText());
+            userDto.setGender("Female");
+            userDto.setStatus(Status.OFFLINE);
+            userDto.setPicture("src/main/resources/clientPictures/user.png");
+            userDto.setStatus(Status.ACTIVE);
+            addUserService.addUser(userDto);
+            phoneNumberTextField.setText("");
+            userNameTextField.setText("");
+            emailTextField.setText("");
+            passwordTextField.setText("");
+
+
+    }
+
+
+
+
+
+
+    private class MessageServerListViewCell extends ListCell<HBox> {
+
+        private Pane messageCellContainer=new Pane();
+        public MessageServerListViewCell() {
+        }
+
+        @Override
+        protected void updateItem(HBox item, boolean empty) {
+            super.updateItem(item, empty);
+            if (item != null && !empty) { // <== test for null item and empty parameter
+                messageCellContainer.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+                item.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+                messageCellContainer.getChildren().add(item);
+
+                setGraphic(messageCellContainer);
+            } else {
+                setGraphic(null);
+            }
+        }
+    }
 
 }

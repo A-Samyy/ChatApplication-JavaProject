@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="706.0" stylesheets="@LoginView2Style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.LoginController1">
+   <children>
+      <GridPane fx:id="grid" alignment="CENTER" layoutX="-61.0" layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="830.0" AnchorPane.bottomAnchor="-77.0" AnchorPane.leftAnchor="-61.0" AnchorPane.rightAnchor="-63.0" AnchorPane.topAnchor="0.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="350.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="350.0" prefHeight="350.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <AnchorPane fx:id="loginPaneContent" prefWidth="372.0">
+               <children>
+                  <TextField fx:id="phoneNumberTextField" layoutX="38.0" layoutY="153.0" prefHeight="43.0" prefWidth="273.0" promptText="Phone Number" styleClass="numfield" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="39.0">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="loginButton" layoutX="81.0" layoutY="239.0" mnemonicParsing="false" onAction="#OnLoginAction" prefHeight="42.0" prefWidth="214.0" text="NEXT" textFill="WHITE" AnchorPane.leftAnchor="81.0" AnchorPane.rightAnchor="81.39999999999998">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="32.0" layoutY="119.0" prefHeight="22.0" prefWidth="286.0" text="ENTER YOUR PHONE NUMBER" textFill="#400080" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0">
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="phoneNumberError" layoutX="40.0" layoutY="207.0" prefHeight="17.0" prefWidth="178.0" textAlignment="CENTER" textFill="#ea0000" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="158.4" />
+                  <Label fx:id="createbutton" layoutX="105.0" layoutY="318.0" onDragDetected="#OnRegestrationAction" onMouseClicked="#OnRegestrationAction" prefHeight="32.0" prefWidth="152.0" text="Create Account?" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="93.0">
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <FontIcon fx:id="backArrow" iconColor="WHITE" iconLiteral="fas-arrow-left" iconSize="25" layoutX="25.0" layoutY="37.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="15.125">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </FontIcon>
+                  <Label alignment="TOP_RIGHT" layoutX="25.0" layoutY="16.0" onMouseClicked="#OnWelcomeAction" prefHeight="27.0" prefWidth="71.0" text="Back" textFill="#400090" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="16.0">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <Label fx:id="welcome" layoutX="75.0" layoutY="68.0" prefHeight="43.0" prefWidth="218.0" text="Welcome to KAT!" textFill="#400080">
+                     <font>
+                        <Font name="Franklin Gothic Heavy Italic" size="30.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="54.0" fitWidth="101.0" layoutX="141.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@cat.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

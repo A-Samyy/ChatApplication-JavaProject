@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<GridPane fx:id="sideBar" prefHeight="642.0" prefWidth="350.0" stylesheets="@homePageStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.SidebarController">
+   <columnConstraints>
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="86.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="480.80000305175787" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" valignment="CENTER" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets top="12.0" />
+         </GridPane.margin>
+         <children>
+            <GridPane layoutX="115.19999694824219" layoutY="24.600000381469727" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <columnConstraints>
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <FontIcon iconColor="WHITE" iconLiteral="fas-sign-out-alt" iconSize="25" onMouseClicked="#logoutOnMouseClick">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </FontIcon>
+                  <Label onMouseClicked="#logoutOnMouseClick" prefHeight="27.0" prefWidth="73.0" text="Log Out" textFill="WHITE" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+      <Pane onMouseClicked="#openProfileOnMouseClick" prefHeight="82.0" prefWidth="350.0">
+         <children>
+            <Circle fx:id="profilePic" fill="WHITE" layoutX="54.0" layoutY="44.0" radius="33.0" stroke="#2f2a57" strokeType="INSIDE" />
+            <Circle fx:id="status" fill="#15ac45" layoutX="79.0" layoutY="66.0" radius="8.0" stroke="#2f2a57" strokeType="INSIDE" />
+            <Label fx:id="userName" layoutX="113.0" layoutY="9.0" prefHeight="35.0" prefWidth="212.0" text="Hend" textFill="WHITE">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+<!--            <Button layoutX="227.0" layoutY="83.0" mnemonicParsing="false" onMouseClicked="#OnAddContactMouseClick" text="Add Contact" />-->
+            <Label fx:id="bio" layoutX="114.0" layoutY="53.0" text="Bio....." textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Pane>
+      <TabPane fx:id="tabPane" prefHeight="534.0" prefWidth="415.0" tabClosingPolicy="UNAVAILABLE" GridPane.rowIndex="1">
+         <tabs>
+            <Tab fx:id="Contacts">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fas-comment-dots" iconSize="25" onMouseClicked="#OnChangingTab">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </FontIcon>
+               </graphic>
+               <content>
+                  <AnchorPane prefHeight="463.0" prefWidth="415.0">
+                     <children>
+                        <GridPane layoutX="-0.800000011920929" layoutY="11.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="60.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
+                           </rowConstraints>
+                           <children>
+                              <ScrollPane fitToHeight="true" fitToWidth="true" GridPane.rowIndex="1">
+                                 <content>
+                                    <VBox fx:id="chattingSectionVbox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="346.0" prefWidth="109.0" spacing="3.0" />
+                                 </content>
+                              </ScrollPane>
+                              <GridPane>
+                                 <columnConstraints>
+                                    <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="60.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <FontIcon iconColor="WHITE" iconLiteral="fas-user-plus" iconSize="20" onMouseClicked="#OnAddingContact">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor></FontIcon>
+                                    <Label text="Add Contact" textFill="WHITE" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font name="Arial Bold" size="17.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="15.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="chattingGroup">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fas-comments" iconSize="25" onMouseClicked="#OnChangingTab">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </FontIcon>
+               </graphic>
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="60.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <GridPane>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.599951171875" minWidth="10.0" prefWidth="144.80003662109374" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.39996337890625" minWidth="10.0" prefWidth="206.39996337890625" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="60.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="60.0" prefWidth="154.0" rowValignment="BASELINE">
+                                       <children>
+                                          <FontIcon iconColor="WHITE" iconLiteral="fas-user-friends" iconSize="20" onMouseClicked="#OnAddingGroup">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></FontIcon>
+                                          <FontIcon iconColor="WHITE" iconLiteral="fas-user-plus" iconSize="20" onMouseClicked="#OnAddingGroup">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></FontIcon>
+                                       </children>
+                                    </FlowPane>
+                                    <Label text="Add Group" textFill="#faf9f9" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font name="Arial Bold" size="17.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                 </children>
+                              </GridPane>
+                              <ScrollPane fitToHeight="true" fitToWidth="true" GridPane.rowIndex="1">
+                                 <content>
+                                    <VBox fx:id="chattingGroupAreaVbox" spacing="3.0" />
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="Setting">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="-18.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <content>
+                              <VBox fx:id="SettingAreaVbox" prefHeight="407.0" prefWidth="349.0" spacing="3.0" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="far-bell" iconSize="25" onMouseClicked="#OnChangingTab">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </FontIcon>
+               </graphic>
+            </Tab>
+         </tabs>
+         <GridPane.margin>
+            <Insets top="15.0" />
+         </GridPane.margin>
+      </TabPane>
+   </children>
+</GridPane>

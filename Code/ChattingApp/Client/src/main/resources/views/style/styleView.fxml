@@ -11,10 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@textStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.StylingController">
    <children>
-      <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane style="-fx-background-color: #1e1836;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -35,7 +34,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </padding>
                   </Label>
-                  <Label text="System">
+                  <Label fx:id="fontFamilyField" text="System">
                      <padding>
                         <Insets bottom="10.0" top="10.0" />
                      </padding>
@@ -43,7 +42,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <ComboBox prefHeight="26.0" prefWidth="189.0" />
+                  <ComboBox fx:id="fontFamily" onAction="#OnChangingFontFamily" prefHeight="26.0" prefWidth="189.0" style="-fx-background-color: #2f2a57; -fx-background-radius: 50px;" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
@@ -56,7 +55,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </padding>
                   </Label>
-                  <Label text="Regular">
+                  <Label fx:id="fontStyleField" text="Regular">
                      <padding>
                         <Insets bottom="10.0" top="10.0" />
                      </padding>
@@ -64,7 +63,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <ComboBox prefHeight="26.0" prefWidth="190.0" />
+                  <ComboBox fx:id="fontStyle" onAction="#OnChangingFontStyle" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #2f2a57; -fx-background-radius: 50px;" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
@@ -77,7 +76,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </padding>
                   </Label>
-                  <Label text="12">
+                  <Label fx:id="fontSizeField" text="12">
                      <padding>
                         <Insets bottom="10.0" top="10.0" />
                      </padding>
@@ -85,7 +84,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <ComboBox prefHeight="26.0" prefWidth="191.0" />
+                  <ComboBox fx:id="fontSize" onAction="#OnChangingFontSize" prefHeight="26.0" prefWidth="191.0" style="-fx-background-color: #2f2a57; -fx-background-radius: 50px;" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
@@ -98,7 +97,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </padding>
                   </Label>
-                  <Label text="Black">
+                  <Label fx:id="fontColorField" text="Black">
                      <padding>
                         <Insets bottom="10.0" top="10.0" />
                      </padding>
@@ -106,17 +105,23 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <ColorPicker prefHeight="26.0" prefWidth="191.0">
+                  <ColorPicker fx:id="fontColor" onAction="#OnChangingFontColor" prefHeight="36.0" prefWidth="191.0" style="-fx-background-color: #2f2a57; -fx-background-radius: 50px;">
                      <value>
                         <Color />
                      </value>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                   </ColorPicker>
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                  <Label prefHeight="46.0" prefWidth="57.0" text="Sample: " />
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="92.0" prefWidth="205.0" style="-fx-background-color: white;" text="AaBbYyZz" wrapText="true" />
+                  <Label prefHeight="46.0" prefWidth="78.0" text="Sample: " />
+                  <Label fx:id="sampleField" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="190.0" style="-fx-background-color: #2f2a57; -fx-background-radius: 50px;" text="AaBbYyZz" wrapText="true">
+                     <VBox.margin>
+                        <Insets right="10.0" />
+                     </VBox.margin></Label>
                </children>
             </VBox>
          </children>

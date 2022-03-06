@@ -1,20 +1,31 @@
 
 .root{
   -fx-font-family:'Arial';
-  
+  -fx-background-color: white;
   -fx-font-size: 14px;
 }
 
+.label{
+  -fx-font-weight:bold;
+  -fx-text-fill:#2f2a57 ;
+}
+
+#profilePicture{
+  -fx-background-image: url("profile-user.jpg");
+}
 
 
+#paneSideBar{
+  -fx-background-image: url("24.jfif");
+}
 
 .text-field{
   
     -fx-border-radius:5px;
     -fx-border-width:0.5px;
-    -fx-text-fill:#400080 ;
+    -fx-text-fill:#1e1836 ;
     -fx-font-weight	:normal;
-    -fx-border-color: #400080;
+    -fx-border-color: #1e1836;
 
 }
 
@@ -24,23 +35,20 @@
   -fx-border-radius:5px;
   -fx-background-radius:10px;
   -fx-border-width:0.5px;
-  -fx-text-fill:#400080 ;
+  -fx-text-fill:#1e1836 ;
   -fx-font-weight:normal;
-  -fx-border-color: #400080;
+  -fx-border-color: #2f2a57;
 }
 
 .password-field{
-  -fx-border-color: #400080;
+  -fx-border-color: #1e1836;
 }
 
-.label{
-  -fx-font-weight:bold;
-  -fx-text-fill:#400080 ;
-}
+
 
 .emailfield{
     -fx-background-radius:5px;
-    -fx-fill:#400080 ;
+    -fx-fill:#1e1836 ;
 }
 
 #male{
@@ -52,17 +60,60 @@
 }
 
 #regbutton {
-  -fx-background-color: #400080;
+  -fx-background-color: #2f2a57;
   -fx-background-radius:100px;
 }
+
+
+#regbutton:hover{
+  -fx-background-color: #1e1836;
+ 
+}
+
+
 
 #dateOfBirth{
   -fx-border-radius:5px;
   -fx-background-radius:10px;
   -fx-border-width:0.5px;
-  -fx-text-fill:#400080 ;
--fx-fill:#400080 ;
+  -fx-text-fill:#2f2a57 ;
+  -fx-fill:#2f2a57 ;
   -fx-font-weight:normal;
-  -fx-border-color: #400080;
+  /* -fx-border-color: #2f2a57; */
 
 }
+
+#countryChoiceBox{
+  -fx-background-color:white;
+  -fx-border-radius:5px;
+  -fx-background-radius:10px;
+  -fx-border-width:0.7px;
+  -fx-text-fill:#1e1836 ;
+  -fx-fill:#1e1836 ;
+  -fx-font-weight:normal;
+  /* -fx-border-color: #1e1836; */
+}
+
+
+#backButton{
+  -fx-font-weight	:normal;
+  -fx-text-fill:#ffffff ;
+  -fx-font-size: 20px;
+
+}
+
+.errorLabel{
+  -fx-text-fill:#ea0000;
+  -fx-font-size: 12px;
+  -fx-font-weight	:normal;
+}
+
+
+
+
+.error{
+    -fx-border-color: rgb(245, 43, 43);
+    -fx-border-width: 2;
+}
+
+

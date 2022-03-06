@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="706.0" stylesheets="@loginStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.WelcomeController">
+   <children>
+      <AnchorPane fx:id="loginContent" layoutX="-7.0" prefHeight="482.0" prefWidth="715.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-7.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <GridPane layoutX="-25.0" layoutY="112.0" prefHeight="371.0" prefWidth="762.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-25.0" AnchorPane.rightAnchor="-22.0" AnchorPane.topAnchor="112.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="292.40001220703124" minHeight="10.0" prefHeight="265.4" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="105.39998779296877" minHeight="10.0" prefHeight="58.39996337890625" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="105.39998779296877" minHeight="7.199987792968727" prefHeight="52.80003662109374" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="286.0" fitWidth="231.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="@catWelcome.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets top="30.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#OnLoginAction" prefHeight="54.0" prefWidth="214.0" text="LOGIN" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="319.0" text=" Join Us NOW!!" textOverrun="CENTER_ELLIPSIS" wrapText="true" GridPane.halignment="CENTER">
+                     <font>
+                        <Font name="Andalus" size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets top="250.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="createbutton" onMouseClicked="#OnRegestrationAction" prefHeight="32.0" prefWidth="148.0" text="Create Account?" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets top="110.0" />
+                     </GridPane.margin>
+                  </Label>
+               </children>
+            </GridPane>
+            <TextField fx:id="enterIPTextField" layoutX="36.0" layoutY="2.0" prefHeight="26.0" prefWidth="108.0" promptText="enter Ip" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" />
+            <Label fx:id="aboutButton" layoutX="640.0" layoutY="14.0" onMouseClicked="#onAbout" text="About" AnchorPane.rightAnchor="39.8" AnchorPane.topAnchor="14.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Label>
+            <FontIcon fx:id="aboutIcon" iconColor="WHITE" iconLiteral="fas-question-circle" iconSize="16" layoutX="681.0" layoutY="29.0" onMouseClicked="#onAbout" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="13.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></FontIcon>
+            <TextField fx:id="enterIPTextField" layoutX="36.0" layoutY="2.0" onKeyPressed="#OnEnterStaticIp" prefHeight="26.0" prefWidth="108.0" promptText="enter Ip" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" />
+            <Label fx:id="aboutButton" layoutX="640.0" layoutY="14.0" text="About" AnchorPane.rightAnchor="39.8" AnchorPane.topAnchor="14.0" />
+            <FontIcon fx:id="aboutIcon" iconColor="WHITE" iconLiteral="fas-question-circle" iconSize="16" layoutX="681.0" layoutY="29.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="13.0" />
+            <Label fx:id="enterIPButton" layoutX="53.0" layoutY="6.0" text="Enter IP" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="35.0" />
+            <Label fx:id="serverValidation" contentDisplay="CENTER" layoutX="246.0" layoutY="30.0" prefHeight="66.0" prefWidth="223.0" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true" AnchorPane.rightAnchor="246.00000000000006" AnchorPane.topAnchor="30.0">
+               <font>
+                  <Font name="Arial" size="34.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

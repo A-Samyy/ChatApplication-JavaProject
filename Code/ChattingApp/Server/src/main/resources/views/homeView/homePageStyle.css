@@ -1,4 +1,7 @@
-
+.root{
+   -fx-background-image: url("4.jfif");
+   -fx-background-size: 100% 100%;
+}
 
 .scroll-pane > .viewport {
    -fx-background-color: transparent;
@@ -13,10 +16,15 @@
 }
 
 #tabPane{
-   -fx-tab-min-height:5em;
-   -fx-tab-max-height:5em;
-   -fx-tab-min-width:6.9em;
-   -fx-tab-max-width:15em;
+   -fx-tab-min-height:4em;
+   -fx-tab-max-height:4em;
+   -fx-tab-min-width:6em;
+   -fx-tab-max-width:6.5em;
+  
+}
+
+#content{
+   -fx-background-color: #2f2a57;
 }
 
 .tab .tab-label{
@@ -26,18 +34,18 @@
 }
 
 .tab {
-   -fx-background-color: #3f0975;
+   -fx-background-color: #1e1836;
    
    fx-background-insets:0px;
    
 }
 
 .tab:selected{
-   -fx-background-color: #320064;
+   -fx-background-color: #2f2a57;
    fx-background-insets:0px;
    fx-background-radius:0px;
    fx-border-width:5 0 0 0;
-   fx-border-Color:#320064;
+   fx-border-Color:#2f2a57;
 
 }
 
@@ -52,4 +60,26 @@
    -fx-background-color: transparent;
 }
 
+
+
+.Chart{
+   -fx-text-fill:white;
+   -fx-background-color: rgba(247, 247, 247, 0.164);
+   -fx-background-radius:20px;
+   
+}
+
+
+.default-color0.chart-pie{-fx-pie-color: #2f2a57;}
+.default-color1.chart-pie{-fx-pie-color: #1e1836;}
+
+.chart-pie-label{
+   -fx-fill:white;
+   -fx-stroke:white;
+   -fx-font-size:20px;
+}
+
+.purple:selected .thumb-area {
+   -fx-background-color: #2f2a57;;
+}
 

@@ -1,33 +1,58 @@
 .root{
--fx-background-color: #400080;
-}
-.text-field{
--fx-border-color: #400080;
--fx-border-radius:100px;
--fx-background-radius:100px;
--fx-text-fill:#400080 ;
--fx-text-prompt-fill:#400080 ;
+    -fx-background-image: url("4.jfif");
+    -fx-background-size: 100% 100%;
+  
 }
 
+#grid{
+      -fx-background-color: rgba(0, 0, 0, 0.192);
+}
 
 #loginButton{
+-fx-border-radius:100px;
+-fx-background-color: transparent;
+-fx-border-color:white;
+-fx-border-width:5px;
+-fx-text-fill:white;
+-fx-font-size:20px;
+}
+
+.text-field{
+    
+    -fx-border-radius:100px;
     -fx-background-radius:100px;
-    -fx-background-color:#400080;
+   
+    }
+
+.label{
+    -fx-font-family:'SansSerif';
+    -fx-text-fill:white;
+    -fx-font-weight:bold;
+    -fx-font-size:18px;
+
+
 }
 
-.pane{
-
-    -fx-background-radius:35px;
-    -fx-background-color:white;
+#welcome{
+    -fx-font-size:26px;
 }
 
-#forgetbutton{
-    -fx-background-color:transparent;
+
+#loginPaneContent{
+    -fx-background-radius:20px;
+    -fx-background-color: rgba(0, 0, 0, 0.281);
+
 }
 
-#createbutton{
-    -fx-background-color:transparent;
-}
-.container{
-    -fx-background-color: #400080;
-}
+.context-menu {
+    -fx-background-color: #2f2a57;
+    -fx-text-fill: white;
+  }
+  
+  .menu-item .label {
+    -fx-text-fill: white;
+  }
+  
+  .menu-item:focused .label {
+    -fx-text-fill: white;
+  }

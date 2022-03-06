@@ -1,0 +1,52 @@
+.root{
+    -fx-background-image: url("4.jfif");
+    -fx-background-size: 100% 100%;
+}
+
+#loginButton{
+-fx-border-radius:100px;
+-fx-background-color: transparent;
+-fx-border-color:white;
+-fx-border-width:5px;
+-fx-text-fill:white;
+-fx-font-size:20px;
+}
+
+.label{
+    -fx-font-family:'SansSerif';
+    -fx-text-fill:white;
+    -fx-font-weight:bold;
+    -fx-font-size:12px;
+
+
+}
+
+#loginContent{
+    -fx-background-color: rgba(0, 0, 0, 0.192);
+
+}
+
+#createbutton{
+    
+    -fx-font-family:'SansSerif';
+    -fx-text-fill:white;
+    -fx-font-weight:bold;
+    -fx-font-size:18px;
+}
+
+#aboutButton{
+    -fx-font-weight:bold;
+    -fx-font-size:14px;
+}
+
+#enterIPButton{
+    -fx-font-weight:bold;
+    -fx-font-size:14px;
+}
+
+.text-field{
+    
+    -fx-border-radius:100px;
+    -fx-background-radius:100px;
+   
+    }

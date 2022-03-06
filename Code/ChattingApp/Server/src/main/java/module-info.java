@@ -9,8 +9,16 @@ module Server {
     requires org.kordamp.ikonli.fontawesome5;
     requires transitive java.sql.rowset;
     requires transitive javafx.graphics;
-
+    requires java.rmi;
+    requires CommonModule;
+    requires org.jetbrains.annotations;
+    requires com.zaxxer.hikari;
     opens gov.iti.jets.presentation.controllers to javafx.fxml;
-
+    requires org.slf4j;
+    requires org.slf4j.jul;
+    requires chatter.bot.api;
+    requires jakarta.validation;
+    exports gov.iti.jets.presentation.controllers;
     exports gov.iti.jets;
+    opens gov.iti.jets.presistance.dtos to org.hibernate.validator;
 }

@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="63.0" prefWidth="236.0" style="-fx-background-color: #4D0099;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" onMouseClicked="#OnOpenGroupChat" prefHeight="60.0" prefWidth="314.0" stylesheets="@userPaneStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.presentation.controllers.GroupListController">
    <children>
-      <Circle fill="DODGERBLUE" layoutX="35.0" layoutY="32.0" radius="21.0" stroke="WHITE" strokeType="INSIDE" />
-      <Label alignment="CENTER" layoutX="50.0" layoutY="21.0" prefHeight="18.0" prefWidth="95.0" text="User Name" textFill="WHITE">
+      <Label fx:id="groupName" prefHeight="40.0" prefWidth="191.0" style="-fx-background-color: #2f2a57;" text="gbgfbngfcb" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="Arial Bold" size="19.0" />
          </font>
+         <padding>
+            <Insets left="15.0" />
+         </padding>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
-      <Label alignment="CENTER" layoutX="48.0" layoutY="39.0" prefHeight="18.0" prefWidth="140.0" text="Hi I'm use Chatting App" textAlignment="CENTER" textFill="#fcfcfc">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <Circle fill="#00ff11" layoutX="48.0" layoutY="48.0" radius="5.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="5.0" strokeType="OUTSIDE" />
    </children>
    <cursor>
       <Cursor fx:constant="HAND" />
    </cursor>
-</Pane>
+</AnchorPane>
