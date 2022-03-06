@@ -1,0 +1,1 @@
+java -jar Server-1.0-SNAPSHOT-shaded.jar
